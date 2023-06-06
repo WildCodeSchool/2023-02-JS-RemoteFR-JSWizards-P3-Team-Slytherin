@@ -4,9 +4,10 @@ import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <Home />
-      <p>coucou</p>
+    <div className="bg-winebg bg-cover bg-center">
+      <div className="bg-black w-screen h-screen opacity-70">
+        <Home />
+      </div>
     </div>
   );
 }
