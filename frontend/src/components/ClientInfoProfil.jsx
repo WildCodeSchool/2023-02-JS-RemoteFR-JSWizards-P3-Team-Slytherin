@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 function ClientInfoProfil({ email, birthday }) {
   return (
     <>
-      <p className="pt-[1.5rem]">{email}</p>
-      <p>{birthday}</p>
+      <p className="pt-[1.5rem] text-lg">{email}</p>
+      <p className="pb-[1.8rem] text-lg">{birthday}</p>
     </>
   );
 }
