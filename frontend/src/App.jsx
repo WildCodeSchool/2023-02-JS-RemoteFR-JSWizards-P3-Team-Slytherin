@@ -1,19 +1,14 @@
-// import Header from "./components/Header";
+import { Routes, Route } from "react-router-dom";
 import Page404 from "./pages/Page404";
-// import Home from "./pages/Home";
+import Home from "./pages/Home";
 import "./App.css";
 
 function App() {
   return (
-    <>
-      {/* <Header />
-      <div className="bg-winebg bg-cover bg-center">
-        <div className="bg-[black] h-screen opacity-70"> */}
-      {/* <Home /> */}
-      <Page404 />
-      {/* </div>
-      </div> */}
-    </>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="*" element={<Page404 />} />
+    </Routes>
   );
 }
 
