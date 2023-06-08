@@ -78,7 +78,7 @@ const fiches = [
 function Profil() {
   return (
     <Layout>
-      <div className="text-secondary p-[1.5rem] h-[100vh] sm:px-[3.2rem] md:px-[6.4rem] min-[950px]:px-[7.5rem]">
+      <div className="text-secondary p-[1.5rem] h-[full] sm:px-[3.2rem] md:px-[6.4rem] min-[950px]:px-[7.5rem]">
         <div className="flex flex-col items-center">
           <h2 className="text-3xl pb-[2rem]">Bonjour {clients[0].name}</h2>
           <button type="button">Mes recettes</button>
