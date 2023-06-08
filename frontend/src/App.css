@@ -12,6 +12,24 @@
     font-weight: bold;
   }
 
+  button,
+  [type="submit"] {
+    background-color: theme("colors.tertiary");
+    border-radius: 1.6rem;
+    padding: 0.5rem 1rem;
+    width: 10rem;
+    color: theme("colors.primary");
+    font-weight: bold;
+    font-size: 0.8rem;
+  }
+
+  .register-button,
+  .login-button {
+    background: none;
+    color: theme("colors.secondary");
+    font-weight: normal;
+  }
+
   .profilTitle {
     position: relative;
   }
@@ -32,7 +50,7 @@
   .fiche:hover .imgProfil {
     opacity: 0.3;
   }
-  
+
   .fiche:hover .textImgProfil {
     opacity: 1;
   }
