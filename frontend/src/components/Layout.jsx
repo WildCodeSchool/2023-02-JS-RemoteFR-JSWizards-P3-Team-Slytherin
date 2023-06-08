@@ -8,7 +8,7 @@ export default function Layout({ children }) {
       <div className="h-screen bg-winebg bg-cover bg-center">
         <div className="h-screen bg-[black] bg-opacity-70 flex justify-center">
           <div className="text-secondary overflow-y-auto w-[80%] pt-24">
-            <main>{children}</main>
+            <main className="h-full">{children}</main>
           </div>
         </div>
       </div>
