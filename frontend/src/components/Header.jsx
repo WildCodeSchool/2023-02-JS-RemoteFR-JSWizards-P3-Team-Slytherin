@@ -13,16 +13,16 @@ function Header() {
       <nav>
         <ul className="flex items-center gap-10">
           <li className="text-secondary">
-            <Link to="catalogue">Catalogue</Link>
+            <Link to="/catalogue">Catalogue</Link>
           </li>
           <li className="text-secondary">
-            <Link to="lexique">Lexique</Link>
+            <Link to="/lexique">Lexique</Link>
           </li>
           <li className="text-secondary">
-            <Link to="profil">Profil</Link>
+            <Link to="/profil">Profil</Link>
           </li>
           <li className="mr-10 text-secondary">
-            <Link to="avis">Avis</Link>
+            <Link to="/avis">Avis</Link>
           </li>
         </ul>
       </nav>
