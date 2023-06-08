@@ -9,7 +9,7 @@ function Lexique() {
       title: "Aligoté blanc",
       description:
         "Originaire de Bourgogne. Il a été introduit dans les années 1950 dans le Bugey. Il est surtout présent en petite quantité autour de Belley dans le Cerdon. Il rentre dans la composition du Bugey blanc et mousseux. On retrouve des traces du cépage aligoté qui peut rentrer dans la composition du vin blanc AOVDQS Moselle. ",
-      link: "http://www.vin-vigne.com/cepage/aligote-blanc.html#vin-cepage-Aligot%C3%A9%20blanc",
+      link: "http://www.vin-vigne.com/cepage/aligote-blanc.html",
       color: "blanc",
     },
     {
@@ -64,6 +64,8 @@ function Lexique() {
             <a
               href="http://www.vin-vigne.com"
               title="Vin Vigne: Guide des vins et des vignes de France"
+              rel="noreferrer"
+              target="_blank"
             >
               Vin-Vigne.com
             </a>
@@ -71,6 +73,8 @@ function Lexique() {
             <a
               href="http://www.vin-vigne.com/cepage/"
               title="Liste des cépages"
+              rel="noreferrer"
+              target="_blank"
             >
               Liste des cépages
             </a>
