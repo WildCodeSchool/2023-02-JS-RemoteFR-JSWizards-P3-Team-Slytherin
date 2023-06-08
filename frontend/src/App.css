@@ -3,4 +3,13 @@
 @tailwind utilities;
 
 @layer utilities {
+
+  button,
+  [type="button"] {
+    background-color: theme("colors.tertiary");
+    border-radius: 1.6rem;
+    padding: 0.2rem 0.7rem;
+    color: theme("colors.primary");
+    font-weight: bold;
+  }
 }
