@@ -3,18 +3,18 @@ import Layout from "../components/Layout";
 const Catalogue = () => {
   return (
     <Layout>
-      <h2 className="text-center font-bold text-2xl pt-[2rem] text-secondary">
+      <h2 className="text-center font-bold text-2xl pt-3 text-secondary">
         Catalogue des vins
       </h2>
       <div className="flex justify-center">
         <button
           type="button"
-          className="bg-tertiary text-primary m-[2rem] font-bold p-[0.5rem] rounded-full text-xs text-center"
+          className="bg-tertiary text-primary m-7 font-bold p-[0.5rem] rounded-full text-xs text-center"
         >
           Afficher tous les vins
         </button>
       </div>
-      <div className="flex gap-10 flex-wrap justify-around">
+      <div className="flex sm:mx-10 gap-14 flex-wrap justify-center md:mx-24 md:gap-24 lg:mx-48 lg:gap-24">
         <div>
           <img src="../assets/images/vin1.svg" alt="vin numéro 1" />
           <h3 className="text-center text-xs">Palacio de Meladi</h3>
