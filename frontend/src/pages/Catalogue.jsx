@@ -1,6 +1,6 @@
 import Layout from "../components/Layout";
 
-const Catalogue = () => {
+export default function Catalogue() {
   return (
     <Layout>
       <h2 className="text-center font-bold text-2xl pt-3 text-secondary">
@@ -38,6 +38,4 @@ const Catalogue = () => {
       </div>
     </Layout>
   );
-};
-
-export default Catalogue;
+}
