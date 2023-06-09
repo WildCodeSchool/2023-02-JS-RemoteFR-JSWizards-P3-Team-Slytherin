@@ -5,7 +5,7 @@ import Catalogue from "@pages/Catalogue";
 import Profil from "@pages/Profil";
 import Lexique from "@pages/Lexique";
 import Avis from "@pages/Avis";
-import Page404 from "./pages/Page404";
+import Page404 from "@pages/Page404";
 
 import "./App.css";
 
