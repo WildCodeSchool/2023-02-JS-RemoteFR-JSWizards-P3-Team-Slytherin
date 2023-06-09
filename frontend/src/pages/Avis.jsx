@@ -53,9 +53,9 @@ export default function Avis() {
                 {note[4].map((star, index) => (
                   <img
                     className="w-6 h-6"
-                    key={star[index]}
+                    key={Math.random()}
                     src={star}
-                    alt={`Etoile ${star}`}
+                    alt={`Etoile ${index + 1}`}
                   />
                 ))}
               </div>
@@ -65,12 +65,12 @@ export default function Avis() {
                 Comment avez-vous trouvé l'ergonomie de l'application ?
               </p>
               <div className="flex">
-                {note[2].map((star) => (
+                {note[2].map((star, index) => (
                   <img
                     className="w-6 h-6"
                     key={Math.random()}
                     src={star}
-                    alt={`Etoile ${star}`}
+                    alt={`Etoile ${index + 1}`}
                   />
                 ))}
               </div>
@@ -83,7 +83,7 @@ export default function Avis() {
                 {note[3].map((star, index) => (
                   <img
                     className="w-6 h-6"
-                    key={star[index]}
+                    key={Math.random()}
                     src={star}
                     alt={`Etoile ${index + 1}`}
                   />
