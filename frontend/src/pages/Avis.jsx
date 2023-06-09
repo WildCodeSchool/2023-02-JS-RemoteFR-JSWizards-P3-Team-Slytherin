@@ -104,9 +104,7 @@ export default function Avis() {
             rows="5"
           />
           <div className="w-full flex justify-center pt-4">
-            <button className="p-2" type="button">
-              Envoyer votre avis
-            </button>
+            <button type="button">Envoyer votre avis</button>
           </div>
         </form>
       </div>
