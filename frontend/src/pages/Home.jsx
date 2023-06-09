@@ -66,7 +66,7 @@ export default function Home() {
                 id="email-register"
                 placeholder="exemple@gmail.com"
                 required
-                className="text-primary w-80 p-1 rounded"
+                className="text-primary w-72 p-1 rounded"
               />
             </div>
             <br />
@@ -79,7 +79,7 @@ export default function Home() {
                 id="birthdate"
                 min="1900-01-01"
                 max={formattedDate}
-                className="text-primary w-80 p-1 rounded"
+                className="text-primary w-72 p-1 rounded"
               />
             </div>
             <br />
@@ -90,7 +90,7 @@ export default function Home() {
                 type="password"
                 name="password"
                 required
-                className="text-primary w-80 p-1 rounded"
+                className="text-primary w-72 p-1 rounded"
               />
               <br />
               <br />
@@ -100,7 +100,7 @@ export default function Home() {
                 type="password"
                 name="confirmpassword"
                 required
-                className="text-primary w-80 p-1 rounded"
+                className="text-primary w-72 p-1 rounded"
               />
             </div>
             <br />
@@ -128,7 +128,7 @@ export default function Home() {
                 id="email-connection"
                 placeholder="exemple@gmail.com"
                 required
-                className="text-primary w-80 p-1 rounded"
+                className="text-primary w-72 p-1 rounded"
               />
             </div>
             <br />
@@ -139,7 +139,7 @@ export default function Home() {
                 type="password"
                 name="password"
                 required
-                className="text-primary w-80 p-1 rounded"
+                className="text-primary w-72 p-1 rounded"
               />
             </div>
             <br />
