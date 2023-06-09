@@ -65,10 +65,10 @@ export default function Avis() {
                 Comment avez-vous trouvé l'ergonomie de l'application ?
               </p>
               <div className="flex">
-                {note[2].map((star, index) => (
+                {note[2].map((star) => (
                   <img
                     className="w-6 h-6"
-                    key={star[index]}
+                    key={Math.random()}
                     src={star}
                     alt={`Etoile ${star}`}
                   />

@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 
-import Home from "./pages/Home";
-import Catalogue from "./pages/Catalogue";
+import Home from "@pages/Home";
+import Catalogue from "@pages/Catalogue";
 import Profil from "@pages/Profil";
 import Lexique from "@pages/Lexique";
 import Avis from "@pages/Avis";
