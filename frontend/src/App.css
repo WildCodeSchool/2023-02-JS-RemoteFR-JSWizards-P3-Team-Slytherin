@@ -11,4 +11,29 @@
     color: theme("colors.primary");
     font-weight: bold;
   }
+
+  .profilTitle {
+    position: relative;
+  }
+
+  .profilTitle::after {
+    content: "";
+    position: absolute;
+    border-bottom: 1.5px solid theme("colors.secondary");
+    width: 25%;
+    top: 0;
+    bottom: 0;
+  }
+
+  .textImgProfil {
+    transform: translate(-50%, -50%);
+  }
+
+  .fiche:hover .imgProfil {
+    opacity: 0.3;
+  }
+
+  .fiche:hover .textImgProfil {
+    opacity: 1;
+  }
 }
