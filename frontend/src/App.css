@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 @layer utilities {
-
   button,
   [type="button"] {
     background-color: theme("colors.tertiary");
