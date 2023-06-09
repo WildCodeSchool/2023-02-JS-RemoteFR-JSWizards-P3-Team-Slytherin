@@ -91,7 +91,8 @@ export default function Avis() {
               </div>
             </li>
           </ul>
-          <label className="text-sm md:text-lg pt-4" htmlFor="commentaire">
+          <span className="w-full bg-secondary h-[1px] self-center my-2" />
+          <label className="text-sm md:text-lg" htmlFor="commentaire">
             Avez-vous un commentaire ou des suggestions à nous laisser ?
           </label>
           <textarea
