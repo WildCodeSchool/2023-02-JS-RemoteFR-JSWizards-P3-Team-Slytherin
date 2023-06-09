@@ -56,7 +56,7 @@ function Lexique() {
     <Layout>
       <div className="text-secondary pt-4">
         <div className="flex gap-4 items-center flex-row justify-around px-4">
-          <button type="button" onClick={goBack} className="text-center">
+          <button type="button" onClick={goBack}>
             Retour
           </button>
           <div className="flex flex-row items-center max-w-full">
@@ -64,7 +64,7 @@ function Lexique() {
             <form className="p-1" onSubmit={handleSubmit}>
               <input
                 className="text-primary pl-1 rounded-md"
-                type="Search"
+                type="search"
                 placeholder="search"
                 value={search}
                 onChange={handleChange}
@@ -90,6 +90,28 @@ function Lexique() {
               </a>
             </p>
           ))}
+        </div>
+        <div className="flex w-full mt-4">
+          <p className="w-full text-right italic px-0 text-xs md:text-sm md:px-0">
+            Source :{" "}
+            <a
+              href="http://www.vin-vigne.com"
+              title="Vin Vigne: Guide des vins et des vignes de France"
+              rel="noreferrer"
+              target="_blank"
+            >
+              Vin-Vigne.com
+            </a>
+            {", "}
+            <a
+              href="http://www.vin-vigne.com/cepage/"
+              title="Liste des cépages"
+              rel="noreferrer"
+              target="_blank"
+            >
+              Liste des cépages
+            </a>
+          </p>
         </div>
       </div>
     </Layout>
