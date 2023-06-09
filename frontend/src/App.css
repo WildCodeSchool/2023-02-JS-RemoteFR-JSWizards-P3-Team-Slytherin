@@ -54,4 +54,42 @@
   .fiche:hover .textImgProfil {
     opacity: 1;
   }
+
+  .slide-out {
+    height: auto;
+    overflow: hidden;
+    animation-name: growdelay;
+    animation-duration: 2.2s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out;
+  }
+
+  .slide-in {
+    height: 0;
+    overflow: hidden;
+    animation-name: reduce;
+    animation-duration: 1.1s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out;
+  }
+
+  @keyframes growdelay {
+    0% {
+      height: 0;
+    }
+    50% {
+      height: 0;
+    }
+    100% {
+      height: 100%;
+    }
+  }
+  @keyframes reduce {
+    0% {
+      height: 100%;
+    }
+    100% {
+      height: 0;
+    }
+  }
 }

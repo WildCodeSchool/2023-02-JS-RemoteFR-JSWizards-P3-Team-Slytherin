@@ -2,8 +2,8 @@ import { useState } from "react";
 import Layout from "../components/Layout";
 
 export default function Home() {
-  const [connection, setConnection] = useState(false);
-  const [register, setRegister] = useState(true);
+  const [register, setRegister] = useState("");
+  const [connection, setConnection] = useState("");
   const newDate = new Date(
     new Date().getFullYear() - 18,
     new Date().getMonth(),
@@ -19,10 +19,19 @@ export default function Home() {
     setRegister(true);
     setConnection(false);
   };
-  const showConnection = connection ? null : "hidden";
-  const hideRegister = connection ? "hidden" : null;
-  const showRegister = register ? null : "hidden";
-  const hideConnection = register ? "hidden" : null;
+  let showRegister = "";
+  let showConnection = "h-0 overflow-hidden";
+  if (register === false) {
+    showRegister = "slide-in";
+  } else if (register === true) {
+    showRegister = "slide-out";
+  }
+  if (connection === true) {
+    showConnection = "slide-out";
+  } else if (connection === false) {
+    showConnection = "slide-in";
+  }
+
   return (
     <Layout>
       <div className="flex flex-col items-center h-full justify-center gap-16">
@@ -43,21 +52,20 @@ export default function Home() {
           <button
             type="button"
             onClick={toggleRegister}
-            className="text-xl text-center register-button self-center active:text-tertiary cursor-pointer"
+            className="text-xl text-center register-button self-center active:text-tertiary cursor-pointer translate-y-2"
           >
             Inscription
           </button>
-          <form
-            className={`flex flex-col items-center ${hideRegister} ${showRegister} `}
-          >
+          <form className={`flex flex-col items-center ${showRegister}`}>
             <div>
               <label htmlFor="email">Adresse mail</label>
               <br />
               <input
                 type="email"
                 name="email"
-                id="email"
+                id="email-register"
                 placeholder="exemple@gmail.com"
+                required
                 className="text-primary w-80 p-1 rounded"
               />
             </div>
@@ -81,6 +89,7 @@ export default function Home() {
               <input
                 type="password"
                 name="password"
+                required
                 className="text-primary w-80 p-1 rounded"
               />
               <br />
@@ -90,6 +99,7 @@ export default function Home() {
               <input
                 type="password"
                 name="confirmpassword"
+                required
                 className="text-primary w-80 p-1 rounded"
               />
             </div>
@@ -99,27 +109,25 @@ export default function Home() {
               <br />
               l'inscription
             </button>
-            {/* <span className="w-56 bg-secondary h-[1px] self-center mt-6" /> */}
           </form>
           <span className="w-56 bg-secondary h-[1px] self-center" />
           <button
             type="button"
             onClick={toggleConnection}
-            className="text-xl text-center login-button self-center active:text-tertiary cursor-pointer"
+            className="text-xl text-center login-button self-center active:text-tertiary cursor-pointer translate-y-2"
           >
             Connection
           </button>
-          <form
-            className={`flex flex-col items-center ${showConnection} ${hideConnection}`}
-          >
+          <form className={`flex flex-col items-center ${showConnection}`}>
             <div>
               <label htmlFor="email">Adresse mail</label>
               <br />
               <input
                 type="email"
                 name="email"
-                id="email"
+                id="email-connection"
                 placeholder="exemple@gmail.com"
+                required
                 className="text-primary w-80 p-1 rounded"
               />
             </div>
@@ -130,6 +138,7 @@ export default function Home() {
               <input
                 type="password"
                 name="password"
+                required
                 className="text-primary w-80 p-1 rounded"
               />
             </div>
