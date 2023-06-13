@@ -18,17 +18,19 @@ function Header() {
         <span className="text-secondary text-2xl font-bold ml-4">INOVIN</span>
       </Link>
       <nav>
-        <ul className="flex items-center gap-10">
+        <ul className="flex items-center gap-10 mr-10">
           <li>
             <Link
-              to="/catalogue"
+              to="/selection"
               className={`text-secondary ${
-                !isActive("/catalogue") ? "hover:underline" : ""
+                !isActive("/selection") ? "hover:underline" : ""
               } ${
-                isActive("/catalogue") ? "border-2 border-secondary p-1" : ""
+                isActive("/selection")
+                  ? "border-2 rounded border-secondary p-1"
+                  : ""
               }`}
             >
-              Catalogue
+              Notre Sélection
             </Link>
           </li>
           <li>
@@ -36,7 +38,11 @@ function Header() {
               to="/lexique"
               className={`text-secondary ${
                 !isActive("/lexique") ? "hover:underline" : ""
-              } ${isActive("/lexique") ? "border-2 border-secondary p-1" : ""}`}
+              } ${
+                isActive("/lexique")
+                  ? "border-2 rounded border-secondary p-1"
+                  : ""
+              }`}
             >
               Lexique
             </Link>
@@ -46,19 +52,13 @@ function Header() {
               to="/profil"
               className={`text-secondary ${
                 !isActive("/profil") ? "hover:underline" : ""
-              } ${isActive("/profil") ? "border-2 border-secondary p-1" : ""}`}
+              } ${
+                isActive("/profil")
+                  ? "border-2 rounded border-secondary p-1"
+                  : ""
+              }`}
             >
               Profil
-            </Link>
-          </li>
-          <li className="mr-10">
-            <Link
-              to="/avis"
-              className={`text-secondary ${
-                !isActive("/avis") ? "hover:underline" : ""
-              } ${isActive("/avis") ? "border-2 border-secondary p-1" : ""}`}
-            >
-              Avis
             </Link>
           </li>
         </ul>

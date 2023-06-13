@@ -94,7 +94,7 @@ function Lexique() {
               />
             </form>
             <button
-              className="p-1 pb-2 flex justify-center text-xl font-bold items-center bg-secondary rounded-full w-6 h-6 text-primary"
+              className=" bg-secondary rounded-full w-auto text-center h-6 text-primary"
               type="button"
               onClick={handleClick}
             >
