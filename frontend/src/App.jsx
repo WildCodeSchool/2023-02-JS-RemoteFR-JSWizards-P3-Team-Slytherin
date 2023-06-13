@@ -6,7 +6,7 @@ import Profil from "@pages/Profil";
 import Lexique from "@pages/Lexique";
 import Avis from "@pages/Avis";
 import ProfilDegustation from "@pages/ProfilDegustation";
-import Page404 from "./pages/Page404";
+import Page404 from "@pages/Page404";
 
 import "./App.css";
 
