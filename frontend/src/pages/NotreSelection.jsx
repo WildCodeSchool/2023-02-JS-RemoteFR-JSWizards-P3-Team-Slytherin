@@ -1,10 +1,10 @@
 import Layout from "../components/Layout";
 
-export default function Catalogue() {
+export default function NotreSelection() {
   return (
     <Layout>
       <h2 className="text-center font-bold text-2xl pt-3 text-secondary">
-        Catalogue des vins
+        Notre sélection de vins
       </h2>
       <div className="flex justify-center">
         <button

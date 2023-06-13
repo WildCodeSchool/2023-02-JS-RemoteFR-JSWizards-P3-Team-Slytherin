@@ -18,48 +18,33 @@ function Header() {
         <span className="text-secondary text-2xl font-bold ml-4">INOVIN</span>
       </Link>
       <nav>
-        <ul className="flex items-center gap-10">
-          <li>
-            <Link
-              to="/catalogue"
-              className={`text-secondary ${
-                !isActive("/catalogue") ? "hover:underline" : ""
-              } ${
-                isActive("/catalogue") ? "border-2 border-secondary p-1" : ""
-              }`}
-            >
-              Catalogue
-            </Link>
+        <ul className="flex items-center gap-10 mr-14 h-20">
+          <li
+            className={`text-secondary ${
+              !isActive("/selection") ? "hover:underline" : ""
+            } ${
+              isActive("/selection") ? "text-tertiary font-bold active-nav" : ""
+            }`}
+          >
+            <Link to="/selection">Notre Sélection</Link>
           </li>
-          <li>
-            <Link
-              to="/lexique"
-              className={`text-secondary ${
-                !isActive("/lexique") ? "hover:underline" : ""
-              } ${isActive("/lexique") ? "border-2 border-secondary p-1" : ""}`}
-            >
-              Lexique
-            </Link>
+          <li
+            className={`text-secondary ${
+              !isActive("/lexique") ? "hover:underline" : ""
+            } ${
+              isActive("/lexique") ? "text-tertiary font-bold active-nav" : ""
+            }`}
+          >
+            <Link to="/lexique">Lexique</Link>
           </li>
-          <li>
-            <Link
-              to="/profil"
-              className={`text-secondary ${
-                !isActive("/profil") ? "hover:underline" : ""
-              } ${isActive("/profil") ? "border-2 border-secondary p-1" : ""}`}
-            >
-              Profil
-            </Link>
-          </li>
-          <li className="mr-10">
-            <Link
-              to="/avis"
-              className={`text-secondary ${
-                !isActive("/avis") ? "hover:underline" : ""
-              } ${isActive("/avis") ? "border-2 border-secondary p-1" : ""}`}
-            >
-              Avis
-            </Link>
+          <li
+            className={`text-secondary ${
+              !isActive("/profil") ? "hover:underline" : ""
+            } ${
+              isActive("/profil") ? "text-tertiary font-bold active-nav" : ""
+            }`}
+          >
+            <Link to="/profil">Profil</Link>
           </li>
         </ul>
       </nav>
