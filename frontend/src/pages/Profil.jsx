@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import ClientInfoProfil from "@components/Profil/ClientInfoProfil";
 import FicheDegustation from "@components/Profil/FicheDegustation";
 import Layout from "@components/Layout";
@@ -113,7 +114,9 @@ function Profil() {
             </div>
             <div className="flex flex-col items-center gap-4 py-[1.8rem]">
               <button type="button">Voir plus</button>
-              <button type="button">Mon profil dégustation</button>
+              <Link to="/profil/profil_degustation">
+                <button type="button">Mon profil dégustation</button>
+              </Link>
             </div>
           </div>
         </div>

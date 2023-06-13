@@ -5,7 +5,8 @@ import NotreSelection from "@pages/NotreSelection";
 import Profil from "@pages/Profil";
 import Lexique from "@pages/Lexique";
 import Avis from "@pages/Avis";
-import Page404 from "./pages/Page404";
+import ProfilDegustation from "@pages/ProfilDegustation";
+import Page404 from "@pages/Page404";
 import "./App.css";
 
 function App() {
@@ -16,6 +17,10 @@ function App() {
       <Route path="/lexique" element={<Lexique />} />
       <Route path="/selection" element={<NotreSelection />} />
       <Route path="/profil" element={<Profil />} />
+      <Route
+        path="/profil/profil_degustation"
+        element={<ProfilDegustation />}
+      />
       <Route path="*" element={<Page404 />} />
     </Routes>
   );
