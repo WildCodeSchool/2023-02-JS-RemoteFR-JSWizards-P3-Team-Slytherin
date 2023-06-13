@@ -55,6 +55,12 @@
     opacity: 1;
   }
 
+  .active-nav {
+    border-top: solid;
+    border-bottom: solid;
+    padding: 5px;
+  }
+
   .slide-out {
     height: auto;
     overflow: hidden;

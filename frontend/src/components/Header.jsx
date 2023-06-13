@@ -18,48 +18,33 @@ function Header() {
         <span className="text-secondary text-2xl font-bold ml-4">INOVIN</span>
       </Link>
       <nav>
-        <ul className="flex items-center gap-10 mr-10">
-          <li>
-            <Link
-              to="/selection"
-              className={`text-secondary ${
-                !isActive("/selection") ? "hover:underline" : ""
-              } ${
-                isActive("/selection")
-                  ? "border-2 rounded border-secondary p-1"
-                  : ""
-              }`}
-            >
-              Notre Sélection
-            </Link>
+        <ul className="flex items-center gap-10 mr-14 h-20">
+          <li
+            className={`text-secondary ${
+              !isActive("/selection") ? "hover:underline" : ""
+            } ${
+              isActive("/selection") ? "text-tertiary font-bold active-nav" : ""
+            }`}
+          >
+            <Link to="/selection">Notre Sélection</Link>
           </li>
-          <li>
-            <Link
-              to="/lexique"
-              className={`text-secondary ${
-                !isActive("/lexique") ? "hover:underline" : ""
-              } ${
-                isActive("/lexique")
-                  ? "border-2 rounded border-secondary p-1"
-                  : ""
-              }`}
-            >
-              Lexique
-            </Link>
+          <li
+            className={`text-secondary ${
+              !isActive("/lexique") ? "hover:underline" : ""
+            } ${
+              isActive("/lexique") ? "text-tertiary font-bold active-nav" : ""
+            }`}
+          >
+            <Link to="/lexique">Lexique</Link>
           </li>
-          <li>
-            <Link
-              to="/profil"
-              className={`text-secondary ${
-                !isActive("/profil") ? "hover:underline" : ""
-              } ${
-                isActive("/profil")
-                  ? "border-2 rounded border-secondary p-1"
-                  : ""
-              }`}
-            >
-              Profil
-            </Link>
+          <li
+            className={`text-secondary ${
+              !isActive("/profil") ? "hover:underline" : ""
+            } ${
+              isActive("/profil") ? "text-tertiary font-bold active-nav" : ""
+            }`}
+          >
+            <Link to="/profil">Profil</Link>
           </li>
         </ul>
       </nav>
