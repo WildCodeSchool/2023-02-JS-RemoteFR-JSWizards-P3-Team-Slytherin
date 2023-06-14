@@ -48,15 +48,15 @@ export default function ProfilDegustation() {
           </p>
           <span className="text-tertiary pl-1 ml-4 text-xl">2/10</span>
         </div>
-        <div className="flex flex-row justify-around items-center py-[3rem]">
-          <Link to="/catalogue">
+        <div className="flex flex-row justify-around items-center py-[1.8rem]">
+          <Link to="/selection">
             <button type="button" className="self-center mt-2 h-12">
-              RETOUR AU CATALOGUE
+              Retour à la sélection
             </button>
           </Link>
           <Link to="/">
             <button type="button" className="self-center mt-2 h-12">
-              RECETTE
+              Recette
             </button>
           </Link>
         </div>
