@@ -51,27 +51,27 @@ const clients = [
 const fiches = [
   {
     id: 1,
-    src: "/assets/wine/whitewine1.jpg",
+    src: "/assets/images/whitewine1.jpg",
     title: "Palacio de Menadi",
   },
   {
     id: 2,
-    src: "/assets/wine/whitewine2.jpg",
+    src: "/assets/images/whitewine2.jpg",
     title: "Marlborough - Sauvignon blanc",
   },
   {
     id: 3,
-    src: "/assets/wine/whitewine3.jpg",
+    src: "/assets/images/whitewine3.jpg",
     title: "Cambalala - Pinot Grigio",
   },
   {
     id: 4,
-    src: "/assets/wine/whitewine4.jpg",
+    src: "/assets/images/whitewine4.jpg",
     title: "Wente - Chardonnay",
   },
   {
     id: 5,
-    src: "/assets/wine/whitewine5.jpg",
+    src: "/assets/images/whitewine5.jpg",
     title: "Alta Italia - Pinot Grigio",
   },
 ];
