@@ -12,7 +12,7 @@ function Header() {
       <Link to="/" className="flex items-center">
         <img
           src="/assets/logo/logo_white.png"
-          className="h-16 w-23"
+          className="pl-6 h-16 w-23"
           alt="Logo Inovin"
         />
         <span className="text-secondary text-2xl font-bold ml-4">INOVIN</span>
