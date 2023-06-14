@@ -1,4 +1,3 @@
-import Layout from "@components/Layout";
 import VinEnCours from "@components/VinEnCours";
 
 const handleColorClick = () => {
@@ -8,7 +7,7 @@ const handleColorClick = () => {
 
 export default function Visuel() {
   return (
-    <Layout>
+    <>
       <VinEnCours />
       <div className="mt-4 flex flex-col items-center">
         <span className="w-full h-[1px] bg-secondary m-4" />
@@ -96,6 +95,6 @@ export default function Visuel() {
           </div>
         </form>
       </div>
-    </Layout>
+    </>
   );
 }
