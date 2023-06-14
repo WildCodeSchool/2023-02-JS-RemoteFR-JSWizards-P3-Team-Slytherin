@@ -8,6 +8,7 @@ import Avis from "@pages/Avis";
 import ProfilDegustation from "@pages/ProfilDegustation";
 import Page404 from "@pages/Page404";
 import "./App.css";
+import ProfilModif from "@pages/ProfilModif";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <Route path="/lexique" element={<Lexique />} />
       <Route path="/selection" element={<NotreSelection />} />
       <Route path="/profil" element={<Profil />} />
+      <Route path="/profil/modifier" element={<ProfilModif />} />
       <Route
         path="/profil/profil_degustation"
         element={<ProfilDegustation />}
