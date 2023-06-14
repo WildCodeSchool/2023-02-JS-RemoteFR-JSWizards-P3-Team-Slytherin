@@ -6,7 +6,7 @@ function FicheDegustation({ src, title }) {
       <div>
         <img
           src={src}
-          alt="whitewinephoto"
+          alt={title}
           className="w-full h-[4rem] object-cover pb-[0.4rem] opacity-100 transition duration-[0.5s] ease-in-out imgProfil"
         />
         <p className="text-primary absolute w-[5%] text-center top-[52%] left-[95.2%] bg-secondary font-bold min-[476px]:left-[95%]">
