@@ -21,10 +21,13 @@ export default function Visuel() {
                 type="button"
                 onClick={handleColorClick}
                 value="Couleur"
-                className="fiche-deg-button p-2 "
+                className="fiche-deg-button p-2 w-full"
               />
-              <div id="couleur" className="flex flex-row gap-10 mb-2">
-                <div className="flex flex-col gap-4">
+              <div
+                id="couleur"
+                className="flex flex-row gap-10 mb-2 items-center justify-center"
+              >
+                <div className="flex flex-col gap-4 my-2">
                   <div className="bg-[#4A0019] rounded-full flex flex-row p-2">
                     <input className="m-2" type="radio" id="quasi-noir" />
                     <label className="mr-2" htmlFor="quasi-noir">
@@ -50,7 +53,7 @@ export default function Visuel() {
                     </label>
                   </div>
                 </div>
-                <div className="flex flex-row gap-10 mb-2">
+                <div className="flex flex-row gap-10 my-2">
                   <div className="flex flex-col gap-4">
                     <div className="bg-[#FC1D5C] rounded-full flex flex-row p-2">
                       <input className="m-2" type="radio" id="quasi-noir" />
