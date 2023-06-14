@@ -7,6 +7,9 @@ function Header() {
   const handleClick = () => {
     setActive(active === "" ? "active" : "");
   };
+  const handleClickLink = () => {
+    setActive("");
+  };
   const isActive = (path) => {
     return location.pathname === path;
   };
@@ -14,7 +17,7 @@ function Header() {
   return (
     <>
       <header className="bg-primary h-24 w-full fixed z-30 flex items-center justify-between">
-        <Link to="/" className="flex items-center">
+        <Link to="/" className="flex items-center" onClick={handleClickLink}>
           <img
             src="/assets/logo/logo_white.png"
             className="pl-6 h-16 w-23"
@@ -64,6 +67,7 @@ function Header() {
       >
         <Link
           to="/selection"
+          onClick={handleClickLink}
           className={`text-secondary w-[128px] text-center ${
             !isActive("/selection") ? "hover:underline" : ""
           } ${isActive("/selection") ? "active-nav" : ""}`}
@@ -72,6 +76,7 @@ function Header() {
         </Link>
         <Link
           to="/lexique"
+          onClick={handleClickLink}
           className={`text-secondary w-[72px] text-center ${
             !isActive("/lexique") ? "hover:underline" : ""
           } ${isActive("/lexique") ? "active-nav" : ""}`}
@@ -80,6 +85,7 @@ function Header() {
         </Link>
         <Link
           to="/profil"
+          onClick={handleClickLink}
           className={`text-secondary w-[54px] text-center ${
             !isActive("/profil") ? "hover:underline" : ""
           } ${isActive("/profil") ? "active-nav" : ""}`}

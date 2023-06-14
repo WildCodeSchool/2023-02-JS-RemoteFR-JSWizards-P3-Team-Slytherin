@@ -171,4 +171,7 @@
   .active {
     transform: translate(0);
   }
+  .page404 {
+    height: calc(100% - 96px);
+  }
 }

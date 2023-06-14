@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 
+import Layout from "@components/Layout";
 import Home from "@pages/Home";
 import NotreSelection from "@pages/NotreSelection";
 import Profil from "@pages/Profil";
@@ -11,18 +12,20 @@ import "./App.css";
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/avis" element={<Avis />} />
-      <Route path="/lexique" element={<Lexique />} />
-      <Route path="/selection" element={<NotreSelection />} />
-      <Route path="/profil" element={<Profil />} />
-      <Route
-        path="/profil/profil_degustation"
-        element={<ProfilDegustation />}
-      />
-      <Route path="*" element={<Page404 />} />
-    </Routes>
+    <Layout>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/avis" element={<Avis />} />
+        <Route path="/lexique" element={<Lexique />} />
+        <Route path="/selection" element={<NotreSelection />} />
+        <Route path="/profil" element={<Profil />} />
+        <Route
+          path="/profil/profil_degustation"
+          element={<ProfilDegustation />}
+        />
+        <Route path="*" element={<Page404 />} />
+      </Routes>
+    </Layout>
   );
 }
 
