@@ -56,9 +56,20 @@
   }
 
   .active-nav {
-    border-top: solid;
-    border-bottom: solid;
-    padding: 5px;
+    animation-name: navactive;
+    animation-duration: 0.3s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+  }
+
+  @keyframes navactive {
+    to {
+      border-top: solid;
+      border-bottom: solid;
+      padding: 5px;
+      color: theme("colors.tertiary");
+    }
   }
 
   .slide-out {
