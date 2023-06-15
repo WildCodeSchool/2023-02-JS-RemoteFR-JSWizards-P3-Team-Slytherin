@@ -9,6 +9,7 @@ import ProfilDegustation from "@pages/ProfilDegustation";
 import Page404 from "@pages/Page404";
 import "./App.css";
 import ProfilModif from "@pages/ProfilModif";
+import HistoriqueFiches from "@pages/HistoriqueFiches";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         path="/profil/profil_degustation"
         element={<ProfilDegustation />}
       />
+      <Route path="/profil/historique_fiches" element={<HistoriqueFiches />} />
       <Route path="*" element={<Page404 />} />
     </Routes>
   );

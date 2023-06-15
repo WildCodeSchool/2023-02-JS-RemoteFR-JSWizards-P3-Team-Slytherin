@@ -58,7 +58,7 @@ function ModifProfil({ name, lastname, email, birthday }) {
           />
         </div>
       </form>
-      <div className="p-8 flex justify-center flex-wrap">
+      <div className="p-8 flex flex-row justify-center flex-wrap">
         <Link to="/profil">
           <button className="m-2" type="button">
             Valider

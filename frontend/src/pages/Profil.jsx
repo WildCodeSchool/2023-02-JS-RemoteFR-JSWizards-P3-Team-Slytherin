@@ -44,7 +44,9 @@ function Profil() {
               ))}
             </div>
             <div className="flex flex-col items-center gap-4 py-[1.8rem]">
-              <button type="button">Voir plus</button>
+              <Link to="/profil/historique_fiches">
+                <button type="button">Voir plus</button>
+              </Link>
               <Link to="/profil/profil_degustation">
                 <button type="button">Mon profil dégustation</button>
               </Link>
