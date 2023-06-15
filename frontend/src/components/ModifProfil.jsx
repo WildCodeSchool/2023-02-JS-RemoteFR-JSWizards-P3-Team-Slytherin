@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 function ModifProfil({ name, lastname, email, birthday }) {
   return (
@@ -71,5 +72,12 @@ function ModifProfil({ name, lastname, email, birthday }) {
     </div>
   );
 }
+
+ModifProfil.propTypes = {
+  name: PropTypes.string.isRequired,
+  lastname: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  birthday: PropTypes.string.isRequired,
+};
 
 export default ModifProfil;

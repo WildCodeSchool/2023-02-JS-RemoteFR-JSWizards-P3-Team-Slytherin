@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 function ResumeDegustation({ wines }) {
   return (
@@ -31,5 +32,9 @@ function ResumeDegustation({ wines }) {
     </div>
   );
 }
+
+ResumeDegustation.propTypes = {
+  wines: PropTypes.string.isRequired,
+};
 
 export default ResumeDegustation;
