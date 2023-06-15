@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Raleway";
+  src: url("../public/fonts/Raleway-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  font-family: "Raleway", sans-serif;
+  font-size: 18px;
+}
+
 @layer utilities {
   button,
   [type="button"] {
