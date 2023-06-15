@@ -22,7 +22,14 @@
     font-weight: bold;
     font-size: 0.8rem;
   }
-
+  .lexique-button {
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+  }
+  .lexique-button-content {
+    transform: translateY(-10%);
+  }
   .register-button,
   .login-button {
     background: none;
