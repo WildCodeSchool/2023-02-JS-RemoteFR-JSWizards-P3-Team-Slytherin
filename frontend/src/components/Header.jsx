@@ -31,9 +31,9 @@ function Header() {
             onChange={handleClick}
             checked={active === "active"}
           />
-          <span>{}</span>
-          <span>{}</span>
-          <span>{}</span>
+          <span className="burgerline">{}</span>
+          <span className="burgerline">{}</span>
+          <span className="burgerline">{}</span>
         </label>
         <nav className="hidden sm:flex z-20 items-center gap-10 mr-14 h-20">
           <Link
