@@ -105,7 +105,7 @@ function Lexique() {
             </form>
           </div>
         </div>
-        <div className="flex flex-col 10/12 mx-12 xl:mx-20">
+        <div className="flex flex-col mx-12 xl:mx-20">
           <p className="text-3xl text-center pt-4">Lexique</p>
           {lexiqueDBFilter.map((e) => (
             <p key={e.id} className="pt-4">
