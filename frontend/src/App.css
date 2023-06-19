@@ -142,7 +142,8 @@
     gap: 1rem;
   }
 
-  .compteRenduMin::before, .compteRenduMin::after {
+  .compteRenduMin::before,
+  .compteRenduMin::after {
     display: none;
   }
 
