@@ -19,9 +19,11 @@
   [type="button"] {
     background-color: theme("colors.tertiary");
     border-radius: 1.6rem;
-    padding: 0.2rem 1rem;
+    padding: 0.7rem 1rem;
     color: theme("colors.primary");
     font-weight: bold;
+    justify-content: center;
+    flex-wrap: nowrap;
   }
 
   button,
