@@ -49,11 +49,13 @@
   }
   .lexique-button {
     border-radius: 50%;
-    width: 28px;
-    height: 28px;
+    width: 1.5rem;
+    height: 1.5rem;
+    padding: 0;
   }
   .lexique-button-content {
-    transform: translateY(-10%);
+    transform: translateY(-0.15rem);
+    font-size: 2rem;
   }
   .register-button,
   .login-button {

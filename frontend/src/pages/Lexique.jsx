@@ -127,15 +127,6 @@ function Lexique() {
           ))}
         </div>
       </div>
-      <div className="flex flex-col 10/12 mx-12 xl:mx-20">
-        <p className="text-3xl text-center pt-4">Lexique</p>
-        {lexiqueDBFilter.map((e) => (
-          <p key={e.id} className="pt-4">
-            <span className="text-tertiary font-bold">{e.word} : </span>
-            {e.description}
-          </p>
-        ))}
-      </div>
     </div>
   );
 }
