@@ -63,9 +63,9 @@
     top: 0;
     bottom: 0;
   }
-  
+
   .imgProfil::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
