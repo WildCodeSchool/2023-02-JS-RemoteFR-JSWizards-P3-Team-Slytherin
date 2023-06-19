@@ -1,8 +1,6 @@
-import Layout from "../components/Layout";
-
 export default function NotreSelection() {
   return (
-    <Layout>
+    <>
       <h2 className="text-center font-bold text-2xl pt-3 text-secondary">
         Notre sélection de vins
       </h2>
@@ -56,6 +54,6 @@ export default function NotreSelection() {
           <h3 className="text-center text-xs">Chardonnay</h3>
         </div>
       </div>
-    </Layout>
+    </>
   );
 }

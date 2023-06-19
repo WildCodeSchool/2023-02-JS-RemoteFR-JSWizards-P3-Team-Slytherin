@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Layout from "@components/Layout";
 
 function Lexique() {
   const lexiqueDatas = [
@@ -90,45 +89,43 @@ function Lexique() {
     setLexiqueDBFilter(lexiqueDB);
   };
   return (
-    <Layout>
-      <div className="text-secondary py-4">
-        <div className="flex gap-4 items-center flex-row justify-around px-4">
-          <button type="button" onClick={goBack}>
-            Retour
-          </button>
-          <div className="flex flex-row items-center max-w-full">
-            <p>🔎</p>
-            <form className="p-1" onSubmit={handleSubmit}>
-              <input
-                className="text-primary pl-1 rounded-md"
-                type="search"
-                placeholder="search"
-                value={search}
-                onChange={handleChange}
-              />
-            </form>
-            {isFirefox && (
-              <button
-                className="flex justify-center text-xl font-bold items-center bg-secondary rounded-full text-primary lexique-button"
-                type="button"
-                onClick={handleClick}
-              >
-                <span className="lexique-button-content">&times;</span>
-              </button>
-            )}
-          </div>
-        </div>
-        <div className="flex flex-col 10/12 mx-12 xl:mx-20">
-          <p className="text-3xl text-center pt-4">Lexique</p>
-          {lexiqueDBFilter.map((e) => (
-            <p key={e.id} className="pt-4">
-              <span className="text-tertiary font-bold">{e.word} : </span>
-              {e.description}
-            </p>
-          ))}
+    <div className="text-secondary py-4">
+      <div className="flex gap-4 items-center flex-row justify-around px-4">
+        <button type="button" onClick={goBack}>
+          Retour
+        </button>
+        <div className="flex flex-row items-center max-w-full">
+          <p>🔎</p>
+          <form className="p-1" onSubmit={handleSubmit}>
+            <input
+              className="text-primary pl-1 rounded-md"
+              type="search"
+              placeholder="search"
+              value={search}
+              onChange={handleChange}
+            />
+          </form>
+          {isFirefox && (
+            <button
+              className="flex justify-center text-xl font-bold items-center bg-secondary rounded-full text-primary lexique-button"
+              type="button"
+              onClick={handleClick}
+            >
+              <span className="lexique-button-content">&times;</span>
+            </button>
+          )}
         </div>
       </div>
-    </Layout>
+      <div className="flex flex-col 10/12 mx-12 xl:mx-20">
+        <p className="text-3xl text-center pt-4">Lexique</p>
+        {lexiqueDBFilter.map((e) => (
+          <p key={e.id} className="pt-4">
+            <span className="text-tertiary font-bold">{e.word} : </span>
+            {e.description}
+          </p>
+        ))}
+      </div>
+    </div>
   );
 }
 export default Lexique;
