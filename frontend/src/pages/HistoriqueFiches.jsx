@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import Layout from "../components/Layout";
 import data from "../components/Data/data-wine";
 
 function HistoriqueFiches() {
