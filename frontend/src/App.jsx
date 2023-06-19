@@ -7,6 +7,7 @@ import Lexique from "@pages/Lexique";
 import Recette from "@pages/Recette";
 import Avis from "@pages/Avis";
 import ProfilDegustation from "@pages/ProfilDegustation";
+import CompteRenduFiche from "@pages/CompteRenduFiche";
 import Page404 from "@pages/Page404";
 import "./App.css";
 import ProfilModif from "@pages/ProfilModif";
@@ -26,6 +27,7 @@ function App() {
         path="/profil/profil_degustation"
         element={<ProfilDegustation />}
       />
+      <Route path="/fiche" element={<CompteRenduFiche />} />
       <Route path="/profil/historique_fiches" element={<HistoriqueFiches />} />
       <Route path="*" element={<Page404 />} />
     </Routes>
