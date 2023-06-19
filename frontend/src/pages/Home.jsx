@@ -47,7 +47,7 @@ export default function Home() {
           necessitatibus, fugit voluptatibus unde distinctio! Accusantium,
           nostrum! Tempore, ducimus?
         </div>
-        <div className="flex flex-col gap-6 w-3/6">
+        <div className="flex flex-col gap-6">
           <span className="w-56 bg-secondary h-[1px] self-center" />
           <button
             type="button"
@@ -65,6 +65,30 @@ export default function Home() {
                 name="email"
                 id="email-register"
                 placeholder="exemple@gmail.com"
+                required
+                className="text-primary w-72 p-1 rounded"
+              />
+            </div>
+            <br />
+            <div>
+              <label htmlFor="lastname">Nom</label>
+              <br />
+              <input
+                type="text"
+                name="lastname"
+                id="lastname"
+                required
+                className="text-primary w-72 p-1 rounded"
+              />
+            </div>
+            <br />
+            <div>
+              <label htmlFor="firstname">Prénom</label>
+              <br />
+              <input
+                type="text"
+                name="firstname"
+                id="firstname"
                 required
                 className="text-primary w-72 p-1 rounded"
               />
