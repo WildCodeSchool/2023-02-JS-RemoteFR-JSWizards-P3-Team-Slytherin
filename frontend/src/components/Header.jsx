@@ -20,29 +20,23 @@ function Header() {
       <nav>
         <ul className="flex items-center gap-10 mr-14 h-20">
           <li
-            className={`text-secondary ${
+            className={`text-secondary w-[128px] text-center ${
               !isActive("/selection") ? "hover:underline" : ""
-            } ${
-              isActive("/selection") ? "text-tertiary font-bold active-nav" : ""
-            }`}
+            } ${isActive("/selection") ? "font-bold active-nav" : ""}`}
           >
             <Link to="/selection">Notre Sélection</Link>
           </li>
           <li
-            className={`text-secondary ${
+            className={`text-secondary w-[72px] text-center ${
               !isActive("/lexique") ? "hover:underline" : ""
-            } ${
-              isActive("/lexique") ? "text-tertiary font-bold active-nav" : ""
-            }`}
+            } ${isActive("/lexique") ? "font-bold active-nav" : ""}`}
           >
             <Link to="/lexique">Lexique</Link>
           </li>
           <li
-            className={`text-secondary ${
+            className={`text-secondary w-[54px] text-center ${
               !isActive("/profil") ? "hover:underline" : ""
-            } ${
-              isActive("/profil") ? "text-tertiary font-bold active-nav" : ""
-            }`}
+            } ${isActive("/profil") ? "font-bold active-nav" : ""}`}
           >
             <Link to="/profil">Profil</Link>
           </li>

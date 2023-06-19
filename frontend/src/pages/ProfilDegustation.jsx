@@ -20,16 +20,15 @@ export default function ProfilDegustation() {
             </div>
           </>
         ))}
-
         <div className="flex flex-row justify-around items-center py-[3rem]">
           <Link to="/selection">
             <button type="button" className="self-center mt-2 h-12">
-              RETOUR AU CATALOGUE
+              Retour à la sélection
             </button>
           </Link>
           <Link to="/recette">
             <button type="button" className="self-center mt-2 h-12">
-              RECETTE
+              Recette
             </button>
           </Link>
         </div>

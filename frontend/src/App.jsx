@@ -4,6 +4,7 @@ import Home from "@pages/Home";
 import NotreSelection from "@pages/NotreSelection";
 import Profil from "@pages/Profil";
 import Lexique from "@pages/Lexique";
+import Recette from "@pages/Recette";
 import Avis from "@pages/Avis";
 import ProfilDegustation from "@pages/ProfilDegustation";
 import Page404 from "@pages/Page404";
@@ -17,6 +18,7 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route path="/avis" element={<Avis />} />
       <Route path="/lexique" element={<Lexique />} />
+      <Route path="/recette" element={<Recette />} />
       <Route path="/selection" element={<NotreSelection />} />
       <Route path="/profil" element={<Profil />} />
       <Route path="/profil/modifier" element={<ProfilModif />} />

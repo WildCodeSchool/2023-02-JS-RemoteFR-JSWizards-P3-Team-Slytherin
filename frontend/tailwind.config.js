@@ -3,6 +3,9 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        raleway: ["Raleway, sans-serif"],
+      },
       backgroundImage: {
         winebg: "url('/assets/background/winebackground.png')",
       },
@@ -10,7 +13,7 @@ export default {
     colors: {
       primary: "#202020",
       secondary: "#FFFFFF",
-      tertiary: "#FAE496",
+      tertiary: "#e4c467",
     },
   },
   plugins: [],
