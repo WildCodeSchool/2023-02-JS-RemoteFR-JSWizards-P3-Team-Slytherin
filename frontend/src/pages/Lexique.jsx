@@ -86,7 +86,7 @@ function Lexique() {
 
   return (
     <div className="text-secondary py-4">
-      <div className="flex gap-4 items-center flex-row justify-around px-4">
+      <div className="flex gap-4 items-center flex-row justify-around">
         <button type="button" onClick={goBack}>
           Retour
         </button>

@@ -10,7 +10,7 @@ export default {
     colors: {
       primary: "#202020",
       secondary: "#FFFFFF",
-      tertiary: "#FAE496",
+      tertiary: "#ECC226",
     },
   },
   plugins: [],
