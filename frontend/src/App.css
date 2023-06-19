@@ -90,6 +90,7 @@
       border-bottom: solid;
       padding: 5px;
       color: theme("colors.tertiary");
+      font-weight: bold;
     }
   }
 
