@@ -66,8 +66,6 @@ export default function Visuel() {
     setVisuelVin({ couleur, limpidite, densite });
   }, [densite, limpidite, couleur]);
 
-  // console.log(visuelVin);
-
   return (
     <>
       <VinEnCours />
