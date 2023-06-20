@@ -41,7 +41,10 @@ function App() {
         <Route path="/recette" element={<Recette />} />
         <Route path="/profil/modifier" element={<ProfilModif />} />
         <Route path="/fiche" element={<CompteRenduFiche />} />
-        <Route path="/profil/historique_fiches" element={<HistoriqueFiches />} />
+        <Route
+          path="/profil/historique_fiches"
+          element={<HistoriqueFiches />}
+        />
         <Route path="*" element={<Page404 />} />
       </Routes>
     </Layout>
