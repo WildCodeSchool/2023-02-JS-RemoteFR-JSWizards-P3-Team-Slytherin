@@ -1,10 +1,9 @@
 import { Link } from "react-router-dom";
-import Layout from "../components/Layout";
 import clients from "../components/Data/data-client";
 
 function ProfilModif() {
   return (
-    <Layout>
+    <div>
       <div className="flex flex-col items-center p-10">
         <h2 className="text-xl">Modifier mon profil</h2>
         <span className="w-56 bg-secondary h-[1px] self-center m-6" />
@@ -81,7 +80,7 @@ function ProfilModif() {
           </Link>
         </div>
       </div>
-    </Layout>
+    </div>
   );
 }
 

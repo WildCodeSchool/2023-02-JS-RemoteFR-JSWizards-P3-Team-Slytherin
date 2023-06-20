@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Layout from "../components/Layout";
 
 export default function Home() {
   const [register, setRegister] = useState("");
@@ -33,7 +32,7 @@ export default function Home() {
   }
 
   return (
-    <Layout>
+    <div>
       <div className="flex flex-col items-center h-full justify-center gap-16">
         <div className="text-center leading-8">
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatibus
@@ -174,6 +173,6 @@ export default function Home() {
           <span className="w-56 bg-secondary h-[1px] self-center" />
         </div>
       </div>
-    </Layout>
+    </div>
   );
 }

@@ -1,10 +1,9 @@
 import { Link } from "react-router-dom";
-import Layout from "../components/Layout";
 import data from "../components/Data/data-wine";
 
 export default function ProfilDegustation() {
   return (
-    <Layout>
+    <div>
       <div className="text-secondary p-[1.5rem] sm:px-[3.2rem] md:px-[6.4rem] min-[950px]:px-[7.5rem]">
         <div className="flex flex-col items-center">
           <h2 className="text-3xl pb-[2rem]">Profil dégustation</h2>
@@ -33,6 +32,6 @@ export default function ProfilDegustation() {
           </Link>
         </div>
       </div>
-    </Layout>
+    </div>
   );
 }

@@ -1,3 +1,3 @@
 export default function Recette() {
-  return <div>Olfactif</div>;
+  return <h1>coucou</h1>;
 }

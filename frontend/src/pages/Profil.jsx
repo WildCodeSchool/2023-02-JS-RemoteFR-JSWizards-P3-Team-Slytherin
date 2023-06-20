@@ -1,13 +1,12 @@
 import { Link } from "react-router-dom";
 import ClientInfoProfil from "@components/Profil/ClientInfoProfil";
 import FicheDegustation from "@components/Profil/FicheDegustation";
-import Layout from "@components/Layout";
 import data from "@components/Data/data-wine";
 import clients from "@components/Data/data-client";
 
 function Profil() {
   return (
-    <Layout>
+    <div>
       <div className="text-secondary p-[1.5rem] sm:px-[3.2rem] md:px-[6.4rem] min-[950px]:px-[7.5rem]">
         <div className="flex flex-col items-center">
           <h2 className="text-3xl pb-[2rem]">Bonjour {clients[0].name}</h2>
@@ -54,7 +53,7 @@ function Profil() {
           </div>
         </div>
       </div>
-    </Layout>
+    </div>
   );
 }
 

@@ -1,5 +1,4 @@
 import InfoVin from "@components/InfoVin";
-import Layout from "@components/Layout";
 import { useChoice } from "../contexts/ChoiceContext";
 
 function CompteRenduFiche() {
@@ -76,7 +75,7 @@ function CompteRenduFiche() {
   ];
 
   return (
-    <Layout>
+    <div>
       <div className="md:px-[3rem] min-[950px]:px-[7.5rem]">
         <div className="flex justify-between text-xl pt-[2rem]">
           <h2>Fiche dégustation</h2>
@@ -196,7 +195,7 @@ function CompteRenduFiche() {
           <button type="button">Valider</button>
         </div>
       </div>
-    </Layout>
+    </div>
   );
 }
 

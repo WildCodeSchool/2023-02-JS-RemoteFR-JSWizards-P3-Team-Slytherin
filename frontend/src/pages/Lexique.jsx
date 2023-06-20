@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Layout from "@components/Layout";
 
 function Lexique() {
   const lexiqueDatas = [
@@ -90,7 +89,7 @@ function Lexique() {
     setLexiqueDBFilter(lexiqueDB);
   };
   return (
-    <Layout>
+    <div>
       <div className="text-secondary py-4">
         <div className="flex gap-4 items-center flex-row justify-around px-4">
           <button type="button" onClick={goBack}>
@@ -128,7 +127,7 @@ function Lexique() {
           ))}
         </div>
       </div>
-    </Layout>
+    </div>
   );
 }
 export default Lexique;

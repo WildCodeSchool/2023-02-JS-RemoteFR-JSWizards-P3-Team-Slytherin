@@ -1,10 +1,9 @@
 import { Link } from "react-router-dom";
-import Layout from "../components/Layout";
 import data from "../components/Data/data-wine";
 
 function HistoriqueFiches() {
   return (
-    <Layout>
+    <div>
       <h2 className="font-bold text-2xl p-8 text-center">
         Historique des dégustations
       </h2>
@@ -28,7 +27,7 @@ function HistoriqueFiches() {
           <button type="button">Retour profil</button>
         </Link>
       </div>
-    </Layout>
+    </div>
   );
 }
 
