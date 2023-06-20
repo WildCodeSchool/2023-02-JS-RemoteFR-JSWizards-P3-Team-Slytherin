@@ -84,7 +84,11 @@ function Lexique() {
       setLexiqueDBFilter(lexiqueDB);
     }
   };
-
+  const isFirefox = navigator.userAgent.indexOf("Firefox") !== -1;
+  const handleClick = () => {
+    setSearch("");
+    setLexiqueDBFilter(lexiqueDB);
+  };
   return (
     <Layout>
       <div className="text-secondary py-4">
@@ -103,9 +107,18 @@ function Lexique() {
                 onChange={handleChange}
               />
             </form>
+            {isFirefox && (
+              <button
+                className="flex justify-center text-xl font-bold items-center bg-secondary rounded-full text-primary lexique-button"
+                type="button"
+                onClick={handleClick}
+              >
+                <span className="lexique-button-content">&times;</span>
+              </button>
+            )}
           </div>
         </div>
-        <div className="flex flex-col 10/12 mx-12 xl:mx-20">
+        <div className="flex flex-col mx-12 xl:mx-20">
           <p className="text-3xl text-center pt-4">Lexique</p>
           {lexiqueDBFilter.map((e) => (
             <p key={e.id} className="pt-4">

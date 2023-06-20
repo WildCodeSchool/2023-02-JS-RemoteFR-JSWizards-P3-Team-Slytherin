@@ -2,13 +2,14 @@ import { Link } from "react-router-dom";
 import Layout from "../components/Layout";
 import data from "../components/Data/data-wine";
 
-export default function NotreSelection() {
+function HistoriqueFiches() {
   return (
     <Layout>
-      <h2 className="text-center font-bold text-2xl p-12 text-secondary">
-        Notre sélection de vins
+      <h2 className="font-bold text-2xl p-8 text-center">
+        Historique des dégustations
       </h2>
-
+      <h3 className="p-3 text-lg">Dégustation du 15/06/2023</h3>
+      <hr className="w-[250px] pb-12" />
       <div className="flex sm:mx-10 gap-14 flex-wrap justify-center md:mx-24 md:gap-24 lg:mx-42 lg:gap-20">
         {data.map((wine) => (
           <div key={wine.id}>
@@ -17,21 +18,18 @@ export default function NotreSelection() {
               src={wine.image}
               alt={wine.name}
             />
-
-            <h3 className="bg-secondary rounded-b-xl text-primary text-center p-2">
-              {wine.name}
-            </h3>
+            <div className="bg-secondary text-primary text-center rounded-b-xl p-2">
+              <h3>{wine.name}</h3>
+              <h4 className="text-tertiary">{wine.note}</h4>
+            </div>
           </div>
         ))}
-      </div>
-
-      <div className="flex justify-center">
-        <Link to="/profil/profil_degustation">
-          <button type="button" className="m-12">
-            Profil dégustation
-          </button>
+        <Link to="/profil">
+          <button type="button">Retour profil</button>
         </Link>
       </div>
     </Layout>
   );
 }
+
+export default HistoriqueFiches;
