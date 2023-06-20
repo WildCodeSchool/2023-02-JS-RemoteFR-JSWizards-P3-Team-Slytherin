@@ -8,7 +8,7 @@ export default function NotreSelection() {
         Notre sélection de vins
       </h2>
 
-      <div className="flex sm:mx-10 gap-14 flex-wrap justify-center md:mx-24 md:gap-24 lg:mx-42 lg:gap-20">
+      <div className="flex gap-14 flex-wrap justify-center">
         {data.map((wine) => (
           <div key={wine.id}>
             <img
@@ -17,7 +17,7 @@ export default function NotreSelection() {
               alt={wine.name}
             />
 
-            <h3 className="bg-secondary rounded-b-xl text-primary text-center p-2">
+            <h3 className="bg-secondary rounded-b-xl text-primary max-w-[160px] h-[72px] text-center p-2 flex flex-col justify-center">
               {wine.name}
             </h3>
           </div>
