@@ -64,6 +64,14 @@
     font-weight: normal;
   }
 
+  .fiche-deg-button {
+    background: none;
+    color: theme("colors.secondary");
+    padding: 1.5rem;
+    font-size: 1.25rem;
+    font-weight: normal;
+  }
+
   .profilTitle {
     position: relative;
   }
@@ -77,16 +85,15 @@
     bottom: 0;
   }
 
-  .textImgProfil {
-    transform: translate(-50%, -50%);
-  }
-
-  .fiche:hover .imgProfil {
-    opacity: 0.3;
-  }
-
-  .fiche:hover .textImgProfil {
-    opacity: 1;
+  .imgProfil::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: theme("colors.primary");
+    opacity: 0.5;
   }
 
   .active-nav {
