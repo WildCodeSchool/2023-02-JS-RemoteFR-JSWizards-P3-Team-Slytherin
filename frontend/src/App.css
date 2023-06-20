@@ -51,6 +51,14 @@
     font-weight: normal;
   }
 
+  .fiche-deg-button {
+    background: none;
+    color: theme("colors.secondary");
+    padding: 1.5rem;
+    font-size: 1.25rem;
+    font-weight: normal;
+  }
+
   .profilTitle {
     position: relative;
   }
