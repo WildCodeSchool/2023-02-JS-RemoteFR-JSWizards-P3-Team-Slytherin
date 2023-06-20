@@ -4,7 +4,7 @@
 
 @font-face {
   font-family: "Raleway";
-  src: url("../public/fonts/Raleway-Regular.ttf") format("truetype");
+  src: url("/fonts/Raleway-Regular.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
@@ -37,6 +37,7 @@
     font-weight: bold;
     font-size: 0.8rem;
   }
+
   .admin-container button,
   .admin-container [type="“button”"] {
     background-color: theme("colors.primary");
@@ -48,16 +49,19 @@
     font-weight: bold;
     font-size: 1.8rem;
   }
+
   .lexique-button {
     border-radius: 50%;
     width: 1.5rem;
     height: 1.5rem;
     padding: 0;
   }
+
   .lexique-button-content {
     transform: translateY(-0.15rem);
     font-size: 2rem;
   }
+
   .register-button,
   .login-button {
     background: none;
@@ -205,6 +209,7 @@
     width: 50%;
     transform: translate(18px, -9px) rotatez(45deg);
   }
+
   .menu {
     transition: transform 0.4s ease-out;
     z-index: 5;
@@ -212,9 +217,6 @@
 
   .active {
     transform: translate(0);
-  }
-  .page404 {
-    height: calc(100% - 96px);
   }
 
   .compteRendu {
@@ -372,6 +374,7 @@
     background-color: theme("colors.secondary");
   }
 }
+
 .bouton_admin {
   flex: 0 0 auto;
   display: flex;
@@ -380,6 +383,7 @@
   align-items: center;
   justify-content: center;
 }
+
 .container {
   display: flex;
   flex-direction: column;
