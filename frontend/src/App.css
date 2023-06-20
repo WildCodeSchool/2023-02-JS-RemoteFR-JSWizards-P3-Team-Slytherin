@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Raleway";
+  src: url("../public/fonts/Raleway-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  font-family: "Raleway", sans-serif;
+  font-size: 18px;
+}
+
 @layer utilities {
   button,
   [type="button"] {
@@ -12,6 +24,7 @@
     font-weight: bold;
     display: flex;
     justify-content: center;
+    flex-wrap: nowrap;
   }
 
   button,
@@ -24,11 +37,39 @@
     font-weight: bold;
     font-size: 0.8rem;
   }
-
+  .admin-container button,
+  .admin-container [type="“button”"] {
+    background-color: theme("colors.primary");
+    border-radius: 1.2rem;
+    padding: 0.5rem 1rem;
+    width: 15vw;
+    height: 10vw;
+    color: theme("colors.secondary");
+    font-weight: bold;
+    font-size: 1.8rem;
+  }
+  .lexique-button {
+    border-radius: 50%;
+    width: 1.5rem;
+    height: 1.5rem;
+    padding: 0;
+  }
+  .lexique-button-content {
+    transform: translateY(-0.15rem);
+    font-size: 2rem;
+  }
   .register-button,
   .login-button {
     background: none;
     color: theme("colors.secondary");
+    font-weight: normal;
+  }
+
+  .fiche-deg-button {
+    background: none;
+    color: theme("colors.secondary");
+    padding: 1.5rem;
+    font-size: 1.25rem;
     font-weight: normal;
   }
 
@@ -45,16 +86,15 @@
     bottom: 0;
   }
 
-  .textImgProfil {
-    transform: translate(-50%, -50%);
-  }
-
-  .fiche:hover .imgProfil {
-    opacity: 0.3;
-  }
-
-  .fiche:hover .textImgProfil {
-    opacity: 1;
+  .imgProfil::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: theme("colors.primary");
+    opacity: 0.5;
   }
 
   .active-nav {
@@ -176,4 +216,178 @@
   .page404 {
     height: calc(100% - 96px);
   }
+
+  .compteRendu {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 0.25fr 0.3fr 0.25fr 0.9fr 0.25fr 1.1fr;
+    gap: 0.5rem;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+    border: 1px solid theme("colors.secondary");
+    border-bottom-right-radius: 1.5%;
+    border-bottom-left-radius: 1.5%;
+    position: relative;
+  }
+
+  .compteRendu::before {
+    content: "";
+    position: absolute;
+    top: 65.9%;
+    bottom: 0;
+    left: 33.6%;
+    width: 1px;
+    background-color: theme("colors.secondary");
+  }
+
+  .compteRendu::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 43.1%;
+    left: 33.6%;
+    width: 1px;
+    background-color: theme("colors.secondary");
+  }
+
+  .compteRenduMin {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .compteRenduMin::before,
+  .compteRenduMin::after {
+    display: none;
+  }
+
+  .compteRenduMaxSm::after {
+    bottom: 80.7%;
+  }
+
+  .compteRenduMaxSm::before {
+    top: 66.7%;
+  }
+
+  .borderGrid1::before {
+    content: "";
+    position: absolute;
+    top: 8.3%;
+    right: 0;
+    left: 0;
+    height: 1px;
+    background-color: theme("colors.secondary");
+  }
+
+  .borderGrid1MaxSm::before {
+    top: 8%;
+  }
+
+  .borderGrid1Min::before {
+    top: 4.6%;
+  }
+
+  .borderGrid2::before {
+    content: "";
+    position: absolute;
+    top: 19%;
+    right: 66.5%;
+    left: 0;
+    height: 1px;
+    background-color: theme("colors.secondary");
+  }
+
+  .borderGrid2MaxSm::before {
+    right: 0;
+  }
+
+  .borderGrid2Min::before {
+    top: 10.5%;
+  }
+
+  .borderGrid3::before {
+    content: "";
+    position: absolute;
+    top: 28%;
+    right: 66.5%;
+    left: 0;
+    height: 1px;
+    background-color: theme("colors.secondary");
+  }
+
+  .borderGrid3MaxSm::before {
+    top: 27.8%;
+    right: 0;
+  }
+
+  .borderGrid3Min::before {
+    top: 16.1%;
+  }
+
+  .borderGrid4::before {
+    content: "";
+    position: absolute;
+    top: 56.8%;
+    right: 0;
+    left: 0;
+    height: 1px;
+    background-color: theme("colors.secondary");
+  }
+
+  .borderGrid4Min::before {
+    top: 57.4%;
+  }
+
+  .borderGrid4::after {
+    content: "";
+    position: absolute;
+    top: 65.7%;
+    right: 0;
+    left: 0;
+    height: 1px;
+    background-color: theme("colors.secondary");
+  }
+
+  .borderGrid4Min::after {
+    top: 62.9%;
+  }
+
+  .borderGrid5Min::after {
+    content: "";
+    position: absolute;
+    top: 26.1%;
+    right: 0;
+    left: 0;
+    height: 1px;
+    background-color: theme("colors.secondary");
+  }
+
+  .borderGrid5Min::before {
+    content: "";
+    position: absolute;
+    top: 31.7%;
+    right: 0;
+    left: 0;
+    height: 1px;
+    background-color: theme("colors.secondary");
+  }
+}
+.bouton_admin {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 96px);
+}
+
+.row {
+  display: flex;
 }
