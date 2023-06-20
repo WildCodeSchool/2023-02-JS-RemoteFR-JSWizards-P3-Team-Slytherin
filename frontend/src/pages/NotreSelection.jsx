@@ -3,7 +3,7 @@ import data from "../components/Data/data-wine";
 
 export default function NotreSelection() {
   return (
-    <div>
+    <>
       <h2 className="text-center font-bold text-2xl p-12 text-secondary">
         Notre sélection de vins
       </h2>
@@ -31,6 +31,6 @@ export default function NotreSelection() {
           </button>
         </Link>
       </div>
-    </div>
+    </>
   );
 }
