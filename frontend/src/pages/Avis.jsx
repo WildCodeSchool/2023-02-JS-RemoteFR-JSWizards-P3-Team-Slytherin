@@ -30,7 +30,7 @@ export default function Avis() {
           Avez-vous un commentaire ou des suggestions à nous laisser ?
         </label>
         <textarea
-          className="p-2"
+          className="p-2 text-primary"
           name="commentaire"
           id="commentaire"
           placeholder="J'ai trouvé cet atelier génial, par contre si j'avais une suggestion ce serait de..."
