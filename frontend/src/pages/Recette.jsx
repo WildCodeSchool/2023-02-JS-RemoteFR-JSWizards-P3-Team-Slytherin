@@ -1,4 +1,3 @@
-import Layout from "@components/Layout";
 import LigneRecette from "@components/recette/LigneRecette";
 import { useState } from "react";
 
@@ -61,7 +60,7 @@ function Recette() {
   );
 
   return (
-    <Layout>
+    <>
       <div className="text-secondary py-4">
         <p className="text-3xl text-center pt-4">Ma recette</p>
       </div>
@@ -86,7 +85,7 @@ function Recette() {
           <button type="button">Valider</button>
         </div>
       </div>
-    </Layout>
+    </>
   );
 }
 
