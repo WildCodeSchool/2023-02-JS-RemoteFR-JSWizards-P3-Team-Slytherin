@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Layout from "@components/Layout";
 
 function Lexique() {
   const lexiqueDatas = [
@@ -84,9 +83,13 @@ function Lexique() {
       setLexiqueDBFilter(lexiqueDB);
     }
   };
-
+  const isFirefox = navigator.userAgent.indexOf("Firefox") !== -1;
+  const handleClick = () => {
+    setSearch("");
+    setLexiqueDBFilter(lexiqueDB);
+  };
   return (
-    <Layout>
+    <div>
       <div className="text-secondary py-4">
         <div className="flex gap-4 items-center flex-row justify-around px-4">
           <button type="button" onClick={goBack}>
@@ -103,6 +106,15 @@ function Lexique() {
                 onChange={handleChange}
               />
             </form>
+            {isFirefox && (
+              <button
+                className="flex justify-center text-xl font-bold items-center bg-secondary rounded-full text-primary lexique-button"
+                type="button"
+                onClick={handleClick}
+              >
+                <span className="lexique-button-content">&times;</span>
+              </button>
+            )}
           </div>
         </div>
         <div className="flex flex-col mx-12 xl:mx-20">
@@ -115,7 +127,7 @@ function Lexique() {
           ))}
         </div>
       </div>
-    </Layout>
+    </div>
   );
 }
 export default Lexique;

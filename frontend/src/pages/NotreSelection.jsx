@@ -1,61 +1,36 @@
-import Layout from "../components/Layout";
+import { Link } from "react-router-dom";
+import data from "../components/Data/data-wine";
 
 export default function NotreSelection() {
   return (
-    <Layout>
-      <h2 className="text-center font-bold text-2xl pt-3 text-secondary">
+    <>
+      <h2 className="text-center font-bold text-2xl p-12 text-secondary">
         Notre sélection de vins
       </h2>
+
+      <div className="flex gap-14 flex-wrap justify-center">
+        {data.map((wine) => (
+          <div key={wine.id}>
+            <img
+              className="object-cover w-[160px] h-[187px] rounded-t-xl"
+              src={wine.image}
+              alt={wine.name}
+            />
+
+            <h3 className="bg-secondary rounded-b-xl text-primary max-w-[160px] h-[72px] text-center p-2 flex flex-col justify-center">
+              {wine.name}
+            </h3>
+          </div>
+        ))}
+      </div>
+
       <div className="flex justify-center">
-        <button
-          type="button"
-          className="bg-tertiary text-primary m-7 font-bold p-[0.5rem] rounded-full text-xs text-center"
-        >
-          Afficher tous les vins
-        </button>
+        <Link to="/profil/profil_degustation">
+          <button type="button" className="m-12">
+            Profil dégustation
+          </button>
+        </Link>
       </div>
-      <div className="flex sm:mx-10 gap-14 flex-wrap justify-center md:mx-24 md:gap-24 lg:mx-48 lg:gap-24">
-        <div>
-          <img
-            className="object-cover w-[104px] h-[144px]"
-            src="../assets/images/whitewine1.jpg"
-            alt="vin numéro 1"
-          />
-          <h3 className="text-center text-xs">Palacio de Meladi</h3>
-        </div>
-        <div>
-          <img
-            className="object-cover w-[104px] h-[144px]"
-            src="../assets/images/whitewine2.jpg"
-            alt="vin numéro 2"
-          />
-          <h3 className="text-center text-xs">Sauvignon blanc</h3>
-        </div>
-        <div>
-          <img
-            className="object-cover w-[104px] h-[144px]"
-            src="../assets/images/whitewine3.jpg"
-            alt="vin numéro 3"
-          />
-          <h3 className="text-center text-xs">Pino gris</h3>
-        </div>
-        <div>
-          <img
-            className="object-cover w-[104px] h-[144px]"
-            src="../assets/images/whitewine4.jpg"
-            alt="vin numéro 4"
-          />
-          <h3 className="text-center text-xs">Château Margaux</h3>
-        </div>
-        <div>
-          <img
-            className="object-cover w-[104px] h-[144px]"
-            src="../assets/images/whitewine5.jpg"
-            alt="vin numéro 5"
-          />
-          <h3 className="text-center text-xs">Chardonnay</h3>
-        </div>
-      </div>
-    </Layout>
+    </>
   );
 }
