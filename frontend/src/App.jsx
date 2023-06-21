@@ -15,7 +15,11 @@ import GustatifPartTwo from "@pages/FicheDegustation/GustatifPartTwo";
 import Final from "@pages/FicheDegustation/Final";
 import CompteRenduFiche from "@pages/CompteRenduFiche";
 import LayoutAdmin from "@components/LayoutAdmin";
-import HomeAdmin from "@pages/HomeAdmin";
+import HomeAdmin from "@pages/Admin/HomeAdmin";
+import LexiqueAdmin from "@pages/Admin/LexiqueAdmin";
+import Vins from "@pages/Admin/Vins";
+import Utilisateurs from "@pages/Admin/Utilisateurs";
+import Atelier from "@pages/Admin/Atelier";
 import ProfilModif from "@pages/ProfilModif";
 import HistoriqueFiches from "@pages/HistoriqueFiches";
 import Page404 from "@pages/Page404";
@@ -30,14 +34,10 @@ function App() {
     <LayoutAdmin>
       <Routes>
         <Route path="/admin" element={<HomeAdmin />} />
-        <Route path="/admin/avis" element={<Avis />} />
-        <Route path="/admin/lexique" element={<Lexique />} />
-        <Route path="/admin/selection" element={<NotreSelection />} />
-        <Route path="/admin/profil" element={<Profil />} />
-        <Route
-          path="/admin/profil/profil_degustation"
-          element={<ProfilDegustation />}
-        />
+        <Route path="/admin/lexique" element={<LexiqueAdmin />} />
+        <Route path="/admin/vins" element={<Vins />} />
+        <Route path="/admin/utilisateurs" element={<Utilisateurs />} />
+        <Route path="/admin/atelier" element={<Atelier />} />
         <Route path="*" element={<Page404 />} />
       </Routes>
     </LayoutAdmin>

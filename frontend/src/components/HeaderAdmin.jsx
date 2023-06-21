@@ -9,7 +9,7 @@ function HeaderAdmin() {
 
   return (
     <header className="bg-secondary h-24 w-full z-10 fixed flex items-center justify-between">
-      <Link to="/" className="flex items-center">
+      <Link to="/admin" className="flex items-center">
         <img
           src="/assets/logo/logo_black.png"
           className="pl-6 h-16 w-23"
@@ -20,25 +20,32 @@ function HeaderAdmin() {
       <nav>
         <ul className="flex items-center gap-10 mr-14 h-20">
           <li
-            className={`text-primary w-[128px] text-center ${
-              !isActive("/selection") ? "hover:underline" : ""
-            } ${isActive("/selection") ? "font-bold active-nav" : ""}`}
+            className={`text-primary w-[72px] text-center ${
+              !isActive("/admin/lexique") ? "hover:underline" : ""
+            } ${isActive("/admin/lexique") ? "font-bold active-nav" : ""}`}
           >
-            <Link to="/selection">Notre Sélection</Link>
+            <Link to="/admin/lexique">Lexique</Link>
           </li>
           <li
             className={`text-primary w-[72px] text-center ${
-              !isActive("/lexique") ? "hover:underline" : ""
-            } ${isActive("/lexique") ? "font-bold active-nav" : ""}`}
+              !isActive("/admin/vins") ? "hover:underline" : ""
+            } ${isActive("/admin/vins") ? "font-bold active-nav" : ""}`}
           >
-            <Link to="/lexique">Lexique</Link>
+            <Link to="/admin/vins">Vins</Link>
           </li>
           <li
-            className={`text-primary w-[54px] text-center ${
-              !isActive("/profil") ? "hover:underline" : ""
-            } ${isActive("/profil") ? "font-bold active-nav" : ""}`}
+            className={`mr-14 text-primary w-[54px] text-center ${
+              !isActive("/admin/utilisateurs") ? "hover:underline" : ""
+            } ${isActive("/admin/utilisateurs") ? "font-bold active-nav" : ""}`}
           >
-            <Link to="/profil">Profil</Link>
+            <Link to="/admin/utilisateurs">Utilisateurs</Link>
+          </li>
+          <li
+            className={`text-primary w-[72px] text-center ${
+              !isActive("/admin/atelier") ? "hover:underline" : ""
+            } ${isActive("/admin/atelier") ? "font-bold active-nav" : ""}`}
+          >
+            <Link to="/admin/atelier">Atelier</Link>
           </li>
         </ul>
       </nav>
