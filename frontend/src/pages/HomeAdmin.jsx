@@ -2,7 +2,7 @@ export default function HomeAdmin() {
   return (
     <div className="container admin-container">
       <div className="row">
-        <button type="button" className="bouton_admin">
+        <button type="button" className="bouton_admin ">
           <h2>Crée atelier</h2>
         </button>
         <button type="button" className="bouton_admin">
