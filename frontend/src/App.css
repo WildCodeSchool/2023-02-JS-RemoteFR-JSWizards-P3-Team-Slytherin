@@ -49,6 +49,22 @@
     font-size: 2.2vw;
     font-weight: 400;
   }
+  .admin-container-atelier button,
+  .admin-container-atelier [type="“button”"] {
+    background-color: theme("colors.primary");
+    border-radius: 0.3rem;
+    padding: 0.5rem 1rem;
+    width: 40vw;
+    height: 5vw;
+    color: theme("colors.secondary");
+    font-size: 2.2vw;
+    font-weight: 400;
+  }
+  .bouton-atelier {
+    font-weight: bold;
+    width: 15vw;
+    font-size: 1.2vw;
+  }
 
   .lexique-button {
     border-radius: 50%;
