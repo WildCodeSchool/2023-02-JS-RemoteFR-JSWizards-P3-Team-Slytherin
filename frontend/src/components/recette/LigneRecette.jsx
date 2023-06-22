@@ -12,6 +12,14 @@ function LigneRecette({
   setWineSelectionNonSelected1,
   wineSelectionNonSelected2,
   setWineSelectionNonSelected2,
+  dosage,
+  setDosage,
+  dosageTotal,
+  setDosageTotal,
+  dosage100,
+  setDosage100,
+  dosage75cl,
+  setDosage75cl,
 }) {
   function handleChange(e) {
     const nextSelectedWines = selectedWines.map((selected, i) => {
@@ -64,14 +72,46 @@ function LigneRecette({
     setWineSelectionNonSelected1(nextWineSelectionNonSelected1);
     setWineSelectionNonSelected2(nextWineSelectionNonSelected2);
   }, [selectedWines]);
+  function decDosage(event) {
+    const nextDosage = dosage.map((e, i) => {
+      if (Number(event.target.id) === i) {
+        return e - 5;
+      }
+      return e;
+    });
+    setDosage(nextDosage);
+  }
+  function incDosage(event) {
+    const nextDosage = dosage.map((e, i) => {
+      if (Number(event.target.id) === i) {
+        return e + 5;
+      }
+      return e;
+    });
+    setDosage(nextDosage);
+  }
+  useEffect(() => {
+    setDosageTotal(dosage.reduce((a, b) => a + b, 0));
+  }, [dosage]);
+  useEffect(() => {
+    const nextDosage100 = dosage.map((e) =>
+      dosageTotal === 0 ? 0 : Number(((e / dosageTotal) * 100).toFixed(2))
+    );
+    setDosage100(nextDosage100);
+    const nextDosage75cl = dosage.map((e) =>
+      dosageTotal === 0 ? 0 : Number(((e / dosageTotal) * 250).toFixed(0))
+    );
+    setDosage75cl(nextDosage75cl);
+  }, [dosageTotal]);
+
   return (
     <div>
       <div className="flex flex-row justify-between items-center w-full mt-12">
+        {/* SelectMenu */}
         <div className="flex flex-row justify-between items-center w-1/2">
           <select
             onChange={handleChange}
             className="recetteSelect"
-            name="selection"
             id={`${index}`}
           >
             <option className="recetteOption" value="">
@@ -106,22 +146,34 @@ function LigneRecette({
             {selectedWines[index] && `${selectedWines[index].note} /10`}
           </p>
         </div>
-        <div className="flex flex-row flex-end items-center">
-          <p className="font-bold text-4xl"> - </p>
-          <p className="font-bold mx-6 text-xl bg-secondary text-primary rounded-md flex px-4 justify-end items-center w-36 h-[54px]">
-            150 ml
+        {/* dosage */}
+        <div className="recetteButtons flex flex-row justify-center items-center">
+          {dosage[index] - 5 >= 0 ? (
+            <button type="submit" onClick={decDosage} id={index}>
+              -
+            </button>
+          ) : (
+            <p className="font-bold text-4xl text-[grey] text-opacity-100">-</p>
+          )}
+          <p className="font-bold mx-6 text-xl bg-secondary text-primary rounded-md flex px-4 justify-end items-center w-28 h-[54px]">
+            {`${dosage[index]} ml`}
           </p>
-          <p className="font-bold text-4xl"> + </p>
+          {dosage.reduce((a, b) => a + b, 0) + 5 <= 250 ? (
+            <button type="submit" onClick={incDosage} id={index}>
+              +
+            </button>
+          ) : (
+            <p className="font-bold text-4xl text-[grey] text-opacity-100">+</p>
+          )}
         </div>
       </div>
+      {/* calculs dosages */}
       <div className="flex flex-row justify-between px-8 items-center font-bold mt-2">
-        <div className="flex flex-row justify-between w-64 px-8 items-center font-bold mt-2">
-          <p>Dosage bouteille : </p>
-          <p> 150 cl</p>
+        <div>
+          <p>{`Dosage bouteille : ${dosage75cl[index]} ml`}</p>
         </div>
-        <div className="flex flex-row justify-between w-72 px-8 items-center font-bold mt-2">
-          <p>Dosage échantillon : </p>
-          <p> 80 %</p>
+        <div>
+          <p>{`Dosage échantillon : ${dosage100[index]} %`}</p>
         </div>
       </div>
     </div>
@@ -141,4 +193,12 @@ LigneRecette.propTypes = {
   setWineSelectionNonSelected1: PropTypes.func.isRequired,
   wineSelectionNonSelected2: PropTypes.arrayOf(PropTypes.shape).isRequired,
   setWineSelectionNonSelected2: PropTypes.func.isRequired,
+  dosage: PropTypes.arrayOf(PropTypes.number).isRequired,
+  setDosage: PropTypes.func.isRequired,
+  dosageTotal: PropTypes.number.isRequired,
+  setDosageTotal: PropTypes.func.isRequired,
+  dosage100: PropTypes.arrayOf(PropTypes.number).isRequired,
+  setDosage100: PropTypes.func.isRequired,
+  dosage75cl: PropTypes.arrayOf(PropTypes.number).isRequired,
+  setDosage75cl: PropTypes.func.isRequired,
 };

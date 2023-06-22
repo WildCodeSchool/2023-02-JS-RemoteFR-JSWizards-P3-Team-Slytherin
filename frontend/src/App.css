@@ -75,6 +75,15 @@
     appearance: none;
     overflow: hidden;
   }
+  .recetteButtons > button {
+    background: none;
+    padding: 0;
+    width: fit-content;
+    color: theme("colors.tertiary");
+    font-weight: bold;
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
 
   .register-button,
   .login-button {
