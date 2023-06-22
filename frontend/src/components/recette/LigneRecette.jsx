@@ -16,7 +16,10 @@ function LigneRecette({
   function handleChange(e) {
     const nextSelectedWines = selectedWines.map((selected, i) => {
       if (Number(e.target.id) === i) {
-        return e.target.value;
+        const [wineObject] = wineSelectionOrderByNote.filter(
+          (wine) => e.target.value === wine.name
+        );
+        return wineObject;
       }
       return selected;
     });
@@ -25,7 +28,10 @@ function LigneRecette({
   useEffect(() => {
     const nextWineSelectionNonSelected0 = wineSelectionOrderByNote.filter(
       (wine) => {
-        if (wine.name !== selectedWines[1] && wine.name !== selectedWines[2]) {
+        if (
+          wine.name !== selectedWines[1].name &&
+          wine.name !== selectedWines[2].name
+        ) {
           return wine.name;
         }
         return false;
@@ -33,7 +39,10 @@ function LigneRecette({
     );
     const nextWineSelectionNonSelected1 = wineSelectionOrderByNote.filter(
       (wine) => {
-        if (wine.name !== selectedWines[0] && wine.name !== selectedWines[2]) {
+        if (
+          wine.name !== selectedWines[0].name &&
+          wine.name !== selectedWines[2].name
+        ) {
           return wine.name;
         }
         return false;
@@ -41,7 +50,10 @@ function LigneRecette({
     );
     const nextWineSelectionNonSelected2 = wineSelectionOrderByNote.filter(
       (wine) => {
-        if (wine.name !== selectedWines[0] && wine.name !== selectedWines[1]) {
+        if (
+          wine.name !== selectedWines[0].name &&
+          wine.name !== selectedWines[1].name
+        ) {
           return wine.name;
         }
         return false;
@@ -52,7 +64,6 @@ function LigneRecette({
     setWineSelectionNonSelected1(nextWineSelectionNonSelected1);
     setWineSelectionNonSelected2(nextWineSelectionNonSelected2);
   }, [selectedWines]);
-
   return (
     <div>
       <div className="flex flex-row justify-between items-center w-full mt-12">
@@ -69,23 +80,31 @@ function LigneRecette({
             {index === 0 &&
               wineSelectionNonSelected0.map((e) => (
                 <option key={e.id} className="recetteOption" value={e.name}>
-                  {e.name} - {e.note}/10
+                  {e.name === selectedWines[0].name
+                    ? e.name
+                    : `${e.name} - ${e.note}/10`}
                 </option>
               ))}
             {index === 1 &&
               wineSelectionNonSelected1.map((e) => (
                 <option key={e.id} className="recetteOption" value={e.name}>
-                  {e.name} - {e.note}/10
+                  {e.name === selectedWines[1].name
+                    ? e.name
+                    : `${e.name} - ${e.note}/10`}
                 </option>
               ))}
             {index === 2 &&
               wineSelectionNonSelected2.map((e) => (
                 <option key={e.id} className="recetteOption" value={e.name}>
-                  {e.name} - {e.note}/10
+                  {e.name === selectedWines[2].name
+                    ? e.name
+                    : `${e.name} - ${e.note}/10`}
                 </option>
               ))}
           </select>
-          <p className="text-2xl font-bold text-tertiary">/10</p>
+          <p className="text-2xl font-bold text-tertiary">
+            {selectedWines[index] && `${selectedWines[index].note} /10`}
+          </p>
         </div>
         <div className="flex flex-row flex-end items-center">
           <p className="font-bold text-4xl"> - </p>
