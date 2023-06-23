@@ -1,5 +1,7 @@
 import PropTypes from "prop-types";
 import { useEffect } from "react";
+import SelectMenu from "./SelectMenu";
+import Dosage from "./Dosage";
 
 function LigneRecette({
   index,
@@ -20,19 +22,15 @@ function LigneRecette({
   setDosage100,
   dosage75cl,
   setDosage75cl,
+  defaultObject,
 }) {
-  function handleChange(e) {
-    const nextSelectedWines = selectedWines.map((selected, i) => {
-      if (Number(e.target.id) === i) {
-        const [wineObject] = wineSelectionOrderByNote.filter(
-          (wine) => e.target.value === wine.name
-        );
-        return wineObject;
-      }
-      return selected;
-    });
-    setSelectedWines(nextSelectedWines);
-  }
+  // {*
+  // wineSelectionNonSelected0,
+  // wineSelectionNonSelected1,
+  // wineSelectionNonSelected2
+  // rassemblent l'ensemble des vins de l'atelier qui n'ont pas été sélectionnés par les autres menus déraoulant
+  // ils alimentent les options des menus déroulant
+  // *}
   useEffect(() => {
     const nextWineSelectionNonSelected0 = wineSelectionOrderByNote.filter(
       (wine) => {
@@ -72,24 +70,8 @@ function LigneRecette({
     setWineSelectionNonSelected1(nextWineSelectionNonSelected1);
     setWineSelectionNonSelected2(nextWineSelectionNonSelected2);
   }, [selectedWines]);
-  function decDosage(event) {
-    const nextDosage = dosage.map((e, i) => {
-      if (Number(event.target.id) === i) {
-        return e - 5;
-      }
-      return e;
-    });
-    setDosage(nextDosage);
-  }
-  function incDosage(event) {
-    const nextDosage = dosage.map((e, i) => {
-      if (Number(event.target.id) === i) {
-        return e + 5;
-      }
-      return e;
-    });
-    setDosage(nextDosage);
-  }
+
+  // {* calcule des dosages *}
   useEffect(() => {
     setDosageTotal(dosage.reduce((a, b) => a + b, 0));
   }, [dosage]);
@@ -107,67 +89,18 @@ function LigneRecette({
   return (
     <div>
       <div className="flex flex-row justify-between items-center w-full mt-12">
-        {/* SelectMenu */}
-        <div className="flex flex-row justify-between items-center w-1/2">
-          <select
-            onChange={handleChange}
-            className="recetteSelect"
-            id={`${index}`}
-          >
-            <option className="recetteOption" value="">
-              -Vide-
-            </option>
-            {index === 0 &&
-              wineSelectionNonSelected0.map((e) => (
-                <option key={e.id} className="recetteOption" value={e.name}>
-                  {e.name === selectedWines[0].name
-                    ? e.name
-                    : `${e.name} - ${e.note}/10`}
-                </option>
-              ))}
-            {index === 1 &&
-              wineSelectionNonSelected1.map((e) => (
-                <option key={e.id} className="recetteOption" value={e.name}>
-                  {e.name === selectedWines[1].name
-                    ? e.name
-                    : `${e.name} - ${e.note}/10`}
-                </option>
-              ))}
-            {index === 2 &&
-              wineSelectionNonSelected2.map((e) => (
-                <option key={e.id} className="recetteOption" value={e.name}>
-                  {e.name === selectedWines[2].name
-                    ? e.name
-                    : `${e.name} - ${e.note}/10`}
-                </option>
-              ))}
-          </select>
-          <p className="text-2xl font-bold text-tertiary">
-            {selectedWines[index] && `${selectedWines[index].note} /10`}
-          </p>
-        </div>
-        {/* dosage */}
-        <div className="recetteButtons flex flex-row justify-center items-center">
-          {dosage[index] - 5 >= 0 ? (
-            <button type="submit" onClick={decDosage} id={index}>
-              -
-            </button>
-          ) : (
-            <p className="font-bold text-4xl text-[grey] text-opacity-100">-</p>
-          )}
-          <p className="font-bold mx-6 text-xl bg-secondary text-primary rounded-md flex px-4 justify-end items-center w-28 h-[54px]">
-            {`${dosage[index]} ml`}
-          </p>
-          {dosage.reduce((a, b) => a + b, 0) + 5 <= 250 ? (
-            <button type="submit" onClick={incDosage} id={index}>
-              +
-            </button>
-          ) : (
-            <p className="font-bold text-4xl text-[grey] text-opacity-100">+</p>
-          )}
-        </div>
+        <SelectMenu
+          index={index}
+          wineSelectionNonSelected0={wineSelectionNonSelected0}
+          wineSelectionNonSelected1={wineSelectionNonSelected1}
+          wineSelectionNonSelected2={wineSelectionNonSelected2}
+          selectedWines={selectedWines}
+          setSelectedWines={setSelectedWines}
+          wineSelectionOrderByNote={wineSelectionOrderByNote}
+          defaultObject={defaultObject}
+        />
+        <Dosage index={index} dosage={dosage} setDosage={setDosage} />
       </div>
-      {/* calculs dosages */}
       <div className="flex flex-row justify-between px-8 items-center font-bold mt-2">
         <div>
           <p>{`Dosage bouteille : ${dosage75cl[index]} ml`}</p>
@@ -201,4 +134,8 @@ LigneRecette.propTypes = {
   setDosage100: PropTypes.func.isRequired,
   dosage75cl: PropTypes.arrayOf(PropTypes.number).isRequired,
   setDosage75cl: PropTypes.func.isRequired,
+  defaultObject: PropTypes.shape({
+    name: PropTypes.string,
+    note: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  }).isRequired,
 };

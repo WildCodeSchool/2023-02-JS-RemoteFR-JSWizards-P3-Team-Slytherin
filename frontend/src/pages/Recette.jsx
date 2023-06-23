@@ -53,7 +53,12 @@ function Recette() {
     wineSelectionOrderByNote[1],
     wineSelectionOrderByNote[2],
   ]);
-  const [selectedWines, setSelectedWines] = useState(["", "", ""]);
+  const defaultObject = { name: "", note: "" };
+  const [selectedWines, setSelectedWines] = useState([
+    defaultObject,
+    defaultObject,
+    defaultObject,
+  ]);
   const [wineSelectionNonSelected0, setWineSelectionNonSelected0] = useState(
     wineSelectionOrderByNote
   );
@@ -90,6 +95,7 @@ function Recette() {
           setDosage100={setDosage100}
           dosage75cl={dosage75cl}
           setDosage75cl={setDosage75cl}
+          defaultObject={defaultObject}
         />
       ))}
       <div className="flex flex-col xl:mx-20">
