@@ -25,9 +25,7 @@ function LigneRecette({
   defaultObject,
 }) {
   // {*
-  // wineSelectionNonSelected0,
-  // wineSelectionNonSelected1,
-  // wineSelectionNonSelected2
+  // wineSelectionNonSelected0, wineSelectionNonSelected1, wineSelectionNonSelected2
   // rassemblent l'ensemble des vins de l'atelier qui n'ont pas été sélectionnés par les autres menus déraoulant
   // ils alimentent les options des menus déroulant
   // *}
