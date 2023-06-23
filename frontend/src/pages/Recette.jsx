@@ -1,4 +1,5 @@
 import LigneRecette from "@components/recette/LigneRecette";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 
 const resultatDegustation = [
@@ -42,6 +43,10 @@ function order(a, b) {
 }
 
 function Recette() {
+  const [dosage, setDosage] = useState([120, 0, 0]);
+  const [dosageTotal, setDosageTotal] = useState(0);
+  const [dosage100, setDosage100] = useState([0, 0, 0]);
+  const [dosage75cl, setDosage75cl] = useState([0, 0, 0]);
   const [wineSelectionOrderByNote] = useState(resultatDegustation.sort(order));
   const [defaultSelection] = useState([
     wineSelectionOrderByNote[0],
@@ -77,12 +82,24 @@ function Recette() {
           setWineSelectionNonSelected1={setWineSelectionNonSelected1}
           wineSelectionNonSelected2={wineSelectionNonSelected2}
           setWineSelectionNonSelected2={setWineSelectionNonSelected2}
+          dosage={dosage}
+          setDosage={setDosage}
+          dosageTotal={dosageTotal}
+          setDosageTotal={setDosageTotal}
+          dosage100={dosage100}
+          setDosage100={setDosage100}
+          dosage75cl={dosage75cl}
+          setDosage75cl={setDosage75cl}
         />
       ))}
       <div className="flex flex-col xl:mx-20">
         <div className="flex flex-row justify-between pt-16">
-          <button type="button">Profil dégustation</button>
-          <button type="button">Valider</button>
+          <Link to="/admin/profil/profil_degustation">
+            <button type="button">Profil dégustation</button>
+          </Link>
+          <Link to="/avis">
+            <button type="button">Valider</button>
+          </Link>
         </div>
       </div>
     </>
