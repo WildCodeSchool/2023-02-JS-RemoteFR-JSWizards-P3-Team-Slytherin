@@ -43,13 +43,43 @@
     background-color: theme("colors.primary");
     border-radius: 1.2rem;
     padding: 0.5rem 1rem;
-    width: 15vw;
-    height: 10vw;
+    width: 20vw;
+    height: 15vw;
     color: theme("colors.secondary");
-    font-weight: bold;
-    font-size: 1.8rem;
+    font-size: 2.2vw;
+    font-weight: 400;
+  }
+  .bouton_admin {
+    background-color: theme("colors.primary");
+    border-radius: 0.3rem;
+    padding: 0.5rem 1rem;
+    width: 40vw;
+    height: 5vw;
+    color: theme("colors.secondary");
+    font-size: 2.2vw;
+    font-weight: 400;
+  }
+  .bouton-date,
+  .bouton-nombre {
+    background-color: theme("colors.primary");
+    color: theme("colors.secondary");
+    border-radius: 0.3rem;
+    font-size: 1.2vw;
+    height: 3vw;
+    width: 15vw;
+  }
+  .bouton-date {
+    margin-right: 5vw;
+  }
+  .bouton-nombre {
+    margin-left: 5vw;
   }
 
+  .bouton-atelier {
+    font-weight: bold;
+    width: 15vw;
+    font-size: 1.2vw;
+  }
   .lexique-button {
     border-radius: 50%;
     width: 1.5rem;
