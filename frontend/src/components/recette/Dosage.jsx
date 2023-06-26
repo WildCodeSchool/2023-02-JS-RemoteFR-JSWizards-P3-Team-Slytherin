@@ -20,7 +20,7 @@ function Dosage({ index, dosage, setDosage }) {
     setDosage(nextDosage);
   }
   return (
-    <div className="recetteButtons flex flex-row justify-center items-center">
+    <div className="recetteButtons max-md:mt-4 flex flex-row justify-center items-center">
       {dosage[index] - 5 >= 0 ? (
         <button type="submit" onClick={decDosage} id={index}>
           -

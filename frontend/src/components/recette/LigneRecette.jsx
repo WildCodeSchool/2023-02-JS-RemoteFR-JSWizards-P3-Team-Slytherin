@@ -86,7 +86,7 @@ function LigneRecette({
 
   return (
     <div>
-      <div className="flex flex-row justify-between items-center w-full mt-12">
+      <div className="flex max-md:flex-col flex-row justify-between max-md:items-center md:items-end w-full mt-12 md:portrait:mt-20">
         <SelectMenu
           index={index}
           wineSelectionNonSelected0={wineSelectionNonSelected0}
@@ -99,7 +99,7 @@ function LigneRecette({
         />
         <Dosage index={index} dosage={dosage} setDosage={setDosage} />
       </div>
-      <div className="flex flex-row justify-between px-8 items-center font-bold mt-2">
+      <div className="flex max-md:text-xs max-md:flex-col flex-row max-md:items-start max-md:justify-start justify-between md:px-8 items-center font-bold mt-2">
         <div>
           <p>{`Dosage bouteille : ${dosage75cl[index]} ml`}</p>
         </div>
