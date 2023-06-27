@@ -518,9 +518,15 @@ export default function GustatifPartOne() {
             </fieldset>
           </div>
           <div className="w-full flex justify-center gap-4 my-4">
-            <button type="button">Retour au catalogue</button>
-            <button type="button">Précédent</button>
-            <button type="button">Suivant</button>
+            <button type="button" className="items-center">
+              Retour au catalogue
+            </button>
+            <button type="button" className="items-center">
+              Précédent
+            </button>
+            <button type="button" className="items-center">
+              Suivant
+            </button>
           </div>
         </form>
       </div>
