@@ -52,13 +52,20 @@ export default function Visuel() {
 
   const handleSelectionClick = () => {
     if (document.querySelector("input[name=densite]:checked") !== null) {
-      setDensite(document.querySelector("input[name=densite]:checked").id);
+      setDensite(
+        document.querySelector("input[name=densite]:checked + label").innerText
+      );
     }
     if (document.querySelector("input[name=limpidite]:checked") !== null) {
-      setLimpidite(document.querySelector("input[name=limpidite]:checked").id);
+      setLimpidite(
+        document.querySelector("input[name=limpidite]:checked + label")
+          .innerText
+      );
     }
     if (document.querySelector("input[name=couleur]:checked") !== null) {
-      setCouleur(document.querySelector("input[name=couleur]:checked").id);
+      setCouleur(
+        document.querySelector("input[name=couleur]:checked + label").innerText
+      );
     }
   };
 
