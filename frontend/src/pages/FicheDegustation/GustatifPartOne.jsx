@@ -5,10 +5,14 @@ export default function GustatifPartOne() {
   const [persistance, setPersistance] = useState("-");
   const [moelleux, setMoelleux] = useState("-");
   const [acidite, setAcidite] = useState("-");
+  const [tanin, setTanin] = useState("-");
+  const [alcool, setAlcool] = useState("-");
   const [gustatif1Vin, setGustatif1Vin] = useState({
     persistance: "-",
     moelleux: "-",
     acidite: "-",
+    tanin: "-",
+    alcool: "-",
   });
 
   const handlePersistanceClick = () => {
@@ -16,23 +20,7 @@ export default function GustatifPartOne() {
     const taninClass = document.getElementById("tanin");
     const moelleuxClass = document.getElementById("moelleux");
     const aciditeClass = document.getElementById("acidite");
-    moelleuxClass.classList.toggle("hidden");
-    if (persistanceClass.classList.value !== "hidden") {
-      persistanceClass.classList.toggle("hidden");
-    }
-    if (aciditeClass.classList.value !== "hidden") {
-      aciditeClass.classList.toggle("hidden");
-    }
-    if (taninClass.classList.value !== "hidden") {
-      taninClass.classList.toggle("hidden");
-    }
-  };
-
-  const handleMoelleuxClick = () => {
-    const persistanceClass = document.getElementById("persistance");
-    const taninClass = document.getElementById("tanin");
-    const moelleuxClass = document.getElementById("moelleux");
-    const aciditeClass = document.getElementById("acidite");
+    const alcoolClass = document.getElementById("alcool");
     persistanceClass.classList.toggle("hidden");
     if (moelleuxClass.classList.value !== "hidden") {
       moelleuxClass.classList.toggle("hidden");
@@ -43,6 +31,30 @@ export default function GustatifPartOne() {
     if (taninClass.classList.value !== "hidden") {
       taninClass.classList.toggle("hidden");
     }
+    if (alcoolClass.classList.value !== "hidden") {
+      alcoolClass.classList.toggle("hidden");
+    }
+  };
+
+  const handleMoelleuxClick = () => {
+    const persistanceClass = document.getElementById("persistance");
+    const taninClass = document.getElementById("tanin");
+    const moelleuxClass = document.getElementById("moelleux");
+    const aciditeClass = document.getElementById("acidite");
+    const alcoolClass = document.getElementById("alcool");
+    moelleuxClass.classList.toggle("hidden");
+    if (persistanceClass.classList.value !== "hidden") {
+      persistanceClass.classList.toggle("hidden");
+    }
+    if (aciditeClass.classList.value !== "hidden") {
+      aciditeClass.classList.toggle("hidden");
+    }
+    if (taninClass.classList.value !== "hidden") {
+      taninClass.classList.toggle("hidden");
+    }
+    if (alcoolClass.classList.value !== "hidden") {
+      alcoolClass.classList.toggle("hidden");
+    }
   };
 
   const handleAciditeClick = () => {
@@ -50,6 +62,7 @@ export default function GustatifPartOne() {
     const taninClass = document.getElementById("tanin");
     const moelleuxClass = document.getElementById("moelleux");
     const aciditeClass = document.getElementById("acidite");
+    const alcoolClass = document.getElementById("alcool");
     aciditeClass.classList.toggle("hidden");
     if (persistanceClass.classList.value !== "hidden") {
       persistanceClass.classList.toggle("hidden");
@@ -60,13 +73,17 @@ export default function GustatifPartOne() {
     if (taninClass.classList.value !== "hidden") {
       taninClass.classList.toggle("hidden");
     }
+    if (alcoolClass.classList.value !== "hidden") {
+      alcoolClass.classList.toggle("hidden");
+    }
   };
 
   const handleTaninClick = () => {
     const persistanceClass = document.getElementById("persistance");
-    const taninClass = document.getElementById("persistance");
+    const taninClass = document.getElementById("tanin");
     const moelleuxClass = document.getElementById("moelleux");
     const aciditeClass = document.getElementById("acidite");
+    const alcoolClass = document.getElementById("alcool");
     taninClass.classList.toggle("hidden");
     if (persistanceClass.classList.value !== "hidden") {
       persistanceClass.classList.toggle("hidden");
@@ -76,6 +93,30 @@ export default function GustatifPartOne() {
     }
     if (aciditeClass.classList.value !== "hidden") {
       aciditeClass.classList.toggle("hidden");
+    }
+    if (alcoolClass.classList.value !== "hidden") {
+      alcoolClass.classList.toggle("hidden");
+    }
+  };
+
+  const handleAlcoolClick = () => {
+    const persistanceClass = document.getElementById("persistance");
+    const taninClass = document.getElementById("tanin");
+    const moelleuxClass = document.getElementById("moelleux");
+    const aciditeClass = document.getElementById("acidite");
+    const alcoolClass = document.getElementById("alcool");
+    alcoolClass.classList.toggle("hidden");
+    if (persistanceClass.classList.value !== "hidden") {
+      persistanceClass.classList.toggle("hidden");
+    }
+    if (moelleuxClass.classList.value !== "hidden") {
+      moelleuxClass.classList.toggle("hidden");
+    }
+    if (aciditeClass.classList.value !== "hidden") {
+      aciditeClass.classList.toggle("hidden");
+    }
+    if (taninClass.classList.value !== "hidden") {
+      taninClass.classList.toggle("hidden");
     }
   };
 
@@ -91,11 +132,17 @@ export default function GustatifPartOne() {
         document.querySelector("input[name=persistance]:checked").id
       );
     }
+    if (document.querySelector("input[name=tanin]:checked") !== null) {
+      setTanin(document.querySelector("input[name=tanin]:checked").id);
+    }
+    if (document.querySelector("input[name=alcool]:checked") !== null) {
+      setAlcool(document.querySelector("input[name=alcool]:checked").id);
+    }
   };
 
   useEffect(() => {
-    setGustatif1Vin({ persistance, moelleux, acidite });
-  }, [acidite, moelleux, persistance]);
+    setGustatif1Vin({ persistance, moelleux, acidite, tanin, alcool });
+  }, [acidite, moelleux, persistance, tanin, alcool]);
 
   return (
     <>
@@ -385,8 +432,85 @@ export default function GustatifPartOne() {
               </div>
             </fieldset>
           </div>
-          <div className="absolute w-[400px] right-[calc(50%-200px)] bottom-8 flex justify-center gap-4">
+          <div className="text-center border-[1px] rounded-md px-4 bg-primary">
+            <fieldset className="flex flex-col items-center">
+              <input
+                type="button"
+                onClick={handleAlcoolClick}
+                value={
+                  gustatif1Vin.alcool !== "-"
+                    ? `Alcool : ${gustatif1Vin.alcool}`
+                    : "Alcool : -"
+                }
+                className="fiche-deg-button p-2 w-full"
+              />
+              <div id="alcool" className="hidden">
+                <div className="rounded-full flex flex-row p-2">
+                  <input
+                    name="alcool"
+                    className="m-2"
+                    type="radio"
+                    onClick={handleSelectionClick}
+                    id="alcooleux"
+                  />
+                  <label className="mr-2" htmlFor="alcooleux">
+                    Alcooleux
+                  </label>
+                </div>
+                <div className="rounded-full flex flex-row p-2">
+                  <input
+                    name="alcool"
+                    className="m-2"
+                    type="radio"
+                    onClick={handleSelectionClick}
+                    id="capiteux"
+                  />
+                  <label className="mr-2" htmlFor="capiteux">
+                    Capiteux
+                  </label>
+                </div>
+                <div className="rounded-full flex flex-row p-2">
+                  <input
+                    name="alcool"
+                    className="m-2"
+                    type="radio"
+                    onClick={handleSelectionClick}
+                    id="gras"
+                  />
+                  <label className="mr-2" htmlFor="gras">
+                    Gras
+                  </label>
+                </div>
+                <div className="rounded-full flex flex-row p-2">
+                  <input
+                    name="alcool"
+                    className="m-2"
+                    type="radio"
+                    onClick={handleSelectionClick}
+                    id="genereux"
+                  />
+                  <label className="mr-2" htmlFor="genereux">
+                    Généreux
+                  </label>
+                </div>
+                <div className="rounded-full flex flex-row p-2">
+                  <input
+                    name="alcool"
+                    className="m-2"
+                    type="radio"
+                    onClick={handleSelectionClick}
+                    id="faible-alc"
+                  />
+                  <label className="mr-2" htmlFor="faible-alc">
+                    Faible
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+          <div className="w-full flex justify-center gap-4 my-4">
             <button type="button">Retour au catalogue</button>
+            <button type="button">Précédent</button>
             <button type="button">Suivant</button>
           </div>
         </form>
