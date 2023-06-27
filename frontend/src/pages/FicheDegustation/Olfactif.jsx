@@ -1,9 +1,10 @@
-import Layout from "@components/Layout";
+import VinEnCours from "@components/VinEnCours";
 
 export default function Olfactif() {
   return (
-    <Layout>
+    <>
+      <VinEnCours />
       <div>Olfactif</div>
-    </Layout>
+    </>
   );
 }

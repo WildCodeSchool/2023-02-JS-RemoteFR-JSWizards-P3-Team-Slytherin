@@ -1,9 +1,10 @@
-import Layout from "@components/Layout";
+import VinEnCours from "@components/VinEnCours";
 
 export default function GustatifPartTwo() {
   return (
-    <Layout>
+    <>
+      <VinEnCours />
       <div>GustatifPartTwo</div>
-    </Layout>
+    </>
   );
 }
