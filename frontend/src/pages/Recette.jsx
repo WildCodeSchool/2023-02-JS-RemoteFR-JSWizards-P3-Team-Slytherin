@@ -72,7 +72,9 @@ function Recette() {
   return (
     <>
       <div className="text-secondary py-4">
-        <p className="text-3xl text-center pt-4">Ma recette</p>
+        <p className="text-3xl text-center pt-4 md:portrait:pt-12">
+          Ma recette
+        </p>
       </div>
       {defaultSelection.map((e, index) => (
         <LigneRecette
@@ -99,7 +101,7 @@ function Recette() {
         />
       ))}
       <div className="flex flex-col xl:mx-20">
-        <div className="flex flex-row justify-between pt-16">
+        <div className="flex max-md:flex-col max-md:items-center max-md:gap-4 flex-row justify-between max-md:py-16 md:pt-16">
           <Link to="/admin/profil/profil_degustation">
             <button type="button">Profil dégustation</button>
           </Link>

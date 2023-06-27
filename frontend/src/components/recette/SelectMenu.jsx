@@ -27,7 +27,7 @@ function SelectMenu({
     setSelectedWines(nextSelectedWines);
   }
   return (
-    <div className="flex flex-row justify-between items-center w-1/2">
+    <div className="flex flex-row justify-between max-md:items-start md:items-center max-md:w-full md:w-1/2">
       <select onChange={handleChange} className="recetteSelect" id={`${index}`}>
         <option className="recetteOption" value="">
           -Vide-
@@ -57,8 +57,11 @@ function SelectMenu({
             </option>
           ))}
       </select>
-      <p className="text-2xl font-bold text-tertiary">
+      <p className="text-2xl max-md:hidden font-bold text-tertiary">
         {selectedWines[index].note && `${selectedWines[index].note}/10`}
+      </p>
+      <p className="text-2xl ml-4 md:hidden font-bold text-tertiary">
+        {selectedWines[index].note && `${selectedWines[index].note}`}/10
       </p>
     </div>
   );
