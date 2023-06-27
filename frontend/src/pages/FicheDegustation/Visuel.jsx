@@ -332,7 +332,7 @@ export default function Visuel() {
               </div>
             </fieldset>
           </div>
-          <div className="absolute w-[400px] right-[calc(50%-200px)] bottom-8 flex justify-center gap-4">
+          <div className="w-full flex justify-center gap-4 my-4">
             <button type="button">Retour au catalogue</button>
             <button type="button">Suivant</button>
           </div>
