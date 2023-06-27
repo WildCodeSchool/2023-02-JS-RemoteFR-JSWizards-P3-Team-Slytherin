@@ -122,21 +122,30 @@ export default function GustatifPartOne() {
 
   const handleSelectionClick = () => {
     if (document.querySelector("input[name=acidite]:checked") !== null) {
-      setAcidite(document.querySelector("input[name=acidite]:checked").id);
+      setAcidite(
+        document.querySelector("input[name=acidite]:checked + label").innerText
+      );
     }
     if (document.querySelector("input[name=moelleux]:checked") !== null) {
-      setMoelleux(document.querySelector("input[name=moelleux]:checked").id);
+      setMoelleux(
+        document.querySelector("input[name=moelleux]:checked + label").innerText
+      );
     }
     if (document.querySelector("input[name=persistance]:checked") !== null) {
       setPersistance(
-        document.querySelector("input[name=persistance]:checked").id
+        document.querySelector("input[name=persistance]:checked + label")
+          .innerText
       );
     }
     if (document.querySelector("input[name=tanin]:checked") !== null) {
-      setTanin(document.querySelector("input[name=tanin]:checked").id);
+      setTanin(
+        document.querySelector("input[name=tanin]:checked + label").innerText
+      );
     }
     if (document.querySelector("input[name=alcool]:checked") !== null) {
-      setAlcool(document.querySelector("input[name=alcool]:checked").id);
+      setAlcool(
+        document.querySelector("input[name=alcool]:checked + label").innerText
+      );
     }
   };
 
