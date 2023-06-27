@@ -105,7 +105,7 @@ export default function Visuel() {
                         id="quasi-noir"
                       />
                       <label className="mr-2" htmlFor="quasi-noir">
-                        quasi-noir
+                        Quasi-noir
                       </label>
                     </div>
                     <div className="bg-[#A70045] rounded-full flex flex-row p-2">
@@ -117,7 +117,7 @@ export default function Visuel() {
                         id="pourpre"
                       />
                       <label className="mr-2" htmlFor="pourpre">
-                        pourpre
+                        Pourpre
                       </label>
                     </div>
                     <div className="bg-[#9C0063] rounded-full flex flex-row p-2">
@@ -129,7 +129,7 @@ export default function Visuel() {
                         id="violet"
                       />
                       <label className="mr-2" htmlFor="violet">
-                        violet
+                        Violet
                       </label>
                     </div>
                     <div className="bg-[#7E2950] rounded-full flex flex-row p-2">
@@ -141,7 +141,7 @@ export default function Visuel() {
                         id="grenat"
                       />
                       <label className="mr-2" htmlFor="grenat">
-                        grenat
+                        Grenat
                       </label>
                     </div>
                   </div>
@@ -155,7 +155,7 @@ export default function Visuel() {
                         id="framboise"
                       />
                       <label className="mr-2" htmlFor="framboise">
-                        framboise
+                        Framboise
                       </label>
                     </div>
                     <div className="bg-[#EA0428] rounded-full flex flex-row p-2">
@@ -167,7 +167,7 @@ export default function Visuel() {
                         id="cerise"
                       />
                       <label className="mr-2" htmlFor="cerise">
-                        cerise
+                        Cerise
                       </label>
                     </div>
                     <div className="bg-[#C70400] rounded-full flex flex-row p-2">
@@ -179,7 +179,7 @@ export default function Visuel() {
                         id="rubis"
                       />
                       <label className="mr-2" htmlFor="rubis">
-                        rubis
+                        Rubis
                       </label>
                     </div>
                     <div className="bg-[#972000] rounded-full flex flex-row p-2">
@@ -191,7 +191,7 @@ export default function Visuel() {
                         id="tuile"
                       />
                       <label className="mr-2" htmlFor="tuile">
-                        tuilé
+                        Tuilé
                       </label>
                     </div>
                   </div>
