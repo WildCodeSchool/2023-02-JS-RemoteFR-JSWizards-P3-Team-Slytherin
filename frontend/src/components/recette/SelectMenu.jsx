@@ -9,8 +9,10 @@ function SelectMenu({
   setSelectedWines,
   wineSelectionOrderByNote,
   defaultObject,
+  registeredSelectedWine,
 }) {
   // {* selectedWine rassemble les vins selectionnés dans les menus déroulants *}
+
   function handleChange(e) {
     const nextSelectedWines = selectedWines.map((selected, i) => {
       if (Number(e.target.id) === i) {
@@ -29,10 +31,21 @@ function SelectMenu({
   return (
     <div className="flex flex-row justify-between max-md:items-start md:items-center max-md:w-full md:w-1/2">
       <select onChange={handleChange} className="recetteSelect" id={`${index}`}>
-        <option className="recetteOption" value="">
-          -Vide-
-        </option>
+        {registeredSelectedWine[index].id ? (
+          <option
+            className="recetteOption"
+            value={registeredSelectedWine[index].name}
+          >
+            {registeredSelectedWine[index].name}
+          </option>
+        ) : (
+          <option className="recetteOption" value="">
+            -Vide-
+          </option>
+        )}
+
         {index === 0 &&
+          !registeredSelectedWine[index].id &&
           wineSelectionNonSelected0.map((e) => (
             <option key={e.id} className="recetteOption" value={e.name}>
               {e.name === selectedWines[0].name
@@ -41,6 +54,7 @@ function SelectMenu({
             </option>
           ))}
         {index === 1 &&
+          !registeredSelectedWine[index].id &&
           wineSelectionNonSelected1.map((e) => (
             <option key={e.id} className="recetteOption" value={e.name}>
               {e.name === selectedWines[1].name
@@ -49,6 +63,7 @@ function SelectMenu({
             </option>
           ))}
         {index === 2 &&
+          !registeredSelectedWine[index].id &&
           wineSelectionNonSelected2.map((e) => (
             <option key={e.id} className="recetteOption" value={e.name}>
               {e.name === selectedWines[2].name
@@ -81,4 +96,5 @@ SelectMenu.propTypes = {
     name: PropTypes.string,
     note: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
   }).isRequired,
+  registeredSelectedWine: PropTypes.arrayOf(PropTypes.shape).isRequired,
 };
