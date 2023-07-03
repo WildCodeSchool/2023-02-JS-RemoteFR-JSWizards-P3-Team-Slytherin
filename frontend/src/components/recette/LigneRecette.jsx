@@ -23,10 +23,12 @@ function LigneRecette({
   dosage75cl,
   setDosage75cl,
   defaultObject,
+  registeredDosage,
+  registeredSelectedWine,
 }) {
   // {*
   // wineSelectionNonSelected0, wineSelectionNonSelected1, wineSelectionNonSelected2
-  // rassemblent l'ensemble des vins de l'atelier qui n'ont pas été sélectionnés par les autres menus déraoulant
+  // rassemblent l'ensemble des vins de l'atelier qui n'ont pas été sélectionnés par les autres menus déroulant
   // ils alimentent les options des menus déroulant
   // *}
   useEffect(() => {
@@ -96,8 +98,14 @@ function LigneRecette({
           setSelectedWines={setSelectedWines}
           wineSelectionOrderByNote={wineSelectionOrderByNote}
           defaultObject={defaultObject}
+          registeredSelectedWine={registeredSelectedWine}
         />
-        <Dosage index={index} dosage={dosage} setDosage={setDosage} />
+        <Dosage
+          index={index}
+          dosage={dosage}
+          setDosage={setDosage}
+          registeredDosage={registeredDosage}
+        />
       </div>
       <div className="flex max-md:text-xs max-md:flex-col flex-row max-md:items-start max-md:justify-start justify-between md:px-8 items-center font-bold mt-2">
         <div>
@@ -136,4 +144,6 @@ LigneRecette.propTypes = {
     name: PropTypes.string,
     note: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
   }).isRequired,
+  registeredDosage: PropTypes.arrayOf(PropTypes.number).isRequired,
+  registeredSelectedWine: PropTypes.arrayOf(PropTypes.shape).isRequired,
 };

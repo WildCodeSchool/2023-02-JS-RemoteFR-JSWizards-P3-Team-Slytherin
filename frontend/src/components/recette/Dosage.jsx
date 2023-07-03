@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-function Dosage({ index, dosage, setDosage }) {
+function Dosage({ index, dosage, setDosage, registeredDosage }) {
   function decDosage(event) {
     const nextDosage = dosage.map((e, i) => {
       if (Number(event.target.id) === i) {
@@ -19,9 +19,10 @@ function Dosage({ index, dosage, setDosage }) {
     });
     setDosage(nextDosage);
   }
+
   return (
     <div className="recetteButtons max-md:mt-4 flex flex-row justify-center items-center">
-      {dosage[index] - 5 >= 0 ? (
+      {dosage[index] - 5 >= registeredDosage[index] ? (
         <button type="submit" onClick={decDosage} id={index}>
           -
         </button>
@@ -48,4 +49,5 @@ Dosage.propTypes = {
   index: PropTypes.number.isRequired,
   dosage: PropTypes.arrayOf(PropTypes.number).isRequired,
   setDosage: PropTypes.func.isRequired,
+  registeredDosage: PropTypes.arrayOf(PropTypes.number).isRequired,
 };
