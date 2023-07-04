@@ -33,7 +33,7 @@ const findOneUser = (id) => {
 
 const updateUser = (user) => {
   const SQL =
-    "UPDATE user SET lastname = ?, firstname = ?, email = ?, hashedPassword = ?, birthday = ?, adminStatus = ? WHERE id = ?)";
+    "UPDATE user SET lastname = ?, firstname = ?, email = ?, hashedPassword = ?, birthday = ?, adminStatus = ? WHERE id = ?";
   return db.query(SQL, [
     user.lastname,
     user.firstname,
