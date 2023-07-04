@@ -8,6 +8,8 @@ CREATE TABLE user (
   adminStatus BOOLEAN DEFAULT false
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
+INSERT INTO `user` VALUES (1,'admin','admin','admin@admin.fr','$argon2id$v=19$m=65536,t=5,p=1$JvUeRISXzJlRxSj+LTG2qQ$k22+I+Q6kc95sORXJDXCzmf1L4ckAwYiso/hjX4VIyc','1985-01-01',1);
+
 CREATE TABLE workshop (
   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   active BOOLEAN DEFAULT 0 NOT NULL,
@@ -32,7 +34,9 @@ CREATE TABLE user_workshop (
 
 CREATE TABLE receipe (
   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  measuring INT NOT NULL,
+  measuring1 INT NOT NULL,
+  measuring2 INT NOT NULL,
+  measuring3 INT NOT NULL,
   id_user INT NOT NULL,
   CONSTRAINT fk_receipe_user
   FOREIGN KEY (id_user)

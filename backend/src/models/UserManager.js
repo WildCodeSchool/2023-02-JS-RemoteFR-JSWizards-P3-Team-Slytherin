@@ -2,15 +2,13 @@ const db = require("./index");
 
 const createUser = (user) => {
   const SQL =
-    "INSERT INTO user(lastname, firstname, email, hashedPassword, birthday, adminStatus) VALUES (?, ?, ?, ?, ?, ?)";
+    "INSERT INTO user(lastname, firstname, email, hashedPassword, birthday) VALUES (?, ?, ?, ?, ?)";
   return db.query(SQL, [
     user.lastname,
     user.firstname,
     user.email,
     user.hashedPassword,
     user.birthday,
-    user.preference,
-    user.adminStatus,
   ]);
 };
 
@@ -21,13 +19,13 @@ const findByEmail = (user) => {
 
 const findAllUser = () => {
   const SQL =
-    "SELECT lastname, firstname, email, birthday, adminStatus FROM user";
+    "SELECT id, lastname, firstname, email, birthday, adminStatus FROM user";
   return db.query(SQL);
 };
 
 const findOneUser = (id) => {
   const SQL =
-    "SELECT lastname, firstname, email, birthday, adminStatus FROM user WHERE id = ?";
+    "SELECT id, lastname, firstname, email, birthday, adminStatus FROM user WHERE id = ?";
   return db.query(SQL, [id]);
 };
 

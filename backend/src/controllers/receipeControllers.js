@@ -1,12 +1,12 @@
-const workshopManager = require("../models/WorkshopManager");
+const receipeManager = require("../models/ReceipeManager");
 
-const postWorkshop = (req, res) => {
-  const workshop = req.body;
+const postReceipe = (req, res) => {
+  const receipe = req.body;
 
-  workshopManager
-    .createWorkshop(workshop)
+  receipeManager
+    .createReceipe(receipe)
     .then(() => {
-      res.status(201).json({ message: "Votre atelier a bien été créé" });
+      res.status(201).json({ message: "Votre recette a bien été créée" });
     })
     .catch((err) => {
       console.error(err);
@@ -14,28 +14,28 @@ const postWorkshop = (req, res) => {
     });
 };
 
-const getAllWorkshop = async (req, res) => {
+const getAllReceipe = async (req, res) => {
   try {
-    const [workshops] = await workshopManager.findAllWorkshop();
+    const [receipes] = await receipeManager.findAllReceipe();
     res
       .status(200)
-      .json({ message: "Voici, tous les ateliers", ateliers: { workshops } });
+      .json({ message: "Voici, toutes les recettes", recettes: { receipes } });
   } catch (err) {
     res.status(500).json({ message: "Désolé, le serveur est en panne" });
   }
 };
 
-const getOneWorkshop = async (req, res) => {
+const getOneReceipe = async (req, res) => {
   const { id } = req.params;
   try {
-    const data = await workshopManager.findOneWorkshop(id);
-    const workshop = data[0][0];
-    if (workshop == null) {
+    const data = await receipeManager.findOneReceipe(id);
+    const receipe = data[0][0];
+    if (receipe == null) {
       res.sendStatus(404);
     } else {
       res.status(200).json({
         message: `Voici, les infos de l'atelier`,
-        workshop,
+        receipe,
       });
     }
   } catch (err) {
@@ -44,10 +44,10 @@ const getOneWorkshop = async (req, res) => {
   }
 };
 
-// const putOneWorkshop = async (req, res) => {
-//   const { workshop } = req.body;
+// const putOneReceipe = async (req, res) => {
+//   const { receipe } = req.body;
 //   try {
-//     const modify = await workshopManager.updateWorkshop(workshop);
+//     const modify = await receipeManager.updateReceipe(receipe);
 //     if (modify[0].affectedRows === 1) {
 //       res.status(200).json({
 //         message: "Les informations ont bien été modifiées",
@@ -63,13 +63,13 @@ const getOneWorkshop = async (req, res) => {
 //   }
 // };
 
-const putOneWorkshop = (req, res) => {
-  const workshop = req.body;
+const putOneReceipe = (req, res) => {
+  const receipe = req.body;
 
-  workshop.id = parseInt(req.params.id, 10);
+  receipe.id = parseInt(req.params.id, 10);
 
-  workshopManager
-    .updateWorkshop(workshop)
+  receipeManager
+    .updateReceipe(receipe)
     .then(([result]) => {
       if (result.affectedRows === 0) {
         res.sendStatus(404);
@@ -83,13 +83,13 @@ const putOneWorkshop = (req, res) => {
     });
 };
 
-const deleteOneWorkshop = async (req, res) => {
+const deleteOneReceipe = async (req, res) => {
   const { id } = req.params;
   try {
-    const erase = await workshopManager.deleteWorkshop(id);
+    const erase = await receipeManager.deleteReceipe(id);
     if (erase[0].affectedRows === 1) {
       res.status(200).json({
-        message: "L'atelier a bien été supprimé",
+        message: "La recette a bien été supprimée",
       });
     } else {
       res.status(500).json({
@@ -102,9 +102,9 @@ const deleteOneWorkshop = async (req, res) => {
 };
 
 module.exports = {
-  postWorkshop,
-  getAllWorkshop,
-  getOneWorkshop,
-  putOneWorkshop,
-  deleteOneWorkshop,
+  postReceipe,
+  getAllReceipe,
+  getOneReceipe,
+  putOneReceipe,
+  deleteOneReceipe,
 };

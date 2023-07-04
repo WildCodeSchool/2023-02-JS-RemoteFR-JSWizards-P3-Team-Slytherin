@@ -1,13 +1,8 @@
 const db = require("./index");
 
 const createWorkshop = (workshop) => {
-  const SQL =
-    "INSERT INTO workshop(active, workshopDate, personNb) VALUES (?, ?, ?)";
-  return db.query(SQL, [
-    workshop.active,
-    workshop.workshopDate,
-    workshop.personNb,
-  ]);
+  const SQL = "INSERT INTO workshop(workshopDate, personNb) VALUES (?, ?)";
+  return db.query(SQL, [workshop.workshopDate, workshop.personNb]);
 };
 
 const findAllWorkshop = () => {
