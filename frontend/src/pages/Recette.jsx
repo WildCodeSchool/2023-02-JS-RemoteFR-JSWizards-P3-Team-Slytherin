@@ -15,19 +15,7 @@ function order(a, b) {
   return comparison;
 }
 
-function arrayEquals(a, b) {
-  return (
-    Array.isArray(a) &&
-    Array.isArray(b) &&
-    a.length === b.length &&
-    a.every((val, index) => val === b[index])
-  );
-}
-
 function Recette() {
-  const [buttonStyle, setButtonStyle] = useState("");
-  const [modified, setModified] = useState(false);
-  const [registeredDosage, setRegisteredDosage] = useState([0, 0, 0]);
   const [dosage, setDosage] = useState([120, 0, 0]);
   const [dosageTotal, setDosageTotal] = useState(0);
   const [dosage100, setDosage100] = useState([0, 0, 0]);
@@ -44,8 +32,6 @@ function Recette() {
     defaultObject,
     defaultObject,
   ]);
-  const [registeredSelectedWine, setRegisteredSelectedWine] =
-    useState(selectedWines);
   const [wineSelectionNonSelected0, setWineSelectionNonSelected0] = useState(
     wineSelectionOrderByNote
   );
@@ -56,37 +42,12 @@ function Recette() {
     wineSelectionOrderByNote
   );
 
-  function handleclick() {
-    setRegisteredDosage(dosage);
-  }
-
-  useEffect(() => {
-    return arrayEquals(dosage, registeredDosage)
-      ? setModified(false)
-      : setModified(true);
-  }, [dosage, registeredDosage]);
-
-  useEffect(() => {
-    if (!modified) {
-      setRegisteredSelectedWine(selectedWines);
-    }
-    return modified ? setButtonStyle("") : setButtonStyle("invisible");
-  }, [modified]);
   return (
     <>
       <div className="text-secondary py-4">
         <p className="text-3xl text-center pt-4 md:portrait:pt-12">
           Ma recette
         </p>
-      </div>
-      <div className="flex justify-center">
-        <button
-          onClick={handleclick}
-          type="button"
-          className={`w-auto ${buttonStyle}`}
-        >
-          Enregistrer les modifications
-        </button>
       </div>
       {defaultSelection.map((e, index) => (
         <LigneRecette
@@ -110,9 +71,6 @@ function Recette() {
           dosage75cl={dosage75cl}
           setDosage75cl={setDosage75cl}
           defaultObject={defaultObject}
-          registeredDosage={registeredDosage}
-          setModified={setModified}
-          registeredSelectedWine={registeredSelectedWine}
         />
       ))}
       <div className="flex flex-col xl:mx-20">
