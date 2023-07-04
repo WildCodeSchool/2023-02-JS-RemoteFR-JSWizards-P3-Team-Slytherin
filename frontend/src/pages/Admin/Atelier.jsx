@@ -68,10 +68,10 @@ export default function Atelier() {
                 />
               </form>
             </div>
-            <div className="flex flex-col select-wine-container">
+            <div className="flex flex-col select-wine-container text-[0.8rem] ">
               <select
                 onChange={handleFilterChange}
-                className="filter ml-10 pl-1 rounded-md mr-4"
+                className="filter ml-10 pl-1 rounded-md mr-4 px-2 border-2 "
               >
                 <option value="" className="text-[0.8rem]">
                   Tous
@@ -100,7 +100,7 @@ export default function Atelier() {
                   <img
                     className="w-[1rem] h-[1rem] opacity-[50%]"
                     src="../../../public/assets/add/add.png"
-                    alt="Ajouter un sélection"
+                    alt="Ajouter à la sélection"
                   />
                 </button>
               </li>
@@ -168,7 +168,7 @@ export default function Atelier() {
                         selection.value === "" ? "opacity-[50%]" : ""
                       }`}
                       src="../../../assets/delete/delete.png"
-                      alt={`logo supprimer selection ${index + 1}`}
+                      alt={`supprimer la selection ${index + 1}`}
                     />
                   </button>
                 )}
