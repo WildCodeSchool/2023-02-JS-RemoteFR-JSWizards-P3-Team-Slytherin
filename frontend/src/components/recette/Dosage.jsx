@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
 
-function Dosage({ index, dosage, setDosage }) {
+function Dosage({ index, dosage, setDosage, dosageTotal }) {
   function decDosage(event) {
     const nextDosage = dosage.map((e, i) => {
-      if (Number(event.target.id) === i) {
+      if (Number(event.target.id) === i && e - 5 >= 0) {
         return e - 5;
       }
       return e;
@@ -12,7 +12,7 @@ function Dosage({ index, dosage, setDosage }) {
   }
   function incDosage(event) {
     const nextDosage = dosage.map((e, i) => {
-      if (Number(event.target.id) === i) {
+      if (Number(event.target.id) === i && dosageTotal + 5 <= 250) {
         return e + 5;
       }
       return e;
@@ -43,4 +43,5 @@ Dosage.propTypes = {
   index: PropTypes.number.isRequired,
   dosage: PropTypes.arrayOf(PropTypes.number).isRequired,
   setDosage: PropTypes.func.isRequired,
+  dosageTotal: PropTypes.number.isRequired,
 };

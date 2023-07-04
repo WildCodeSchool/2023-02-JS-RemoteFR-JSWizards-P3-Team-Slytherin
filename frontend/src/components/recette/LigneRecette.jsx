@@ -97,7 +97,12 @@ function LigneRecette({
           wineSelectionOrderByNote={wineSelectionOrderByNote}
           defaultObject={defaultObject}
         />
-        <Dosage index={index} dosage={dosage} setDosage={setDosage} />
+        <Dosage
+          index={index}
+          dosage={dosage}
+          setDosage={setDosage}
+          dosageTotal={dosageTotal}
+        />
       </div>
       <div className="flex max-md:text-xs max-md:flex-col flex-row max-md:items-start max-md:justify-start justify-between md:px-8 items-center font-bold mt-2">
         <div>

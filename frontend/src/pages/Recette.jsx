@@ -78,9 +78,15 @@ function Recette() {
           <Link to="/profil/profil_degustation">
             <button type="button">Profil dégustation</button>
           </Link>
-          <Link to="/avis">
-            <button type="button">Valider</button>
-          </Link>
+          {dosageTotal === 250 ? (
+            <Link to="/avis">
+              <button type="button">Valider</button>
+            </Link>
+          ) : (
+            <div className="flex justify-center items-center font-bold max-md:hidden border-2 border-tertiary text-tertiary w-40 rounded-3xl">
+              <p className=" text-center text-2xl">{dosageTotal} ml</p>
+            </div>
+          )}
         </div>
       </div>
     </>
