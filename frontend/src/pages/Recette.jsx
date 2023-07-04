@@ -1,6 +1,6 @@
 import LigneRecette from "@components/recette/LigneRecette";
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import data from "@components/Data/data-wine";
 
 function order(a, b) {
