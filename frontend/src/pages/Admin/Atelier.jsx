@@ -52,7 +52,7 @@ export default function Atelier() {
   });
 
   return (
-    <div className="container admin-container-atelier mt-8 mb-8">
+    <div className="container admin-container-atelier mt-8 mb-8 h-screen-108 overflow-y-auto">
       <h1 className="text-3xl font-black mb-12">Nouvel atelier</h1>
       <div className="flex">
         <div className="flex flex-col vertical-line">
