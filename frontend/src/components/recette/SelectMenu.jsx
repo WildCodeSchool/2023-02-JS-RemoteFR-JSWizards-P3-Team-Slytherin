@@ -11,6 +11,7 @@ function SelectMenu({
   defaultObject,
 }) {
   // {* selectedWine rassemble les vins selectionnés dans les menus déroulants *}
+
   function handleChange(e) {
     const nextSelectedWines = selectedWines.map((selected, i) => {
       if (Number(e.target.id) === i) {
@@ -32,6 +33,7 @@ function SelectMenu({
         <option className="recetteOption" value="">
           -Vide-
         </option>
+
         {index === 0 &&
           wineSelectionNonSelected0.map((e) => (
             <option key={e.id} className="recetteOption" value={e.name}>
