@@ -452,3 +452,8 @@
   left: 0;
   width: 100%;
 }
+/*admin_atelier*/
+.transparent-button {
+  background-color: transparent;
+  border: none;
+}
