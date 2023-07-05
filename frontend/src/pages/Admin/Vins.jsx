@@ -46,10 +46,14 @@ export default function Vins() {
             <tr className="flex justify-center p-3">
               <th className="flex-1">Image</th>
               <th className="flex-1" onClick={() => sortTable("name")}>
-                Nom
+                Nom{" "}
+                {sortConfig.key === "name" &&
+                  (sortConfig.direction === "ascending" ? "▼" : "▲")}
               </th>
               <th className="flex-1" onClick={() => sortTable("note")}>
-                Couleur
+                Couleur{" "}
+                {sortConfig.key === "note" &&
+                  (sortConfig.direction === "ascending" ? "▼" : "▲")}
               </th>
               <th className="flex-0">Modifier</th>
             </tr>
