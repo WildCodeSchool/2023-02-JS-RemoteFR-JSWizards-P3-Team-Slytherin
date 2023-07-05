@@ -1,36 +1,60 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import data from "../../components/Data/data-wine-admin";
 
-export default function Atelier() {
-  const [selections, setSelections] = useState([
-    { id: 1, value: "" },
-    { id: 2, value: "" },
-    { id: 3, value: "" },
-    { id: 4, value: "" },
-    { id: 5, value: "" },
-  ]);
-  const [date, setDate] = useState("");
-  const [error, setError] = useState("");
+function order(a, b) {
+  const bandA = a.name;
+  const bandB = b.name;
+  let comparison = 0;
+  if (bandA > bandB) {
+    comparison = 1;
+  } else if (bandA < bandB) {
+    comparison = -1;
+  }
+  return comparison;
+}
 
-  const handleChange = (event) => {
-    const { value } = event.target;
-    setDate(value);
-    if (value && !/^\d{2}\/\d{2}\/\d{4}$/.test(value)) {
-      setError("");
-    } else {
-      setError("");
-    }
-  };
-  const handleSelection = (text) => {
+export default function Atelier() {
+  const [wineListOrdered] = useState(data.sort(order));
+  const [wineListOrderedNonSelected, setWineListOrderedNonSelected] =
+    useState(wineListOrdered);
+  const [filter, setFilter] = useState("");
+  const [selections, setSelections] = useState([
+    { id: 1, value: "", year: 0 },
+    { id: 2, value: "", year: 0 },
+    { id: 3, value: "", year: 0 },
+    { id: 4, value: "", year: 0 },
+    { id: 5, value: "", year: 0 },
+  ]);
+
+  const newDate = new Date(
+    new Date().getFullYear() + 1,
+    new Date().getMonth(),
+    new Date().getDate()
+  );
+  const todayDate = new Date(
+    new Date().getFullYear(),
+    new Date().getMonth(),
+    new Date().getDate()
+  );
+  const formatedTodayDate = todayDate.toISOString().split("T")[0];
+  const formattedDate = newDate.toISOString().split("T")[0];
+
+  const handleSelection = (name, year) => {
     const index = selections.findIndex((selection) => selection.value === "");
     if (index !== -1) {
       const newSelections = [...selections];
-      newSelections[index].value = text;
+      newSelections[index].value = name;
+      newSelections[index].year = year;
       setSelections(newSelections);
     }
   };
 
-  const [filter, setFilter] = useState("");
+  const deleteWine = (index) => {
+    const newSelections = [...selections];
+    newSelections[index].value = "";
+    newSelections[index].year = 0;
+    setSelections(newSelections);
+  };
 
   const handleFilterChange = (event) => {
     setFilter(event.target.value);
@@ -43,7 +67,7 @@ export default function Atelier() {
     setSearch(event.target.value);
   };
 
-  const filteredData = data.filter((item) => {
+  const filteredData = wineListOrderedNonSelected.filter((item) => {
     if (!filter && !search) return true;
     if (filter && item.color !== filter) return false;
     if (search && !item.name.toLowerCase().includes(search.toLowerCase()))
@@ -51,51 +75,58 @@ export default function Atelier() {
     return true;
   });
 
+  useEffect(() => {
+    const list = selections.map((s) => s.value + s.year);
+    const newWineListOrdered = wineListOrdered.filter(
+      (e) => !list.includes(e.name + e.year)
+    );
+    setWineListOrderedNonSelected(newWineListOrdered);
+  }, [selections]);
+
   return (
-    <div className="container admin-container-atelier mt-8 mb-8 h-screen-108 overflow-y-auto">
-      <h1 className="text-3xl font-black mb-12">Nouvel atelier</h1>
-      <div className="flex">
-        <div className="flex flex-col vertical-line">
-          <div className="flex items-center mb-8">
-            <div className="flex flex-row items-center max-w-full">
-              <p>🔎</p>
-              <form className="p-1" onSubmit={wineHandleSubmit}>
-                <input
-                  className="text-primary pl-1 rounded-md"
-                  type="search"
-                  placeholder="search"
-                  onChange={handleSearchChange}
-                />
-              </form>
-            </div>
-            <div className="flex flex-col select-wine-container text-[0.8rem] ">
+    <div className="">
+      <div className="flex max-md:flex-col justify-center">
+        <div className="flex flex-col vertical-line md:w-1/2">
+          <div className="flex">
+            <div className="flex items-center max-md:flex-col justify-between m-4 p-1 w-full">
+              <div className="flex items-center">
+                <p>🔎</p>
+                <form className="p-1" onSubmit={wineHandleSubmit}>
+                  <input
+                    className="text-primary h-7 w-28 pl-1 rounded-md"
+                    type="search"
+                    placeholder="search"
+                    onChange={handleSearchChange}
+                  />
+                </form>
+              </div>
               <select
                 onChange={handleFilterChange}
-                className="filter ml-10 pl-1 rounded-md mr-4 px-2 border-2 "
+                className="filter flex items-center p-1 h-7 rounded-md bg-secondary"
               >
-                <option value="" className="text-[0.8rem]">
+                <option value="" className="">
                   Tous
                 </option>
-                <option value="rouge" className="text-[0.8rem]">
+                <option value="rouge" className="">
                   Rouge
                 </option>
-                <option value="blanc" className="text-[0.8rem]">
+                <option value="blanc" className="">
                   Blanc
                 </option>
               </select>
             </div>
           </div>
-          <ol className="list-decimal">
+          <ul className="mr-3">
             {filteredData.map((item) => (
               <li
                 key={item.id}
-                className="flex items-center max-w-[15rem] justify-between mb-4"
+                className="flex items-center w-full justify-between my-6 gap-x-4"
               >
-                {item.name}
+                {item.name} ({item.year})
                 <button
-                  className="btn-list"
+                  className="btn-list mr-4"
                   type="button"
-                  onClick={() => handleSelection(item.name)}
+                  onClick={() => handleSelection(item.name, item.year)}
                 >
                   <img
                     className="w-[1rem] h-[1rem] opacity-[50%]"
@@ -105,77 +136,69 @@ export default function Atelier() {
                 </button>
               </li>
             ))}
-          </ol>
+          </ul>
         </div>
         <div className="">
-          <div>
-            <div className="">
-              <div className="flex ml-[37%] gap-4 mb-3">
-                <label htmlFor="date" className="font-bold">
-                  Date:
-                </label>
-                <input
-                  type="text"
-                  name="date"
-                  id="date"
-                  placeholder="jj/mm/aaaa"
-                  className="text-primary w-40 border-2 rounded text-center"
-                  value={date}
-                  onChange={handleChange}
-                  pattern="\d{2}/\d{2}/\d{4}"
-                />
-                {error && <div className="text-red-500">{error}</div>}
-              </div>
-              <div className="flex gap-4 mb-6">
-                <label htmlFor="people" className="font-bold whitespace-nowrap">
-                  Nombre de personnes:
-                </label>
-                <input
-                  type="number"
-                  name="people"
-                  id="people"
-                  placeholder="Nbr de personnes"
-                  className="text-primary w-40 border-2 rounded text-center"
-                />
-              </div>
-            </div>
+          <h1 className="text-3xl font-black mb-12 mt-4">Nouvel atelier</h1>
+
+          <div className="flex items-center justify-end m-4">
+            <label htmlFor="date" className="font-bold">
+              Date:
+              <input
+                type="date"
+                name="date"
+                id="date"
+                min={formatedTodayDate}
+                max={formattedDate}
+                className="text-primary p-1 rounded  w-36 ml-4"
+              />
+            </label>
           </div>
-          <div className="">
+          <div className="flex items-center justify-end">
+            <label htmlFor="people" className="font-bold">
+              Nb personnes :
+              <input
+                type="number"
+                name="people"
+                id="people"
+                placeholder="Nb personnes"
+                className="text-primary p-1 rounded w-36 mx-4"
+              />
+            </label>
+          </div>
+
+          <div className="mt-16">
             {selections.map((selection, index) => (
               <div
                 key={selection.id}
-                className="selection flex justify-center gap-4 mb-6"
+                className="selection flex justify-start gap-4 my-6"
               >
                 <h2
-                  className={`bg-primary text-secondary w-[20rem] flex justify-center items-center ${
+                  className={`bg-primary text-secondary w-60 flex justify-center items-center ${
                     selection.value === "" ? "opacity-[50%]" : ""
                   }`}
                 >
-                  {selection.value || `SELECTION ${index + 1}`}
+                  {selection.value
+                    ? `${selection.value} (${selection.year})`
+                    : `SELECTION ${index + 1}`}
                 </h2>
-                {selection.value !== "" && (
+                <div className="flex items-center px-4">
                   <button
                     className="btn-list"
                     type="button"
-                    onClick={() => {
-                      const newSelections = [...selections];
-                      newSelections[index].value = "";
-                      setSelections(newSelections);
-                    }}
+                    onClick={() => deleteWine(index)}
                   >
                     <img
-                      className={`w-4 opacity-[50%] ${
-                        selection.value === "" ? "opacity-[50%]" : ""
-                      }`}
+                      className="w-4"
                       src="../../../assets/delete/delete.png"
                       alt={`supprimer la selection ${index + 1}`}
                     />
                   </button>
-                )}
+                </div>
               </div>
             ))}
           </div>
-          <div className="flex justify-center">
+          <div className="flex justify-center mb-8">
             <button type="button">Valider</button>
           </div>
         </div>
