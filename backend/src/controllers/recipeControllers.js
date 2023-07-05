@@ -92,8 +92,8 @@ const deleteOneRecipe = async (req, res) => {
         message: "La recette a bien été supprimée",
       });
     } else {
-      res.status(500).json({
-        message: `Désolé, il y a eu un problème lors de la suppression de l'atelier`,
+      res.status(404).json({
+        message: `Désolé, il y a eu un problème lors de la suppression de la recette`,
       });
     }
   } catch (err) {

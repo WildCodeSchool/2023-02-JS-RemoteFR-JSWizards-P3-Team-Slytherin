@@ -92,7 +92,7 @@ const deleteOneUser = async (req, res) => {
         message: "L'utilisateur a bien été supprimé",
       });
     } else {
-      res.status(500).json({
+      res.status(404).json({
         message: `Désolé, il y a eu un problème lors de la suppression de ${erase.firstname}`,
       });
     }

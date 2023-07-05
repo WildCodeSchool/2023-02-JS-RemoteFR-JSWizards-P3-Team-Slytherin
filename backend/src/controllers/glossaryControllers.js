@@ -34,7 +34,7 @@ const postGlossary = (req, res) => {
     .createGlossary(addWords)
     .then((words) => {
       if (words.affectedRows === 0) {
-        res.status(500).json("error");
+        res.status(404).json("error");
       } else {
         res.status(201).json("Vocabulaire ajouté");
       }
@@ -50,7 +50,7 @@ const deleteGlossary = (req, res) => {
     .deleteGlossary(req.params.id)
     .then((words) => {
       if (words.affectedRows === 0) {
-        res.status(500).json("error");
+        res.status(404).json("error");
       } else {
         res.status(201).json("Vocabulaire supprimé");
       }
@@ -67,7 +67,7 @@ const putGlossary = (req, res) => {
     .updateGlossary(words)
     .then((word) => {
       if (word.affectedRows === 0) {
-        res.status(500).json("error");
+        res.status(404).json("error");
       } else {
         res.status(201).json("Vocabulaire mis à jour");
       }

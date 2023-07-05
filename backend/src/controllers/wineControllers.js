@@ -34,7 +34,7 @@ const postWine = (req, res) => {
     .createWine(addWine)
     .then((wines) => {
       if (wines.affectedRows === 0) {
-        res.status(500).json("error");
+        res.status(404).json("error");
       } else {
         res.status(201).json("Vin ajouté");
       }
@@ -49,8 +49,8 @@ const deleteWine = (req, res) => {
   wineManager
     .deleteWine(req.params.id)
     .then((wines) => {
-      if (wines.affectedRows === 0) {
-        res.status(500).json("error");
+      if (wines.affedRows === 0) {
+        res.status(404).json("error");
       } else {
         res.status(201).json("Vin supprimé");
       }
@@ -68,7 +68,7 @@ const putWine = (req, res) => {
     .updateWine(wines)
     .then((wine) => {
       if (wine.affectedRows === 0) {
-        res.status(500).json("error");
+        res.status(404).json("error");
       } else {
         res.status(201).json("Vin mis à jour");
       }

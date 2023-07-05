@@ -34,7 +34,7 @@ const postTasting = (req, res) => {
     .createTasting(addTasting)
     .then((taste) => {
       if (taste.affectedRows === 0) {
-        res.status(500).json("error");
+        res.status(404).json("error");
       } else {
         res.status(201).json("Nouvelle dégustation ajoutée");
       }
@@ -50,7 +50,7 @@ const deleteTasting = (req, res) => {
     .deleteTasting(req.params.id)
     .then((taste) => {
       if (taste.affectedRows === 0) {
-        res.status(500).json("error");
+        res.status(404).json("error");
       } else {
         res.status(201).json("Dégustation supprimée");
       }
@@ -67,7 +67,7 @@ const putTasting = (req, res) => {
     .updateTasting(tasted)
     .then((taste) => {
       if (taste.affectedRows === 0) {
-        res.status(500).json("error");
+        res.status(404).json("error");
       } else {
         res.status(201).json("Dégustation mise à jour");
       }
