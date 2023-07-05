@@ -1,10 +1,10 @@
-const receipeManager = require("../models/ReceipeManager");
+const recipeManager = require("../models/RecipeManager");
 
-const postReceipe = (req, res) => {
-  const receipe = req.body;
+const postRecipe = (req, res) => {
+  const recipe = req.body;
 
-  receipeManager
-    .createReceipe(receipe)
+  recipeManager
+    .createRecipe(recipe)
     .then(() => {
       res.status(201).json({ message: "Votre recette a bien été créée" });
     })
@@ -14,28 +14,28 @@ const postReceipe = (req, res) => {
     });
 };
 
-const getAllReceipe = async (req, res) => {
+const getAllRecipe = async (req, res) => {
   try {
-    const [receipes] = await receipeManager.findAllReceipe();
+    const [recipes] = await recipeManager.findAllRecipe();
     res
       .status(200)
-      .json({ message: "Voici, toutes les recettes", recettes: { receipes } });
+      .json({ message: "Voici, toutes les recettes", recettes: { recipes } });
   } catch (err) {
     res.status(500).json({ message: "Désolé, le serveur est en panne" });
   }
 };
 
-const getOneReceipe = async (req, res) => {
+const getOneRecipe = async (req, res) => {
   const { id } = req.params;
   try {
-    const data = await receipeManager.findOneReceipe(id);
-    const receipe = data[0][0];
-    if (receipe == null) {
+    const data = await recipeManager.findOneRecipe(id);
+    const recipe = data[0][0];
+    if (recipe == null) {
       res.sendStatus(404);
     } else {
       res.status(200).json({
         message: `Voici, les infos de l'atelier`,
-        receipe,
+        recipe,
       });
     }
   } catch (err) {
@@ -44,10 +44,10 @@ const getOneReceipe = async (req, res) => {
   }
 };
 
-// const putOneReceipe = async (req, res) => {
-//   const { receipe } = req.body;
+// const putOneRecipe = async (req, res) => {
+//   const { recipe } = req.body;
 //   try {
-//     const modify = await receipeManager.updateReceipe(receipe);
+//     const modify = await recipeManager.updateRecipe(recipe);
 //     if (modify[0].affectedRows === 1) {
 //       res.status(200).json({
 //         message: "Les informations ont bien été modifiées",
@@ -63,13 +63,13 @@ const getOneReceipe = async (req, res) => {
 //   }
 // };
 
-const putOneReceipe = (req, res) => {
-  const receipe = req.body;
+const putOneRecipe = (req, res) => {
+  const recipe = req.body;
 
-  receipe.id = parseInt(req.params.id, 10);
+  recipe.id = parseInt(req.params.id, 10);
 
-  receipeManager
-    .updateReceipe(receipe)
+  recipeManager
+    .updateRecipe(recipe)
     .then(([result]) => {
       if (result.affectedRows === 0) {
         res.sendStatus(404);
@@ -83,10 +83,10 @@ const putOneReceipe = (req, res) => {
     });
 };
 
-const deleteOneReceipe = async (req, res) => {
+const deleteOneRecipe = async (req, res) => {
   const { id } = req.params;
   try {
-    const erase = await receipeManager.deleteReceipe(id);
+    const erase = await recipeManager.deleteRecipe(id);
     if (erase[0].affectedRows === 1) {
       res.status(200).json({
         message: "La recette a bien été supprimée",
@@ -102,9 +102,9 @@ const deleteOneReceipe = async (req, res) => {
 };
 
 module.exports = {
-  postReceipe,
-  getAllReceipe,
-  getOneReceipe,
-  putOneReceipe,
-  deleteOneReceipe,
+  postRecipe,
+  getAllRecipe,
+  getOneRecipe,
+  putOneRecipe,
+  deleteOneRecipe,
 };

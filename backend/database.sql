@@ -32,13 +32,11 @@ CREATE TABLE user_workshop (
   REFERENCES user(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
-CREATE TABLE receipe (
+CREATE TABLE recipe (
   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  measuring1 INT NOT NULL,
-  measuring2 INT NOT NULL,
-  measuring3 INT NOT NULL,
+  measuring INT NOT NULL,
   id_user INT NOT NULL,
-  CONSTRAINT fk_receipe_user
+  CONSTRAINT fk_recipe_user
   FOREIGN KEY (id_user)
   REFERENCES user(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
@@ -71,7 +69,7 @@ CREATE TABLE tasting(
 id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
 score INT,
 id_workshop INT NOT NULL,
-id_receipe INT NOT NULL,
+id_recipe INT NOT NULL,
 color VARCHAR(50) NULL,
 clarity VARCHAR(50) NULL,
 density VARCHAR(50) NULL,
@@ -93,6 +91,6 @@ smooth VARCHAR(50) NULL,
 acidity VARCHAR(50) NULL,
 tanin VARCHAR(50) NULL,
 alcohol VARCHAR(50) NULL,
-CONSTRAINT fk_workshop_testing FOREIGN KEY (id_workshop) REFERENCES workshop(id),
-CONSTRAINT fk_receipe_testing FOREIGN KEY (id_receipe) REFERENCES receipe(id)
+CONSTRAINT fk_workshop_tasting FOREIGN KEY (id_workshop) REFERENCES workshop(id),
+CONSTRAINT fk_recipe_tasting FOREIGN KEY (id_recipe) REFERENCES recipe(id)
 ) ENGINE=InnoDB CHARSET=utf8mb4;
