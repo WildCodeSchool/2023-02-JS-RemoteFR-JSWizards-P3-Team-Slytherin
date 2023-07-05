@@ -22,7 +22,7 @@ router.get("/logout", userControllers.logout);
 router.post("/inscription", newUser, hashPassword, userControllers.postUser);
 router.get("/users", userControllers.getAllUser);
 router.get("/users/:id", userControllers.getOneUser);
-router.put("/users/:id", userControllers.putOneUser);
+router.put("/users/:id", hashPassword, userControllers.putOneUser);
 router.delete("/users/:id", userControllers.deleteOneUser);
 
 router.post("/workshops/creation", workshopControllers.postWorkshop);
