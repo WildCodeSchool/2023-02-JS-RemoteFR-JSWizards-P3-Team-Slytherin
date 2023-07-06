@@ -26,7 +26,7 @@ function LigneRecette({
 }) {
   // {*
   // wineSelectionNonSelected0, wineSelectionNonSelected1, wineSelectionNonSelected2
-  // rassemblent l'ensemble des vins de l'atelier qui n'ont pas été sélectionnés par les autres menus déraoulant
+  // rassemblent l'ensemble des vins de l'atelier qui n'ont pas été sélectionnés par les autres menus déroulant
   // ils alimentent les options des menus déroulant
   // *}
   useEffect(() => {
@@ -97,7 +97,12 @@ function LigneRecette({
           wineSelectionOrderByNote={wineSelectionOrderByNote}
           defaultObject={defaultObject}
         />
-        <Dosage index={index} dosage={dosage} setDosage={setDosage} />
+        <Dosage
+          index={index}
+          dosage={dosage}
+          setDosage={setDosage}
+          dosageTotal={dosageTotal}
+        />
       </div>
       <div className="flex max-md:text-xs max-md:flex-col flex-row max-md:items-start max-md:justify-start justify-between md:px-8 items-center font-bold mt-2">
         <div>
