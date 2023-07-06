@@ -29,6 +29,7 @@ export default function Vins() {
 
   const handleRowClick = (rowData) => {
     setSelectedRowData({
+      id: rowData.id,
       nom: rowData.name,
       image: rowData.image,
     });
@@ -76,7 +77,7 @@ export default function Vins() {
                     onClick={() => handleRowClick(e)}
                   >
                     <img
-                      src="../../../public/assets/editpen/editpen.png"
+                      src="/assets/editpen/editpen.png"
                       alt="modify"
                       className="h-5 cursor-pointer"
                     />
