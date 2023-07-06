@@ -1,77 +1,102 @@
 import { useState } from "react";
-import data from "../../components/Data/data-utilisateur-admin";
+import fakedata from "../../components/Data/data-utilisateur-admin";
 
-export default function Utilisateurs() {
-  const [users, setUsers] = useState(data);
+export default function Vins() {
+  const [userData, setUserData] = useState(fakedata);
+  const [sortConfig, setSortConfig] = useState({
+    key: "",
+    direction: "ascending",
+  });
+  const [selectedRowData, setSelectedRowData] = useState(null);
 
-  const handleDelete = (id) => {
-    const newUsers = users.filter((user) => user.id !== id);
-    setUsers(newUsers);
+  const sortTable = (key) => {
+    let direction = "ascending";
+    if (sortConfig.key === key && sortConfig.direction === "ascending") {
+      direction = "descending";
+    }
+    const sortedData = [...userData].sort((a, b) => {
+      if (a[key] < b[key]) {
+        return direction === "ascending" ? -1 : 1;
+      }
+      if (a[key] > b[key]) {
+        return direction === "ascending" ? 1 : -1;
+      }
+      return 0;
+    });
+    setUserData(sortedData);
+    setSortConfig({ key, direction });
   };
 
-  const handleAdminChange = (id, value) => {
-    const newUsers = users.map((user) =>
-      user.id === id ? { ...user, admin: value } : user
-    );
-    setUsers(newUsers);
+  const handleRowClick = (rowData) => {
+    setSelectedRowData({
+      id: rowData.id,
+      nom: rowData.name,
+      image: rowData.image,
+    });
   };
+
+  console.info(selectedRowData);
 
   return (
-    <div className="flex flex-col justify-center mt-8 min-w-[425px]">
-      <h1 className="flex justify-center mb-12 text-2xl font-bold">
-        Gérer les utilisateurs
-      </h1>
-      <div className="flex justify-center">
-        <div className="flex">
-          <table className="border-collapse border border-black">
-            <tr className="">
-              <th className="border border-black p-2">N°</th>
-              <th className="border border-black p-2">Nom</th>
-              <th className="border border-black p-2">Prénom</th>
-              <th className="border border-black">Email</th>
-              <th className="border-r border-black p-2">Statut</th>{" "}
+    <>
+      <h1 className="mt-16 mb-6 text-2xl font-bold">Gérer les utilisateur</h1>
+      <div className="flex flex-col items-center gap-6">
+        <table className="w-full min-w-[480px] bg-secondary rounded mb-8 shadow-md overflow-scroll">
+          <thead>
+            <tr className="flex justify-center p-3">
+              <th className="flex-1">N°</th>
+              <th className="flex-1" onClick={() => sortTable("lastName")}>
+                Nom{" "}
+                {sortConfig.key === "lastName" &&
+                  (sortConfig.direction === "ascending" ? "▼" : "▲")}
+              </th>
+              <th className="flex-1" onClick={() => sortTable("firstName")}>
+                Prénom{" "}
+                {sortConfig.key === "firstName" &&
+                  (sortConfig.direction === "ascending" ? "▼" : "▲")}
+              </th>
+              <th className="flex-1" onClick={() => sortTable("email")}>
+                Email{" "}
+                {sortConfig.key === "email" &&
+                  (sortConfig.direction === "ascending" ? "▼" : "▲")}
+              </th>
+              <th className="flex-1" onClick={() => sortTable("admin")}>
+                Statut{" "}
+                {sortConfig.key === "admin" &&
+                  (sortConfig.direction === "ascending" ? "▼" : "▲")}
+              </th>
+              <th className="flex-0">Modifier</th>
             </tr>
-            {users.map((user) => (
-              <tr key={user.id} className="text-center">
-                <td className="border border-black">{user.id}</td>
-                <td className="border border-black">{user.lastName}</td>
-                <td className="border border-black">{user.firstName}</td>
-                <td className="border border-black p-2">{user.email}</td>
-                <td className="border border-black">
-                  {" "}
-                  <select
-                    value={user.admin ? "admin" : "user"}
-                    onChange={(e) =>
-                      handleAdminChange(user.id, e.target.value === "admin")
-                    }
-                    className="select-transparent"
+          </thead>
+          <tbody>
+            {userData.map((e) => (
+              <tr
+                className="h-14 flex justify-center p-3 shadow-inner"
+                key={e.id}
+              >
+                <td className="flex-1">{e.id}</td>
+                <td className="flex-1">{e.lastName}</td>
+                <td className="flex-1">{e.firstName}</td>
+                <td className="flex-1">{e.email}</td>
+                <td className="flex-1">{e.admin}</td>
+                <td className="flex-0 w-[70px]">
+                  <button
+                    type="button"
+                    className="editbtn"
+                    onClick={() => handleRowClick(e)}
                   >
-                    <option value="admin">Admin</option>
-                    <option value="user">User</option>
-                  </select>
+                    <img
+                      src="/assets/delete/delete.png"
+                      alt="modify"
+                      className="h-5 cursor-pointer"
+                    />
+                  </button>
                 </td>
               </tr>
             ))}
-          </table>
-          <div className="ml-4 mt-5 mb-2 pt-8 w-12 space-y-4">
-            {users.map((user) => (
-              <div key={user.id} className="flex items-center h-6">
-                <button
-                  type="button"
-                  onClick={() => handleDelete(user.id)}
-                  className="transparent-button max-w-fit"
-                >
-                  <img
-                    src="../../../public/assets/delete/delete.png"
-                    alt="supprimer utilisateur"
-                    className="w-4"
-                  />
-                </button>
-              </div>
-            ))}
-          </div>
-        </div>
+          </tbody>
+        </table>
       </div>
-    </div>
+    </>
   );
 }
