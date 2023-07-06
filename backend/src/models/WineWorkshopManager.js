@@ -9,8 +9,3 @@ const createWineWorkshop = (wineWorkshop) => {
 module.exports = {
   createWineWorkshop,
 };
-
-// INSERT INTO table_intermediaire (valeur_source)
-// SELECT valeur
-// FROM table_source
-// WHERE condition;
