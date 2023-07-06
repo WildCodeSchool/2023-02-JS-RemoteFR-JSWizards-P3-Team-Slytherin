@@ -69,7 +69,7 @@ function LigneRecette({
     setWineSelectionNonSelected2(nextWineSelectionNonSelected2);
   }, [selectedWines]);
 
-  // {* calcule des dosages *}
+  // {* calcul des dosages *}
   useEffect(() => {
     setDosageTotal(dosage.reduce((a, b) => a + b, 0));
   }, [dosage]);

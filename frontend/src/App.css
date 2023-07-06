@@ -52,28 +52,6 @@
     min-height: 80px;
   }
 
-  .bouton-date,
-  .bouton-nombre {
-    background-color: theme("colors.primary");
-    color: theme("colors.secondary");
-    border-radius: 0.3rem;
-    font-size: 1.2vw;
-    height: 3vw;
-    width: 15vw;
-  }
-  .bouton-date {
-    margin-right: 5vw;
-  }
-  .bouton-nombre {
-    margin-left: 5vw;
-  }
-
-  .bouton-atelier {
-    font-weight: bold;
-    width: 15vw;
-    font-size: 1.2vw;
-  }
-
   .lexique-button {
     border-radius: 50%;
     width: 1.5rem;
@@ -468,4 +446,8 @@ th {
 }
 .select-wine-container {
   position: relative;
+}
+
+.editbtn {
+  background: none;
 }
