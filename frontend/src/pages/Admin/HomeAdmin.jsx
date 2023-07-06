@@ -1,21 +1,23 @@
+import { Link } from "react-router-dom";
+
 export default function HomeAdmin() {
   return (
     <div className="container admin-container">
       <div className="row">
-        <button type="button" className="bouton_admin ">
-          <h2>Crée atelier</h2>
-        </button>
-        <button type="button" className="bouton_admin">
+        <Link to="/admin/atelier" className="bouton_admin">
+          <h2 className="w-full">Crée atelier</h2>
+        </Link>
+        <Link to="/admin/vins" className="bouton_admin">
           <h2>Gérer vins</h2>
-        </button>
+        </Link>
       </div>
       <div className="row">
-        <button type="button" className="bouton_admin">
+        <Link to="/admin/utilisateurs" className="bouton_admin">
           <h2>Voir utilisateur</h2>
-        </button>
-        <button type="button" className="bouton_admin">
+        </Link>
+        <Link to="/admin/lexique" className="bouton_admin">
           <h2>Gérer lexique</h2>
-        </button>
+        </Link>
       </div>
     </div>
   );

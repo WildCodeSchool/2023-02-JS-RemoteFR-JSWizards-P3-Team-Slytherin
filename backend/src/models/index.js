@@ -1,57 +1,20 @@
 require("dotenv").config();
+const mysql = require("mysql2");
 
-const mysql = require("mysql2/promise");
-
-// create a connection pool to the database
-
-const { DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME } = process.env;
-
-const pool = mysql.createPool({
-  host: DB_HOST,
-  port: DB_PORT,
-  user: DB_USER,
-  password: DB_PASSWORD,
-  database: DB_NAME,
+const connection = mysql.createConnection({
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
 });
 
-// try a connection
-
-pool.getConnection().catch(() => {
-  console.warn(
-    "Warning:",
-    "Failed to get a DB connection.",
-    "Did you create a .env file with valid credentials?",
-    "Routes using models won't work as intended"
-  );
+connection.connect((err) => {
+  if (err) {
+    console.error(`error connecting to db: ${err.stack}`);
+  } else {
+    console.info("connected to db");
+  }
 });
 
-// declare and fill models: that's where you should register your own managers
-
-const models = {};
-
-const ItemManager = require("./ItemManager");
-
-models.item = new ItemManager();
-models.item.setDatabase(pool);
-
-// bonus: use a proxy to personalize error message,
-// when asking for a non existing model
-
-const handler = {
-  get(obj, prop) {
-    if (prop in obj) {
-      return obj[prop];
-    }
-
-    const pascalize = (string) =>
-      string.slice(0, 1).toUpperCase() + string.slice(1);
-
-    throw new ReferenceError(
-      `models.${prop} is not defined. Did you create ${pascalize(
-        prop
-      )}Manager.js, and did you register it in backend/src/models/index.js?`
-    );
-  },
-};
-
-module.exports = new Proxy(models, handler);
+module.exports = connection.promise();

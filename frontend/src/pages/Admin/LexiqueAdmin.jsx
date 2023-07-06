@@ -54,7 +54,7 @@ function Lexique() {
   ];
   const navigate = useNavigate();
   const goBack = () => {
-    navigate(-1);
+    navigate("/admin");
   };
 
   function order(a, b) {
