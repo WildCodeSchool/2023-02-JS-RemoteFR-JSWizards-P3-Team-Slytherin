@@ -7,7 +7,6 @@ export default function Vins() {
     key: "",
     direction: "ascending",
   });
-  const [selectedRowData, setSelectedRowData] = useState(null);
 
   const sortTable = (key) => {
     let direction = "ascending";
@@ -27,24 +26,31 @@ export default function Vins() {
     setSortConfig({ key, direction });
   };
 
-  const handleRowClick = (rowData) => {
-    setSelectedRowData({
-      id: rowData.id,
-      nom: rowData.name,
-      image: rowData.image,
-    });
+  const handleDelete = (id) => {
+    const newUsers = userData.filter((user) => user.id !== id);
+    setUserData(newUsers);
   };
 
-  console.info(selectedRowData);
+  const handleStatusChange = (id, value) => {
+    const newUsers = userData.map((user) => {
+      if (user.id === id) {
+        return { ...user, admin: value };
+      }
+      return user;
+    });
+    setUserData(newUsers);
+  };
 
   return (
     <>
-      <h1 className="mt-16 mb-6 text-2xl font-bold">Gérer les utilisateur</h1>
+      <h1 className="mt-16 mb-6 text-2xl text-center font-bold">
+        Gérer les utilisateur
+      </h1>
       <div className="flex flex-col items-center gap-6">
         <table className="w-full min-w-[480px] bg-secondary rounded mb-8 shadow-md overflow-scroll">
           <thead>
-            <tr className="flex justify-center p-3">
-              <th className="flex-1">N°</th>
+            <tr className="flex justify-center p-1">
+              <th className="flex-0">N°</th>
               <th className="flex-1" onClick={() => sortTable("lastName")}>
                 Nom{" "}
                 {sortConfig.key === "lastName" &&
@@ -60,12 +66,8 @@ export default function Vins() {
                 {sortConfig.key === "email" &&
                   (sortConfig.direction === "ascending" ? "▼" : "▲")}
               </th>
-              <th className="flex-1" onClick={() => sortTable("admin")}>
-                Statut{" "}
-                {sortConfig.key === "admin" &&
-                  (sortConfig.direction === "ascending" ? "▼" : "▲")}
-              </th>
-              <th className="flex-0">Modifier</th>
+              <th className="flex-1">Statut</th>
+              <th className="flex-0">Supprimer</th>
             </tr>
           </thead>
           <tbody>
@@ -74,21 +76,31 @@ export default function Vins() {
                 className="h-14 flex justify-center p-3 shadow-inner"
                 key={e.id}
               >
-                <td className="flex-1">{e.id}</td>
+                <td className="flex-0">{e.id}</td>
                 <td className="flex-1">{e.lastName}</td>
                 <td className="flex-1">{e.firstName}</td>
                 <td className="flex-1">{e.email}</td>
-                <td className="flex-1">{e.admin}</td>
+                <td className="flex-1">
+                  <select
+                    value={e.admin}
+                    onChange={(event) =>
+                      handleStatusChange(e.id, event.target.value)
+                    }
+                  >
+                    <option value="admin">Admin</option>
+                    <option value="user">User</option>
+                  </select>
+                </td>
                 <td className="flex-0 w-[70px]">
                   <button
                     type="button"
-                    className="editbtn"
-                    onClick={() => handleRowClick(e)}
+                    onClick={() => handleDelete(e.id)}
+                    className="transparent-button max-w-fit"
                   >
                     <img
-                      src="/assets/delete/delete.png"
-                      alt="modify"
-                      className="h-5 cursor-pointer"
+                      src="../../../public/assets/delete/delete.png"
+                      alt="supprimer utilisateur"
+                      className="w-4"
                     />
                   </button>
                 </td>
