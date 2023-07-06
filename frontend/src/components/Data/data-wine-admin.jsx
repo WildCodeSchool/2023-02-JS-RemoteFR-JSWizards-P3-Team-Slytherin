@@ -6,6 +6,7 @@ const data = [
     resume:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit",
     note: 8,
+    year: 2018,
     color: "blanc",
   },
   {
@@ -15,6 +16,7 @@ const data = [
     resume:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit",
     note: 4,
+    year: 2013,
     color: "blanc",
   },
   {
@@ -24,6 +26,7 @@ const data = [
     resume:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit",
     note: 6,
+    year: 2021,
     color: "blanc",
   },
   {
@@ -33,6 +36,7 @@ const data = [
     resume:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit",
     note: 5,
+    year: 2019,
     color: "blanc",
   },
   {
@@ -42,6 +46,7 @@ const data = [
     resume:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit",
     note: 9,
+    year: 2007,
     color: "rouge",
   },
   {
@@ -51,6 +56,7 @@ const data = [
     resume:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit",
     note: 8,
+    year: 2008,
     color: "rouge",
   },
   {
@@ -60,6 +66,7 @@ const data = [
     resume:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit",
     note: 4,
+    year: 2008,
     color: "blanc",
   },
   {
@@ -69,6 +76,7 @@ const data = [
     resume:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit",
     note: 6,
+    year: 2009,
     color: "blanc",
   },
   {
@@ -78,6 +86,7 @@ const data = [
     resume:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit",
     note: 5,
+    year: 2012,
     color: "rouge",
   },
   {
@@ -87,6 +96,7 @@ const data = [
     resume:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit",
     note: 9,
+    year: 2014,
     color: "blanc",
   },
   {
@@ -96,6 +106,7 @@ const data = [
     resume:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit",
     note: 8,
+    year: 2013,
     color: "blanc",
   },
   {
@@ -105,6 +116,7 @@ const data = [
     resume:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit",
     note: 4,
+    year: 2022,
     color: "rouge",
   },
   {
@@ -114,6 +126,7 @@ const data = [
     resume:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit",
     note: 6,
+    year: 2015,
     color: "rouge",
   },
   {
@@ -123,6 +136,7 @@ const data = [
     resume:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit",
     note: 5,
+    year: 2010,
     color: "rouge",
   },
   {
@@ -132,6 +146,7 @@ const data = [
     resume:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit",
     note: 9,
+    year: 2010,
     color: "blanc",
   },
 ];

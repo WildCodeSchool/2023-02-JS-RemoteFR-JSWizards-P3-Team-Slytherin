@@ -20,28 +20,28 @@ function HeaderAdmin() {
       <nav>
         <ul className="flex items-center gap-10 mr-14 h-20">
           <li
-            className={`text-primary w-[72px] text-center ${
+            className={`text-primary text-center ${
               !isActive("/admin/lexique") ? "hover:underline" : ""
             } ${isActive("/admin/lexique") ? "font-bold active-nav" : ""}`}
           >
             <Link to="/admin/lexique">Lexique</Link>
           </li>
           <li
-            className={`text-primary w-[72px] text-center ${
+            className={`text-primary text-center ${
               !isActive("/admin/vins") ? "hover:underline" : ""
             } ${isActive("/admin/vins") ? "font-bold active-nav" : ""}`}
           >
             <Link to="/admin/vins">Vins</Link>
           </li>
           <li
-            className={`mr-14 text-primary w-[54px] text-center ${
+            className={`text-primary text-center ${
               !isActive("/admin/utilisateurs") ? "hover:underline" : ""
             } ${isActive("/admin/utilisateurs") ? "font-bold active-nav" : ""}`}
           >
             <Link to="/admin/utilisateurs">Utilisateurs</Link>
           </li>
           <li
-            className={`text-primary w-[72px] text-center ${
+            className={`text-primary text-center ${
               !isActive("/admin/atelier") ? "hover:underline" : ""
             } ${isActive("/admin/atelier") ? "font-bold active-nav" : ""}`}
           >
