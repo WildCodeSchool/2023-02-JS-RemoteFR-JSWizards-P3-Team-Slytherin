@@ -38,27 +38,42 @@
     font-size: 0.8rem;
   }
 
-  .admin-container button,
-  .admin-container [type="“button”"] {
+  .bouton_admin {
     background-color: theme("colors.primary");
     border-radius: 1.2rem;
     padding: 0.5rem 1rem;
     width: 20vw;
     height: 15vw;
     color: theme("colors.secondary");
-    font-size: 2.2vw;
     font-weight: 400;
+    text-align: center;
+    max-width: 300px;
+    min-width: 100px;
+    min-height: 80px;
   }
-  .bouton_admin {
+
+  .bouton-date,
+  .bouton-nombre {
     background-color: theme("colors.primary");
-    border-radius: 0.3rem;
-    padding: 0.5rem 1rem;
-    width: 40vw;
-    height: 5vw;
     color: theme("colors.secondary");
-    font-size: 2.2vw;
-    font-weight: 400;
+    border-radius: 0.3rem;
+    font-size: 1.2vw;
+    height: 3vw;
+    width: 15vw;
   }
+  .bouton-date {
+    margin-right: 5vw;
+  }
+  .bouton-nombre {
+    margin-left: 5vw;
+  }
+
+  .bouton-atelier {
+    font-weight: bold;
+    width: 15vw;
+    font-size: 1.2vw;
+  }
+
   .lexique-button {
     border-radius: 50%;
     width: 1.5rem;
@@ -427,6 +442,15 @@
 .row {
   display: flex;
 }
+
+tr,
+td,
+th {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+}
+
 /*admin-atelier*/
 .vertical-line {
   border-right: 2px solid #000;
