@@ -37,7 +37,7 @@ function CompteRenduFiche() {
       src: "/assets/images/whitewine1.jpg",
       nom: "Palacio de Menadi",
       maison: "Rueda - Espagnol",
-      millésime: "2013",
+      millesime: "2013",
       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
     },
     {
@@ -45,7 +45,7 @@ function CompteRenduFiche() {
       src: "/assets/images/whitewine2.jpg",
       nom: "Marlborough - Sauvignon blanc",
       maison: "... - Nouvelle Zelande",
-      millésime: "2018",
+      millesime: "2018",
       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
     },
     {
@@ -53,7 +53,7 @@ function CompteRenduFiche() {
       src: "/assets/images/whitewine3.jpg",
       nom: "Cambalala - Pinot Grigio",
       maison: "... - Afrique du Sud",
-      millésime: "2021",
+      millesime: "2021",
       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
     },
     {
@@ -61,7 +61,7 @@ function CompteRenduFiche() {
       src: "/assets/images/whitewine4.jpg",
       nom: "Morning Fog - Chardonnay",
       maison: "Wente - San Fracisco Bay ",
-      millésime: "2017",
+      millesime: "2017",
       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
     },
     {
@@ -69,7 +69,7 @@ function CompteRenduFiche() {
       src: "/assets/images/whitewine5.jpg",
       nom: "Alta Italia - Pinot Grigio",
       maison: "Trentino - Italie",
-      millésime: "2021",
+      millesime: "2021",
       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
     },
   ];
@@ -86,7 +86,7 @@ function CompteRenduFiche() {
             image={vins[0].src}
             nom={vins[0].nom}
             maison={vins[0].maison}
-            millésime={vins[0].millésime}
+            millesime={vins[0].millesime}
             desc={vins[0].desc}
           />
         </div>
