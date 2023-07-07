@@ -1,7 +1,7 @@
 import { useState } from "react";
 import fakedata from "../../components/Data/data-utilisateur-admin";
 
-export default function Vins() {
+export default function Users() {
   const [userData, setUserData] = useState(fakedata);
   const [sortConfig, setSortConfig] = useState({
     key: "",
