@@ -24,6 +24,8 @@ import ProfilModif from "@pages/ProfilModif";
 import HistoriqueFiches from "@pages/HistoriqueFiches";
 import Page404 from "@pages/Page404";
 
+import { UserProvider } from "./contexts/UserContext";
+
 import "./App.css";
 
 function App() {
@@ -31,44 +33,48 @@ function App() {
   const isAdminRoute = location.pathname.startsWith("/admin");
 
   return isAdminRoute ? (
-    <LayoutAdmin>
-      <Routes>
-        <Route path="/admin" element={<HomeAdmin />} />
-        <Route path="/admin/lexique" element={<LexiqueAdmin />} />
-        <Route path="/admin/vins" element={<Vins />} />
-        <Route path="/admin/utilisateurs" element={<Utilisateurs />} />
-        <Route path="/admin/atelier" element={<Atelier />} />
-        <Route path="*" element={<Page404 />} />
-      </Routes>
-    </LayoutAdmin>
+    <UserProvider>
+      <LayoutAdmin>
+        <Routes>
+          <Route path="/admin" element={<HomeAdmin />} />
+          <Route path="/admin/lexique" element={<LexiqueAdmin />} />
+          <Route path="/admin/vins" element={<Vins />} />
+          <Route path="/admin/utilisateurs" element={<Utilisateurs />} />
+          <Route path="/admin/atelier" element={<Atelier />} />
+          <Route path="*" element={<Page404 />} />
+        </Routes>
+      </LayoutAdmin>
+    </UserProvider>
   ) : (
-    <Layout>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/avis" element={<Avis />} />
-        <Route path="/lexique" element={<Lexique />} />
-        <Route path="/selection" element={<NotreSelection />} />
-        <Route path="/fiche/visuel" element={<Visuel />} />
-        <Route path="/fiche/olfactif" element={<Olfactif />} />
-        <Route path="/fiche/gustatif-part1" element={<GustatifPartOne />} />
-        <Route path="/fiche/gustatif-part2" element={<GustatifPartTwo />} />
-        <Route path="/fiche/final" element={<Final />} />
-        <Route path="/profil" element={<Profil />} />
-        <Route
-          path="/profil/profil_degustation"
-          element={<ProfilDegustation />}
-        />
-        <Route path="/recette" element={<Recette />} />
-        <Route path="/profil/modifier" element={<ProfilModif />} />
+    <UserProvider>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/avis" element={<Avis />} />
+          <Route path="/lexique" element={<Lexique />} />
+          <Route path="/selection" element={<NotreSelection />} />
+          <Route path="/fiche/visuel" element={<Visuel />} />
+          <Route path="/fiche/olfactif" element={<Olfactif />} />
+          <Route path="/fiche/gustatif-part1" element={<GustatifPartOne />} />
+          <Route path="/fiche/gustatif-part2" element={<GustatifPartTwo />} />
+          <Route path="/fiche/final" element={<Final />} />
+          <Route path="/profil" element={<Profil />} />
+          <Route
+            path="/profil/profil_degustation"
+            element={<ProfilDegustation />}
+          />
+          <Route path="/recette" element={<Recette />} />
+          <Route path="/profil/modifier" element={<ProfilModif />} />
 
-        <Route path="/fiche" element={<CompteRenduFiche />} />
-        <Route
-          path="/profil/historique_fiches"
-          element={<HistoriqueFiches />}
-        />
-        <Route path="*" element={<Page404 />} />
-      </Routes>
-    </Layout>
+          <Route path="/fiche" element={<CompteRenduFiche />} />
+          <Route
+            path="/profil/historique_fiches"
+            element={<HistoriqueFiches />}
+          />
+          <Route path="*" element={<Page404 />} />
+        </Routes>
+      </Layout>
+    </UserProvider>
   );
 }
 

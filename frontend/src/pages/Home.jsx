@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useUser } from "../contexts/UserContext";
 
 export default function Home() {
   const [register, setRegister] = useState("");
@@ -9,6 +10,7 @@ export default function Home() {
     new Date().getDate()
   );
   const formattedDate = newDate.toISOString().split("T")[0];
+  const { handleSubmitLogIn, handleChange } = useUser();
 
   const toggleConnection = () => {
     setConnection(true);
@@ -139,7 +141,10 @@ export default function Home() {
         >
           Connection
         </button>
-        <form className={`flex flex-col items-center ${showConnection}`}>
+        <form
+          className={`flex flex-col items-center ${showConnection}`}
+          onSubmit={handleSubmitLogIn}
+        >
           <div>
             <label htmlFor="email">Adresse mail</label>
             <br />
@@ -150,6 +155,7 @@ export default function Home() {
               placeholder="exemple@gmail.com"
               required
               className="text-primary w-72 p-1 rounded"
+              onChange={handleChange}
             />
           </div>
           <br />
@@ -161,6 +167,7 @@ export default function Home() {
               name="password"
               required
               className="text-primary w-72 p-1 rounded"
+              onChange={handleChange}
             />
           </div>
           <br />
