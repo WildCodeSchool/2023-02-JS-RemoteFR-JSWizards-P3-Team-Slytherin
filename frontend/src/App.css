@@ -451,3 +451,15 @@ th {
 .editbtn {
   background: none;
 }
+
+.boutonDeco {
+  background-color: theme("colors.secondary");
+  border-radius: 1.6rem;
+  padding: 0;
+}
+
+.boutonDecoOff {
+  background-color: transparent;
+  padding: 0;
+  width: auto;
+}

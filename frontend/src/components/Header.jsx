@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useUser } from "../contexts/UserContext";
 
 function Header() {
   const location = useLocation();
@@ -13,6 +14,7 @@ function Header() {
   const isActive = (path) => {
     return location.pathname === path;
   };
+  const { handleClickLogOut } = useUser();
 
   return (
     <>
@@ -60,6 +62,17 @@ function Header() {
           >
             Profil
           </Link>
+          <button
+            type="button"
+            onClick={handleClickLogOut}
+            className="w-[54px] text-center boutonDecoOff"
+          >
+            <img
+              src="/assets/logout/power-off.png"
+              alt="Bouton de déconnexion"
+              className="w-[30px] boutonDeco"
+            />
+          </button>
         </nav>
       </header>
       <nav
@@ -92,6 +105,17 @@ function Header() {
         >
           Profil
         </Link>
+        <button
+          type="button"
+          onClick={handleClickLogOut}
+          className="w-[54px] text-center boutonDecoOff"
+        >
+          <img
+            src="/assets/logout/power-off.png"
+            alt="Bouton de déconnexion"
+            className="w-[35px] boutonDeco"
+          />
+        </button>
       </nav>
     </>
   );

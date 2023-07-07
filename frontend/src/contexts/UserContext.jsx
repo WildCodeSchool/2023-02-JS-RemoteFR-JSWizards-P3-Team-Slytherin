@@ -50,7 +50,7 @@ export function UserProvider({ children }) {
       .then((res) => {
         console.warn(res.data.message);
         setLoggedInUser("");
-        // navigate("/");
+        navigate("/");
       })
       .catch((err) => console.error(err.response.data.message));
   };
