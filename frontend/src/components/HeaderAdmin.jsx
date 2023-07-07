@@ -41,7 +41,7 @@ function HeaderAdmin() {
           <span className="burgerline bg-primary">{}</span>
         </label>
         <nav className="hidden md:flex z-20 items-center gap-10 mr-14 h-20">
-          <ul className="flex items-center gap-10 mr-14 h-20">
+          <ul className="flex items-center gap-10 h-20">
             <li
               className={`text-primary text-center ${
                 !isActive("/admin/lexique") ? "hover:underline" : ""
