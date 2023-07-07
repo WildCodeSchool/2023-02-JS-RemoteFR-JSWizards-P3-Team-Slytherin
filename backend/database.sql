@@ -67,7 +67,7 @@ CREATE TABLE tasting(
 id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
 score INT,
 id_workshop INT NOT NULL,
-id_recipe INT NOT NULL,
+id_user INT NOT NULL,
 color VARCHAR(50) NULL,
 clarity VARCHAR(50) NULL,
 density VARCHAR(50) NULL,
@@ -90,8 +90,10 @@ acidity VARCHAR(50) NULL,
 tanin VARCHAR(50) NULL,
 alcohol VARCHAR(50) NULL,
 CONSTRAINT fk_workshop_tasting FOREIGN KEY (id_workshop) REFERENCES workshop(id),
-CONSTRAINT fk_recipe_tasting FOREIGN KEY (id_recipe) REFERENCES recipe(id)
-) ENGINE=InnoDB CHARSET=utf8mb4;
+CONSTRAINT fk_user_tasting
+FOREIGN KEY (id_user)
+REFERENCES user(id)
+  ) ENGINE=InnoDB CHARSET=utf8mb4;
 
 INSERT INTO `user` VALUES (1,'admin','admin','admin@admin.fr','$argon2id$v=19$m=65536,t=5,p=1$JvUeRISXzJlRxSj+LTG2qQ$k22+I+Q6kc95sORXJDXCzmf1L4ckAwYiso/hjX4VIyc','1985-01-01',1),
 (2,'user','user','user@user.fr','$argon2id$v=19$m=65536,t=5,p=1$Vs3jjpmaJkv5vmD5Tt3wvg$W7usz0nor1B1DZK+zXr1NPctYsF8LXJsWSloSCVXtaY','1994-02-02', 0);
@@ -107,3 +109,10 @@ INSERT INTO `wine` VALUES (1, 'La Villageoise', 'Castel', 'rouge qui tache', 202
 INSERT INTO `workshop` VALUES (1, 1, '2023-09-06', 7), 
 (2, 0, '2023-06-05', 10),
 (3, 0, '2023-07-02', 5);
+
+#                            workshop  / user
+INSERT INTO `user_workshop` VALUES (2, 1, null, null, null, null), (2, 2,  null, null, null, null), (1, 2,  null, null, null, null);
+
+INSERT INTO `wine_workshop` VALUES (1, 1), (2, 1), (3, 1), (4, 1), (5, 1), (6, 2), (7, 2);
+
+INSERT INTO `tasting` VALUES (1, 3, 1, 1, "color", "clarity", "density", "intensity", "noseFruits", "noseFlowers", "nosePlants", "noseSpices", "noseAmpyreumatique", "noseMineral", "mouthFruits", "mouthFlowers", "mouthPlants", "mouthSpices", "mouthAmpyreumatique", "mouthMineral", "persistance", "smooth", "acidity", "tanin", "alcohol"), (2, 5, 1, 2, "color", "clarity", "density", "intensity", "noseFruits", "noseFlowers", "nosePlants", "noseSpices", "noseAmpyreumatique", "noseMineral", "mouthFruits", "mouthFlowers", "mouthPlants", "mouthSpices", "mouthAmpyreumatique", "mouthMineral", "persistance", "smooth", "acidity", "tanin", "alcohol"), (3, 5, 2, 2, "color", "clarity", "density", "intensity", "noseFruits", "noseFlowers", "nosePlants", "noseSpices", "noseAmpyreumatique", "noseMineral", "mouthFruits", "mouthFlowers", "mouthPlants", "mouthSpices", "mouthAmpyreumatique", "mouthMineral", "persistance", "smooth", "acidity", "tanin", "alcohol"); 
