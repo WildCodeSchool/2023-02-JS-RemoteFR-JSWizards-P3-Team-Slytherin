@@ -30,14 +30,7 @@ CREATE TABLE user_workshop (
   REFERENCES user(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
-CREATE TABLE recipe (
-  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  measuring INT NOT NULL,
-  id_user INT NOT NULL,
-  CONSTRAINT fk_recipe_user
-  FOREIGN KEY (id_user)
-  REFERENCES user(id)
-) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
+
 
 CREATE TABLE wine(
 id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
@@ -50,12 +43,18 @@ wineType VARCHAR(20) NOT NULL,
 wineImage VARCHAR(150)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
-CREATE TABLE wine_workshop(
-id_wine INT NOT NULL, 
-id_workshop INT NOT NULL, 
-CONSTRAINT fk_wine_workshop FOREIGN KEY (id_wine) REFERENCES wine(id),
-CONSTRAINT fk_workshop_wine FOREIGN KEY (id_workshop) REFERENCES workshop(id)
+CREATE TABLE wine_workshop (
+  id_wine INT NOT NULL,
+  id_workshop INT NOT NULL,
+  CONSTRAINT fk_wine_workshop
+    FOREIGN KEY (id_wine)
+    REFERENCES wine(id),
+  CONSTRAINT fk_workshop_wine
+    FOREIGN KEY (id_workshop)
+    REFERENCES workshop(id),
+  INDEX idx_wine_workshop (id_wine, id_workshop)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
+
 
 CREATE TABLE glossary(
 id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -95,6 +94,23 @@ FOREIGN KEY (id_user)
 REFERENCES user(id)
   ) ENGINE=InnoDB CHARSET=utf8mb4;
 
+CREATE TABLE recipe (
+  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  measuring INT NOT NULL,
+  id_user INT NOT NULL,
+  id_wine INT NOT NULL,
+  id_workshop INT NOT NULL,
+  CONSTRAINT fk_recipe_user
+    FOREIGN KEY (id_user)
+    REFERENCES user(id),
+  CONSTRAINT fk_recipe_wine
+    FOREIGN KEY (id_wine)
+    REFERENCES wine_workshop(id_wine),
+  CONSTRAINT fk_recipe_workshop
+    FOREIGN KEY (id_wine, id_workshop)
+    REFERENCES wine_workshop(id_wine, id_workshop)
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
+
 INSERT INTO `user` VALUES (1,'admin','admin','admin@admin.fr','$argon2id$v=19$m=65536,t=5,p=1$JvUeRISXzJlRxSj+LTG2qQ$k22+I+Q6kc95sORXJDXCzmf1L4ckAwYiso/hjX4VIyc','1985-01-01',1),
 (2,'user','user','user@user.fr','$argon2id$v=19$m=65536,t=5,p=1$Vs3jjpmaJkv5vmD5Tt3wvg$W7usz0nor1B1DZK+zXr1NPctYsF8LXJsWSloSCVXtaY','1994-02-02', 0);
 
@@ -116,3 +132,5 @@ INSERT INTO `user_workshop` VALUES (2, 1, null, null, null, null), (2, 2,  null,
 INSERT INTO `wine_workshop` VALUES (1, 1), (2, 1), (3, 1), (4, 1), (5, 1), (6, 2), (7, 2);
 
 INSERT INTO `tasting` VALUES (1, 3, 1, 1, "color", "clarity", "density", "intensity", "noseFruits", "noseFlowers", "nosePlants", "noseSpices", "noseAmpyreumatique", "noseMineral", "mouthFruits", "mouthFlowers", "mouthPlants", "mouthSpices", "mouthAmpyreumatique", "mouthMineral", "persistance", "smooth", "acidity", "tanin", "alcohol"), (2, 5, 1, 2, "color", "clarity", "density", "intensity", "noseFruits", "noseFlowers", "nosePlants", "noseSpices", "noseAmpyreumatique", "noseMineral", "mouthFruits", "mouthFlowers", "mouthPlants", "mouthSpices", "mouthAmpyreumatique", "mouthMineral", "persistance", "smooth", "acidity", "tanin", "alcohol"), (3, 5, 2, 2, "color", "clarity", "density", "intensity", "noseFruits", "noseFlowers", "nosePlants", "noseSpices", "noseAmpyreumatique", "noseMineral", "mouthFruits", "mouthFlowers", "mouthPlants", "mouthSpices", "mouthAmpyreumatique", "mouthMineral", "persistance", "smooth", "acidity", "tanin", "alcohol"); 
+
+INSERT INTO `recipe` VALUES (1, 2, 2, 1, 1);
