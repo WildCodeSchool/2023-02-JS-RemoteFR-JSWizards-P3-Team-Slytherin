@@ -73,7 +73,7 @@ export default function Vins() {
                 <td className="flex-0 w-[70px]">
                   <button
                     type="button"
-                    className="inherit"
+                    className="editbtn"
                     onClick={() => handleRowClick(e)}
                   >
                     <img

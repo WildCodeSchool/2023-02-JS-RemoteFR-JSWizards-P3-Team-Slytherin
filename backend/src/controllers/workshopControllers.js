@@ -44,25 +44,6 @@ const getOneWorkshop = async (req, res) => {
   }
 };
 
-// const putOneWorkshop = async (req, res) => {
-//   const { workshop } = req.body;
-//   try {
-//     const modify = await workshopManager.updateWorkshop(workshop);
-//     if (modify[0].affectedRows === 1) {
-//       res.status(200).json({
-//         message: "Les informations ont bien été modifiées",
-//       });
-//     } else {
-//       res.status(500).json({
-//         message: "Désolé, nous n'avons pas pu modifier les informations",
-//       });
-//     }
-//   } catch (err) {
-//     console.error(err);
-//     res.status(500).json({ message: "Désolé, le serveur est en panne" });
-//   }
-// };
-
 const putOneWorkshop = (req, res) => {
   const workshop = req.body;
 

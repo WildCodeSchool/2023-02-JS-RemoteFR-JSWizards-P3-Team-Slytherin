@@ -44,25 +44,6 @@ const getOneRecipe = async (req, res) => {
   }
 };
 
-// const putOneRecipe = async (req, res) => {
-//   const { recipe } = req.body;
-//   try {
-//     const modify = await recipeManager.updateRecipe(recipe);
-//     if (modify[0].affectedRows === 1) {
-//       res.status(200).json({
-//         message: "Les informations ont bien été modifiées",
-//       });
-//     } else {
-//       res.status(500).json({
-//         message: "Désolé, nous n'avons pas pu modifier les informations",
-//       });
-//     }
-//   } catch (err) {
-//     console.error(err);
-//     res.status(500).json({ message: "Désolé, le serveur est en panne" });
-//   }
-// };
-
 const putOneRecipe = (req, res) => {
   const recipe = req.body;
 

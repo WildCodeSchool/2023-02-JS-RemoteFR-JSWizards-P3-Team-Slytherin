@@ -44,25 +44,6 @@ const getOneUser = async (req, res) => {
   }
 };
 
-// const putOneUser = async (req, res) => {
-//   const { user } = req.body;
-//   try {
-//     const modify = await userManager.updateUser(user);
-//     if (modify[0].affectedRows === 1) {
-//       res.status(200).json({
-//         message: "Les informations ont bien été modifiées",
-//       });
-//     } else {
-//       res.status(500).json({
-//         message: "Désolé, nous n'avons pas pu modifier les informations",
-//       });
-//     }
-//   } catch (err) {
-//     console.error(err);
-//     res.status(500).json({ message: "Désolé, le serveur est en panne" });
-//   }
-// };
-
 const putOneUser = (req, res) => {
   const user = req.body;
 
