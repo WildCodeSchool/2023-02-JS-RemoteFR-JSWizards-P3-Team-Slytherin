@@ -1,4 +1,6 @@
 import { useState } from "react";
+import axios from "axios";
+// import { useNavigate } from "react-router-dom";
 import { useUser } from "../contexts/UserContext";
 
 export default function Home() {
@@ -11,6 +13,34 @@ export default function Home() {
   );
   const formattedDate = newDate.toISOString().split("T")[0];
   const { handleSubmitLogIn, handleChange } = useUser();
+  const APINSCRIPTION = `${import.meta.env.VITE_BACKEND_URL}/inscription`;
+  // const navigate = useNavigate();
+
+  const [user, setUser] = useState({
+    lastname: "",
+    firstname: "",
+    email: "",
+    password: "",
+    birthday: "",
+  });
+
+  const handleChangeInscription = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmitInscription = (e) => {
+    e.preventDefault();
+    if (user.birthday.trim() === "") {
+      user.birthday = null;
+    }
+    axios
+      .post(APINSCRIPTION, { ...user }, { withCredentials: true })
+      .then((res) => {
+        console.warn(res.data.message);
+        window.location.href = "/";
+      })
+      .catch((err) => console.error(err.response.data.message));
+  };
 
   const toggleConnection = () => {
     setConnection(true);
@@ -55,7 +85,10 @@ export default function Home() {
         >
           Inscription
         </button>
-        <form className={`flex flex-col items-center ${showRegister}`}>
+        <form
+          className={`flex flex-col items-center ${showRegister}`}
+          onSubmit={handleSubmitInscription}
+        >
           <div>
             <label htmlFor="email">Adresse mail</label>
             <br />
@@ -66,6 +99,7 @@ export default function Home() {
               placeholder="exemple@gmail.com"
               required
               className="text-primary w-72 p-1 rounded"
+              onChange={handleChangeInscription}
             />
           </div>
           <br />
@@ -78,6 +112,7 @@ export default function Home() {
               id="lastname"
               required
               className="text-primary w-72 p-1 rounded"
+              onChange={handleChangeInscription}
             />
           </div>
           <br />
@@ -90,6 +125,7 @@ export default function Home() {
               id="firstname"
               required
               className="text-primary w-72 p-1 rounded"
+              onChange={handleChangeInscription}
             />
           </div>
           <br />
@@ -98,11 +134,12 @@ export default function Home() {
             <br />
             <input
               type="date"
-              name="birthdate"
+              name="birthday"
               id="birthdate"
               min="1900-01-01"
               max={formattedDate}
               className="text-primary w-72 p-1 rounded"
+              onChange={handleChangeInscription}
             />
           </div>
           <br />
@@ -114,6 +151,7 @@ export default function Home() {
               name="password"
               required
               className="text-primary w-72 p-1 rounded"
+              onChange={handleChangeInscription}
             />
             <br />
             <br />
