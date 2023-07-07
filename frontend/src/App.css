@@ -451,3 +451,14 @@ th {
 .editbtn {
   background: none;
 }
+/*admin_atelier*/
+.transparent-button {
+  background-color: transparent;
+}
+.select-transparent {
+  background-color: transparent;
+  border: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
