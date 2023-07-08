@@ -10,16 +10,14 @@ const postWorkshop = (req, res) => {
     })
     .catch((err) => {
       console.error(err);
-      res.status(500).send("Oups, le serveur est en panne");
+      res.status(500).send("Oups, le serveur est en panne et hop");
     });
 };
 
 const getAllWorkshop = async (req, res) => {
   try {
     const [workshops] = await workshopManager.findAllWorkshop();
-    res
-      .status(200)
-      .json({ message: "Voici, tous les ateliers", ateliers: { workshops } });
+    res.status(200).json(workshops);
   } catch (err) {
     res.status(500).json({ message: "Désolé, le serveur est en panne" });
   }
