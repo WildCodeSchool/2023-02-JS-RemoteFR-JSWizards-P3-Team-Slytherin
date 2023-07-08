@@ -10,7 +10,7 @@ const postWorkshop = (req, res) => {
     })
     .catch((err) => {
       console.error(err);
-      res.status(500).send("Oups, le serveur est en panne et hop");
+      res.status(500).send("Oups, le serveur est en panne");
     });
 };
 
