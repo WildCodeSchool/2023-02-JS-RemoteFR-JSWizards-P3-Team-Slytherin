@@ -51,8 +51,8 @@ wineImage VARCHAR(150)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 CREATE TABLE wine_workshop(
-id_wine INT NOT NULL, 
 id_workshop INT NOT NULL, 
+id_wine INT NULL,
 CONSTRAINT fk_wine_workshop FOREIGN KEY (id_wine) REFERENCES wine(id),
 CONSTRAINT fk_workshop_wine FOREIGN KEY (id_workshop) REFERENCES workshop(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;

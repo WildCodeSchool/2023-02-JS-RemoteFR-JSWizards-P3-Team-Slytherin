@@ -17,9 +17,7 @@ const postWorkshop = (req, res) => {
 const getAllWorkshop = async (req, res) => {
   try {
     const [workshops] = await workshopManager.findAllWorkshop();
-    res
-      .status(200)
-      .json({ message: "Voici, tous les ateliers", ateliers: { workshops } });
+    res.status(200).json(workshops);
   } catch (err) {
     res.status(500).json({ message: "Désolé, le serveur est en panne" });
   }
