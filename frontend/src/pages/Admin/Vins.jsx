@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import VinLayout from "@components/admin/VinLayout";
 
 export default function Vins() {
   const [vinData, setVinData] = useState([]);
@@ -15,10 +16,16 @@ export default function Vins() {
       direction = "descending";
     }
     const sortedData = [...vinData].sort((a, b) => {
-      if (a[key] < b[key]) {
+      const valueA = a[key];
+      const valueB = b[key];
+
+      if (valueA === null || valueA === undefined) return -1;
+      if (valueB === null || valueB === undefined) return 1;
+
+      if (valueA < valueB) {
         return direction === "ascending" ? -1 : 1;
       }
-      if (a[key] > b[key]) {
+      if (valueA > valueB) {
         return direction === "ascending" ? 1 : -1;
       }
       return 0;
@@ -30,8 +37,8 @@ export default function Vins() {
   const handleRowClick = (rowData) => {
     setSelectedRowData({
       id: rowData.id,
-      nom: rowData.name,
-      image: rowData.image,
+      wineName: rowData.wineName,
+      wineImage: rowData.wineImage,
     });
   };
 
@@ -56,23 +63,23 @@ export default function Vins() {
               <th className="flex-0 w-16">Image</th>
               <th
                 className="flex-1 min-w-[280px]"
-                onClick={() => sortTable("name")}
+                onClick={() => sortTable("wineName")}
               >
                 Nom{" "}
-                {sortConfig.key === "name" &&
+                {sortConfig.key === "wineName" &&
                   (sortConfig.direction === "ascending" ? "▼" : "▲")}
               </th>
               <th
                 className="flex-1 min-w-[300px] max-[1100px]:hidden"
-                onClick={() => sortTable("domaine")}
+                onClick={() => sortTable("castle")}
               >
                 Domaine{" "}
-                {sortConfig.key === "domaine" &&
+                {sortConfig.key === "castle" &&
                   (sortConfig.direction === "ascending" ? "▼" : "▲")}
               </th>
-              <th className="flex-1" onClick={() => sortTable("note")}>
+              <th className="flex-1" onClick={() => sortTable("wineType")}>
                 Couleur{" "}
-                {sortConfig.key === "note" &&
+                {sortConfig.key === "wineType" &&
                   (sortConfig.direction === "ascending" ? "▼" : "▲")}
               </th>
               <th className="flex-0">Modifier</th>
@@ -116,6 +123,7 @@ export default function Vins() {
           </tbody>
         </table>
       </div>
+      <VinLayout />
     </>
   );
 }
