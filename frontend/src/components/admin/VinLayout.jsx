@@ -1,3 +1,182 @@
-export default function VinLayout() {
-  return <div className="fullscreen-overlay bg-primary">toto</div>;
+import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
+
+export default function VinLayout({ selectedRowData, hidden, setHidden }) {
+  const [wineInfo, setWineInfo] = useState({
+    wineName: selectedRowData.wineName,
+    castle: selectedRowData.castle,
+    grapeVariety: selectedRowData.grapeVariety,
+    wineYear: selectedRowData.wineYear,
+    wineDescription: selectedRowData.wineDescription,
+    wineType: selectedRowData.wineType,
+    wineImage: selectedRowData.wineImage,
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setWineInfo((prevInfo) => ({
+      ...prevInfo,
+      [name]: value,
+    }));
+  };
+
+  const currentYear = new Date().getFullYear();
+  const years = Array.from({ length: currentYear - 1900 + 1 }, (_, index) =>
+    String(currentYear - index)
+  );
+
+  const handleImage = () => {
+    const fileInput = document.createElement("input");
+    fileInput.type = "file";
+    fileInput.click();
+  };
+
+  const handleParentClick = (e) => {
+    if (e.target === e.currentTarget) {
+      setHidden(!hidden);
+    }
+  };
+
+  useEffect(() => {
+    setWineInfo({
+      wineName: selectedRowData.wineName,
+      castle: selectedRowData.castle,
+      grapeVariety: selectedRowData.grapeVariety,
+      wineYear: selectedRowData.wineYear,
+      wineDescription: selectedRowData.wineDescription,
+      wineType: selectedRowData.wineType,
+      wineImage: selectedRowData.wineImage,
+    });
+  }, [selectedRowData]);
+
+  console.info(wineInfo.wineImage);
+
+  return (
+    <div className={`${!hidden ? "hidden" : ""}`}>
+      <button
+        type="button"
+        className="fullscreen-overlay bg-primary"
+        onClick={handleParentClick}
+      >
+        <div className="rounded bg-secondary h-[80%] w-[80%] p-5 flex flex-col items-center cursor-default overflow-scroll">
+          <section className="flex w-full gap-4">
+            <button
+              type="button"
+              onClick={handleImage}
+              className="image-container"
+            >
+              <img
+                src={`${import.meta.env.VITE_BACKEND_URL}/assets/wines/${
+                  wineInfo.wineImage
+                }`}
+                alt="Vin"
+                className="image-button"
+              />
+            </button>
+            <div className="flex flex-col gap-6 justify-center w-full">
+              <div className="w-full flex items-center">
+                <label htmlFor="wineName">Nom: </label>
+                <input
+                  type="text"
+                  name="wineName"
+                  id="wineName"
+                  value={wineInfo.wineName}
+                  onChange={handleChange}
+                  className="font-bold bg-[#f8f8f8] rounded p-2 w-full"
+                />
+              </div>
+              <div>
+                <label htmlFor="wineYear">Année : </label>
+                <select
+                  name="wineYear"
+                  id="wineYear"
+                  value={wineInfo.wineYear}
+                  onChange={handleChange}
+                  className="font-bold bg-[#f8f8f8] rounded p-2"
+                >
+                  {years.map((year) => (
+                    <option key={year} value={year}>
+                      {year}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="flex items-center">
+                <label htmlFor="castle">Domaine: </label>
+                <input
+                  type="text"
+                  name="castle"
+                  id="castle"
+                  value={wineInfo.castle}
+                  onChange={handleChange}
+                  className="font-bold bg-[#f8f8f8] rounded p-2 w-full"
+                />
+              </div>
+            </div>
+          </section>
+          <section className="mt-6 w-full flex flex-col items-center">
+            <div className="flex w-[80%]">
+              <div className="min-w-fit w-2/4 text-center">
+                <label htmlFor="grapeVariety" className="w-fit">
+                  Cépage :{" "}
+                </label>
+                <input
+                  type="text"
+                  name="grapeVariety"
+                  id="grapeVariety"
+                  value={wineInfo.grapeVariety}
+                  onChange={handleChange}
+                  className="font-bold bg-[#f8f8f8] rounded p-2"
+                />
+              </div>
+              <div className="w-2/4 text-center">
+                <label htmlFor="wineType">Type : </label>
+                <select
+                  name="wineType"
+                  id="wineType"
+                  onChange={handleChange}
+                  className="font-bold bg-[#f8f8f8] rounded p-2"
+                >
+                  <option value={selectedRowData.wineType}>
+                    {selectedRowData.wineType}
+                  </option>
+                  <option
+                    value={
+                      selectedRowData.wineType === "rouge" ? "blanc" : "rouge"
+                    }
+                  >
+                    {selectedRowData.wineType === "rouge" ? "blanc" : "rouge"}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div className="my-4 w-[70%]">
+              <label htmlFor="wineDescription">Description : </label>
+              <textarea
+                name="wineDescription"
+                id="wineDescription"
+                onChange={handleChange}
+                className="rounded p-2 w-full h-48 bg-[#f8f8f8] resize-none"
+                value={wineInfo.wineDescription}
+              />
+            </div>
+          </section>
+          <button
+            type="submit"
+            onClick={() => {
+              console.info(wineInfo);
+            }}
+          >
+            Valider
+          </button>
+        </div>
+      </button>
+    </div>
+  );
 }
+
+VinLayout.propTypes = {
+  selectedRowData: PropTypes.shape.isRequired,
+  hidden: PropTypes.bool.isRequired,
+  setHidden: PropTypes.func.isRequired,
+};

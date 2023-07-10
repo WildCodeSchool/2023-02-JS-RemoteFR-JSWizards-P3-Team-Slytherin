@@ -8,7 +8,17 @@ export default function Vins() {
     key: "",
     direction: "ascending",
   });
-  const [selectedRowData, setSelectedRowData] = useState(null);
+  const [selectedRowData, setSelectedRowData] = useState({
+    id: "",
+    wineName: "",
+    castle: "",
+    grapeVariety: "",
+    wineYear: "",
+    wineDescription: "",
+    wineType: "",
+    wineImage: "",
+  });
+  const [hidden, setHidden] = useState(false);
 
   const sortTable = (key) => {
     let direction = "ascending";
@@ -35,11 +45,8 @@ export default function Vins() {
   };
 
   const handleRowClick = (rowData) => {
-    setSelectedRowData({
-      id: rowData.id,
-      wineName: rowData.wineName,
-      wineImage: rowData.wineImage,
-    });
+    setSelectedRowData(rowData);
+    setHidden(!hidden);
   };
 
   useEffect(() => {
@@ -47,8 +54,6 @@ export default function Vins() {
       setVinData(res.data);
     });
   }, []);
-
-  console.info(selectedRowData);
 
   return (
     <>
@@ -123,7 +128,11 @@ export default function Vins() {
           </tbody>
         </table>
       </div>
-      <VinLayout />
+      <VinLayout
+        selectedRowData={selectedRowData}
+        hidden={hidden}
+        setHidden={setHidden}
+      />
     </>
   );
 }
