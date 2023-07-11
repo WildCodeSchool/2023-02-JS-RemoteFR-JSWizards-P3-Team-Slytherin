@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 export default function VinLayout({ selectedRowData, hidden, setHidden }) {
   const [wineInfo, setWineInfo] = useState({
+    id: selectedRowData.id,
     wineName: selectedRowData.wineName,
     castle: selectedRowData.castle,
     grapeVariety: selectedRowData.grapeVariety,
@@ -39,6 +40,7 @@ export default function VinLayout({ selectedRowData, hidden, setHidden }) {
 
   useEffect(() => {
     setWineInfo({
+      id: selectedRowData.id,
       wineName: selectedRowData.wineName,
       castle: selectedRowData.castle,
       grapeVariety: selectedRowData.grapeVariety,
