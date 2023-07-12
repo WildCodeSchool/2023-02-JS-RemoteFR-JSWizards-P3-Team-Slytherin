@@ -18,6 +18,7 @@ export default function Vins() {
     wineType: "",
     wineImage: "",
   });
+  const [refresh, setRefresh] = useState(false);
   const [hidden, setHidden] = useState(false);
 
   const sortTable = (key) => {
@@ -49,11 +50,17 @@ export default function Vins() {
     setHidden(!hidden);
   };
 
+  const deleteWine = (id) => {
+    setHidden(!hidden);
+    axios.delete(`${import.meta.env.VITE_BACKEND_URL}/wines/${id}`);
+    setRefresh(!refresh);
+  };
+
   useEffect(() => {
     axios.get(`${import.meta.env.VITE_BACKEND_URL}/wines`).then((res) => {
       setVinData(res.data);
     });
-  }, []);
+  }, [refresh]);
 
   return (
     <>
@@ -132,6 +139,7 @@ export default function Vins() {
         selectedRowData={selectedRowData}
         hidden={hidden}
         setHidden={setHidden}
+        deleteWine={deleteWine}
       />
     </>
   );

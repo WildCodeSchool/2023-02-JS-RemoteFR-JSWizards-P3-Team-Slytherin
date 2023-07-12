@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
-export default function VinLayout({ selectedRowData, hidden, setHidden }) {
+export default function VinLayout({
+  selectedRowData,
+  hidden,
+  setHidden,
+  deleteWine,
+}) {
   const [wineInfo, setWineInfo] = useState({
     id: selectedRowData.id,
     wineName: selectedRowData.wineName,
@@ -40,7 +45,7 @@ export default function VinLayout({ selectedRowData, hidden, setHidden }) {
           ...prevState,
           wineImage: file.name,
         }));
-        console.info(reader);
+        console.info(reader.result);
       };
       reader.readAsDataURL(file);
       console.info(file);
@@ -71,10 +76,17 @@ export default function VinLayout({ selectedRowData, hidden, setHidden }) {
     });
   }, [selectedRowData]);
 
+  function handleKeyDown(e) {
+    if (e.keyCode === 27) {
+      setHidden(!hidden);
+    }
+  }
   return (
     <div className={`${!hidden ? "hidden" : ""}`}>
-      <button
-        type="button"
+      <div
+        role="button"
+        tabIndex={0}
+        onKeyDown={handleKeyDown}
         className="fullscreen-overlay bg-primary"
         onClick={handleParentClick}
       >
@@ -84,7 +96,7 @@ export default function VinLayout({ selectedRowData, hidden, setHidden }) {
               <input
                 type="image"
                 src={
-                  uploadPicture.length > 1
+                  uploadPicture.length > 0
                     ? uploadPicture
                     : `${import.meta.env.VITE_BACKEND_URL}/assets/wines/${
                         wineInfo.wineImage
@@ -193,7 +205,14 @@ export default function VinLayout({ selectedRowData, hidden, setHidden }) {
             </div>
           </section>
           <section className="flex w-[80%] justify-evenly gap-6">
-            <button type="submit" className="delete-button">
+            <button
+              type="submit"
+              className="delete-button"
+              onClick={() => {
+                deleteWine(wineInfo.id);
+                setUploadPicture("");
+              }}
+            >
               Supprimer Vin
             </button>
             <button
@@ -206,13 +225,23 @@ export default function VinLayout({ selectedRowData, hidden, setHidden }) {
             </button>
           </section>
         </div>
-      </button>
+      </div>
     </div>
   );
 }
 
 VinLayout.propTypes = {
-  selectedRowData: PropTypes.shape.isRequired,
+  selectedRowData: PropTypes.shape({
+    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    wineName: PropTypes.string,
+    castle: PropTypes.string,
+    grapeVariety: PropTypes.string,
+    wineYear: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    wineDescription: PropTypes.string,
+    wineType: PropTypes.string,
+    wineImage: PropTypes.string,
+  }).isRequired,
   hidden: PropTypes.bool.isRequired,
   setHidden: PropTypes.func.isRequired,
+  deleteWine: PropTypes.func.isRequired,
 };
