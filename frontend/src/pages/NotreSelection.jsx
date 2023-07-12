@@ -1,7 +1,20 @@
 import { Link } from "react-router-dom";
-import data from "../components/Data/data-wine";
+import axios from "axios";
+import { useState, useEffect } from "react";
 
 export default function NotreSelection() {
+  const [selection, setSelection] = useState([]);
+
+  useEffect(() => {
+    const API = `${import.meta.env.VITE_BACKEND_URL}/wineWorkshop`;
+    axios
+      .get(API)
+      .then((res) => {
+        setSelection(res.data);
+      })
+      .catch((err) => console.error(err));
+  }, []);
+
   return (
     <>
       <h2 className="text-center font-bold text-2xl p-12 text-secondary">
@@ -9,16 +22,18 @@ export default function NotreSelection() {
       </h2>
 
       <div className="flex gap-14 flex-wrap justify-center">
-        {data.map((wine) => (
+        {selection.map((wine) => (
           <div key={wine.id}>
             <img
               className="object-cover w-[160px] h-[187px] rounded-t-xl"
-              src={wine.image}
-              alt={wine.name}
+              src={`${import.meta.env.VITE_BACKEND_URL}/assets/wines/${
+                wine.wineImage
+              }`}
+              alt={wine.wineName}
             />
 
             <h3 className="bg-secondary rounded-b-xl text-primary max-w-[160px] h-[72px] text-center p-2 flex flex-col justify-center">
-              {wine.name}
+              {wine.wineName}
             </h3>
           </div>
         ))}
