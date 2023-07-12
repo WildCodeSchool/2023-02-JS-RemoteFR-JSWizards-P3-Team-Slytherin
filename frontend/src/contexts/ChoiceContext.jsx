@@ -73,7 +73,7 @@ export function ChoiceProvider({ children }) {
   const [selectBoucheAmpyreumatique, setSelectBoucheAmpyreumatique] = useState(
     BOUCHE.ampyreumatiqueRouge.ampyreumatique11
   );
-  const [selectBoucheMineral, setSelectBouchezMineral] = useState(
+  const [selectBoucheMineral, setSelectBoucheMineral] = useState(
     BOUCHE.mineralRouge.mineral4
   );
   console.info(
@@ -87,7 +87,7 @@ export function ChoiceProvider({ children }) {
     setSelectBoucheVegetal,
     setSelectBoucheEpice,
     setSelectBoucheAmpyreumatique,
-    setSelectBouchezMineral
+    setSelectBoucheMineral
   );
 
   const propsPassing = useMemo(
