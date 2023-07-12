@@ -1,10 +1,10 @@
 const wineWorkshopManager = require("../models/WineWorkshopManager");
 
 const postWineWorkshop = (req, res) => {
-  const wineWorkshop = req.body;
+  const selection = req.body;
 
   wineWorkshopManager
-    .createWineWorkshop(wineWorkshop)
+    .createWineWorkshop(selection)
     .then(() => {
       res.status(201).json({ message: "Votre table a bien été modifiée" });
     })
