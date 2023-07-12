@@ -23,7 +23,6 @@ export default function Atelier() {
     personNb: 0,
   });
   const [selection, setSelection] = useState([]);
-
   const [isLoading, setIsLoading] = useState(true);
   const [wineListOrdered, setWineListOrdered] = useState([]);
   const [wineListOrderedNonSelected, setWineListOrderedNonSelected] = useState(
@@ -121,7 +120,6 @@ export default function Atelier() {
   };
 
   // Enregistrer un nouvel atelier
-
   const updateAllWorkshopInactive = async () => {
     await axios.put(`${import.meta.env.VITE_BACKEND_URL}/workshops/inactive`);
   };
@@ -243,13 +241,8 @@ export default function Atelier() {
         </div>
         <div className="">
           <h1 className="text-3xl font-black mb-12 mt-4">Nouvel atelier</h1>
-          {/* {!workshopComplete && workshop.workshopDate === 0 && (
-            <p className="italic text-[darkred] text-xs text-right">
-              Enregistrez une date pour l'atelier SVP.
-            </p>
-          )} */}
-          <div className="flex items-center justify-end m-4">
-            <label htmlFor="date" className="font-bold">
+          <div className="flex justify-end m-4">
+            <label htmlFor="date" className="font-bold text-right pr-4">
               Date:
               <input
                 onChange={handleChangeDate}
@@ -262,14 +255,9 @@ export default function Atelier() {
               />
             </label>
           </div>
-          {/* {!workshopComplete && workshop.personNb === 0 && (
-            <p className="italic text-[darkred] text-xs text-right">
-              Enregistrez le nombre de participants SVP.
-            </p>
-          )} */}
-          <div className="flex items-center justify-end mb-4">
-            <label htmlFor="people" className="font-bold">
-              Nb personnes :
+          <div className="flex justify-end mb-4">
+            <label htmlFor="people" className="font-bold text-right pr-4">
+              Nb pers. :
               <input
                 onChange={handleChangePerson}
                 type="number"
@@ -280,8 +268,8 @@ export default function Atelier() {
               />
             </label>
           </div>
-          <div className="flex items-center justify-end">
-            <label htmlFor="people" className="font-bold">
+          <div className="flex justify-end">
+            <label htmlFor="people" className="font-bold text-right pr-4">
               Activation :
               <select
                 onChange={handleChangeActive}

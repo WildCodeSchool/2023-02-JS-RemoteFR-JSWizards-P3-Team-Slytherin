@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useWorkshop } from "../../contexts/WorkshopContext";
 
 export default function Vins() {
-  const { workshopData, setWorkshopData, setSelectedRowData } = useWorkshop();
+  const { workshopData, setWorkshopData } = useWorkshop();
   const [sortConfig, setSortConfig] = useState({
     key: "workshopDate",
     direction: "ascending",
@@ -34,15 +34,6 @@ export default function Vins() {
     setSortConfig({ key, direction });
   };
 
-  const handleRowClick = (rowData) => {
-    setSelectedRowData({
-      id: rowData.id,
-      active: rowData.active,
-      workshopDate: rowData.workshopDate,
-      personNb: rowData.personNb,
-    });
-  };
-
   const deleteWorkshop = async (rowData) => {
     await axios.delete(
       `${import.meta.env.VITE_BACKEND_URL}/workshops/${rowData}`
@@ -69,11 +60,11 @@ export default function Vins() {
             Ajouter un atelier
           </button>
         </Link>
-        <table className="w-full min-w-[480px] bg-secondary rounded mb-8 shadow-md overflow-scroll">
+        <table className="w-full min-w-[280px] bg-secondary rounded mb-8 shadow-md overflow-scroll">
           <thead>
             <tr className="flex justify-center p-3 px-10">
               <th
-                className="flex-1 min-w-[280px]"
+                className="flex-1 min-w-[80px]"
                 onClick={() => sortTable("workshopDate")}
               >
                 Date{" "}
@@ -81,19 +72,22 @@ export default function Vins() {
                   (sortConfig.direction === "ascending" ? "▼" : "▲")}
               </th>
               <th
-                className="flex-1 min-w-[300px] max-[1100px]:hidden"
+                className="flex-1 min-w-[200px] max-[1100px]:hidden"
                 onClick={() => sortTable("personNb")}
               >
                 Nb personnes{" "}
                 {sortConfig.key === "personNb" &&
                   (sortConfig.direction === "ascending" ? "▼" : "▲")}
               </th>
-              <th className="flex-1" onClick={() => sortTable("active")}>
+              <th
+                className="flex-1 min-w-[70px]"
+                onClick={() => sortTable("active")}
+              >
                 Statut{" "}
                 {sortConfig.key === "active" &&
                   (sortConfig.direction === "ascending" ? "▼" : "▲")}
               </th>
-              <th className="flex-0">Modifier</th>
+              <th className="flex-0 min-w-[70px]">Modifier</th>
             </tr>
           </thead>
           <tbody>
@@ -102,31 +96,17 @@ export default function Vins() {
                 className="h-14 flex justify-center p-3 px-10 shadow-inner"
                 key={e.id}
               >
-                <td className="flex-1 min-w-[280px]">
+                <td className="flex-1 min-w-[80px]">
                   {e.workshopDate.split("-").reverse().join("-")}
                 </td>
-                <td className="flex-1 min-w-[300px] max-[1100px]:hidden">
+                <td className="flex-1 min-w-[200px] max-[1100px]:hidden">
                   {e.personNb}
                 </td>
-                <td className="flex-1 font-bold text-[green]">
-                  {e.active ? <p>actif</p> : <p>-</p>}
+                <td className="flex-1 font-bold min-w-[70px] ">
+                  {e.active ? <p className="text-[green]">actif</p> : <p>-</p>}
                 </td>
-                <td className="flex-0 w-[35px] flew-row">
-                  <Link to="/admin/ateliers/atelier">
-                    <button
-                      type="button"
-                      className="editbtn"
-                      onClick={() => handleRowClick(e)}
-                    >
-                      <img
-                        src="/assets/editpen/editpen.png"
-                        alt="modify"
-                        className="h-5 cursor-pointer"
-                      />
-                    </button>
-                  </Link>
-                </td>
-                <td className="flex-0 w-[35px] flew-row">
+
+                <td className="flex-0 min-w-[70px] flew-row">
                   {" "}
                   <button
                     className="btn-list"

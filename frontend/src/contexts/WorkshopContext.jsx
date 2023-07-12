@@ -4,17 +4,14 @@ import PropTypes from "prop-types";
 const WorkshopContext = createContext();
 
 export function WorkshopProvider({ children }) {
-  const [selectedRowData, setSelectedRowData] = useState(null);
   const [workshopData, setWorkshopData] = useState([]);
 
   const propsPassing = useMemo(
     () => ({
-      selectedRowData,
-      setSelectedRowData,
       workshopData,
       setWorkshopData,
     }),
-    [selectedRowData, setSelectedRowData, workshopData, setWorkshopData]
+    [workshopData, setWorkshopData]
   );
 
   return (
