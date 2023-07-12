@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useChoice } from "@contexts/ChoiceContext";
 import VinEnCours from "@components/VinEnCours";
 
 export default function GustatifPartOne() {
@@ -14,6 +15,19 @@ export default function GustatifPartOne() {
     tanin: "-",
     alcool: "-",
   });
+
+  const {
+    selectBouchePersistance,
+    selectBoucheMoelleux,
+    selectBoucheAcidite,
+    selectBoucheTanin,
+    selectBoucheAlcool,
+    setSelectBouchePersistance,
+    setSelectBoucheMoelleux,
+    setSelectBoucheAcidite,
+    setSelectBoucheTanin,
+    setSelectBoucheAlcool,
+  } = useChoice();
 
   const handlePersistanceClick = () => {
     const persistanceClass = document.getElementById("persistance");
@@ -150,8 +164,37 @@ export default function GustatifPartOne() {
   };
 
   useEffect(() => {
-    setGustatif1Vin({ persistance, moelleux, acidite, tanin, alcool });
-  }, [acidite, moelleux, persistance, tanin, alcool]);
+    const SettingGustatif1 = async () => {
+      try {
+        await setSelectBouchePersistance(persistance);
+        await setSelectBoucheMoelleux(moelleux);
+        await setSelectBoucheAcidite(acidite);
+        await setSelectBoucheTanin(tanin);
+        await setSelectBoucheAlcool(alcool);
+        await setGustatif1Vin({
+          persistance,
+          moelleux,
+          acidite,
+          tanin,
+          alcool,
+        });
+      } catch (error) {
+        console.error("il y a eu une erreur de mise à jour des states...");
+      }
+    };
+    SettingGustatif1();
+  }, [
+    acidite,
+    moelleux,
+    persistance,
+    tanin,
+    alcool,
+    selectBouchePersistance,
+    selectBoucheMoelleux,
+    selectBoucheAcidite,
+    selectBoucheTanin,
+    selectBoucheAlcool,
+  ]);
 
   return (
     <>
@@ -256,9 +299,9 @@ export default function GustatifPartOne() {
                     className="m-2"
                     type="radio"
                     onClick={handleSelectionClick}
-                    id="moelleux"
+                    id="moelleu"
                   />
-                  <label className="mr-2" htmlFor="moelleux">
+                  <label className="mr-2" htmlFor="moelleu">
                     Moëlleux
                   </label>
                 </div>
