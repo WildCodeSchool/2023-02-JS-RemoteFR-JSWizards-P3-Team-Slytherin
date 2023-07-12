@@ -1,31 +1,46 @@
 import { useState, useEffect } from "react";
-import data from "../../components/Data/data-wine-admin";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
 function order(a, b) {
-  const bandA = a.name;
-  const bandB = b.name;
+  const bandA = a.id;
+  const bandB = b.id;
   let comparison = 0;
-  if (bandA > bandB) {
+  if (bandA < bandB) {
     comparison = 1;
-  } else if (bandA < bandB) {
+  } else if (bandA > bandB) {
     comparison = -1;
   }
   return comparison;
 }
 
 export default function Atelier() {
-  const [wineListOrdered] = useState(data.sort(order));
-  const [wineListOrderedNonSelected, setWineListOrderedNonSelected] =
-    useState(wineListOrdered);
+  const [workshopComplete, setWorkshopComplete] = useState(true);
+  const [workshop, setWorkshop] = useState({ workshopDate: 0, personNb: 0 });
+  const [isLoading, setIsLoading] = useState(true);
+  const [wineListOrdered, setWineListOrdered] = useState([]);
+  const [wineListOrderedNonSelected, setWineListOrderedNonSelected] = useState(
+    []
+  );
+  const [filteredData, setFilteredData] = useState([]);
   const [filter, setFilter] = useState("");
-  const [selections, setSelections] = useState([
-    { id: 1, value: "", year: 0 },
-    { id: 2, value: "", year: 0 },
-    { id: 3, value: "", year: 0 },
-    { id: 4, value: "", year: 0 },
-    { id: 5, value: "", year: 0 },
-  ]);
+  const [selection, setSelection] = useState([]);
+  const [search, setSearch] = useState("");
 
+  // chargement de la data //
+  useEffect(() => {
+    const API = `${import.meta.env.VITE_BACKEND_URL}/wines`;
+    axios
+      .get(API)
+      .then((res) => {
+        setWineListOrdered(res.data.sort(order));
+        setWineListOrderedNonSelected(res.data.sort(order));
+        setIsLoading(false);
+      })
+      .catch((err) => console.error(err));
+  }, []);
+
+  // Format date //
   const newDate = new Date(
     new Date().getFullYear() + 1,
     new Date().getMonth(),
@@ -39,53 +54,120 @@ export default function Atelier() {
   const formatedTodayDate = todayDate.toISOString().split("T")[0];
   const formattedDate = newDate.toISOString().split("T")[0];
 
-  const handleSelection = (name, year) => {
-    const index = selections.findIndex((selection) => selection.value === "");
-    if (index !== -1) {
-      const newSelections = [...selections];
-      newSelections[index].value = name;
-      newSelections[index].year = year;
-      setSelections(newSelections);
+  // Ajout dans selection et retrait dans liste //
+  const handleSelection = (id) => {
+    const newSelection = selection;
+    if (selection.length < 5) {
+      newSelection.push(wineListOrdered.filter((e) => e.id === id)[0]);
     }
+    const list = newSelection.map((s) => s.id);
+    const newWineListOrderedNonSelected = wineListOrdered.filter(
+      (e) => !list.includes(e.id)
+    );
+    setSelection(newSelection);
+    setWineListOrderedNonSelected(newWineListOrderedNonSelected);
+  };
+  // Suppression dans selection et ajout dans liste //
+  const deleteWine = (id) => {
+    const newSelection = selection.filter((e) => e.id !== Number(id));
+    const list = newSelection.map((s) => s.id);
+    const newWineListOrderedNonSelected = wineListOrdered.filter(
+      (e) => !list.includes(e.id)
+    );
+    setSelection(newSelection);
+    setWineListOrderedNonSelected(newWineListOrderedNonSelected);
   };
 
-  const deleteWine = (index) => {
-    const newSelections = [...selections];
-    newSelections[index].value = "";
-    newSelections[index].year = 0;
-    setSelections(newSelections);
-  };
-
+  // Mise à jour de la liste avec les filtres //
   const handleFilterChange = (event) => {
     setFilter(event.target.value);
   };
-
   const wineHandleSubmit = (event) => event.preventDefault();
-  const [search, setSearch] = useState("");
-
   const handleSearchChange = (event) => {
     setSearch(event.target.value);
   };
-
-  const filteredData = wineListOrderedNonSelected.filter((item) => {
-    if (!filter && !search) return true;
-    if (filter && item.color !== filter) return false;
-    if (search && !item.name.toLowerCase().includes(search.toLowerCase()))
-      return false;
-    return true;
-  });
-
   useEffect(() => {
-    const list = selections.map((s) => s.value + s.year);
-    const newWineListOrdered = wineListOrdered.filter(
-      (e) => !list.includes(e.name + e.year)
+    const nextFilteredData = wineListOrderedNonSelected.filter((item) => {
+      if (!filter && !search) return true;
+      if (filter && item.wineType !== filter) return false;
+      if (search && !item.wineName.toLowerCase().includes(search.toLowerCase()))
+        return false;
+      return true;
+    });
+    setFilteredData(nextFilteredData);
+  }, [wineListOrderedNonSelected, filter, search]);
+
+  const handleChangeDate = (e) => {
+    const newWorkshop = workshop;
+    newWorkshop.workshopDate = e.target.value;
+    setWorkshop(newWorkshop);
+  };
+  const handleChangePerson = (e) => {
+    const newWorkshop = workshop;
+    workshop.personNb = e.target.value;
+    setWorkshop(newWorkshop);
+  };
+
+  const registerWorkshop = async () => {
+    await axios.post(
+      `${import.meta.env.VITE_BACKEND_URL}/workshops/creation`,
+      workshop
     );
-    setWineListOrderedNonSelected(newWineListOrdered);
-  }, [selections]);
+    const workshopList = await axios.get(
+      `${import.meta.env.VITE_BACKEND_URL}/workshops`
+    );
+    const { data } = workshopList;
+    const workshopId = data[data.length - 1].id;
+    const wineWorkshop = {
+      idworkshop1: workshopId,
+      idwine1: null,
+      idworkshop2: workshopId,
+      idwine2: null,
+      idworkshop3: workshopId,
+      idwine3: null,
+      idworkshop4: workshopId,
+      idwine4: null,
+      idworkshop5: workshopId,
+      idwine5: null,
+    };
+    if (selection.length >= 1) {
+      wineWorkshop.idwine1 = selection[0].id;
+      if (selection.length >= 2) {
+        wineWorkshop.idwine2 = selection[1].id;
+        if (selection.length >= 3) {
+          wineWorkshop.idwine3 = selection[2].id;
+          if (selection.length >= 4) {
+            wineWorkshop.idwine4 = selection[3].id;
+            if (selection.length >= 5) {
+              wineWorkshop.idwine5 = selection[4].id;
+            }
+          }
+        }
+      }
+    }
+    await axios.post(
+      `${import.meta.env.VITE_BACKEND_URL}/wineWorkshop`,
+      wineWorkshop
+    );
+  };
+
+  const handleClickValider = () => {
+    if (workshop.personNb !== 0 && workshop.workshopDate !== 0) {
+      try {
+        registerWorkshop();
+      } catch (error) {
+        console.error(error);
+      }
+    } else {
+      setWorkshopComplete(false);
+    }
+  };
+
+  if (isLoading) <p>Loading...</p>;
 
   return (
     <div className="">
-      <div className="flex max-md:flex-col justify-center">
+      <div className="flex max-md:flex-col justify-center bg-secondary mt-4">
         <div className="flex flex-col vertical-line md:w-1/2">
           <div className="flex">
             <div className="flex items-center max-md:flex-col justify-between m-4 p-1 w-full">
@@ -93,7 +175,7 @@ export default function Atelier() {
                 <p>🔎</p>
                 <form className="p-1" onSubmit={wineHandleSubmit}>
                   <input
-                    className="text-primary h-7 w-28 pl-1 rounded-md"
+                    className="text-primary h-7 w-28 pl-1 rounded-md border-tertiary border-2"
                     type="search"
                     placeholder="search"
                     onChange={handleSearchChange}
@@ -102,7 +184,7 @@ export default function Atelier() {
               </div>
               <select
                 onChange={handleFilterChange}
-                className="filter flex items-center p-1 h-7 rounded-md bg-secondary"
+                className="filter flex items-center p-1 h-7 rounded-md border-tertiary border-2"
               >
                 <option value="" className="">
                   Tous
@@ -122,15 +204,15 @@ export default function Atelier() {
                 key={item.id}
                 className="flex items-center w-full justify-between my-6 gap-x-4"
               >
-                {item.name} ({item.year})
+                {item.wineName} ({item.wineYear})
                 <button
                   className="btn-list mr-4"
                   type="button"
-                  onClick={() => handleSelection(item.name, item.year)}
+                  onClick={() => handleSelection(item.id)}
                 >
                   <img
                     className="w-[1rem] h-[1rem] opacity-[50%]"
-                    src="../../../public/assets/add/add.png"
+                    src="/assets/add/add.png"
                     alt="Ajouter à la sélection"
                   />
                 </button>
@@ -140,58 +222,67 @@ export default function Atelier() {
         </div>
         <div className="">
           <h1 className="text-3xl font-black mb-12 mt-4">Nouvel atelier</h1>
-
+          {!workshopComplete && workshop.workshopDate === 0 && (
+            <p className="italic text-[darkred] text-xs text-right">
+              Enregistrez une date pour l'atelier SVP.
+            </p>
+          )}
           <div className="flex items-center justify-end m-4">
             <label htmlFor="date" className="font-bold">
               Date:
               <input
+                onChange={handleChangeDate}
                 type="date"
                 name="date"
                 id="date"
                 min={formatedTodayDate}
                 max={formattedDate}
-                className="text-primary p-1 rounded  w-36 ml-4"
+                className="text-primary p-1 rounded  w-36 ml-4 border-tertiary border-2"
               />
             </label>
           </div>
+          {!workshopComplete && workshop.personNb === 0 && (
+            <p className="italic text-[darkred] text-xs text-right">
+              Enregistrez le nombre de participants SVP.
+            </p>
+          )}
           <div className="flex items-center justify-end">
             <label htmlFor="people" className="font-bold">
               Nb personnes :
               <input
+                onChange={handleChangePerson}
                 type="number"
                 name="people"
                 id="people"
                 placeholder="Nb personnes"
-                className="text-primary p-1 rounded w-36 mx-4"
+                className="text-primary p-1 rounded w-36 mx-4 border-tertiary border-2"
               />
             </label>
           </div>
 
           <div className="mt-16">
-            {selections.map((selection, index) => (
+            {selection.map((wine) => (
               <div
-                key={selection.id}
+                key={wine.id}
                 className="selection flex justify-start gap-4 my-6"
               >
                 <h2
                   className={`bg-primary text-secondary w-60 flex justify-center items-center ${
-                    selection.value === "" ? "opacity-[50%]" : ""
+                    wine.wineName === "" ? "opacity-[50%]" : ""
                   }`}
                 >
-                  {selection.value
-                    ? `${selection.value} (${selection.year})`
-                    : `SELECTION ${index + 1}`}
+                  {`${wine.wineName} (${wine.wineYear})`}
                 </h2>
                 <div className="flex items-center px-4">
                   <button
                     className="btn-list"
                     type="button"
-                    onClick={() => deleteWine(index)}
+                    onClick={() => deleteWine(wine.id)}
                   >
                     <img
                       className="w-4"
-                      src="../../../assets/delete/delete.png"
-                      alt={`supprimer la selection ${index + 1}`}
+                      src="/assets/delete/delete.png"
+                      alt={`supprimer la selection ${wine.wineName}`}
                     />
                   </button>
                 </div>
@@ -199,7 +290,11 @@ export default function Atelier() {
             ))}
           </div>
           <div className="flex justify-center mb-8">
-            <button type="button">Valider</button>
+            <Link to="/admin">
+              <button type="button" onClick={handleClickValider}>
+                Valider
+              </button>
+            </Link>
           </div>
         </div>
       </div>

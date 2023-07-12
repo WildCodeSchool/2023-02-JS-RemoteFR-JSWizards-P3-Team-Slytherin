@@ -10,7 +10,7 @@ const findOneTasting = (id) => {
 
 const createTasting = (taste) => {
   return db.query(
-    `insert into tasting (score, color, clarity, density, intensity, noseFruits, noseFlowers, nosePlants, noseSpices, noseAmpyreumatique, noseMineral, mouthFruits, mouthFlowers, mouthPlants, mouthSpices, mouthAmpyreumatique, mouthMineral, persistance, smooth, acidity, tanin, alcohol, id_workshop, id_recipe) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, (select id from workshop where id=?), (select id from recipe where id=?))`,
+    `insert into tasting (score, color, clarity, density, intensity, noseFruits, noseFlowers, nosePlants, noseSpices, noseAmpyreumatique, noseMineral, mouthFruits, mouthFlowers, mouthPlants, mouthSpices, mouthAmpyreumatique, mouthMineral, persistance, smooth, acidity, tanin, alcohol, id_workshop, id_recipe, id_user, id_wine) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, (select id from workshop where id=?), (select id from recipe where id=?), (select id from user where id=?), (select id from wine where id=?))`,
     [
       taste.score,
       taste.color,
@@ -36,13 +36,15 @@ const createTasting = (taste) => {
       taste.alcohol,
       taste.id_workshop,
       taste.id_recipe,
+      taste.id_user,
+      taste.id_wine,
     ]
   );
 };
 
 const updateTasting = (taste) => {
   return db.query(
-    `update tasting set score = ?, color = ?, clarity = ?, density = ?, intensity = ?, noseFruits = ?, noseFlowers = ?, nosePlants = ?, noseSpices = ?, noseAmpyreumatique = ?, noseMineral = ?, mouthFruits = ?, mouthFlowers = ?, mouthPlants = ?, mouthSpices = ?, mouthAmpyreumatique = ?, mouthMineral = ?, persistance = ?, smooth = ?, acidity = ?, tanin = ?, alcohol = ?, id_workshop = ?, id_recipe = ? where id = ?`,
+    `update tasting set score = ?, color = ?, clarity = ?, density = ?, intensity = ?, noseFruits = ?, noseFlowers = ?, nosePlants = ?, noseSpices = ?, noseAmpyreumatique = ?, noseMineral = ?, mouthFruits = ?, mouthFlowers = ?, mouthPlants = ?, mouthSpices = ?, mouthAmpyreumatique = ?, mouthMineral = ?, persistance = ?, smooth = ?, acidity = ?, tanin = ?, alcohol = ?, id_workshop = ?, id_recipe = ?, id_user = ?, id_wine = ? where id = ?`,
     [
       taste.score,
       taste.color,
@@ -68,6 +70,8 @@ const updateTasting = (taste) => {
       taste.alcohol,
       taste.id_workshop,
       taste.id_recipe,
+      taste.id_user,
+      taste.id_wine,
       taste.id,
     ]
   );

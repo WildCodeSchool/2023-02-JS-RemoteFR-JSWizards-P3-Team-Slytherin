@@ -51,8 +51,8 @@ wineImage VARCHAR(150)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 CREATE TABLE wine_workshop(
-id_wine INT NOT NULL, 
 id_workshop INT NOT NULL, 
+id_wine INT NULL,
 CONSTRAINT fk_wine_workshop FOREIGN KEY (id_wine) REFERENCES wine(id),
 CONSTRAINT fk_workshop_wine FOREIGN KEY (id_workshop) REFERENCES workshop(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
@@ -68,6 +68,8 @@ id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
 score INT,
 id_workshop INT NOT NULL,
 id_recipe INT NOT NULL,
+id_user INT NOT NULL,
+id_wine INT NOT NULL,
 color VARCHAR(50) NULL,
 clarity VARCHAR(50) NULL,
 density VARCHAR(50) NULL,
@@ -90,7 +92,9 @@ acidity VARCHAR(50) NULL,
 tanin VARCHAR(50) NULL,
 alcohol VARCHAR(50) NULL,
 CONSTRAINT fk_workshop_tasting FOREIGN KEY (id_workshop) REFERENCES workshop(id),
-CONSTRAINT fk_recipe_tasting FOREIGN KEY (id_recipe) REFERENCES recipe(id)
+CONSTRAINT fk_recipe_tasting FOREIGN KEY (id_recipe) REFERENCES recipe(id),
+CONSTRAINT fk_user_tasting FOREIGN KEY (id_user) REFERENCES user(id),
+CONSTRAINT fk_wine_tasting FOREIGN KEY (id_wine) REFERENCES wine(id)
 ) ENGINE=InnoDB CHARSET=utf8mb4;
 
 INSERT INTO `user` VALUES (1,'admin','admin','admin@admin.fr','$argon2id$v=19$m=65536,t=5,p=1$JvUeRISXzJlRxSj+LTG2qQ$k22+I+Q6kc95sORXJDXCzmf1L4ckAwYiso/hjX4VIyc','1985-01-01',1),

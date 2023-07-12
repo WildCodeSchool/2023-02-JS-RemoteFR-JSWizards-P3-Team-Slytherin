@@ -8,9 +8,9 @@ const data = [
   },
   {
     id: 2,
-    lastName: "Doe",
-    firstName: "John",
-    email: "john.d@google.com",
+    lastName: "Toto",
+    firstName: "Tata",
+    email: "toto.tata@google.com",
     admin: false,
   },
   {

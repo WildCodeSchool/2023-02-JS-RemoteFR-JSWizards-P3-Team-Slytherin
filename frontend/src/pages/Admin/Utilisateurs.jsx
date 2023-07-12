@@ -47,10 +47,14 @@ export default function Users() {
         Gérer les utilisateur
       </h1>
       <div className="flex flex-col items-center gap-6">
-        <table className="w-full min-w-[480px] bg-secondary rounded mb-8 shadow-md overflow-scroll">
+        <table className="w-full min-w-[580px] bg-secondary rounded mb-8 shadow-md overflow-scroll">
           <thead>
             <tr className="flex justify-center p-1">
-              <th className="flex-0">N°</th>
+              <th className="flex-0" onClick={() => sortTable("id")}>
+                Id{" "}
+                {sortConfig.key === "id" &&
+                  (sortConfig.direction === "ascending" ? "▼" : "▲")}
+              </th>
               <th className="flex-1" onClick={() => sortTable("lastName")}>
                 Nom{" "}
                 {sortConfig.key === "lastName" &&
