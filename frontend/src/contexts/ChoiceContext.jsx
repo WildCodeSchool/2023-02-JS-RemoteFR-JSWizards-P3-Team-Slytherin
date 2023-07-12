@@ -33,15 +33,6 @@ export function ChoiceProvider({ children }) {
   const [selectNezMineral, setSelectNezMineral] = useState(
     NEZ.mineralRouge.mineral1
   );
-  console.info(
-    setSelectNezIntensite,
-    setSelectNezFruit,
-    setSelectNezFleur,
-    setSelectNezVegetal,
-    setSelectNezEpice,
-    setSelectNezAmpyreumatique,
-    setSelectNezMineral
-  );
 
   const [selectBouchePersistance, setSelectBouchePersistance] = useState(
     BOUCHE.persistance.persistance1
@@ -76,19 +67,6 @@ export function ChoiceProvider({ children }) {
   const [selectBoucheMineral, setSelectBoucheMineral] = useState(
     BOUCHE.mineralRouge.mineral4
   );
-  console.info(
-    setSelectBouchePersistance,
-    setSelectBoucheMoelleux,
-    setSelectBoucheAcidite,
-    setSelectBoucheTanin,
-    setSelectBoucheAlcool,
-    setSelectBoucheFruit,
-    setSelectBoucheFleur,
-    setSelectBoucheVegetal,
-    setSelectBoucheEpice,
-    setSelectBoucheAmpyreumatique,
-    setSelectBoucheMineral
-  );
 
   const propsPassing = useMemo(
     () => ({
@@ -113,6 +91,24 @@ export function ChoiceProvider({ children }) {
       selectBoucheEpice,
       selectBoucheAmpyreumatique,
       selectBoucheMineral,
+      setSelectBouchePersistance,
+      setSelectBoucheMoelleux,
+      setSelectBoucheAcidite,
+      setSelectBoucheTanin,
+      setSelectBoucheAlcool,
+      setSelectBoucheFruit,
+      setSelectBoucheFleur,
+      setSelectBoucheVegetal,
+      setSelectBoucheEpice,
+      setSelectBoucheAmpyreumatique,
+      setSelectBoucheMineral,
+      setSelectNezIntensite,
+      setSelectNezFruit,
+      setSelectNezFleur,
+      setSelectNezVegetal,
+      setSelectNezEpice,
+      setSelectNezAmpyreumatique,
+      setSelectNezMineral,
     }),
     [
       selectVueCouleur,
@@ -136,6 +132,24 @@ export function ChoiceProvider({ children }) {
       selectBoucheEpice,
       selectBoucheAmpyreumatique,
       selectBoucheMineral,
+      setSelectBouchePersistance,
+      setSelectBoucheMoelleux,
+      setSelectBoucheAcidite,
+      setSelectBoucheTanin,
+      setSelectBoucheAlcool,
+      setSelectBoucheFruit,
+      setSelectBoucheFleur,
+      setSelectBoucheVegetal,
+      setSelectBoucheEpice,
+      setSelectBoucheAmpyreumatique,
+      setSelectBoucheMineral,
+      setSelectNezIntensite,
+      setSelectNezFruit,
+      setSelectNezFleur,
+      setSelectNezVegetal,
+      setSelectNezEpice,
+      setSelectNezAmpyreumatique,
+      setSelectNezMineral,
     ]
   );
 
