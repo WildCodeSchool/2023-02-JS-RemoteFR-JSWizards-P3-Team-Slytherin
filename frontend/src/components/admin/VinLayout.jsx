@@ -7,6 +7,8 @@ export default function VinLayout({
   hidden,
   setHidden,
   deleteWine,
+  setRefresh,
+  refresh,
 }) {
   const [wineInfo, setWineInfo] = useState({
     id: selectedRowData.id,
@@ -18,6 +20,8 @@ export default function VinLayout({
     wineType: selectedRowData.wineType,
     wineImage: selectedRowData.wineImage,
   });
+  const [uploadPicture, setUploadPicture] = useState("");
+  const [sendPicture, setSendPicture] = useState();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -32,9 +36,6 @@ export default function VinLayout({
     String(currentYear - index)
   );
 
-  const [uploadPicture, setUploadPicture] = useState("");
-  const [sendPicture, setSendPicture] = useState();
-
   const handleUpload = () => {
     const fileInput = document.createElement("input");
     fileInput.type = "file";
@@ -47,7 +48,6 @@ export default function VinLayout({
           ...prevState,
           wineImage: file.name,
         }));
-        // console.info(reader.result);
       };
       reader.readAsDataURL(file);
       setSendPicture(file);
@@ -55,12 +55,13 @@ export default function VinLayout({
     fileInput.click();
   };
 
-  // console.log(uploadPicture);
-  // console.log(wineInfo.wineImage);
-
   const handleParentClick = (e) => {
     if (e.target === e.currentTarget) {
       setHidden(!hidden);
+      setWineInfo((prevState) => ({
+        ...prevState,
+        wineImage: selectedRowData.wineImage,
+      }));
       setUploadPicture("");
     }
   };
@@ -87,14 +88,10 @@ export default function VinLayout({
     axios
       .put(`${import.meta.env.VITE_BACKEND_URL}/wines/${wineInfo.id}`, wineInfo)
       .catch((err) => console.error(err));
+    setUploadPicture("");
+    setRefresh(!refresh);
+    setHidden(!hidden);
   };
-  // console.log(wineInfo);
-  // const handleSubmit = () => {
-  //   axios
-  //     .put(`${import.meta.env.VITE_BACKEND_URL}/wines/${wineInfo.id}`, wineInfo)
-  //     .then((res) => console.log(res.data))
-  //     .catch((err) => console.error(err));
-  // };
 
   function handleKeyDown(e) {
     if (e.keyCode === 27) {
@@ -259,4 +256,6 @@ VinLayout.propTypes = {
   hidden: PropTypes.bool.isRequired,
   setHidden: PropTypes.func.isRequired,
   deleteWine: PropTypes.func.isRequired,
+  setRefresh: PropTypes.func.isRequired,
+  refresh: PropTypes.bool.isRequired,
 };

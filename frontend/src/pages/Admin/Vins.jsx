@@ -57,9 +57,12 @@ export default function Vins() {
   };
 
   useEffect(() => {
-    axios.get(`${import.meta.env.VITE_BACKEND_URL}/wines`).then((res) => {
-      setVinData(res.data);
-    });
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/wines`)
+      .then((res) => {
+        setVinData(res.data);
+      })
+      .catch((err) => console.error(err));
   }, [refresh]);
 
   return (
@@ -140,6 +143,8 @@ export default function Vins() {
         hidden={hidden}
         setHidden={setHidden}
         deleteWine={deleteWine}
+        refresh={refresh}
+        setRefresh={setRefresh}
       />
     </>
   );
