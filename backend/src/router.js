@@ -89,5 +89,6 @@ router.delete("/tasting/:id", tastingControllers.deleteTasting);
 // Gestion de la table intermédiaire : vin/atelier
 
 router.post("/wineWorkshop", wineWorkshopControllers.postWineWorkshop);
+router.get("/wineWorkshop", wineWorkshopControllers.getSelection);
 
 module.exports = router;
