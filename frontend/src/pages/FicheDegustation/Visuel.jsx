@@ -86,9 +86,6 @@ export default function Visuel() {
         await setSelectVueCouleur(couleur);
         await setSelectVueLimpidite(limpidite);
         await setSelectVueDensite(densite);
-        console.info(selectVueCouleur);
-        console.info(selectVueLimpidite);
-        console.info(selectVueDensite);
       } catch (error) {
         console.error("il y a eu une erreur de mise à jour des states...");
       }
