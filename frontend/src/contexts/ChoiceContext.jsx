@@ -16,7 +16,7 @@ export function ChoiceProvider({ children }) {
   const [selectVueDensite, setSelectVueDensite] = useState(
     VUE.densite.densite3
   );
-  console.info(setSelectVueCouleur, setSelectVueLimpidite, setSelectVueDensite);
+  console.info();
 
   const [selectNezIntensite, setSelectNezIntensite] = useState(
     NEZ.intensite.intensite1
@@ -109,6 +109,9 @@ export function ChoiceProvider({ children }) {
       setSelectNezEpice,
       setSelectNezAmpyreumatique,
       setSelectNezMineral,
+      setSelectVueCouleur,
+      setSelectVueLimpidite,
+      setSelectVueDensite,
     }),
     [
       selectVueCouleur,
@@ -150,6 +153,9 @@ export function ChoiceProvider({ children }) {
       setSelectNezEpice,
       setSelectNezAmpyreumatique,
       setSelectNezMineral,
+      setSelectVueCouleur,
+      setSelectVueLimpidite,
+      setSelectVueDensite,
     ]
   );
 
