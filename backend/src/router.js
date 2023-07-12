@@ -2,6 +2,12 @@ const express = require("express");
 
 const router = express.Router();
 
+const multer = require("multer");
+const fs = require("fs");
+
+const upload = multer({ dest: "./public/assets/wines" });
+const { v4: uuidv4 } = require("uuid");
+
 const userControllers = require("./controllers/userControllers");
 const { newUser, recognizeUser } = require("./middlewares/userMiddlewares");
 const {
@@ -69,6 +75,19 @@ router.get("/wines/:id", wineControllers.getOneWine);
 router.post("/wines", wineControllers.postWine);
 router.delete("/wines/:id", wineControllers.deleteWine);
 router.put("/wines/:id", wineControllers.putWine);
+router.post("/wines/upload", upload.single("wineimg"), (req, res) => {
+  const { originalname, path } = req.file;
+
+  fs.rename(
+    path,
+    `./public/assets/wines/${uuidv4()}-${originalname}`,
+    (err) => {
+      if (err) throw err;
+    }
+  );
+
+  res.json({ message: `file uploaded` });
+});
 
 // Gestion du lexique
 
