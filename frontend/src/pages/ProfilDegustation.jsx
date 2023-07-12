@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import data from "../components/Data/data-wine";
+import data from "@components/Data/data-utilisateur-admin";
 
 export default function ProfilDegustation() {
   return (

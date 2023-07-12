@@ -14,6 +14,17 @@ const postWineWorkshop = (req, res) => {
     });
 };
 
+const getSelection = (req, res) => {
+  wineWorkshopManager
+    .selection()
+    .then((wines) => res.json(wines[0]))
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
 module.exports = {
   postWineWorkshop,
+  getSelection,
 };

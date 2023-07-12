@@ -96,7 +96,7 @@ CONSTRAINT fk_recipe_tasting FOREIGN KEY (id_recipe) REFERENCES recipe(id)
 INSERT INTO `user` VALUES (1,'admin','admin','admin@admin.fr','$argon2id$v=19$m=65536,t=5,p=1$JvUeRISXzJlRxSj+LTG2qQ$k22+I+Q6kc95sORXJDXCzmf1L4ckAwYiso/hjX4VIyc','1985-01-01',1),
 (2,'user','user','user@user.fr','$argon2id$v=19$m=65536,t=5,p=1$Vs3jjpmaJkv5vmD5Tt3wvg$W7usz0nor1B1DZK+zXr1NPctYsF8LXJsWSloSCVXtaY','1994-02-02', 0);
 
-INSERT INTO `wine` VALUES (1, 'La Villageoise', 'Castel', 'rouge qui tache', 2024, 'A déguster avec vos pires amis pour oublier vos soirées', 'rouge', 'vin1.png'),
+INSERT INTO `wine` VALUES (1, 'La Villageoise', 'Castel', 'rouge qui tache', 2024, 'A déguster avec vos pires amis pour oublier vos soirées', 'rouge', 'assets/wines/vin1.png'),
 (2, 'Cheval noir', 'Saint Emilion', 'merlot', 2020, 'Ce Saint Émilion fin et élégant se distingue par des tanins soyeux, des notes de fruits rouges, d’épices et de cannelle, le tout enrobé de subtiles notes boisées.', 'rouge', 'vin2.png'),
 (3, 'Jurancon', 'Uroulat', 'petit manseng', 2018, 'Équilibré et plein finesse par son harmonie entre la douceur du fruit et la nervosité de son acidité, ce vin moelleux est un vrai petit bijou. Ses arômes de fruits frais (abricot, mangue, fruits exotiques) se prolongent dans une finale délicieuse et gourmande, jamais alourdie par une liqueur excessive.', 'blanc', 'vin3.png'),
 (4, 'La Clarté de Haut-Brion', 'Second vin du Château Haut-Brion', 'blanc', 2017, 'Aux yeux de l amateur, le Château Haut-Brion s affirme comme le seigneur des Graves, seule propriété du secteur à avoir obtenu son classement aux côtés des prestigieux 1ers Crus du Médoc en 1855.', 'blanc', 'vin4.png'),
