@@ -26,15 +26,35 @@ export default function VinLayout({ selectedRowData, hidden, setHidden }) {
     String(currentYear - index)
   );
 
-  const handleImage = () => {
+  const [uploadPicture, setUploadPicture] = useState("");
+
+  const handleUpload = () => {
     const fileInput = document.createElement("input");
     fileInput.type = "file";
+    fileInput.onchange = (event) => {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setUploadPicture(reader.result);
+        setWineInfo((prevState) => ({
+          ...prevState,
+          wineImage: file.name,
+        }));
+        console.info(reader);
+      };
+      reader.readAsDataURL(file);
+      console.info(file);
+    };
     fileInput.click();
   };
+
+  // console.log(uploadPicture);
+  // console.log(wineInfo.wineImage);
 
   const handleParentClick = (e) => {
     if (e.target === e.currentTarget) {
       setHidden(!hidden);
+      setUploadPicture("");
     }
   };
 
@@ -51,8 +71,6 @@ export default function VinLayout({ selectedRowData, hidden, setHidden }) {
     });
   }, [selectedRowData]);
 
-  console.info(wineInfo.wineImage);
-
   return (
     <div className={`${!hidden ? "hidden" : ""}`}>
       <button
@@ -62,22 +80,26 @@ export default function VinLayout({ selectedRowData, hidden, setHidden }) {
       >
         <div className="rounded bg-secondary h-[80%] w-[80%] p-5 flex flex-col items-center cursor-default overflow-scroll">
           <section className="flex w-full gap-4">
-            <button
-              type="button"
-              onClick={handleImage}
-              className="image-container"
-            >
-              <img
-                src={`${import.meta.env.VITE_BACKEND_URL}/assets/wines/${
-                  wineInfo.wineImage
-                }`}
+            <div className="image-container">
+              <input
+                type="image"
+                src={
+                  uploadPicture.length > 1
+                    ? uploadPicture
+                    : `${import.meta.env.VITE_BACKEND_URL}/assets/wines/${
+                        wineInfo.wineImage
+                      }`
+                }
                 alt="Vin"
                 className="image-button"
+                onClick={handleUpload}
               />
-            </button>
-            <div className="flex flex-col gap-6 justify-center w-full">
+            </div>
+            <div className="flex flex-col gap-3 justify-center w-full">
               <div className="w-full flex items-center">
-                <label htmlFor="wineName">Nom: </label>
+                <label htmlFor="wineName" className="whitespace-nowrap">
+                  Nom :{" "}
+                </label>
                 <input
                   type="text"
                   name="wineName"
@@ -87,8 +109,41 @@ export default function VinLayout({ selectedRowData, hidden, setHidden }) {
                   className="font-bold bg-[#f8f8f8] rounded p-2 w-full"
                 />
               </div>
-              <div>
-                <label htmlFor="wineYear">Année : </label>
+
+              <div className="flex items-center">
+                <label htmlFor="castle" className="whitespace-nowrap">
+                  Domaine :{" "}
+                </label>
+                <input
+                  type="text"
+                  name="castle"
+                  id="castle"
+                  value={wineInfo.castle}
+                  onChange={handleChange}
+                  className="font-bold bg-[#f8f8f8] rounded p-2 w-full"
+                />
+              </div>
+              <div className="min-w-fit w-2/4 text-center">
+                <label htmlFor="grapeVariety" className="w-fit">
+                  Cépage :{" "}
+                </label>
+                <input
+                  type="text"
+                  name="grapeVariety"
+                  id="grapeVariety"
+                  value={wineInfo.grapeVariety}
+                  onChange={handleChange}
+                  className="font-bold bg-[#f8f8f8] rounded p-2"
+                />
+              </div>
+            </div>
+          </section>
+          <section className="mt-6 w-full flex flex-col items-center">
+            <div className="flex w-[80%]">
+              <div className="w-full flex items-center">
+                <label htmlFor="wineYear" className="whitespace-nowrap">
+                  Année :{" "}
+                </label>
                 <select
                   name="wineYear"
                   id="wineYear"
@@ -102,34 +157,6 @@ export default function VinLayout({ selectedRowData, hidden, setHidden }) {
                     </option>
                   ))}
                 </select>
-              </div>
-              <div className="flex items-center">
-                <label htmlFor="castle">Domaine: </label>
-                <input
-                  type="text"
-                  name="castle"
-                  id="castle"
-                  value={wineInfo.castle}
-                  onChange={handleChange}
-                  className="font-bold bg-[#f8f8f8] rounded p-2 w-full"
-                />
-              </div>
-            </div>
-          </section>
-          <section className="mt-6 w-full flex flex-col items-center">
-            <div className="flex w-[80%]">
-              <div className="min-w-fit w-2/4 text-center">
-                <label htmlFor="grapeVariety" className="w-fit">
-                  Cépage :{" "}
-                </label>
-                <input
-                  type="text"
-                  name="grapeVariety"
-                  id="grapeVariety"
-                  value={wineInfo.grapeVariety}
-                  onChange={handleChange}
-                  className="font-bold bg-[#f8f8f8] rounded p-2"
-                />
               </div>
               <div className="w-2/4 text-center">
                 <label htmlFor="wineType">Type : </label>
@@ -152,8 +179,10 @@ export default function VinLayout({ selectedRowData, hidden, setHidden }) {
                 </select>
               </div>
             </div>
-            <div className="my-4 w-[70%]">
-              <label htmlFor="wineDescription">Description : </label>
+            <div className="my-4 w-[70%] flex flex-col items-start">
+              <label htmlFor="wineDescription" className="ml-4">
+                Description :{" "}
+              </label>
               <textarea
                 name="wineDescription"
                 id="wineDescription"
@@ -163,14 +192,19 @@ export default function VinLayout({ selectedRowData, hidden, setHidden }) {
               />
             </div>
           </section>
-          <button
-            type="submit"
-            onClick={() => {
-              console.info(wineInfo);
-            }}
-          >
-            Valider
-          </button>
+          <section className="flex w-[80%] justify-evenly gap-6">
+            <button type="submit" className="delete-button">
+              Supprimer Vin
+            </button>
+            <button
+              type="submit"
+              onClick={() => {
+                console.info(wineInfo);
+              }}
+            >
+              Valider
+            </button>
+          </section>
         </div>
       </button>
     </div>
