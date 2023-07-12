@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import VinEnCours from "@components/VinEnCours";
+import { useChoice } from "@contexts/ChoiceContext";
 
 export default function Visuel() {
   const [couleur, setCouleur] = useState("-");
@@ -10,6 +11,15 @@ export default function Visuel() {
     limpidite: "-",
     densite: "-",
   });
+
+  const {
+    selectVueCouleur,
+    selectVueLimpidite,
+    selectVueDensite,
+    setSelectVueCouleur,
+    setSelectVueLimpidite,
+    setSelectVueDensite,
+  } = useChoice();
 
   const handleColorClick = () => {
     const couleurClass = document.getElementById("couleur");
@@ -70,8 +80,28 @@ export default function Visuel() {
   };
 
   useEffect(() => {
-    setVisuelVin({ couleur, limpidite, densite });
-  }, [densite, limpidite, couleur]);
+    const SettingVisuel = async () => {
+      try {
+        await setVisuelVin({ couleur, limpidite, densite });
+        await setSelectVueCouleur(couleur);
+        await setSelectVueLimpidite(limpidite);
+        await setSelectVueDensite(densite);
+        console.info(selectVueCouleur);
+        console.info(selectVueLimpidite);
+        console.info(selectVueDensite);
+      } catch (error) {
+        console.error("il y a eu une erreur de mise à jour des states...");
+      }
+    };
+    SettingVisuel();
+  }, [
+    densite,
+    limpidite,
+    couleur,
+    selectVueCouleur,
+    selectVueLimpidite,
+    selectVueDensite,
+  ]);
 
   return (
     <>
