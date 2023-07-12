@@ -1,0 +1,150 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import { useWorkshop } from "../../contexts/WorkshopContext";
+
+export default function Vins() {
+  const { workshopData, setWorkshopData, setSelectedRowData } = useWorkshop();
+  const [sortConfig, setSortConfig] = useState({
+    key: "workshopDate",
+    direction: "ascending",
+  });
+
+  const sortTable = (key) => {
+    let direction = "ascending";
+    if (sortConfig.key === key && sortConfig.direction === "ascending") {
+      direction = "descending";
+    }
+    const sortedData = [...workshopData].sort((a, b) => {
+      const valueA = a[key];
+      const valueB = b[key];
+
+      if (valueA === null || valueA === undefined) return -1;
+      if (valueB === null || valueB === undefined) return 1;
+
+      if (valueA < valueB) {
+        return direction === "ascending" ? -1 : 1;
+      }
+      if (valueA > valueB) {
+        return direction === "ascending" ? 1 : -1;
+      }
+      return 0;
+    });
+    setWorkshopData(sortedData);
+    setSortConfig({ key, direction });
+  };
+
+  const handleRowClick = (rowData) => {
+    setSelectedRowData({
+      id: rowData.id,
+      active: rowData.active,
+      workshopDate: rowData.workshopDate,
+      personNb: rowData.personNb,
+    });
+  };
+
+  const deleteWorkshop = async (rowData) => {
+    await axios.delete(
+      `${import.meta.env.VITE_BACKEND_URL}/workshops/${rowData}`
+    );
+    await axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/workshops`)
+      .then((res) => {
+        setWorkshopData(res.data);
+      });
+  };
+
+  useEffect(() => {
+    axios.get(`${import.meta.env.VITE_BACKEND_URL}/workshops`).then((res) => {
+      setWorkshopData(res.data);
+    });
+  }, []);
+
+  return (
+    <>
+      <h1 className="mt-16 mb-6 text-2xl font-bold">Gérer les ateliers</h1>
+      <div className="flex flex-col gap-6">
+        <Link to="/admin/ateliers/atelier" className="flex justify-center">
+          <button type="button" className="self-center">
+            Ajouter un atelier
+          </button>
+        </Link>
+        <table className="w-full min-w-[480px] bg-secondary rounded mb-8 shadow-md overflow-scroll">
+          <thead>
+            <tr className="flex justify-center p-3 px-10">
+              <th
+                className="flex-1 min-w-[280px]"
+                onClick={() => sortTable("workshopDate")}
+              >
+                Date{" "}
+                {sortConfig.key === "workshopDate" &&
+                  (sortConfig.direction === "ascending" ? "▼" : "▲")}
+              </th>
+              <th
+                className="flex-1 min-w-[300px] max-[1100px]:hidden"
+                onClick={() => sortTable("personNb")}
+              >
+                Nb personnes{" "}
+                {sortConfig.key === "personNb" &&
+                  (sortConfig.direction === "ascending" ? "▼" : "▲")}
+              </th>
+              <th className="flex-1" onClick={() => sortTable("active")}>
+                Statut{" "}
+                {sortConfig.key === "active" &&
+                  (sortConfig.direction === "ascending" ? "▼" : "▲")}
+              </th>
+              <th className="flex-0">Modifier</th>
+            </tr>
+          </thead>
+          <tbody>
+            {workshopData.map((e) => (
+              <tr
+                className="h-14 flex justify-center p-3 px-10 shadow-inner"
+                key={e.id}
+              >
+                <td className="flex-1 min-w-[280px]">
+                  {e.workshopDate.split("-").reverse().join("-")}
+                </td>
+                <td className="flex-1 min-w-[300px] max-[1100px]:hidden">
+                  {e.personNb}
+                </td>
+                <td className="flex-1 font-bold text-[green]">
+                  {e.active ? <p>actif</p> : <p>-</p>}
+                </td>
+                <td className="flex-0 w-[35px] flew-row">
+                  <Link to="/admin/ateliers/atelier">
+                    <button
+                      type="button"
+                      className="editbtn"
+                      onClick={() => handleRowClick(e)}
+                    >
+                      <img
+                        src="/assets/editpen/editpen.png"
+                        alt="modify"
+                        className="h-5 cursor-pointer"
+                      />
+                    </button>
+                  </Link>
+                </td>
+                <td className="flex-0 w-[35px] flew-row">
+                  {" "}
+                  <button
+                    className="btn-list"
+                    type="button"
+                    onClick={() => deleteWorkshop(e.id)}
+                  >
+                    <img
+                      className="w-4"
+                      src="/assets/delete/delete.png"
+                      alt={`supprimer l'atelier du' ${e.workshopDate}`}
+                    />
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </>
+  );
+}

@@ -19,6 +19,7 @@ import HomeAdmin from "@pages/Admin/HomeAdmin";
 import LexiqueAdmin from "@pages/Admin/LexiqueAdmin";
 import Vins from "@pages/Admin/Vins";
 import Utilisateurs from "@pages/Admin/Utilisateurs";
+import Ateliers from "@pages/Admin/Ateliers";
 import Atelier from "@pages/Admin/Atelier";
 import ProfilModif from "@pages/ProfilModif";
 import HistoriqueFiches from "@pages/HistoriqueFiches";
@@ -37,7 +38,8 @@ function App() {
         <Route path="/admin/lexique" element={<LexiqueAdmin />} />
         <Route path="/admin/vins" element={<Vins />} />
         <Route path="/admin/utilisateurs" element={<Utilisateurs />} />
-        <Route path="/admin/atelier" element={<Atelier />} />
+        <Route path="/admin/ateliers" element={<Ateliers />} />
+        <Route path="/admin/ateliers/atelier" element={<Atelier />} />
         <Route path="*" element={<Page404 />} />
       </Routes>
     </LayoutAdmin>
