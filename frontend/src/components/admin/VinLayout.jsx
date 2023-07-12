@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
 import PropTypes from "prop-types";
 
 export default function VinLayout({
@@ -32,6 +33,7 @@ export default function VinLayout({
   );
 
   const [uploadPicture, setUploadPicture] = useState("");
+  const [sendPicture, setSendPicture] = useState();
 
   const handleUpload = () => {
     const fileInput = document.createElement("input");
@@ -45,10 +47,10 @@ export default function VinLayout({
           ...prevState,
           wineImage: file.name,
         }));
-        console.info(reader.result);
+        // console.info(reader.result);
       };
       reader.readAsDataURL(file);
-      console.info(file);
+      setSendPicture(file);
     };
     fileInput.click();
   };
@@ -75,6 +77,24 @@ export default function VinLayout({
       wineImage: selectedRowData.wineImage,
     });
   }, [selectedRowData]);
+
+  const handleSubmit = () => {
+    const fd = new FormData();
+    fd.append("wineimg", sendPicture);
+    axios
+      .post(`${import.meta.env.VITE_BACKEND_URL}/wines/upload`, fd)
+      .catch((err) => console.error(err));
+    axios
+      .put(`${import.meta.env.VITE_BACKEND_URL}/wines/${wineInfo.id}`, wineInfo)
+      .catch((err) => console.error(err));
+  };
+  // console.log(wineInfo);
+  // const handleSubmit = () => {
+  //   axios
+  //     .put(`${import.meta.env.VITE_BACKEND_URL}/wines/${wineInfo.id}`, wineInfo)
+  //     .then((res) => console.log(res.data))
+  //     .catch((err) => console.error(err));
+  // };
 
   function handleKeyDown(e) {
     if (e.keyCode === 27) {
@@ -215,12 +235,7 @@ export default function VinLayout({
             >
               Supprimer Vin
             </button>
-            <button
-              type="submit"
-              onClick={() => {
-                console.info(wineInfo);
-              }}
-            >
+            <button type="submit" onClick={handleSubmit}>
               Valider
             </button>
           </section>
