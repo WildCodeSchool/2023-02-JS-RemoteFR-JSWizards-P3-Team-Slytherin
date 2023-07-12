@@ -212,7 +212,7 @@ export default function Atelier() {
                 >
                   <img
                     className="w-[1rem] h-[1rem] opacity-[50%]"
-                    src="../../../public/assets/add/add.png"
+                    src="/assets/add/add.png"
                     alt="Ajouter à la sélection"
                   />
                 </button>
@@ -281,7 +281,7 @@ export default function Atelier() {
                   >
                     <img
                       className="w-4"
-                      src="../../../assets/delete/delete.png"
+                      src="/assets/delete/delete.png"
                       alt={`supprimer la selection ${wine.wineName}`}
                     />
                   </button>
