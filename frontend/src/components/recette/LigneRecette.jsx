@@ -33,10 +33,10 @@ function LigneRecette({
     const nextWineSelectionNonSelected0 = wineSelectionOrderByNote.filter(
       (wine) => {
         if (
-          wine.name !== selectedWines[1].name &&
-          wine.name !== selectedWines[2].name
+          wine.wineName !== selectedWines[1].wineName &&
+          wine.wineName !== selectedWines[2].wineName
         ) {
-          return wine.name;
+          return wine.wineName;
         }
         return false;
       }
@@ -44,10 +44,10 @@ function LigneRecette({
     const nextWineSelectionNonSelected1 = wineSelectionOrderByNote.filter(
       (wine) => {
         if (
-          wine.name !== selectedWines[0].name &&
-          wine.name !== selectedWines[2].name
+          wine.wineName !== selectedWines[0].wineName &&
+          wine.wineName !== selectedWines[2].wineName
         ) {
-          return wine.name;
+          return wine.wineName;
         }
         return false;
       }
@@ -55,10 +55,10 @@ function LigneRecette({
     const nextWineSelectionNonSelected2 = wineSelectionOrderByNote.filter(
       (wine) => {
         if (
-          wine.name !== selectedWines[0].name &&
-          wine.name !== selectedWines[1].name
+          wine.wineName !== selectedWines[0].wineName &&
+          wine.wineName !== selectedWines[1].wineName
         ) {
-          return wine.name;
+          return wine.wineName;
         }
         return false;
       }
@@ -138,7 +138,7 @@ LigneRecette.propTypes = {
   dosage75cl: PropTypes.arrayOf(PropTypes.number).isRequired,
   setDosage75cl: PropTypes.func.isRequired,
   defaultObject: PropTypes.shape({
-    name: PropTypes.string,
-    note: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+    wineName: PropTypes.string,
+    score: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
   }).isRequired,
 };

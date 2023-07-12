@@ -39,6 +39,18 @@ CREATE TABLE recipe (
   REFERENCES user(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
+CREATE TABLE recipe_wine (
+  id_wine INT NOT NULL,
+  id_recipe INT NOT NULL,
+  dosage INT NOT NULL,
+  CONSTRAINT fk_wine_recipe
+  FOREIGN KEY (id_wine)
+  REFERENCES wine(id),
+  CONSTRAINT fk_recipe_wine
+  FOREIGN KEY (id_recipe)
+  REFERENCES recipe(id)
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
+
 CREATE TABLE wine(
 id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
 wineName VARCHAR(100) NOT NULL,
@@ -67,7 +79,6 @@ CREATE TABLE tasting(
 id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
 score INT,
 id_workshop INT NOT NULL,
-id_recipe INT NOT NULL,
 id_user INT NOT NULL,
 id_wine INT NOT NULL,
 color VARCHAR(50) NULL,
@@ -108,6 +119,28 @@ INSERT INTO `wine` VALUES (1, 'La Villageoise', 'Castel', 'rouge qui tache', 202
 (6, 'La Villageoise', 'Castel', 'rouge qui tache', 2024, 'A déguster avec vos pires amis pour oublier vos soirées', 'rouge', 'vin6.png'),
 (7, 'Coteaux du Layon', 'Layon', 'chenin B', 2018, 'Le coteaux-du-Layon est un vin blanc moelleux d appellation d origine contrôlée produit sur les coteaux bordant le Layon.', 'rouge', 'vin7.png');
 
-INSERT INTO `workshop` VALUES (1, 1, '2023-09-06', 7), 
+INSERT INTO `workshop` VALUES (1, 0, '2023-09-06', 7), 
 (2, 0, '2023-06-05', 10),
-(3, 0, '2023-07-02', 5);
+(3, 1, '2023-07-02', 5);
+
+INSERT INTO `tasting` VALUES (1, 9, 3, 2, 7, "couleur", "clarité", "densité", "intensité", "Fruit Nez", "noseFlowers", "nosePlants",
+"noseSpices", "noseAmpyreumatique", "noseMineral", "mouthFruits", "mouthFlowers", "mouthPlants", "mouthSpices", "mouthAmpyreumatique",
+"mouthMineral", "persistance", "smooth", "acidity", "tanin", "alcohol"),
+(2, 3, 3, 2, 6, "couleur", "clarité", "densité", "intensité", "Fruit Nez", "noseFlowers", "nosePlants",
+"noseSpices", "noseAmpyreumatique", "noseMineral", "mouthFruits", "mouthFlowers", "mouthPlants", "mouthSpices", "mouthAmpyreumatique",
+"mouthMineral", "persistance", "smooth", "acidity", "tanin", "alcohol"),
+(3, 5, 3, 2, 5, "couleur", "clarité", "densité", "intensité", "Fruit Nez", "noseFlowers", "nosePlants",
+"noseSpices", "noseAmpyreumatique", "noseMineral", "mouthFruits", "mouthFlowers", "mouthPlants", "mouthSpices", "mouthAmpyreumatique",
+"mouthMineral", "persistance", "smooth", "acidity", "tanin", "alcohol"),
+(4, 6, 3, 2, 4, "couleur", "clarité", "densité", "intensité", "Fruit Nez", "noseFlowers", "nosePlants",
+"noseSpices", "noseAmpyreumatique", "noseMineral", "mouthFruits", "mouthFlowers", "mouthPlants", "mouthSpices", "mouthAmpyreumatique",
+"mouthMineral", "persistance", "smooth", "acidity", "tanin", "alcohol"),
+(5, 4, 3, 2, 3, "couleur", "clarité", "densité", "intensité", "Fruit Nez", "noseFlowers", "nosePlants",
+"noseSpices", "noseAmpyreumatique", "noseMineral", "mouthFruits", "mouthFlowers", "mouthPlants", "mouthSpices", "mouthAmpyreumatique",
+"mouthMineral", "persistance", "smooth", "acidity", "tanin", "alcohol");
+
+INSERT INTO `wine_workshop` VALUES (3,7),
+(3,6),
+(3,5),
+(3,4),
+(3,3);

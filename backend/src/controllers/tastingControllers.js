@@ -12,14 +12,14 @@ const getTasting = (req, res) => {
     });
 };
 
-const getOneTasting = (req, res) => {
+const getUserTasting = (req, res) => {
   tastingManager
-    .findOneTasting(req.params.id)
+    .findUserTasting(req.params.id)
     .then(([rows]) => {
       if (rows[0] == null) {
         res.sendStatus(404);
       } else {
-        res.send(rows[0]);
+        res.send(rows);
       }
     })
     .catch((err) => {
@@ -82,5 +82,5 @@ module.exports = {
   postTasting,
   deleteTasting,
   putTasting,
-  getOneTasting,
+  getUserTasting,
 };
