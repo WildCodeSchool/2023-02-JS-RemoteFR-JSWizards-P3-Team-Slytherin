@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useUser } from "../contexts/UserContext";
 
 function Header() {
   const location = useLocation();
   const [active, setActive] = useState("");
+  const { handleClickLogOut, loggedInUser } = useUser();
+
   const handleClick = () => {
     setActive(active === "" ? "active" : "");
   };
@@ -60,6 +63,27 @@ function Header() {
           >
             Profil
           </Link>
+          <Link
+            to="/admin"
+            className={`text-secondary text-center adBtn ${
+              loggedInUser.adminStatus ? "visible" : "hidden"
+            } ${!isActive("/admin") ? "hover:underline" : ""} ${
+              isActive("/admin") ? "active-nav" : ""
+            }`}
+          >
+            Admin
+          </Link>
+          <button
+            type="button"
+            onClick={handleClickLogOut}
+            className="w-[54px] text-center boutonDecoOff"
+          >
+            <img
+              src="/assets/logout/power-off.png"
+              alt="Bouton de déconnexion"
+              className="w-[30px] boutonDeco"
+            />
+          </button>
         </nav>
       </header>
       <nav
@@ -92,6 +116,28 @@ function Header() {
         >
           Profil
         </Link>
+        <Link
+          to="/admin"
+          onClick={handleClickLink}
+          className={`text-secondary text-center adBtn ${
+            loggedInUser.adminStatus ? "visible" : "hidden"
+          } ${!isActive("/admin") ? "hover:underline" : ""} ${
+            isActive("/admin") ? "active-nav" : ""
+          }`}
+        >
+          Admin
+        </Link>
+        <button
+          type="button"
+          onClick={handleClickLogOut}
+          className="w-[54px] text-center boutonDecoOff"
+        >
+          <img
+            src="/assets/logout/power-off.png"
+            alt="Bouton de déconnexion"
+            className="w-[35px] boutonDeco"
+          />
+        </button>
       </nav>
     </>
   );

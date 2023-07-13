@@ -19,7 +19,24 @@ const getOneTasting = (req, res) => {
       if (rows[0] == null) {
         res.sendStatus(404);
       } else {
-        res.send(rows[0]);
+        res.send(rows);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
+const getUserTastingFromWorkshop = (req, res) => {
+  const { iduser, idworkshop } = req.params;
+  tastingManager
+    .findUserTasting(iduser, idworkshop)
+    .then(([rows]) => {
+      if (rows[0] == null) {
+        res.sendStatus(404);
+      } else {
+        res.send(rows);
       }
     })
     .catch((err) => {
@@ -82,5 +99,6 @@ module.exports = {
   postTasting,
   deleteTasting,
   putTasting,
+  getUserTastingFromWorkshop,
   getOneTasting,
 };

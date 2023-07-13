@@ -15,6 +15,11 @@ const wineControllers = require("./controllers/wineControllers");
 const glossaryControllers = require("./controllers/glossaryControllers");
 const tastingControllers = require("./controllers/tastingControllers");
 const wineWorkshopControllers = require("./controllers/wineWorkshopControllers");
+const recipeWineControllers = require("./controllers/recipeWineControllers");
+const {
+  foreignKeyOFF,
+  foreignKeyON,
+} = require("./middlewares/ForeignKeyMiddleware");
 
 // Gestion login/logout des utilisateurs (admin et user)
 
@@ -34,16 +39,27 @@ router.delete("/users/:id", userControllers.deleteOneUser);
 router.post("/workshops/creation", workshopControllers.postWorkshop);
 router.get("/workshops", workshopControllers.getAllWorkshop);
 router.get("/workshops/:id", workshopControllers.getOneWorkshop);
+router.put("/workshops/inactive", workshopControllers.putAllWorkshopInactive);
 router.put("/workshops/:id", workshopControllers.putOneWorkshop);
-router.delete("/workshops/:id", workshopControllers.deleteOneWorkshop);
+router.delete(
+  "/workshops/:id",
+  foreignKeyOFF,
+  workshopControllers.deleteOneWorkshop,
+  foreignKeyON
+);
 
 // Gestion recette par vin
 
-router.post("/recipes/creation", recipeControllers.postRecipe);
+router.post("/recipes/creation/:iduser", recipeControllers.postRecipe);
 router.get("/recipes", recipeControllers.getAllRecipe);
 router.get("/recipes/:id", recipeControllers.getOneRecipe);
+router.get("/recipes/all/:iduser", recipeControllers.getAllRecipesFromUser);
 router.put("/recipes/:id", recipeControllers.putOneRecipe);
 router.delete("/recipes/:id", recipeControllers.deleteOneRecipe);
+
+// Gestion de la table intermédiaire recette/vin
+
+router.post("/recipeWine/creation", recipeWineControllers.postRecipeWine);
 
 // Gestion des avis/commentaires
 
@@ -82,6 +98,10 @@ router.delete("/glossary/:id", glossaryControllers.deleteGlossary);
 
 router.get("/tasting", tastingControllers.getTasting);
 router.get("/tasting/:id", tastingControllers.getOneTasting);
+router.get(
+  "/tasting/:iduser/:idworkshop",
+  tastingControllers.getUserTastingFromWorkshop
+);
 router.post("/tasting", tastingControllers.postTasting);
 router.put("/tasting/:id", tastingControllers.putTasting);
 router.delete("/tasting/:id", tastingControllers.deleteTasting);
@@ -89,5 +109,6 @@ router.delete("/tasting/:id", tastingControllers.deleteTasting);
 // Gestion de la table intermédiaire : vin/atelier
 
 router.post("/wineWorkshop", wineWorkshopControllers.postWineWorkshop);
+router.get("/wineWorkshop", wineWorkshopControllers.getSelection);
 
 module.exports = router;

@@ -62,14 +62,28 @@ const putOneWorkshop = (req, res) => {
     });
 };
 
-const deleteOneWorkshop = async (req, res) => {
+const putAllWorkshopInactive = (req, res) => {
+  workshopManager
+    .updateAllWorkshopInactive()
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.sendStatus(404);
+      } else {
+        res.sendStatus(204);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Oups, le serveur est en panne");
+    });
+};
+
+const deleteOneWorkshop = async (req, res, next) => {
   const { id } = req.params;
   try {
     const erase = await workshopManager.deleteWorkshop(id);
     if (erase[0].affectedRows === 1) {
-      res.status(200).json({
-        message: "L'atelier a bien été supprimé",
-      });
+      next();
     } else {
       res.status(404).json({
         message: `Désolé, il y a eu un problème lors de la suppression de l'atelier`,
@@ -86,4 +100,5 @@ module.exports = {
   getOneWorkshop,
   putOneWorkshop,
   deleteOneWorkshop,
+  putAllWorkshopInactive,
 };

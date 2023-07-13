@@ -29,6 +29,13 @@ const createWineWorkshop = (selection) => {
   ]);
 };
 
+const selection = () => {
+  return db.query(
+    `SELECT * FROM wine as w INNER JOIN wine_workshop AS ww ON w.id = ww.id_wine INNER JOIN workshop AS ws ON ww.id_workshop = ws.id WHERE ws.active = 1;`
+  );
+};
+
 module.exports = {
   createWineWorkshop,
+  selection,
 };
