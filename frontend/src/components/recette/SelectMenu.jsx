@@ -15,11 +15,11 @@ function SelectMenu({
   function handleChange(e) {
     const nextSelectedWines = selectedWines.map((selected, i) => {
       if (Number(e.target.id) === i) {
-        if (e.target.value === defaultObject.name) {
+        if (e.target.value === defaultObject.wineName) {
           return { defaultObject };
         }
         const [wineObject] = wineSelectionOrderByNote.filter(
-          (wine) => e.target.value === wine.name
+          (wine) => e.target.value === wine.wineName
         );
         return wineObject;
       }
@@ -27,6 +27,7 @@ function SelectMenu({
     });
     setSelectedWines(nextSelectedWines);
   }
+
   return (
     <div className="flex flex-row justify-between max-md:items-start md:items-center max-md:w-full md:w-1/2">
       <select onChange={handleChange} className="recetteSelect" id={`${index}`}>
@@ -36,34 +37,46 @@ function SelectMenu({
 
         {index === 0 &&
           wineSelectionNonSelected0.map((e) => (
-            <option key={e.id} className="recetteOption" value={e.name}>
-              {e.name === selectedWines[0].name
-                ? e.name
-                : `${e.name} - ${e.note}/10`}
+            <option
+              key={e.id_wine}
+              className="recetteOption"
+              value={e.wineName}
+            >
+              {e.wineName === selectedWines[0].wineName
+                ? e.wineName
+                : `${e.wineName} - ${e.score}/10`}
             </option>
           ))}
         {index === 1 &&
           wineSelectionNonSelected1.map((e) => (
-            <option key={e.id} className="recetteOption" value={e.name}>
-              {e.name === selectedWines[1].name
-                ? e.name
-                : `${e.name} - ${e.note}/10`}
+            <option
+              key={e.id_wine}
+              className="recetteOption"
+              value={e.wineName}
+            >
+              {e.wineName === selectedWines[1].wineName
+                ? e.wineName
+                : `${e.wineName} - ${e.score}/10`}
             </option>
           ))}
         {index === 2 &&
           wineSelectionNonSelected2.map((e) => (
-            <option key={e.id} className="recetteOption" value={e.name}>
-              {e.name === selectedWines[2].name
-                ? e.name
-                : `${e.name} - ${e.note}/10`}
+            <option
+              key={e.id_wine}
+              className="recetteOption"
+              value={e.wineName}
+            >
+              {e.wineName === selectedWines[2].wineName
+                ? e.wineName
+                : `${e.wineName} - ${e.score}/10`}
             </option>
           ))}
       </select>
       <p className="text-2xl max-md:hidden font-bold text-tertiary">
-        {selectedWines[index].note && `${selectedWines[index].note}/10`}
+        {selectedWines[index].score && `${selectedWines[index].score}/10`}
       </p>
       <p className="text-2xl ml-4 md:hidden font-bold text-tertiary">
-        {selectedWines[index].note && `${selectedWines[index].note}`}/10
+        {selectedWines[index].score && `${selectedWines[index].score}`}/10
       </p>
     </div>
   );
@@ -80,7 +93,7 @@ SelectMenu.propTypes = {
   setSelectedWines: PropTypes.func.isRequired,
   wineSelectionOrderByNote: PropTypes.arrayOf(PropTypes.shape).isRequired,
   defaultObject: PropTypes.shape({
-    name: PropTypes.string,
-    note: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+    wineName: PropTypes.string,
+    score: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
   }).isRequired,
 };
