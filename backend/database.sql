@@ -50,8 +50,8 @@ wineImage VARCHAR(150)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 CREATE TABLE recipe_wine (
-  id_wine INT NOT NULL,
   id_recipe INT NOT NULL,
+  id_wine INT NULL,
   dosage INT NOT NULL,
   CONSTRAINT fk_wine_recipe
   FOREIGN KEY (id_wine)

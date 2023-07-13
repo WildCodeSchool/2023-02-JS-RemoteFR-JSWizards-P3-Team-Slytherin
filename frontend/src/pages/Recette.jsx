@@ -46,7 +46,7 @@ function Recette() {
   useEffect(() => {
     axios
       .all([
-        axios.get(`${import.meta.env.VITE_BACKEND_URL}/tasting/2`),
+        axios.get(`${import.meta.env.VITE_BACKEND_URL}/tasting/2/3`),
         axios.get(`${import.meta.env.VITE_BACKEND_URL}/wineWorkshop`),
       ])
       .then(
@@ -70,7 +70,7 @@ function Recette() {
     });
     const newWineSelectionOrderByNote = nextDataSelection.sort(order);
     setWineSelectionOrderByNote(newWineSelectionOrderByNote);
-  }, [dataSelection]);
+  }, [dataUserTasting]);
 
   useEffect(() => {
     setDefaultSelection([
@@ -134,16 +134,44 @@ function Recette() {
     }
   }, [selectedWines, dosageTotal]);
 
-  // const handleClickValider = async () => {
-  //   await axios.post(
-  //     `${import.meta.env.VITE_BACKEND_URL}/recipes/creation`,
-  //     recette
-  //   );
-  // };
+  const handleClickValider = async () => {
+    // changer le 2 pour le state id_user
+    await axios.post(`${import.meta.env.VITE_BACKEND_URL}/recipes/creation/2`);
+    const recipesList = await axios.get(
+      `${import.meta.env.VITE_BACKEND_URL}/recipes/all/2`
+    );
+    const { data } = recipesList;
+    const recipeId = data[data.length - 1].id;
+    const recipeWine = {
+      idrecipe1: recipeId,
+      idwine1: null,
+      dosage1: dosage[0],
+      idrecipe2: recipeId,
+      idwine2: null,
+      dosage2: dosage[1],
+      idrecipe3: recipeId,
+      idwine3: null,
+      dosage3: dosage[2],
+    };
+    if (dosage[0] >= 0) {
+      recipeWine.idwine1 = selectedWines[0].id_wine;
+    }
+    if (dosage[1] >= 0) {
+      recipeWine.idwine2 = selectedWines[1].id_wine;
+    }
+    if (dosage[2] >= 0) {
+      recipeWine.idwine3 = selectedWines[2].id_wine;
+    }
+    await axios.post(
+      `${import.meta.env.VITE_BACKEND_URL}/recipeWine/creation`,
+      recipeWine
+    );
+  };
 
   if (isLoading) {
     return <p>Loading...</p>;
   }
+
   return (
     <>
       <div className="text-secondary py-4">
@@ -182,10 +210,7 @@ function Recette() {
           </Link>
           {readyToRegister ? (
             <Link to="/avis">
-              <button
-                // onClick={handleClickValider}
-                type="button"
-              >
+              <button onClick={handleClickValider} type="button">
                 Valider
               </button>
             </Link>
