@@ -1,7 +1,9 @@
 import { Link, useLocation } from "react-router-dom";
+import { useUser } from "../contexts/UserContext";
 
 function HeaderAdmin() {
   const location = useLocation();
+  const { handleClickLogOut } = useUser();
 
   function isActive(path) {
     return location.pathname === path;
@@ -46,6 +48,26 @@ function HeaderAdmin() {
             } ${isActive("/admin/atelier") ? "font-bold active-nav" : ""}`}
           >
             <Link to="/admin/atelier">Atelier</Link>
+          </li>
+          <li
+            className={`text-primary text-center ${
+              !isActive("/selection") ? "hover:underline" : ""
+            } ${isActive("/selection") ? "font-bold active-nav" : ""}`}
+          >
+            <Link to="/selection">Notre sélection</Link>
+          </li>
+          <li>
+            <button
+              type="button"
+              onClick={handleClickLogOut}
+              className="w-[54px] text-center boutonDecoOff"
+            >
+              <img
+                src="/assets/logout/power-off.png"
+                alt="Bouton de déconnexion"
+                className="w-[30px] boutonDeco"
+              />
+            </button>
           </li>
         </ul>
       </nav>

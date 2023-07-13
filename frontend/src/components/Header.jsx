@@ -62,6 +62,14 @@ function Header() {
           >
             Profil
           </Link>
+          <Link
+            to="/admin"
+            className={`text-secondary w-[54px] text-center ${
+              !isActive("/admin") ? "hover:underline" : ""
+            } ${isActive("/admin") ? "active-nav" : ""}`}
+          >
+            Admin
+          </Link>
           <button
             type="button"
             onClick={handleClickLogOut}

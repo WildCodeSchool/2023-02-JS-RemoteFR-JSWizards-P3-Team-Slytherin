@@ -22,9 +22,8 @@ import Utilisateurs from "@pages/Admin/Utilisateurs";
 import Atelier from "@pages/Admin/Atelier";
 import ProfilModif from "@pages/ProfilModif";
 import HistoriqueFiches from "@pages/HistoriqueFiches";
+import ProtectedRoutes from "@components/ProtectedRoutes";
 import Page404 from "@pages/Page404";
-
-import { UserProvider } from "./contexts/UserContext";
 
 import "./App.css";
 
@@ -33,23 +32,23 @@ function App() {
   const isAdminRoute = location.pathname.startsWith("/admin");
 
   return isAdminRoute ? (
-    <UserProvider>
-      <LayoutAdmin>
-        <Routes>
+    <LayoutAdmin>
+      <Routes>
+        <Route element={<ProtectedRoutes />}>
           <Route path="/admin" element={<HomeAdmin />} />
           <Route path="/admin/lexique" element={<LexiqueAdmin />} />
           <Route path="/admin/vins" element={<Vins />} />
           <Route path="/admin/utilisateurs" element={<Utilisateurs />} />
           <Route path="/admin/atelier" element={<Atelier />} />
-          <Route path="*" element={<Page404 />} />
-        </Routes>
-      </LayoutAdmin>
-    </UserProvider>
+        </Route>
+        <Route path="*" element={<Page404 />} />
+      </Routes>
+    </LayoutAdmin>
   ) : (
-    <UserProvider>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Home />} />
+    <Layout>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route element={<ProtectedRoutes />}>
           <Route path="/avis" element={<Avis />} />
           <Route path="/lexique" element={<Lexique />} />
           <Route path="/selection" element={<NotreSelection />} />
@@ -71,10 +70,10 @@ function App() {
             path="/profil/historique_fiches"
             element={<HistoriqueFiches />}
           />
-          <Route path="*" element={<Page404 />} />
-        </Routes>
-      </Layout>
-    </UserProvider>
+        </Route>
+        <Route path="*" element={<Page404 />} />
+      </Routes>
+    </Layout>
   );
 }
 

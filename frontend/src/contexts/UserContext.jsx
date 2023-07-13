@@ -10,9 +10,11 @@ export function UserProvider({ children }) {
   const APILOGOUT = `${import.meta.env.VITE_BACKEND_URL}/logout`;
   const navigate = useNavigate();
   const [loggedInUser, setLoggedInUser] = useState({
+    id: "",
     firstname: "",
     email: "",
     birthday: "",
+    adminStatus: false,
   });
 
   const [user, setUser] = useState({
@@ -21,7 +23,7 @@ export function UserProvider({ children }) {
     email: "",
     password: "",
     birthday: "",
-    adminStatus: "",
+    adminStatus: false,
   });
 
   const handleChange = (e) => {
@@ -38,8 +40,13 @@ export function UserProvider({ children }) {
           firstname: res.data.user.firstname,
           email: res.data.user.email,
           birthday: res.data.user.birthday,
+          adminStatus: !!res.data.user.adminStatus,
         });
-        navigate("/selection");
+        if (res.data.user.adminStatus) {
+          navigate("/admin");
+        } else {
+          navigate("/selection");
+        }
       })
       .catch((err) => console.error(err.response.data.message));
   };
@@ -49,7 +56,7 @@ export function UserProvider({ children }) {
       .get(APILOGOUT, { withCredentials: true })
       .then((res) => {
         console.warn(res.data.message);
-        setLoggedInUser("");
+        setLoggedInUser(null);
         navigate("/");
       })
       .catch((err) => console.error(err.response.data.message));
