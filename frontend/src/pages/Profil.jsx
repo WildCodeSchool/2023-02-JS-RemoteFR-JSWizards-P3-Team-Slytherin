@@ -6,6 +6,7 @@ import { useUser } from "../contexts/UserContext";
 
 function Profil() {
   const { loggedInUser } = useUser();
+
   return (
     <div>
       <div className="text-secondary p-[1.5rem] sm:px-[3.2rem] md:px-[6.4rem] min-[950px]:px-[7.5rem]">
