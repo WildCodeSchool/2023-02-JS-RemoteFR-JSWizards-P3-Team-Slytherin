@@ -5,6 +5,8 @@ import { useUser } from "../contexts/UserContext";
 function Header() {
   const location = useLocation();
   const [active, setActive] = useState("");
+  const { handleClickLogOut, loggedInUser } = useUser();
+
   const handleClick = () => {
     setActive(active === "" ? "active" : "");
   };
@@ -14,7 +16,6 @@ function Header() {
   const isActive = (path) => {
     return location.pathname === path;
   };
-  const { handleClickLogOut } = useUser();
 
   return (
     <>
@@ -64,9 +65,11 @@ function Header() {
           </Link>
           <Link
             to="/admin"
-            className={`text-secondary w-[54px] text-center ${
-              !isActive("/admin") ? "hover:underline" : ""
-            } ${isActive("/admin") ? "active-nav" : ""}`}
+            className={`text-secondary text-center adBtn ${
+              loggedInUser.adminStatus ? "visible" : "hidden"
+            } ${!isActive("/admin") ? "hover:underline" : ""} ${
+              isActive("/admin") ? "active-nav" : ""
+            }`}
           >
             Admin
           </Link>
@@ -112,6 +115,16 @@ function Header() {
           } ${isActive("/profil") ? "active-nav" : ""}`}
         >
           Profil
+        </Link>
+        <Link
+          to="/admin"
+          className={`text-secondary text-center adBtn ${
+            loggedInUser.adminStatus ? "visible" : "hidden"
+          } ${!isActive("/admin") ? "hover:underline" : ""} ${
+            isActive("/admin") ? "active-nav" : ""
+          }`}
+        >
+          Admin
         </Link>
         <button
           type="button"

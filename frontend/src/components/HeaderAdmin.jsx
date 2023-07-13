@@ -3,7 +3,7 @@ import { useUser } from "../contexts/UserContext";
 
 function HeaderAdmin() {
   const location = useLocation();
-  const { handleClickLogOut } = useUser();
+  const { handleClickLogOut, loggedInUser } = useUser();
 
   function isActive(path) {
     return location.pathname === path;
@@ -50,9 +50,11 @@ function HeaderAdmin() {
             <Link to="/admin/atelier">Atelier</Link>
           </li>
           <li
-            className={`text-primary text-center ${
-              !isActive("/selection") ? "hover:underline" : ""
-            } ${isActive("/selection") ? "font-bold active-nav" : ""}`}
+            className={`text-primary  w-[128px] text-center utBtn ${
+              loggedInUser.adminStatus ? "visible" : "hidden"
+            } ${!isActive("/selection") ? "hover:underline" : ""} ${
+              isActive("/selection") ? "font-bold active-nav" : ""
+            }`}
           >
             <Link to="/selection">Notre sélection</Link>
           </li>
