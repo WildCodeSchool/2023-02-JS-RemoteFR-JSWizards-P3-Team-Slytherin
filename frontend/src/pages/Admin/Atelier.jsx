@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { useWorkshop } from "../../contexts/WorkshopContext";
 
 function order(a, b) {
   const bandA = a.id;
@@ -15,8 +16,13 @@ function order(a, b) {
 }
 
 export default function Atelier() {
-  const [workshopComplete, setWorkshopComplete] = useState(true);
-  const [workshop, setWorkshop] = useState({ workshopDate: 0, personNb: 0 });
+  const { setWorkshopData } = useWorkshop();
+  const [workshop, setWorkshop] = useState({
+    active: 0,
+    workshopDate: 0,
+    personNb: 0,
+  });
+  const [selection, setSelection] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [wineListOrdered, setWineListOrdered] = useState([]);
   const [wineListOrderedNonSelected, setWineListOrderedNonSelected] = useState(
@@ -24,7 +30,6 @@ export default function Atelier() {
   );
   const [filteredData, setFilteredData] = useState([]);
   const [filter, setFilter] = useState("");
-  const [selection, setSelection] = useState([]);
   const [search, setSearch] = useState("");
 
   // chargement de la data //
@@ -97,6 +102,7 @@ export default function Atelier() {
     setFilteredData(nextFilteredData);
   }, [wineListOrderedNonSelected, filter, search]);
 
+  // mise à jour workshop
   const handleChangeDate = (e) => {
     const newWorkshop = workshop;
     newWorkshop.workshopDate = e.target.value;
@@ -104,10 +110,19 @@ export default function Atelier() {
   };
   const handleChangePerson = (e) => {
     const newWorkshop = workshop;
-    workshop.personNb = e.target.value;
+    newWorkshop.personNb = e.target.value;
+    setWorkshop(newWorkshop);
+  };
+  const handleChangeActive = (e) => {
+    const newWorkshop = workshop;
+    newWorkshop.active = Number(e.target.value);
     setWorkshop(newWorkshop);
   };
 
+  // Enregistrer un nouvel atelier
+  const updateAllWorkshopInactive = async () => {
+    await axios.put(`${import.meta.env.VITE_BACKEND_URL}/workshops/inactive`);
+  };
   const registerWorkshop = async () => {
     await axios.post(
       `${import.meta.env.VITE_BACKEND_URL}/workshops/creation`,
@@ -149,17 +164,21 @@ export default function Atelier() {
       `${import.meta.env.VITE_BACKEND_URL}/wineWorkshop`,
       wineWorkshop
     );
+    await axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/workshops`)
+      .then((res) => {
+        setWorkshopData(res.data);
+      });
   };
 
   const handleClickValider = () => {
-    if (workshop.personNb !== 0 && workshop.workshopDate !== 0) {
+    if (workshop.personNb > 0 && workshop.workshopDate !== 0) {
       try {
+        if (workshop.active === 1) updateAllWorkshopInactive();
         registerWorkshop();
       } catch (error) {
         console.error(error);
       }
-    } else {
-      setWorkshopComplete(false);
     }
   };
 
@@ -222,13 +241,8 @@ export default function Atelier() {
         </div>
         <div className="">
           <h1 className="text-3xl font-black mb-12 mt-4">Nouvel atelier</h1>
-          {!workshopComplete && workshop.workshopDate === 0 && (
-            <p className="italic text-[darkred] text-xs text-right">
-              Enregistrez une date pour l'atelier SVP.
-            </p>
-          )}
-          <div className="flex items-center justify-end m-4">
-            <label htmlFor="date" className="font-bold">
+          <div className="flex justify-end m-4">
+            <label htmlFor="date" className="font-bold text-right pr-4">
               Date:
               <input
                 onChange={handleChangeDate}
@@ -237,18 +251,13 @@ export default function Atelier() {
                 id="date"
                 min={formatedTodayDate}
                 max={formattedDate}
-                className="text-primary p-1 rounded  w-36 ml-4 border-tertiary border-2"
+                className="text-primary p-1 rounded w-36 ml-4 border-tertiary border-2"
               />
             </label>
           </div>
-          {!workshopComplete && workshop.personNb === 0 && (
-            <p className="italic text-[darkred] text-xs text-right">
-              Enregistrez le nombre de participants SVP.
-            </p>
-          )}
-          <div className="flex items-center justify-end">
-            <label htmlFor="people" className="font-bold">
-              Nb personnes :
+          <div className="flex justify-end mb-4">
+            <label htmlFor="people" className="font-bold text-right pr-4">
+              Nb pers. :
               <input
                 onChange={handleChangePerson}
                 type="number"
@@ -257,6 +266,22 @@ export default function Atelier() {
                 placeholder="Nb personnes"
                 className="text-primary p-1 rounded w-36 mx-4 border-tertiary border-2"
               />
+            </label>
+          </div>
+          <div className="flex justify-end">
+            <label htmlFor="people" className="font-bold text-right pr-4">
+              Activation :
+              <select
+                onChange={handleChangeActive}
+                className="font-bold text-primary p-1 rounded w-36 mx-4 border-tertiary border-2"
+              >
+                <option value="0" className="">
+                  Inactive
+                </option>
+                <option value="1" className="">
+                  Active
+                </option>
+              </select>
             </label>
           </div>
 
@@ -290,7 +315,7 @@ export default function Atelier() {
             ))}
           </div>
           <div className="flex justify-center mb-8">
-            <Link to="/admin">
+            <Link to="/admin/ateliers">
               <button type="button" onClick={handleClickValider}>
                 Valider
               </button>
