@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { useChoice } from "../contexts/ChoiceContext";
 
 export default function NotreSelection() {
-  const [selection, setSelection] = useState([]);
+  const { selection, setSelection } = useChoice();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {

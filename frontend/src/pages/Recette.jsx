@@ -2,7 +2,8 @@ import LigneRecette from "@components/recette/LigneRecette";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-// import data from "@components/Data/data-wine";
+import { useChoice } from "../contexts/ChoiceContext";
+import { useUser } from "../contexts/UserContext";
 
 function order(a, b) {
   const bandA = a.score;
@@ -15,6 +16,7 @@ function order(a, b) {
   }
   return comparison;
 }
+
 function orderById(a, b) {
   const bandA = a.id_wine;
   const bandB = b.id_wine;
@@ -28,8 +30,9 @@ function orderById(a, b) {
 }
 
 function Recette() {
-  const [dataSelection, setDataSelection] = useState([]);
-  const [dataUserTasting, setDataUserTasting] = useState([]);
+  const { selection } = useChoice();
+  const { loggedInUser } = useUser();
+  const [dataUserTasting, setDataUserTasting] = useState([""]);
   const [isLoading, setIsLoading] = useState(true);
   const [wineSelectionOrderByNote, setWineSelectionOrderByNote] = useState([]);
   const [defaultSelection, setDefaultSelection] = useState([]);
@@ -45,31 +48,31 @@ function Recette() {
 
   useEffect(() => {
     axios
-      .all([
-        axios.get(`${import.meta.env.VITE_BACKEND_URL}/tasting/2/3`),
-        axios.get(`${import.meta.env.VITE_BACKEND_URL}/wineWorkshop`),
-      ])
-      .then(
-        axios.spread((...res) => {
-          setDataSelection(res[1].data);
-          setDataUserTasting(res[0].data);
-        })
+      .get(
+        `${import.meta.env.VITE_BACKEND_URL}/tasting/${loggedInUser.id}/${
+          selection[0].id
+        }`
       )
+      .then((res) => {
+        setDataUserTasting(res.data);
+      })
       .catch((err) => console.error(err));
   }, []);
 
   useEffect(() => {
-    const newDataSelection = dataSelection.sort(orderById);
-    const newDataUserTasting = dataUserTasting.sort(orderById);
-    const nextDataSelection = newDataSelection.map((e) => {
-      const obj = e;
-      const note = {
-        score: newDataUserTasting[newDataSelection.indexOf(e)].score,
-      };
-      return { ...obj, ...note };
-    });
-    const newWineSelectionOrderByNote = nextDataSelection.sort(order);
-    setWineSelectionOrderByNote(newWineSelectionOrderByNote);
+    if (dataUserTasting[0].score) {
+      const newSelection = selection.sort(orderById);
+      const newDataUserTasting = dataUserTasting.sort(orderById);
+      const nextSelection = newSelection.map((e) => {
+        const obj = e;
+        const note = {
+          score: newDataUserTasting[newSelection.indexOf(e)].score,
+        };
+        return { ...obj, ...note };
+      });
+      const newWineSelectionOrderByNote = nextSelection.sort(order);
+      setWineSelectionOrderByNote(newWineSelectionOrderByNote);
+    }
   }, [dataUserTasting]);
 
   useEffect(() => {
@@ -135,10 +138,11 @@ function Recette() {
   }, [selectedWines, dosageTotal]);
 
   const handleClickValider = async () => {
-    // changer le 2 pour le state id_user
-    await axios.post(`${import.meta.env.VITE_BACKEND_URL}/recipes/creation/2`);
+    await axios.post(
+      `${import.meta.env.VITE_BACKEND_URL}/recipes/creation/${loggedInUser.id}`
+    );
     const recipesList = await axios.get(
-      `${import.meta.env.VITE_BACKEND_URL}/recipes/all/2`
+      `${import.meta.env.VITE_BACKEND_URL}/recipes/all/${loggedInUser.id}`
     );
     const { data } = recipesList;
     const recipeId = data[data.length - 1].id;
