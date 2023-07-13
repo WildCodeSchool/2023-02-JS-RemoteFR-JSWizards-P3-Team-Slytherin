@@ -45,6 +45,20 @@ export default function Vins() {
     setSortConfig({ key, direction });
   };
 
+  const handleWine = () => {
+    setSelectedRowData({
+      id: "",
+      wineName: "",
+      castle: "",
+      grapeVariety: "",
+      wineYear: "",
+      wineDescription: "",
+      wineType: "",
+      wineImage: "",
+    });
+    setHidden(!hidden);
+  };
+
   const handleRowClick = (rowData) => {
     setSelectedRowData(rowData);
     setHidden(!hidden);
@@ -69,7 +83,7 @@ export default function Vins() {
     <>
       <h1 className="mt-16 mb-6 text-2xl font-bold">Gérer les vins</h1>
       <div className="flex flex-col gap-6">
-        <button type="button" className="self-center">
+        <button type="button" onClick={handleWine} className="self-center">
           Ajouter un vin
         </button>
         <table className="w-full min-w-[480px] bg-secondary rounded mb-8 shadow-md overflow-scroll">

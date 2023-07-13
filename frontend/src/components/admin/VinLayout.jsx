@@ -23,6 +23,11 @@ export default function VinLayout({
   const [uploadPicture, setUploadPicture] = useState("");
   const [sendPicture, setSendPicture] = useState();
 
+  const currentYear = new Date().getFullYear();
+  const years = Array.from({ length: currentYear - 1900 + 1 }, (_, index) =>
+    String(currentYear - index)
+  );
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setWineInfo((prevInfo) => ({
@@ -30,11 +35,6 @@ export default function VinLayout({
       [name]: value,
     }));
   };
-
-  const currentYear = new Date().getFullYear();
-  const years = Array.from({ length: currentYear - 1900 + 1 }, (_, index) =>
-    String(currentYear - index)
-  );
 
   const handleUpload = () => {
     const fileInput = document.createElement("input");
@@ -74,7 +74,10 @@ export default function VinLayout({
       grapeVariety: selectedRowData.grapeVariety,
       wineYear: selectedRowData.wineYear,
       wineDescription: selectedRowData.wineDescription,
-      wineType: selectedRowData.wineType,
+      wineType:
+        selectedRowData.wineType === "rouge" || selectedRowData.wineType === ""
+          ? "rouge"
+          : "blanc",
       wineImage: selectedRowData.wineImage,
     });
   }, [selectedRowData]);
@@ -85,9 +88,18 @@ export default function VinLayout({
     axios
       .post(`${import.meta.env.VITE_BACKEND_URL}/wines/upload`, fd)
       .catch((err) => console.error(err));
-    axios
-      .put(`${import.meta.env.VITE_BACKEND_URL}/wines/${wineInfo.id}`, wineInfo)
-      .catch((err) => console.error(err));
+    if (wineInfo.id) {
+      axios
+        .put(
+          `${import.meta.env.VITE_BACKEND_URL}/wines/${wineInfo.id}`,
+          wineInfo
+        )
+        .catch((err) => console.error(err));
+    } else {
+      axios
+        .post(`${import.meta.env.VITE_BACKEND_URL}/wines/`, wineInfo)
+        .catch((err) => console.error(err));
+    }
     setUploadPicture("");
     setRefresh(!refresh);
     setHidden(!hidden);
@@ -98,6 +110,7 @@ export default function VinLayout({
       setHidden(!hidden);
     }
   }
+
   return (
     <div className={`${!hidden ? "hidden" : ""}`}>
       <div
@@ -195,16 +208,9 @@ export default function VinLayout({
                   onChange={handleChange}
                   className="font-bold bg-[#f8f8f8] rounded p-2"
                 >
-                  <option value={selectedRowData.wineType}>
-                    {selectedRowData.wineType}
-                  </option>
-                  <option
-                    value={
-                      selectedRowData.wineType === "rouge" ? "blanc" : "rouge"
-                    }
-                  >
-                    {selectedRowData.wineType === "rouge" ? "blanc" : "rouge"}
-                  </option>
+                  <option value="">-----</option>
+                  <option value="rouge">Rouge</option>
+                  <option value="blanc">Blanc</option>
                 </select>
               </div>
             </div>
