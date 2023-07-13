@@ -32,7 +32,6 @@ CREATE TABLE user_workshop (
 
 CREATE TABLE recipe (
   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  measuring INT NOT NULL,
   id_user INT NOT NULL,
   CONSTRAINT fk_recipe_user
   FOREIGN KEY (id_user)
@@ -103,7 +102,6 @@ acidity VARCHAR(50) NULL,
 tanin VARCHAR(50) NULL,
 alcohol VARCHAR(50) NULL,
 CONSTRAINT fk_workshop_tasting FOREIGN KEY (id_workshop) REFERENCES workshop(id),
-CONSTRAINT fk_recipe_tasting FOREIGN KEY (id_recipe) REFERENCES recipe(id),
 CONSTRAINT fk_user_tasting FOREIGN KEY (id_user) REFERENCES user(id),
 CONSTRAINT fk_wine_tasting FOREIGN KEY (id_wine) REFERENCES wine(id)
 ) ENGINE=InnoDB CHARSET=utf8mb4;
