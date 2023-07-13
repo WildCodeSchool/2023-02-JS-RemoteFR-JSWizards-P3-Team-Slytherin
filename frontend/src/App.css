@@ -452,11 +452,6 @@ th {
 .editbtn {
   background: none;
 }
-.boutonDeco {
-  background-color: theme("colors.secondary");
-  border-radius: 1.6rem;
-  padding: 0;
-}
 
 .boutonDecoOff {
   background-color: transparent;
@@ -467,14 +462,14 @@ th {
   background-color: theme("colors.secondary");
   color: theme("colors.primary");
   border-radius: 10px;
-  padding: 0.2rem;
+  padding: 0.4rem;
 }
 
 .utBtn {
   background-color: theme("colors.primary");
   color: theme("colors.secondary");
   border-radius: 10px;
-  padding: 0.1rem;
+  padding: 0.4rem;
 }
 
 /*admin_atelier*/
