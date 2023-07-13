@@ -2,12 +2,27 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
+function order(a, b) {
+  const bandA = a.word.toUpperCase();
+  const bandB = b.word.toUpperCase();
+  let comparison = 0;
+  if (bandA > bandB) {
+    comparison = 1;
+  } else if (bandA < bandB) {
+    comparison = -1;
+  }
+  return comparison;
+}
+
 function Lexique() {
+  const [isLoading, setIsLoading] = useState(true);
+  const [search, setSearch] = useState("");
+  const [lexiqueDatas, setLexiqueDatas] = useState([]);
+  const [lexiqueDBFilter, setLexiqueDBFilter] = useState([]);
   const navigate = useNavigate();
   const goBack = () => {
     navigate(-1);
   };
-  const [lexiqueDatas, setLexiqueDatas] = useState([]);
 
   useEffect(() => {
     axios
@@ -18,21 +33,13 @@ function Lexique() {
       .catch((err) => console.error(err));
   }, []);
 
-  function order(a, b) {
-    const bandA = a.word.toUpperCase();
-    const bandB = b.word.toUpperCase();
-    let comparison = 0;
-    if (bandA > bandB) {
-      comparison = 1;
-    } else if (bandA < bandB) {
-      comparison = -1;
-    }
-    return comparison;
-  }
+  useEffect(() => {
+    setLexiqueDBFilter(lexiqueDatas.sort(order));
+    setIsLoading(false);
+  }, [lexiqueDatas]);
+
   const lexiqueDB = lexiqueDatas.sort(order);
 
-  const [search, setSearch] = useState("");
-  const [lexiqueDBFilter, setLexiqueDBFilter] = useState(lexiqueDB);
   const handleSubmit = (event) => event.preventDefault();
   const handleChange = (event) => {
     setSearch(event.target.value);
@@ -49,6 +56,11 @@ function Lexique() {
     setSearch("");
     setLexiqueDBFilter(lexiqueDB);
   };
+
+  if (isLoading) {
+    <p>Loading...</p>;
+  }
+
   return (
     <div>
       <div className="text-secondary py-4">

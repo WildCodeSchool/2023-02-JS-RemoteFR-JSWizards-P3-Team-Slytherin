@@ -7,6 +7,7 @@ import BOUCHE from "../helpers/gustatif";
 const ChoiceContext = createContext();
 
 export function ChoiceProvider({ children }) {
+  const [selection, setSelection] = useState([]);
   const [selectVueCouleur, setSelectVueCouleur] = useState(
     VUE.couleurRouge.couleur1
   );
@@ -92,6 +93,8 @@ export function ChoiceProvider({ children }) {
 
   const propsPassing = useMemo(
     () => ({
+      selection,
+      setSelection,
       selectVueCouleur,
       selectVueLimpidite,
       selectVueDensite,
@@ -115,6 +118,8 @@ export function ChoiceProvider({ children }) {
       selectBoucheMineral,
     }),
     [
+      selection,
+      setSelection,
       selectVueCouleur,
       selectVueLimpidite,
       selectVueDensite,

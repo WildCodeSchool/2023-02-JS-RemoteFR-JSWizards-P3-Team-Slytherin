@@ -36,6 +36,8 @@ export function UserProvider({ children }) {
       .post(APILOGIN, { ...user }, { withCredentials: true })
       .then((res) => {
         setLoggedInUser({
+          id: res.data.user.id,
+          lastname: res.data.user.lastname,
           firstname: res.data.user.firstname,
           email: res.data.user.email,
           birthday: res.data.user.birthday,
