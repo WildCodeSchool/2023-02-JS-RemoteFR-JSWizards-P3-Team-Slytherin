@@ -1,9 +1,18 @@
+import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useUser } from "../contexts/UserContext";
 
 function HeaderAdmin() {
   const location = useLocation();
   const { handleClickLogOut, loggedInUser } = useUser();
+  const [active, setActive] = useState("");
+  
+  const handleClick = () => {
+    setActive(active === "" ? "active" : "");
+  };
+  const handleClickLink = () => {
+    setActive("");
+  };
 
   function isActive(path) {
     return location.pathname === path;
@@ -73,7 +82,7 @@ function HeaderAdmin() {
           </li>
         </ul>
       </nav>
-    </header>
+    </>
   );
 }
 

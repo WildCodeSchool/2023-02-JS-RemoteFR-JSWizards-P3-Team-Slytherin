@@ -1,10 +1,10 @@
 const wineWorkshopManager = require("../models/WineWorkshopManager");
 
 const postWineWorkshop = (req, res) => {
-  const wineWorkshop = req.body;
+  const selection = req.body;
 
   wineWorkshopManager
-    .createWineWorkshop(wineWorkshop)
+    .createWineWorkshop(selection)
     .then(() => {
       res.status(201).json({ message: "Votre table a bien été modifiée" });
     })
@@ -14,6 +14,17 @@ const postWineWorkshop = (req, res) => {
     });
 };
 
+const getSelection = (req, res) => {
+  wineWorkshopManager
+    .selection()
+    .then((wines) => res.json(wines[0]))
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
 module.exports = {
   postWineWorkshop,
+  getSelection,
 };

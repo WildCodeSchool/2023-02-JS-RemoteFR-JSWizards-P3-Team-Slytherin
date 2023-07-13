@@ -28,7 +28,7 @@ function Header() {
           />
           <span className="text-secondary text-2xl font-bold ml-4">INOVIN</span>
         </Link>
-        <label className="burger absolute z-10 top-[25%] right-5 sm:hidden">
+        <label className="burger absolute z-10 top-[30%] right-5 sm:hidden">
           <input
             type="checkbox"
             onChange={handleClick}
@@ -87,7 +87,7 @@ function Header() {
         </nav>
       </header>
       <nav
-        className={`sm:hidden flex flex-col z-20 py-10 absolute right-0 top-[96px] rounded-bl-md menu translate-y-[-110%] ${active} bg-primary items-center gap-10`}
+        className={`sm:hidden w-[150px] flex flex-col z-20 py-10 absolute right-0 top-[96px] rounded-bl-md menu translate-y-[-110%] ${active} bg-primary items-center gap-10`}
       >
         <Link
           to="/selection"

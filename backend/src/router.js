@@ -15,6 +15,10 @@ const wineControllers = require("./controllers/wineControllers");
 const glossaryControllers = require("./controllers/glossaryControllers");
 const tastingControllers = require("./controllers/tastingControllers");
 const wineWorkshopControllers = require("./controllers/wineWorkshopControllers");
+const {
+  foreignKeyOFF,
+  foreignKeyON,
+} = require("./middlewares/ForeignKeyMiddleware");
 
 // Gestion login/logout des utilisateurs (admin et user)
 
@@ -34,8 +38,14 @@ router.delete("/users/:id", userControllers.deleteOneUser);
 router.post("/workshops/creation", workshopControllers.postWorkshop);
 router.get("/workshops", workshopControllers.getAllWorkshop);
 router.get("/workshops/:id", workshopControllers.getOneWorkshop);
+router.put("/workshops/inactive", workshopControllers.putAllWorkshopInactive);
 router.put("/workshops/:id", workshopControllers.putOneWorkshop);
-router.delete("/workshops/:id", workshopControllers.deleteOneWorkshop);
+router.delete(
+  "/workshops/:id",
+  foreignKeyOFF,
+  workshopControllers.deleteOneWorkshop,
+  foreignKeyON
+);
 
 // Gestion recette par vin
 
@@ -89,5 +99,6 @@ router.delete("/tasting/:id", tastingControllers.deleteTasting);
 // Gestion de la table intermédiaire : vin/atelier
 
 router.post("/wineWorkshop", wineWorkshopControllers.postWineWorkshop);
+router.get("/wineWorkshop", wineWorkshopControllers.getSelection);
 
 module.exports = router;

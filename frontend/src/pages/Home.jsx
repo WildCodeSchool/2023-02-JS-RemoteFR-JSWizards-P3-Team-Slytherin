@@ -177,7 +177,7 @@ export default function Home() {
           onClick={toggleConnection}
           className="text-xl text-center login-button self-center active:text-tertiary cursor-pointer translate-y-2"
         >
-          Connection
+          Connexion
         </button>
         <form
           className={`flex flex-col items-center ${showConnection}`}
