@@ -118,6 +118,7 @@ function Header() {
         </Link>
         <Link
           to="/admin"
+          onClick={handleClickLink}
           className={`text-secondary text-center adBtn ${
             loggedInUser.adminStatus ? "visible" : "hidden"
           } ${!isActive("/admin") ? "hover:underline" : ""} ${

@@ -35,7 +35,6 @@ export function UserProvider({ children }) {
     axios
       .post(APILOGIN, { ...user }, { withCredentials: true })
       .then((res) => {
-        console.warn(res.data.message);
         setLoggedInUser({
           firstname: res.data.user.firstname,
           email: res.data.user.email,
@@ -56,7 +55,13 @@ export function UserProvider({ children }) {
       .get(APILOGOUT, { withCredentials: true })
       .then((res) => {
         console.warn(res.data.message);
-        setLoggedInUser(null);
+        setLoggedInUser({
+          id: "",
+          firstname: "",
+          email: "",
+          birthday: "",
+          adminStatus: false,
+        });
         navigate("/");
       })
       .catch((err) => console.error(err.response.data.message));

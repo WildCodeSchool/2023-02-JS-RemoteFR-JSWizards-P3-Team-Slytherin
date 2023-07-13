@@ -474,6 +474,7 @@ th {
   color: theme("colors.secondary");
   border-radius: 10px;
   padding: 0.1rem;
+}
 
 /*admin_atelier*/
 .transparent-button {

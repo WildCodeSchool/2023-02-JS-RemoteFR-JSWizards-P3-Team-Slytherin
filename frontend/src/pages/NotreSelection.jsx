@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 
 export default function NotreSelection() {
   const [selection, setSelection] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const API = `${import.meta.env.VITE_BACKEND_URL}/wineWorkshop`;
@@ -11,9 +12,14 @@ export default function NotreSelection() {
       .get(API)
       .then((res) => {
         setSelection(res.data);
+        setIsLoading(false);
       })
       .catch((err) => console.error(err));
   }, []);
+
+  if (isLoading) {
+    return <p>Chargement</p>;
+  }
 
   return (
     <>
@@ -23,7 +29,7 @@ export default function NotreSelection() {
 
       <div className="flex gap-14 flex-wrap justify-center">
         {selection.map((wine) => (
-          <div key={wine.id}>
+          <div key={wine.id_wine}>
             <img
               className="object-cover w-[160px] h-[187px] rounded-t-xl"
               src={`${import.meta.env.VITE_BACKEND_URL}/assets/wines/${
