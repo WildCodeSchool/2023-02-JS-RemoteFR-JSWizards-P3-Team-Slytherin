@@ -91,7 +91,11 @@ router.delete("/glossary/:id", glossaryControllers.deleteGlossary);
 // Gestion des fiches dégustation par vin
 
 router.get("/tasting", tastingControllers.getTasting);
-router.get("/tasting/:id", tastingControllers.getUserTasting);
+router.get("/tasting/:id", tastingControllers.getOneTasting);
+router.get(
+  "/tasting/:iduser/:idworkshop",
+  tastingControllers.getUserTastingFromWorkshop
+);
 router.post("/tasting", tastingControllers.postTasting);
 router.put("/tasting/:id", tastingControllers.putTasting);
 router.delete("/tasting/:id", tastingControllers.deleteTasting);

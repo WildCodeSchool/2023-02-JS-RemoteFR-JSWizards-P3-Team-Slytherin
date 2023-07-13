@@ -4,13 +4,20 @@ const findAllTasting = () => {
   return db.query(`select * from  tasting`);
 };
 
-const findUserTasting = (id) => {
-  return db.query(`select * from tasting where id_user = ?`, [id]);
+const findOneTasting = (id) => {
+  return db.query(`select * from tasting where id = ?`, [id]);
+};
+
+const findUserTasting = (iduser, idworkshop) => {
+  return db.query(
+    `SELECT score, color, clarity, density, intensity, noseFruits, noseFlowers, nosePlants, noseSpices, noseAmpyreumatique, noseMineral, mouthFruits, mouthFlowers, mouthPlants, mouthSpices, mouthAmpyreumatique, mouthMineral, persistance, smooth, acidity, tanin, alcohol, id_workshop, id_user, id_wine from tasting where id_user = ? AND id_workshop=?`,
+    [iduser, idworkshop]
+  );
 };
 
 const createTasting = (taste) => {
   return db.query(
-    `insert into tasting (score, color, clarity, density, intensity, noseFruits, noseFlowers, nosePlants, noseSpices, noseAmpyreumatique, noseMineral, mouthFruits, mouthFlowers, mouthPlants, mouthSpices, mouthAmpyreumatique, mouthMineral, persistance, smooth, acidity, tanin, alcohol, id_workshop, id_recipe, id_user, id_wine) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, (select id from workshop where id=?), (select id from user where id=?), (select id from wine where id=?))`,
+    `insert into tasting (score, color, clarity, density, intensity, noseFruits, noseFlowers, nosePlants, noseSpices, noseAmpyreumatique, noseMineral, mouthFruits, mouthFlowers, mouthPlants, mouthSpices, mouthAmpyreumatique, mouthMineral, persistance, smooth, acidity, tanin, alcohol, id_workshop, id_user, id_wine) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, (select id from workshop where id=?), (select id from user where id=?), (select id from wine where id=?))`,
     [
       taste.score,
       taste.color,
@@ -85,4 +92,5 @@ module.exports = {
   deleteTasting,
   createTasting,
   findUserTasting,
+  findOneTasting,
 };
