@@ -114,8 +114,8 @@ INSERT INTO `wine` VALUES (1, 'La Villageoise', 'Castel', 'rouge qui tache', 202
 (3, 'Jurancon', 'Uroulat', 'petit manseng', 2018, 'Équilibré et plein finesse par son harmonie entre la douceur du fruit et la nervosité de son acidité, ce vin moelleux est un vrai petit bijou. Ses arômes de fruits frais (abricot, mangue, fruits exotiques) se prolongent dans une finale délicieuse et gourmande, jamais alourdie par une liqueur excessive.', 'blanc', 'vin3.jpg'),
 (4, 'La Clarté de Haut-Brion', 'Second vin du Château Haut-Brion', 'blanc', 2017, 'Aux yeux de l amateur, le Château Haut-Brion s affirme comme le seigneur des Graves, seule propriété du secteur à avoir obtenu son classement aux côtés des prestigieux 1ers Crus du Médoc en 1855.', 'blanc', 'vin4.jpg'),
 (5, 'Terrazas de los Andes Malbec', 'Mendoza', 'Malbec', 2018, 'Avec du rôti, Avec de la viande, Avec de la volaille, Avec des grillades, Avec du steak, Avec du gibier, Avec des plats mijotés', 'rouge', 'vin5.jpg'),
-(6, 'La Villageoise', 'Castel', 'rouge qui tache', 2024, 'A déguster avec vos pires amis pour oublier vos soirées', 'rouge', 'vin6.jpg'),
-(7, 'Coteaux du Layon', 'Layon', 'chenin B', 2018, 'Le coteaux-du-Layon est un vin blanc moelleux d appellation d origine contrôlée produit sur les coteaux bordant le Layon.', 'rouge', 'vin7.jpg');
+(6, 'La Villageoise', 'Castel', 'rouge qui tache', 2024, 'A déguster avec vos pires amis pour oublier vos soirées', 'rouge', 'defaultwine.jpg'),
+(7, 'Coteaux du Layon', 'Layon', 'chenin B', 2018, 'Le coteaux-du-Layon est un vin blanc moelleux d appellation d origine contrôlée produit sur les coteaux bordant le Layon.', 'rouge', 'defaultwine.jpg');
 
 INSERT INTO `workshop` VALUES (1, 0, '2023-09-06', 7), 
 (2, 0, '2023-06-05', 10),

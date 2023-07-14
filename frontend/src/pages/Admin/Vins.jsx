@@ -16,7 +16,7 @@ export default function Vins() {
     wineYear: "",
     wineDescription: "",
     wineType: "",
-    wineImage: "",
+    wineImage: "defaultwine.jpg",
   });
   const [refresh, setRefresh] = useState(false);
   const [hidden, setHidden] = useState(false);
@@ -54,7 +54,7 @@ export default function Vins() {
       wineYear: "",
       wineDescription: "",
       wineType: "",
-      wineImage: "",
+      wineImage: "defaultwine.jpg",
     });
     setHidden(!hidden);
   };
@@ -125,6 +125,13 @@ export default function Vins() {
                     src={`${import.meta.env.VITE_BACKEND_URL}/assets/wines/${
                       e.wineImage
                     }`}
+                    onError={(imgerr) => {
+                      const img = imgerr;
+                      img.target.onerror = null;
+                      img.target.src = `${
+                        import.meta.env.VITE_BACKEND_URL
+                      }/assets/wines/defaultwine.jpg`;
+                    }}
                     alt="miniature"
                     className="h-11 rounded"
                   />
