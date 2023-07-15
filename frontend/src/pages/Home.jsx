@@ -66,15 +66,13 @@ export default function Home() {
   return (
     <div className="flex flex-col items-center h-full gap-16 mt-8">
       <div className="text-center leading-6">
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatibus
-        temporibus aliquam reprehenderit optio excepturi quas saepe quasi at
-        quaerat impedit facilis placeat vel inventore in omnis ipsam sed ratione
-        molestias a pariatur sunt, sapiente quae. Dolores aut voluptate
-        suscipit, maiores sapiente esse odit nemo rem minima cum dolorum rerum
-        animi nulla accusantium consequuntur, dolor doloremque fugit perferendis
-        quasi. Vel magnam placeat aut molestiae explicabo, ullam recusandae
-        blanditiis beatae provident nam molestias necessitatibus, fugit
-        voluptatibus unde distinctio! Accusantium, nostrum! Tempore, ducimus?
+        Notre atelier de dégustation de vins est un événement où les
+        participants peuvent déguster différents vins tout en apprenant sur leur
+        origine, leur production et leur goût. Les participants peuvent
+        apprendre à identifier les différents arômes et saveurs des vins, ainsi
+        qu’à comprendre les différences entre les différents types de vins. Les
+        ateliers de dégustation de vins sont une excellente occasion d’apprendre
+        sur le vin tout en passant un bon moment avec des amis ou en famille.
       </div>
       <div className="flex flex-col gap-6">
         <span className="w-56 bg-secondary h-[1px] self-center" />
