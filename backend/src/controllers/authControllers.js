@@ -9,6 +9,7 @@ const hashingOptions = {
 };
 
 const hashPassword = (req, res, next) => {
+  // if (req.body.password) {
   argon2
     .hash(req.body.password, hashingOptions)
     .then((hashedPassword) => {
@@ -20,6 +21,10 @@ const hashPassword = (req, res, next) => {
       console.error(err);
       res.sendStatus(500);
     });
+  // } else {
+  //   console.log('else')
+  //   next();
+  // }
 };
 
 const verifyPassword = (req, res) => {

@@ -11,7 +11,11 @@ function ClientInfoProfil({ email, birthday }) {
 
 ClientInfoProfil.propTypes = {
   email: PropTypes.string.isRequired,
-  birthday: PropTypes.string.isRequired,
+  birthday: PropTypes.string,
+};
+
+ClientInfoProfil.defaultProps = {
+  birthday: "",
 };
 
 export default ClientInfoProfil;

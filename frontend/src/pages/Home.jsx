@@ -1,6 +1,5 @@
 import { useState } from "react";
 import axios from "axios";
-// import { useNavigate } from "react-router-dom";
 import { useUser } from "../contexts/UserContext";
 
 export default function Home() {
@@ -14,7 +13,6 @@ export default function Home() {
   const formattedDate = newDate.toISOString().split("T")[0];
   const { handleSubmitLogIn, handleChange } = useUser();
   const APINSCRIPTION = `${import.meta.env.VITE_BACKEND_URL}/inscription`;
-  // const navigate = useNavigate();
 
   const [user, setUser] = useState({
     lastname: "",
