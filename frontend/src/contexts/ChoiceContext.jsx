@@ -67,6 +67,7 @@ export function ChoiceProvider({ children }) {
   const [selectBoucheMineral, setSelectBoucheMineral] = useState(
     BOUCHE.mineralRouge.mineral4
   );
+  const [selectNote, setSelectNote] = useState(0);
 
   const propsPassing = useMemo(
     () => ({
@@ -91,6 +92,7 @@ export function ChoiceProvider({ children }) {
       selectBoucheEpice,
       selectBoucheAmpyreumatique,
       selectBoucheMineral,
+      selectNote,
       setSelectBouchePersistance,
       setSelectBoucheMoelleux,
       setSelectBoucheAcidite,
@@ -112,6 +114,7 @@ export function ChoiceProvider({ children }) {
       setSelectVueCouleur,
       setSelectVueLimpidite,
       setSelectVueDensite,
+      setSelectNote,
     }),
     [
       selectVueCouleur,
@@ -135,6 +138,7 @@ export function ChoiceProvider({ children }) {
       selectBoucheEpice,
       selectBoucheAmpyreumatique,
       selectBoucheMineral,
+      selectNote,
       setSelectBouchePersistance,
       setSelectBoucheMoelleux,
       setSelectBoucheAcidite,
@@ -156,6 +160,7 @@ export function ChoiceProvider({ children }) {
       setSelectVueCouleur,
       setSelectVueLimpidite,
       setSelectVueDensite,
+      setSelectNote,
     ]
   );
 
