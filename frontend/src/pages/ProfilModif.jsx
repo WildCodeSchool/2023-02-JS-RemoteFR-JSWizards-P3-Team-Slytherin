@@ -56,7 +56,7 @@ function ProfilModif() {
     if (pwd === confirmPwd) {
       axios
         .put(APIPWD, { password: pwd }, { withCredentials: true })
-        .then((res) => {
+        .then(() => {
           navigate("/profil");
         })
         .catch((err) => console.error(err.response.data.message));
