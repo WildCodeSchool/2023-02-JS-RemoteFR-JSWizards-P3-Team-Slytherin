@@ -78,6 +78,7 @@ export default function Users() {
                 {sortConfig.key === "email" &&
                   (sortConfig.direction === "ascending" ? "▼" : "▲")}
               </th>
+              <th className="flex-0">Recettes</th>
               <th className="flex-1">Statut</th>
               <th className="flex-0">Supprimer</th>
             </tr>
@@ -88,24 +89,21 @@ export default function Users() {
                 className="h-14 flex justify-center p-3 shadow-inner"
                 key={e.id}
               >
-                <td className="flex-0">
-                  <button type="button" onClick={() => handleRowClick(e)}>
-                    {e.id}
-                  </button>
-                </td>
-                <td className="flex-1">
-                  <button type="button" onClick={() => handleRowClick(e)}>
-                    {e.lastname}
-                  </button>
-                </td>
-                <td className="flex-1">
-                  <button type="button" onClick={() => handleRowClick(e)}>
-                    {e.firstname}
-                  </button>
-                </td>
-                <td className="flex-1">
-                  <button type="button" onClick={() => handleRowClick(e)}>
-                    {e.email}
+                <td className="flex-0">{e.id}</td>
+                <td className="flex-1">{e.lastname}</td>
+                <td className="flex-1">{e.firstname}</td>
+                <td className="flex-1">{e.email}</td>
+                <td className="flex-0 w-[70px]">
+                  <button
+                    type="button"
+                    onClick={() => handleRowClick(e.id)}
+                    className="transparent-button max-w-fit"
+                  >
+                    <img
+                      src="../../../public/assets/eye/eye.png"
+                      alt="supprimer utilisateur"
+                      className="w-6"
+                    />
                   </button>
                 </td>
                 <td className="flex-1">

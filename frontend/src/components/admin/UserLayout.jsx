@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-export default function VinLayout({ hidden, setHidden, selectedRowData }) {
+export default function UserLayout({ hidden, setHidden, selectedRowData }) {
   const [userRecipes, setUserRecipes] = useState([]);
   const [recipeNumber, setRecipeNumber] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -10,9 +10,9 @@ export default function VinLayout({ hidden, setHidden, selectedRowData }) {
   useEffect(() => {
     axios
       .get(
-        `${import.meta.env.VITE_BACKEND_URL}/recipes/all/detailed/${
-          selectedRowData.id
-        }`
+        `${
+          import.meta.env.VITE_BACKEND_URL
+        }/recipes/all/detailed/${selectedRowData}`
       )
       .then((res) => {
         const newRecipeNumber = [];
@@ -91,7 +91,9 @@ export default function VinLayout({ hidden, setHidden, selectedRowData }) {
                           .filter((wine) => wine.id_recipe === recipe)
                           .map((e) => {
                             return (
-                              <p key={e.id_wine}>{(e.dosage / 250) * 100}%</p>
+                              <p key={e.id_wine}>
+                                {Math.round((e.dosage / 250) * 100)}%
+                              </p>
                             );
                           })}
                       </div>
@@ -100,7 +102,9 @@ export default function VinLayout({ hidden, setHidden, selectedRowData }) {
                           .filter((wine) => wine.id_recipe === recipe)
                           .map((e) => {
                             return (
-                              <p key={e.id_wine}>{(e.dosage / 250) * 750}ml</p>
+                              <p key={e.id_wine}>
+                                {Math.round((e.dosage / 250) * 750)}ml
+                              </p>
                             );
                           })}
                         <p>______</p>
@@ -139,7 +143,7 @@ export default function VinLayout({ hidden, setHidden, selectedRowData }) {
                           return (
                             <p key={e.id_wine}>
                               {e.wineName} ({e.wineYear}) :{" "}
-                              {(e.dosage / 250) * 750}ml
+                              {Math.round((e.dosage / 250) * 750)}ml
                             </p>
                           );
                         })}
@@ -155,7 +159,7 @@ export default function VinLayout({ hidden, setHidden, selectedRowData }) {
   );
 }
 
-VinLayout.propTypes = {
+UserLayout.propTypes = {
   selectedRowData: PropTypes.shape({
     id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   }).isRequired,
