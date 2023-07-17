@@ -50,29 +50,29 @@ function App() {
     <Layout>
       <Routes>
         <Route path="/" element={<Home />} />
-        {/* <Route element={<ProtectedRoutes />}> */}
-        <Route path="/avis" element={<Avis />} />
-        <Route path="/lexique" element={<Lexique />} />
-        <Route path="/selection" element={<NotreSelection />} />
-        <Route path="/fiche/visuel" element={<Visuel />} />
-        <Route path="/fiche/olfactif" element={<Olfactif />} />
-        <Route path="/fiche/gustatif-part1" element={<GustatifPartOne />} />
-        <Route path="/fiche/gustatif-part2" element={<GustatifPartTwo />} />
-        <Route path="/fiche/final" element={<Final />} />
-        <Route path="/profil" element={<Profil />} />
-        <Route
-          path="/profil/profil_degustation"
-          element={<ProfilDegustation />}
-        />
-        <Route path="/recette" element={<Recette />} />
-        <Route path="/profil/modifier" element={<ProfilModif />} />
+        <Route element={<ProtectedRoutes />}>
+          <Route path="/avis" element={<Avis />} />
+          <Route path="/lexique" element={<Lexique />} />
+          <Route path="/selection" element={<NotreSelection />} />
+          <Route path="/fiche/visuel" element={<Visuel />} />
+          <Route path="/fiche/olfactif" element={<Olfactif />} />
+          <Route path="/fiche/gustatif-part1" element={<GustatifPartOne />} />
+          <Route path="/fiche/gustatif-part2" element={<GustatifPartTwo />} />
+          <Route path="/fiche/final" element={<Final />} />
+          <Route path="/profil" element={<Profil />} />
+          <Route
+            path="/profil/profil_degustation"
+            element={<ProfilDegustation />}
+          />
+          <Route path="/recette" element={<Recette />} />
+          <Route path="/profil/modifier" element={<ProfilModif />} />
 
-        <Route path="/fiche" element={<CompteRenduFiche />} />
-        <Route
-          path="/profil/historique_fiches"
-          element={<HistoriqueFiches />}
-        />
-        {/* </Route> */}
+          <Route path="/fiche" element={<CompteRenduFiche />} />
+          <Route
+            path="/profil/historique_fiches"
+            element={<HistoriqueFiches />}
+          />
+        </Route>
         <Route path="*" element={<Page404 />} />
       </Routes>
     </Layout>
