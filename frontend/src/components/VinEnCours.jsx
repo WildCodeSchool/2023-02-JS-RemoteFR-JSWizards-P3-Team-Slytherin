@@ -12,6 +12,7 @@ export default function VinEnCours() {
       })
       .catch((err) => console.error(err));
   }, []);
+
   return (
     <div className="mt-8 flex w-full justify-center">
       <div className="flex items-center w-3/4 gap-4">
