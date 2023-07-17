@@ -1,20 +1,10 @@
 import { useEffect, useState } from "react";
 import { useChoice } from "@contexts/ChoiceContext";
+import { Link } from "react-router-dom";
 import VinEnCours from "@components/VinEnCours";
 
 export default function GustatifPartOne() {
-  const [persistance, setPersistance] = useState("-");
-  const [moelleux, setMoelleux] = useState("-");
-  const [acidite, setAcidite] = useState("-");
-  const [tanin, setTanin] = useState("-");
-  const [alcool, setAlcool] = useState("-");
-  const [gustatif1Vin, setGustatif1Vin] = useState({
-    persistance: "-",
-    moelleux: "-",
-    acidite: "-",
-    tanin: "-",
-    alcool: "-",
-  });
+  const [test, setTest] = useState({});
 
   const {
     selectBouchePersistance,
@@ -136,65 +126,47 @@ export default function GustatifPartOne() {
 
   const handleSelectionClick = () => {
     if (document.querySelector("input[name=acidite]:checked") !== null) {
-      setAcidite(
+      setSelectBoucheAcidite(
         document.querySelector("input[name=acidite]:checked + label").innerText
       );
     }
     if (document.querySelector("input[name=moelleux]:checked") !== null) {
-      setMoelleux(
+      setSelectBoucheMoelleux(
         document.querySelector("input[name=moelleux]:checked + label").innerText
       );
     }
     if (document.querySelector("input[name=persistance]:checked") !== null) {
-      setPersistance(
+      setSelectBouchePersistance(
         document.querySelector("input[name=persistance]:checked + label")
           .innerText
       );
     }
     if (document.querySelector("input[name=tanin]:checked") !== null) {
-      setTanin(
+      setSelectBoucheTanin(
         document.querySelector("input[name=tanin]:checked + label").innerText
       );
     }
     if (document.querySelector("input[name=alcool]:checked") !== null) {
-      setAlcool(
+      setSelectBoucheAlcool(
         document.querySelector("input[name=alcool]:checked + label").innerText
       );
     }
   };
 
+  const handleTest = (e) => {
+    e.preventDefault();
+    setTest({
+      persistance: selectBouchePersistance,
+      moelleux: selectBoucheMoelleux,
+      acidite: selectBoucheAcidite,
+      tanin: selectBoucheTanin,
+      alcool: selectBoucheAlcool,
+    });
+  };
+
   useEffect(() => {
-    const SettingGustatif1 = async () => {
-      try {
-        await setSelectBouchePersistance(persistance);
-        await setSelectBoucheMoelleux(moelleux);
-        await setSelectBoucheAcidite(acidite);
-        await setSelectBoucheTanin(tanin);
-        await setSelectBoucheAlcool(alcool);
-        await setGustatif1Vin({
-          persistance,
-          moelleux,
-          acidite,
-          tanin,
-          alcool,
-        });
-      } catch (error) {
-        console.error("il y a eu une erreur de mise à jour des states...");
-      }
-    };
-    SettingGustatif1();
-  }, [
-    acidite,
-    moelleux,
-    persistance,
-    tanin,
-    alcool,
-    selectBouchePersistance,
-    selectBoucheMoelleux,
-    selectBoucheAcidite,
-    selectBoucheTanin,
-    selectBoucheAlcool,
-  ]);
+    console.info(test);
+  }, [test]);
 
   return (
     <>
@@ -210,8 +182,8 @@ export default function GustatifPartOne() {
                 type="button"
                 onClick={handlePersistanceClick}
                 value={
-                  gustatif1Vin.persistance !== "-"
-                    ? `Persistance : ${gustatif1Vin.persistance}`
+                  selectBouchePersistance !== "-"
+                    ? `Persistance : ${selectBouchePersistance}`
                     : "Persistance : -"
                 }
                 className="fiche-deg-button p-2 w-full"
@@ -262,8 +234,8 @@ export default function GustatifPartOne() {
                 type="button"
                 onClick={handleMoelleuxClick}
                 value={
-                  gustatif1Vin.moelleux !== "-"
-                    ? `Moëlleux : ${gustatif1Vin.moelleux}`
+                  selectBoucheMoelleux !== "-"
+                    ? `Moëlleux : ${selectBoucheMoelleux}`
                     : "Moëlleux : -"
                 }
                 className="fiche-deg-button p-2 w-full"
@@ -338,8 +310,8 @@ export default function GustatifPartOne() {
                 type="button"
                 onClick={handleAciditeClick}
                 value={
-                  gustatif1Vin.acidite !== "-"
-                    ? `Acidité : ${gustatif1Vin.acidite}`
+                  selectBoucheAcidite !== "-"
+                    ? `Acidité : ${selectBoucheAcidite}`
                     : "Acidité : -"
                 }
                 className="fiche-deg-button p-2 w-full"
@@ -414,8 +386,8 @@ export default function GustatifPartOne() {
                 type="button"
                 onClick={handleTaninClick}
                 value={
-                  gustatif1Vin.tanin !== "-"
-                    ? `Tanin : ${gustatif1Vin.tanin}`
+                  selectBoucheTanin !== "-"
+                    ? `Tanin : ${selectBoucheTanin}`
                     : "Tanin : -"
                 }
                 className="fiche-deg-button p-2 w-full"
@@ -490,8 +462,8 @@ export default function GustatifPartOne() {
                 type="button"
                 onClick={handleAlcoolClick}
                 value={
-                  gustatif1Vin.alcool !== "-"
-                    ? `Alcool : ${gustatif1Vin.alcool}`
+                  selectBoucheAlcool !== "-"
+                    ? `Alcool : ${selectBoucheAlcool}`
                     : "Alcool : -"
                 }
                 className="fiche-deg-button p-2 w-full"
@@ -561,16 +533,21 @@ export default function GustatifPartOne() {
             </fieldset>
           </div>
           <div className="w-full flex justify-center gap-4 my-4">
-            <button type="button" className="items-center">
-              Retour au catalogue
-            </button>
-            <button type="button" className="items-center">
-              Précédent
-            </button>
-            <button type="button" className="items-center">
-              Suivant
-            </button>
+            <Link to="/selection">
+              <button type="button">Retour au catalogue</button>
+            </Link>
+            <Link to="/fiche/olfactif">
+              <button type="button" className="items-center">
+                Précédent
+              </button>
+            </Link>
+            <Link to="/fiche/gustatif-part2">
+              <button type="button">Suivant</button>
+            </Link>
           </div>
+          <button type="button" onClick={handleTest}>
+            Test
+          </button>
         </form>
       </div>
     </>

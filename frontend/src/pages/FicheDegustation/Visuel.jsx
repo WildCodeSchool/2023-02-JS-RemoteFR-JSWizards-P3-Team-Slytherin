@@ -1,17 +1,9 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import VinEnCours from "@components/VinEnCours";
 import { useChoice } from "@contexts/ChoiceContext";
 
 export default function Visuel() {
-  const [couleur, setCouleur] = useState("-");
-  const [limpidite, setLimpidite] = useState("-");
-  const [densite, setDensite] = useState("-");
-  const [visuelVin, setVisuelVin] = useState({
-    couleur: "-",
-    limpidite: "-",
-    densite: "-",
-  });
-
   const {
     selectVueCouleur,
     selectVueLimpidite,
@@ -20,6 +12,8 @@ export default function Visuel() {
     setSelectVueLimpidite,
     setSelectVueDensite,
   } = useChoice();
+
+  const [test, setTest] = useState({});
 
   const handleColorClick = () => {
     const couleurClass = document.getElementById("couleur");
@@ -62,43 +56,35 @@ export default function Visuel() {
 
   const handleSelectionClick = () => {
     if (document.querySelector("input[name=densite]:checked") !== null) {
-      setDensite(
+      setSelectVueDensite(
         document.querySelector("input[name=densite]:checked + label").innerText
       );
     }
     if (document.querySelector("input[name=limpidite]:checked") !== null) {
-      setLimpidite(
+      setSelectVueLimpidite(
         document.querySelector("input[name=limpidite]:checked + label")
           .innerText
       );
     }
     if (document.querySelector("input[name=couleur]:checked") !== null) {
-      setCouleur(
+      setSelectVueCouleur(
         document.querySelector("input[name=couleur]:checked + label").innerText
       );
     }
   };
 
+  const handleTest = (e) => {
+    e.preventDefault();
+    setTest({
+      densite: selectVueDensite,
+      limpidite: selectVueLimpidite,
+      couleur: selectVueCouleur,
+    });
+  };
+
   useEffect(() => {
-    const SettingVisuel = async () => {
-      try {
-        await setVisuelVin({ couleur, limpidite, densite });
-        await setSelectVueCouleur(couleur);
-        await setSelectVueLimpidite(limpidite);
-        await setSelectVueDensite(densite);
-      } catch (error) {
-        console.error("il y a eu une erreur de mise à jour des states...");
-      }
-    };
-    SettingVisuel();
-  }, [
-    densite,
-    limpidite,
-    couleur,
-    selectVueCouleur,
-    selectVueLimpidite,
-    selectVueDensite,
-  ]);
+    console.info(test);
+  }, [test]);
 
   return (
     <>
@@ -114,8 +100,8 @@ export default function Visuel() {
                 type="button"
                 onClick={handleColorClick}
                 value={
-                  visuelVin.couleur !== "-"
-                    ? `Couleur : ${visuelVin.couleur}`
+                  selectVueCouleur !== "-"
+                    ? `Couleur : ${selectVueCouleur}`
                     : "Couleur : -"
                 }
                 className="fiche-deg-button p-2 w-full"
@@ -232,8 +218,8 @@ export default function Visuel() {
                 type="button"
                 onClick={handleLimpiditeClick}
                 value={
-                  visuelVin.limpidite !== "-"
-                    ? `Limpidité : ${visuelVin.limpidite}`
+                  selectVueLimpidite !== "-"
+                    ? `Limpidité : ${selectVueLimpidite}`
                     : "Limpidité : -"
                 }
                 className="fiche-deg-button p-2 w-full"
@@ -308,8 +294,8 @@ export default function Visuel() {
                 type="button"
                 onClick={handleDensiteClick}
                 value={
-                  visuelVin.densite !== "-"
-                    ? `Densité : ${visuelVin.densite}`
+                  selectVueDensite !== "-"
+                    ? `Densité : ${selectVueDensite}`
                     : "Densité : -"
                 }
                 className="fiche-deg-button p-2 w-full"
@@ -367,9 +353,16 @@ export default function Visuel() {
             </fieldset>
           </div>
           <div className="w-full flex justify-center gap-4 my-4">
-            <button type="button">Retour au catalogue</button>
-            <button type="button">Suivant</button>
+            <Link to="/selection">
+              <button type="button">Retour au catalogue</button>
+            </Link>
+            <Link to="/fiche/olfactif">
+              <button type="button">Suivant</button>
+            </Link>
           </div>
+          <button type="button" onClick={handleTest}>
+            Test
+          </button>
         </form>
       </div>
     </>

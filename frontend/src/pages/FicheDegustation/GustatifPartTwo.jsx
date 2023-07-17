@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
+import { useChoice } from "@contexts/ChoiceContext";
+import { Link } from "react-router-dom";
 import VinEnCours from "@components/VinEnCours";
 import Select from "react-select";
-import { useChoice } from "@contexts/ChoiceContext";
 import options from "../../helpers/gustatifHelper";
 
 export default function GustatifPartTwo() {
@@ -178,6 +179,19 @@ export default function GustatifPartTwo() {
             classNamePrefix="select"
             onChange={handleMineralChange}
           />
+        </div>
+        <div className="w-full flex justify-center gap-4 my-4">
+          <Link to="/selection">
+            <button type="button">Retour au catalogue</button>
+          </Link>
+          <Link to="/fiche/gustatif-part1">
+            <button type="button" className="items-center">
+              Précédent
+            </button>
+          </Link>
+          <Link to="/fiche/final">
+            <button type="button">Suivant</button>
+          </Link>
         </div>
         <button type="button" onClick={handleTest}>
           Test
