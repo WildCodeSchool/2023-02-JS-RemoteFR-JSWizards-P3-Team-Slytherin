@@ -482,6 +482,7 @@ th {
 /*admin_atelier*/
 .transparent-button {
   background-color: transparent;
+  padding: 0;
 }
 .select-transparent {
   background-color: transparent;
