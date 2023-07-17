@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 const ChoiceContext = createContext();
 
 export function ChoiceProvider({ children }) {
+  const [selection, setSelection] = useState([]);
+
   const [selectVueCouleur, setSelectVueCouleur] = useState("-");
   const [selectVueLimpidite, setSelectVueLimpidite] = useState("-");
   const [selectVueDensite, setSelectVueDensite] = useState("-");
@@ -32,6 +34,7 @@ export function ChoiceProvider({ children }) {
 
   const propsPassing = useMemo(
     () => ({
+      selection,
       selectVueCouleur,
       selectVueLimpidite,
       selectVueDensite,
@@ -54,6 +57,7 @@ export function ChoiceProvider({ children }) {
       selectBoucheAmpyreumatique,
       selectBoucheMineral,
       selectNote,
+      setSelection,
       setSelectBouchePersistance,
       setSelectBoucheMoelleux,
       setSelectBoucheAcidite,
@@ -78,6 +82,7 @@ export function ChoiceProvider({ children }) {
       setSelectNote,
     }),
     [
+      selection,
       selectVueCouleur,
       selectVueLimpidite,
       selectVueDensite,
@@ -100,6 +105,7 @@ export function ChoiceProvider({ children }) {
       selectBoucheAmpyreumatique,
       selectBoucheMineral,
       selectNote,
+      setSelection,
       setSelectBouchePersistance,
       setSelectBoucheMoelleux,
       setSelectBoucheAcidite,
