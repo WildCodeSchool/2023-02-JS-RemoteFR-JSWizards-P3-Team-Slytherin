@@ -360,10 +360,10 @@ export default function Visuel() {
               <button type="button">Suivant</button>
             </Link>
           </div>
-          <button type="button" onClick={handleTest}>
-            Test
-          </button>
         </form>
+        <button type="button" onClick={handleTest}>
+          Test
+        </button>
       </div>
     </>
   );

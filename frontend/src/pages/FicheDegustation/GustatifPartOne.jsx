@@ -545,10 +545,10 @@ export default function GustatifPartOne() {
               <button type="button">Suivant</button>
             </Link>
           </div>
-          <button type="button" onClick={handleTest}>
-            Test
-          </button>
         </form>
+        <button type="button" onClick={handleTest}>
+          Test
+        </button>
       </div>
     </>
   );
