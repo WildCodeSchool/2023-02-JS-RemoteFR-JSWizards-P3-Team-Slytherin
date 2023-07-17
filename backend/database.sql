@@ -46,7 +46,7 @@ grapeVariety VARCHAR(100) NULL,
 wineYear YEAR NOT NULL,
 wineDescription TEXT NOT NULL,
 wineType VARCHAR(20) NOT NULL,
-wineImage VARCHAR(150)
+wineImage VARCHAR(150) DEFAULT "default.jpg"
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 CREATE TABLE recipe_wine (
