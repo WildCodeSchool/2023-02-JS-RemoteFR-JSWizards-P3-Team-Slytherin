@@ -125,5 +125,9 @@ router.delete("/tasting/:id", tastingControllers.deleteTasting);
 
 router.post("/wineWorkshop", wineWorkshopControllers.postWineWorkshop);
 router.get("/wineWorkshop", wineWorkshopControllers.getSelection);
+router.get(
+  "/winesWorkshops/:idUser",
+  wineWorkshopControllers.getLastFiveWineForOneUser
+);
 
 module.exports = router;

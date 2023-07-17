@@ -11,7 +11,9 @@ function Profil() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const API = `${import.meta.env.VITE_BACKEND_URL}/wineWorkshop`;
+    const API = `${import.meta.env.VITE_BACKEND_URL}/winesWorkshops/${
+      loggedInUser.id
+    }`;
     axios
       .get(API)
       .then((res) => {
