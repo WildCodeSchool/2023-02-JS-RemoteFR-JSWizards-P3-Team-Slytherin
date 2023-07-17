@@ -74,7 +74,7 @@ export default function Vins() {
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/wines`)
       .then((res) => {
-        setVinData(res.data);
+        setVinData(res.data.sort((a, b) => b.id - a.id));
       })
       .catch((err) => console.error(err));
   }, [refresh]);
