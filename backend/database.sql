@@ -107,7 +107,11 @@ CONSTRAINT fk_wine_tasting FOREIGN KEY (id_wine) REFERENCES wine(id)
 ) ENGINE=InnoDB CHARSET=utf8mb4;
 
 INSERT INTO `user` VALUES (1,'admin','admin','admin@admin.fr','$argon2id$v=19$m=65536,t=5,p=1$JvUeRISXzJlRxSj+LTG2qQ$k22+I+Q6kc95sORXJDXCzmf1L4ckAwYiso/hjX4VIyc','1985-01-01',1),
-(2,'user','user','user@user.fr','$argon2id$v=19$m=65536,t=5,p=1$Vs3jjpmaJkv5vmD5Tt3wvg$W7usz0nor1B1DZK+zXr1NPctYsF8LXJsWSloSCVXtaY','1994-02-02', 0);
+(2,'user','user','user@user.fr','$argon2id$v=19$m=65536,t=5,p=1$Vs3jjpmaJkv5vmD5Tt3wvg$W7usz0nor1B1DZK+zXr1NPctYsF8LXJsWSloSCVXtaY','1994-02-02', 0),
+(3,'lebgdu13','antho','antho@lebgdu13.fr','$argon2id$v=19$m=65536,t=5,p=1$JvUeRISXzJlRxSj+LTG2qQ$k22+I+Q6kc95sORXJDXCzmf1L4ckAwYiso/hjX4VIyc','1989-07-17', 1),
+(4,'Vandanjon','Beno^t','benoit@vandanjon.fr','$argon2id$v=19$m=65536,t=5,p=1$Vs3jjpmaJkv5vmD5Tt3wvg$W7usz0nor1B1DZK+zXr1NPctYsF8LXJsWSloSCVXtaY','1994-02-02', 0),
+(5,'Morin','Jean-François','jeanfrançois@morin.fr','$argon2id$v=19$m=65536,t=5,p=1$Vs3jjpmaJkv5vmD5Tt3wvg$W7usz0nor1B1DZK+zXr1NPctYsF8LXJsWSloSCVXtaY','1994-02-02', 0),
+(6,'Richard','Julien','julien@richard.fr','$argon2id$v=19$m=65536,t=5,p=1$Vs3jjpmaJkv5vmD5Tt3wvg$W7usz0nor1B1DZK+zXr1NPctYsF8LXJsWSloSCVXtaY','1994-02-02', 0);
 
 INSERT INTO `wine` VALUES (1, 'La Villageoise', 'Castel', 'rouge qui tache', 2024, 'A déguster avec vos pires amis pour oublier vos soirées', 'rouge', 'vin1.jpg'),
 (2, 'Cheval noir', 'Saint Emilion', 'merlot', 2020, 'Ce Saint Émilion fin et élégant se distingue par des tanins soyeux, des notes de fruits rouges, d’épices et de cannelle, le tout enrobé de subtiles notes boisées.', 'rouge', 'vin2.jpg'),

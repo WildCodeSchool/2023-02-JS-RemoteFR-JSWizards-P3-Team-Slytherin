@@ -1,15 +1,16 @@
-import { useState } from "react";
-import fakedata from "../../components/Data/data-utilisateur-admin";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import UserLayout from "../../components/admin/UserLayout";
 
 export default function Users() {
+  const [userData, setUserData] = useState([]);
   const [hidden, setHidden] = useState(false);
   const [selectedRowData, setSelectedRowData] = useState(0);
-  const [userData, setUserData] = useState(fakedata);
   const [sortConfig, setSortConfig] = useState({
     key: "",
     direction: "ascending",
   });
+  const [refresh, setRefresh] = useState(false);
 
   const sortTable = (key) => {
     let direction = "ascending";
@@ -29,20 +30,30 @@ export default function Users() {
     setSortConfig({ key, direction });
   };
 
-  const handleDelete = (id) => {
-    const newUsers = userData.filter((user) => user.id !== id);
-    setUserData(newUsers);
+  const handleDelete = async (id) => {
+    await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/users/${id}`);
+    setRefresh(!refresh);
   };
 
-  const handleStatusChange = (id, value) => {
-    const newUsers = userData.map((user) => {
-      if (user.id === id) {
-        return { ...user, adminStatus: value };
-      }
-      return user;
-    });
-    setUserData(newUsers);
+  const handleStatusChange = async (id, value) => {
+    if (id !== 1) {
+      await axios
+        .put(`${import.meta.env.VITE_BACKEND_URL}/users/admin/${id}`, {
+          adminStatus: value,
+        })
+        .catch((err) => console.error(err));
+    }
+    setRefresh(!refresh);
   };
+
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/users`)
+      .then((res) => {
+        setUserData(res.data.sort((a, b) => b.id - a.id));
+      })
+      .catch((err) => console.error(err));
+  }, [refresh]);
 
   const handleRowClick = (rowData) => {
     setSelectedRowData(rowData);
@@ -51,80 +62,104 @@ export default function Users() {
 
   return (
     <>
-      <h1 className="mt-16 mb-6 text-2xl text-center font-bold">
-        Gérer les utilisateur
-      </h1>
-      <div className="flex flex-col items-center gap-6">
+      <h2 className="mt-16 mb-6 text-2xl text-center font-bold">
+        Gérer les utilisateurs
+      </h2>
+      <div className="flex flex-col gap-6">
         <table className="w-full min-w-[580px] bg-secondary rounded mb-8 shadow-md overflow-scroll">
           <thead>
-            <tr className="flex justify-center p-1">
-              <th className="flex-0" onClick={() => sortTable("id")}>
-                Id{" "}
-                {sortConfig.key === "id" &&
-                  (sortConfig.direction === "ascending" ? "▼" : "▲")}
-              </th>
-              <th className="flex-1" onClick={() => sortTable("lastname")}>
+            <tr className="flex justify-center p-2">
+              <th
+                className="flex-1 min-w-[150px]"
+                onClick={() => sortTable("lastname")}
+              >
                 Nom{" "}
                 {sortConfig.key === "lastname" &&
                   (sortConfig.direction === "ascending" ? "▼" : "▲")}
               </th>
-              <th className="flex-1" onClick={() => sortTable("firstname")}>
+              <th
+                className="flex-1 min-w-[150px]"
+                onClick={() => sortTable("firstname")}
+              >
                 Prénom{" "}
                 {sortConfig.key === "firstname" &&
                   (sortConfig.direction === "ascending" ? "▼" : "▲")}
               </th>
-              <th className="flex-1" onClick={() => sortTable("email")}>
+              <th
+                className="flex-1 min-w-[200px]"
+                onClick={() => sortTable("email")}
+              >
                 Email{" "}
                 {sortConfig.key === "email" &&
                   (sortConfig.direction === "ascending" ? "▼" : "▲")}
               </th>
               <th className="flex-0">Recettes</th>
-              <th className="flex-1">Statut</th>
-              <th className="flex-0">Supprimer</th>
+              <th
+                className="flex-1 min-w-[80px]"
+                onClick={() => sortTable("adminStatus")}
+              >
+                Statut{" "}
+                {sortConfig.key === "adminStatus" &&
+                  (sortConfig.direction === "ascending" ? "▼" : "▲")}
+              </th>
+              <th className="flex-0 w-[30px]"> </th>
             </tr>
           </thead>
           <tbody>
             {userData.map((e) => (
               <tr
-                className="h-14 flex justify-center p-3 shadow-inner"
+                className="h-14 flex justify-center p-2 shadow-inner"
                 key={e.id}
               >
-                <td className="flex-0">{e.id}</td>
-                <td className="flex-1">{e.lastname}</td>
-                <td className="flex-1">{e.firstname}</td>
-                <td className="flex-1">{e.email}</td>
-                <td className="flex-0 w-[70px]">
+                <td className="flex-1 min-w-[150px]">{e.lastname}</td>
+                <td className="flex-1 min-w-[150px]">{e.firstname}</td>
+                <td className="flex-1 min-w-[200px]">{e.email}</td>
+                <td className="flex-0">
                   <button
                     type="button"
                     onClick={() => handleRowClick(e.id)}
                     className="transparent-button max-w-fit"
                   >
                     <img
-                      src="../../../public/assets/eye/eye.png"
+                      src="/assets/eye/eye.png"
                       alt="supprimer utilisateur"
                       className="w-6"
                     />
                   </button>
                 </td>
-                <td className="flex-1">
+                <td className="flex-1 min-w-[80px]">
                   <select
-                    value={e.adminStatus}
+                    name="adminStatus"
+                    className="rounded"
                     onChange={(event) =>
                       handleStatusChange(e.id, event.target.value)
                     }
                   >
-                    <option value="admin">Admin</option>
-                    <option value="user">User</option>
+                    {e.adminStatus === 1 ? (
+                      <>
+                        <option selected value={1}>
+                          Admin
+                        </option>
+                        <option value={0}>User</option>
+                      </>
+                    ) : (
+                      <>
+                        <option value={1}>Admin</option>
+                        <option selected value={0}>
+                          User
+                        </option>
+                      </>
+                    )}
                   </select>
                 </td>
-                <td className="flex-0 w-[70px]">
+                <td className="flex-0 w-[30px]">
                   <button
                     type="button"
                     onClick={() => handleDelete(e.id)}
                     className="transparent-button max-w-fit"
                   >
                     <img
-                      src="../../../public/assets/delete/delete.png"
+                      src="/assets/delete/delete.png"
                       alt="supprimer utilisateur"
                       className="w-4"
                     />
