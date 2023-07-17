@@ -1,8 +1,11 @@
-import InfoVin from "@components/InfoVin";
-import { useChoice } from "../contexts/ChoiceContext";
+// import InfoVin from "@components/InfoVin";
+import { Link } from "react-router-dom";
+import { useChoice } from "@contexts/ChoiceContext";
+import VinEnCours from "@components/VinEnCours";
 
 function CompteRenduFiche() {
   const {
+    selectNote,
     selectVueCouleur,
     selectVueLimpidite,
     selectVueDensite,
@@ -31,48 +34,48 @@ function CompteRenduFiche() {
   const month = today.getMonth() + 1;
   const day = today.getDate();
 
-  const vins = [
-    {
-      id: 1,
-      src: "/assets/images/whitewine1.jpg",
-      nom: "Palacio de Menadi",
-      maison: "Rueda - Espagnol",
-      millesime: "2013",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    },
-    {
-      id: 2,
-      src: "/assets/images/whitewine2.jpg",
-      nom: "Marlborough - Sauvignon blanc",
-      maison: "... - Nouvelle Zelande",
-      millesime: "2018",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    },
-    {
-      id: 3,
-      src: "/assets/images/whitewine3.jpg",
-      nom: "Cambalala - Pinot Grigio",
-      maison: "... - Afrique du Sud",
-      millesime: "2021",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    },
-    {
-      id: 4,
-      src: "/assets/images/whitewine4.jpg",
-      nom: "Morning Fog - Chardonnay",
-      maison: "Wente - San Fracisco Bay ",
-      millesime: "2017",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    },
-    {
-      id: 5,
-      src: "/assets/images/whitewine5.jpg",
-      nom: "Alta Italia - Pinot Grigio",
-      maison: "Trentino - Italie",
-      millesime: "2021",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    },
-  ];
+  // const vins = [
+  //   {
+  //     id: 1,
+  //     src: "/assets/images/whitewine1.jpg",
+  //     nom: "Palacio de Menadi",
+  //     maison: "Rueda - Espagnol",
+  //     millesime: "2013",
+  //     desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+  //   },
+  //   {
+  //     id: 2,
+  //     src: "/assets/images/whitewine2.jpg",
+  //     nom: "Marlborough - Sauvignon blanc",
+  //     maison: "... - Nouvelle Zelande",
+  //     millesime: "2018",
+  //     desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+  //   },
+  //   {
+  //     id: 3,
+  //     src: "/assets/images/whitewine3.jpg",
+  //     nom: "Cambalala - Pinot Grigio",
+  //     maison: "... - Afrique du Sud",
+  //     millesime: "2021",
+  //     desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+  //   },
+  //   {
+  //     id: 4,
+  //     src: "/assets/images/whitewine4.jpg",
+  //     nom: "Morning Fog - Chardonnay",
+  //     maison: "Wente - San Fracisco Bay ",
+  //     millesime: "2017",
+  //     desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+  //   },
+  //   {
+  //     id: 5,
+  //     src: "/assets/images/whitewine5.jpg",
+  //     nom: "Alta Italia - Pinot Grigio",
+  //     maison: "Trentino - Italie",
+  //     millesime: "2021",
+  //     desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+  //   },
+  // ];
 
   return (
     <div>
@@ -82,20 +85,21 @@ function CompteRenduFiche() {
           <h2>{`${day}/${month}/${year}`}</h2>
         </div>
         <div>
-          <InfoVin
+          {/* <InfoVin
             image={vins[0].src}
             nom={vins[0].nom}
             maison={vins[0].maison}
             millesime={vins[0].millesime}
             desc={vins[0].desc}
-          />
+          /> */}
+          <VinEnCours />
         </div>
         <div className="compteRendu max-sm:compteRenduMaxSm max-[500px]:compteRenduMin">
           <h2 className="font-bold uppercase text-[1.5rem] text-center borderGrid3 flex flex-col justify-center max-sm:borderGrid3MaxSm max-[500px]:borderGrid3Min">
             La note
           </h2>
           <p className="row-start-2 row-end-3 text-[1.7rem] text-center borderGrid2 flex flex-col justify-center max-sm:borderGrid2MaxSm max-[500px]:borderGrid2Min">
-            5/10
+            {selectNote}/10
           </p>
           <h2 className="col-start-1 col-end-2 font-bold uppercase text-[1.5rem] text-center flex flex-col justify-center max-sm:col-start-2 max-sm:col-end-3 max-sm:row-start-1 max-sm:row-end-2">
             La vue
@@ -191,7 +195,11 @@ function CompteRenduFiche() {
           </div>
         </div>
         <div className="flex justify-around pb-[4rem]">
-          <button type="button">Précédent</button>
+          <Link to="/fiche/final">
+            <button type="button" className="items-center">
+              Précédent
+            </button>
+          </Link>
           <button type="button">Valider</button>
         </div>
       </div>
