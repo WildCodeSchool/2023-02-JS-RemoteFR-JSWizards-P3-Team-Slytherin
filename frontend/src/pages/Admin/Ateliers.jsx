@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { useWorkshop } from "../../contexts/WorkshopContext";
 
-export default function Vins() {
+export default function Ateliers() {
   const { workshopData, setWorkshopData } = useWorkshop();
   const [sortConfig, setSortConfig] = useState({
     key: "workshopDate",
