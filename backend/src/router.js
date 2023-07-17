@@ -127,7 +127,11 @@ router.post("/wineWorkshop", wineWorkshopControllers.postWineWorkshop);
 router.get("/wineWorkshop", wineWorkshopControllers.getSelection);
 router.get(
   "/winesWorkshops/:idUser",
-  wineWorkshopControllers.getLastFiveWineForOneUser
+  wineWorkshopControllers.getLastFiveWinesForOneUser
+);
+router.get(
+  "/allWinesWorkshops/:idUser",
+  wineWorkshopControllers.getWinesForOneUser
 );
 
 module.exports = router;

@@ -24,10 +24,21 @@ const getSelection = (req, res) => {
     });
 };
 
-const getLastFiveWineForOneUser = (req, res) => {
+const getLastFiveWinesForOneUser = (req, res) => {
   const { idUser } = req.params;
   wineWorkshopManager
-    .findLastFiveWineForOneUser(idUser)
+    .findLastFiveWinesForOneUser(idUser)
+    .then((wines) => res.json(wines[0]))
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
+const getWinesForOneUser = (req, res) => {
+  const { idUser } = req.params;
+  wineWorkshopManager
+    .findWinesForOneUser(idUser)
     .then((wines) => res.json(wines[0]))
     .catch((err) => {
       console.error(err);
@@ -38,5 +49,6 @@ const getLastFiveWineForOneUser = (req, res) => {
 module.exports = {
   postWineWorkshop,
   getSelection,
-  getLastFiveWineForOneUser,
+  getLastFiveWinesForOneUser,
+  getWinesForOneUser,
 };
