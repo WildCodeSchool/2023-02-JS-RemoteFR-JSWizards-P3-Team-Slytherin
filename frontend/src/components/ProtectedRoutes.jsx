@@ -25,6 +25,7 @@ function RestrictedRoutes() {
     "/profil/modifier",
     "/fiche",
     "/profil/historique_fiches",
+    "/profil/mes_recettes",
   ];
 
   if (!allowedUserRoutes.includes(location.pathname)) {
