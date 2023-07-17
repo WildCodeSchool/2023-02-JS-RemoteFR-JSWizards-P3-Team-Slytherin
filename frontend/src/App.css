@@ -250,12 +250,13 @@
     grid-template-columns: 1fr 2fr;
     grid-template-rows: 0.25fr 0.3fr 0.25fr 0.9fr 0.25fr 1.1fr;
     gap: 0.5rem;
+    padding-bottom: 1rem;
     margin-top: 2rem;
     margin-bottom: 3rem;
     border: 1px solid theme("colors.secondary");
-    border-bottom-right-radius: 1.5%;
-    border-bottom-left-radius: 1.5%;
+    border-radius: 1.5%;
     position: relative;
+    background-color: theme("colors.primary");
   }
 
   .compteRendu::before {
@@ -470,6 +471,12 @@ th {
   color: theme("colors.secondary");
   border-radius: 10px;
   padding: 0.4rem;
+}
+
+/* bouton note final */
+.note-button {
+  background-color: theme("colors.primary");
+  color: theme("colors.secondary");
 }
 
 /*admin_atelier*/
