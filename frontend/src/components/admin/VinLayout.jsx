@@ -208,9 +208,21 @@ export default function VinLayout({
                   onChange={handleChange}
                   className="font-bold bg-[#f8f8f8] rounded p-2"
                 >
-                  <option value="">-----</option>
-                  <option value="rouge">Rouge</option>
-                  <option value="blanc">Blanc</option>
+                  {wineInfo.wineType === "blanc" ? (
+                    <>
+                      <option value="rouge">Rouge</option>
+                      <option selected value="blanc">
+                        Blanc
+                      </option>
+                    </>
+                  ) : (
+                    <>
+                      <option selected value="rouge">
+                        Rouge
+                      </option>
+                      <option value="blanc">Blanc</option>
+                    </>
+                  )}
                 </select>
               </div>
             </div>

@@ -13,10 +13,10 @@ export default function Vins() {
     wineName: "",
     castle: "",
     grapeVariety: "",
-    wineYear: "",
+    wineYear: "2023",
     wineDescription: "",
     wineType: "",
-    wineImage: "",
+    wineImage: "defaultwine.jpg",
   });
   const [refresh, setRefresh] = useState(false);
   const [hidden, setHidden] = useState(false);
@@ -51,10 +51,10 @@ export default function Vins() {
       wineName: "",
       castle: "",
       grapeVariety: "",
-      wineYear: "",
+      wineYear: "2023",
       wineDescription: "",
       wineType: "",
-      wineImage: "",
+      wineImage: "defaultwine.jpg",
     });
     setHidden(!hidden);
   };
@@ -74,7 +74,7 @@ export default function Vins() {
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/wines`)
       .then((res) => {
-        setVinData(res.data);
+        setVinData(res.data.sort((a, b) => b.id - a.id));
       })
       .catch((err) => console.error(err));
   }, [refresh]);
@@ -125,6 +125,13 @@ export default function Vins() {
                     src={`${import.meta.env.VITE_BACKEND_URL}/assets/wines/${
                       e.wineImage
                     }`}
+                    onError={(imgerr) => {
+                      const img = imgerr;
+                      img.target.onerror = null;
+                      img.target.src = `${
+                        import.meta.env.VITE_BACKEND_URL
+                      }/assets/wines/defaultwine.jpg`;
+                    }}
                     alt="miniature"
                     className="h-11 rounded"
                   />
