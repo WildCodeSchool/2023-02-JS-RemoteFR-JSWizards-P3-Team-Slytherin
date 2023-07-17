@@ -43,6 +43,11 @@ const updateUser = (user) => {
   ]);
 };
 
+const updateAdmin = (user) => {
+  const SQL = "UPDATE user SET adminStatus = ? WHERE id = ?";
+  return db.query(SQL, [user.adminStatus, user.id]);
+};
+
 const deleteUser = (id) => {
   const SQL = "DELETE FROM user WHERE id = ?";
   return db.query(SQL, [id]);
@@ -54,5 +59,6 @@ module.exports = {
   findAllUser,
   findOneUser,
   updateUser,
+  updateAdmin,
   deleteUser,
 };
