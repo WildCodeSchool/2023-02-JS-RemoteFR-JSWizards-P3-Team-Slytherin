@@ -32,6 +32,7 @@ router.post("/inscription", newUser, hashPassword, userControllers.postUser);
 router.get("/users", userControllers.getAllUser);
 router.get("/users/:id", userControllers.getOneUser);
 router.put("/users/:id", hashPassword, userControllers.putOneUser);
+router.put("/users/password/:id", hashPassword, userControllers.updatePwd);
 router.delete("/users/:id", userControllers.deleteOneUser);
 
 // Gestion ateliers

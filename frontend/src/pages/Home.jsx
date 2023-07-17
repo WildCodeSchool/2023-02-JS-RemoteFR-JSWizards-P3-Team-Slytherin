@@ -22,22 +22,32 @@ export default function Home() {
     birthday: "",
   });
 
+  const [pwd, setPwd] = useState("");
+  const [confirmPwd, setConfirmPwd] = useState("");
+
   const handleChangeInscription = (e) => {
+    if (e.target.name === "password") {
+      setPwd(e.target.value);
+    } else if (e.target.name === "confirmpassword") {
+      setConfirmPwd(e.target.value);
+    }
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
   const handleSubmitInscription = (e) => {
     e.preventDefault();
-    if (user.birthday.trim() === "") {
-      user.birthday = null;
+    const birthday = user.birthday || null;
+    if (pwd === confirmPwd) {
+      const newUser = { ...user, password: pwd, birthday };
+
+      axios
+        .post(APINSCRIPTION, newUser, { withCredentials: true })
+        .then((res) => {
+          console.warn(res.data.message);
+          window.location.href = "/";
+        })
+        .catch((err) => console.error(err.response.data.message));
     }
-    axios
-      .post(APINSCRIPTION, { ...user }, { withCredentials: true })
-      .then((res) => {
-        console.warn(res.data.message);
-        window.location.href = "/";
-      })
-      .catch((err) => console.error(err.response.data.message));
   };
 
   const toggleConnection = () => {
@@ -160,6 +170,7 @@ export default function Home() {
               name="confirmpassword"
               required
               className="text-primary w-72 p-1 rounded"
+              onChange={handleChangeInscription}
             />
           </div>
           <br />

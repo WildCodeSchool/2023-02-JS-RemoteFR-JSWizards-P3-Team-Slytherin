@@ -47,13 +47,43 @@ const getOneUser = async (req, res) => {
 const putOneUser = (req, res) => {
   const user = req.body;
 
+  const trimDate = (dateToTrim) => {
+    if (dateToTrim) {
+      return dateToTrim.split("T")[0];
+    }
+    return null;
+  };
+
   user.id = parseInt(req.params.id, 10);
+  const birthday = trimDate(user.birthday);
 
   userManager
-    .updateUser(user)
+    .updateUser({
+      ...user,
+      birthday,
+    })
     .then(([result]) => {
       if (result.affectedRows === 0) {
         res.sendStatus(404);
+      } else {
+        res.status(200).json({ user });
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Oups, le serveur est en panne");
+    });
+};
+
+const updatePwd = (req, res) => {
+  const { id } = req.params;
+  const { hashedPassword } = req.body;
+
+  userManager
+    .updateUserPwd({ hashedPassword, id })
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.sendStatus(403);
       } else {
         res.sendStatus(204);
       }
@@ -91,6 +121,7 @@ module.exports = {
   getAllUser,
   getOneUser,
   putOneUser,
+  updatePwd,
   deleteOneUser,
   logout,
 };
