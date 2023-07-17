@@ -476,6 +476,12 @@ th {
   padding: 0.1rem;
 }
 
+/* bouton note final */
+.note-button {
+  background-color: theme("colors.primary");
+  color: theme("colors.secondary");
+}
+
 /*admin_atelier*/
 .transparent-button {
   background-color: transparent;
