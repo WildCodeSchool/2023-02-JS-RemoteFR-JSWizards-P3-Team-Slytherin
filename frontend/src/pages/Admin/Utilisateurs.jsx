@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import UserLayout from "../../components/admin/UserLayout";
 
 export default function Users() {
   const [userData, setUserData] = useState([]);
+  const [hidden, setHidden] = useState(false);
+  const [selectedRowData, setSelectedRowData] = useState(0);
   const [sortConfig, setSortConfig] = useState({
     key: "",
     direction: "ascending",
@@ -52,6 +55,11 @@ export default function Users() {
       .catch((err) => console.error(err));
   }, [refresh]);
 
+  const handleRowClick = (rowData) => {
+    setSelectedRowData(rowData);
+    setHidden(!hidden);
+  };
+
   return (
     <>
       <h2 className="mt-16 mb-6 text-2xl text-center font-bold">
@@ -85,6 +93,7 @@ export default function Users() {
                 {sortConfig.key === "email" &&
                   (sortConfig.direction === "ascending" ? "▼" : "▲")}
               </th>
+              <th className="flex-0">Recettes</th>
               <th
                 className="flex-1 min-w-[80px]"
                 onClick={() => sortTable("adminStatus")}
@@ -105,6 +114,19 @@ export default function Users() {
                 <td className="flex-1 min-w-[150px]">{e.lastname}</td>
                 <td className="flex-1 min-w-[150px]">{e.firstname}</td>
                 <td className="flex-1 min-w-[200px]">{e.email}</td>
+                <td className="flex-0">
+                  <button
+                    type="button"
+                    onClick={() => handleRowClick(e.id)}
+                    className="transparent-button max-w-fit"
+                  >
+                    <img
+                      src="/assets/eye/eye.png"
+                      alt="supprimer utilisateur"
+                      className="w-6"
+                    />
+                  </button>
+                </td>
                 <td className="flex-1 min-w-[80px]">
                   <select
                     name="adminStatus"
@@ -148,6 +170,11 @@ export default function Users() {
           </tbody>
         </table>
       </div>
+      <UserLayout
+        selectedRowData={selectedRowData}
+        hidden={hidden}
+        setHidden={setHidden}
+      />
     </>
   );
 }

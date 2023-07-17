@@ -75,6 +75,11 @@ router.delete("/recipes/:id", recipeControllers.deleteOneRecipe);
 // Gestion de la table intermédiaire recette/vin
 
 router.post("/recipeWine/creation", recipeWineControllers.postRecipeWine);
+router.delete(
+  "/recipeWine/:id",
+  recipeWineControllers.deleteRecipeWine,
+  recipeControllers.deleteOneRecipe
+);
 
 // Gestion des avis/commentaires
 
