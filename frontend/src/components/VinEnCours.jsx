@@ -1,19 +1,36 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+
 export default function VinEnCours() {
+  const [wine, setWine] = useState({ wineImage: "default.jpg" });
+  const API = import.meta.env.VITE_BACKEND_URL;
+  useEffect(() => {
+    axios
+      .get(`${API}/wines/1`)
+      .then((data) => {
+        setWine(data.data);
+      })
+      .catch((err) => console.error(err));
+  }, []);
+
   return (
     <div className="mt-8 flex w-full justify-center">
       <div className="flex items-center w-3/4 gap-4">
-        <img className="h-[144px]" src="/assets/images/whitewine1.jpg" alt="" />
+        <img
+          className="h-[144px]"
+          src={`${import.meta.env.VITE_BACKEND_URL}/assets/wines/${
+            wine.wineImage
+          }`}
+          alt=""
+        />
         <div className="flex flex-col gap-2">
-          <h2 className="font-bold text-xl">Vin 1</h2>
+          <h2 className="font-bold text-xl">{wine.wineName}</h2>
           <div className="flex gap-2">
             <h3 className="font-bold">Année :</h3>
-            <p>2014</p>
+            <p>{wine.wineYear}</p>
           </div>
-          <h3 className="font-bold">Vignoble</h3>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos optio
-            quam numquam et beatae deleniti.
-          </p>
+          <h3 className="font-bold">{wine.castle}</h3>
+          <p>{wine.wineDescription}</p>
         </div>
       </div>
     </div>

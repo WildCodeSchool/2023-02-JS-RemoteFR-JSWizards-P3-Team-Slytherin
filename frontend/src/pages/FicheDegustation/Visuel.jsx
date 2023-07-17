@@ -1,15 +1,19 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import VinEnCours from "@components/VinEnCours";
+import { useChoice } from "@contexts/ChoiceContext";
 
 export default function Visuel() {
-  const [couleur, setCouleur] = useState("-");
-  const [limpidite, setLimpidite] = useState("-");
-  const [densite, setDensite] = useState("-");
-  const [visuelVin, setVisuelVin] = useState({
-    couleur: "-",
-    limpidite: "-",
-    densite: "-",
-  });
+  const {
+    selectVueCouleur,
+    selectVueLimpidite,
+    selectVueDensite,
+    setSelectVueCouleur,
+    setSelectVueLimpidite,
+    setSelectVueDensite,
+  } = useChoice();
+
+  const [test, setTest] = useState({});
 
   const handleColorClick = () => {
     const couleurClass = document.getElementById("couleur");
@@ -52,19 +56,35 @@ export default function Visuel() {
 
   const handleSelectionClick = () => {
     if (document.querySelector("input[name=densite]:checked") !== null) {
-      setDensite(document.querySelector("input[name=densite]:checked").id);
+      setSelectVueDensite(
+        document.querySelector("input[name=densite]:checked + label").innerText
+      );
     }
     if (document.querySelector("input[name=limpidite]:checked") !== null) {
-      setLimpidite(document.querySelector("input[name=limpidite]:checked").id);
+      setSelectVueLimpidite(
+        document.querySelector("input[name=limpidite]:checked + label")
+          .innerText
+      );
     }
     if (document.querySelector("input[name=couleur]:checked") !== null) {
-      setCouleur(document.querySelector("input[name=couleur]:checked").id);
+      setSelectVueCouleur(
+        document.querySelector("input[name=couleur]:checked + label").innerText
+      );
     }
   };
 
+  const handleTest = (e) => {
+    e.preventDefault();
+    setTest({
+      densite: selectVueDensite,
+      limpidite: selectVueLimpidite,
+      couleur: selectVueCouleur,
+    });
+  };
+
   useEffect(() => {
-    setVisuelVin({ couleur, limpidite, densite });
-  }, [densite, limpidite, couleur]);
+    console.info(test);
+  }, [test]);
 
   return (
     <>
@@ -80,8 +100,8 @@ export default function Visuel() {
                 type="button"
                 onClick={handleColorClick}
                 value={
-                  visuelVin.couleur !== "-"
-                    ? `Couleur : ${visuelVin.couleur}`
+                  selectVueCouleur !== "-"
+                    ? `Couleur : ${selectVueCouleur}`
                     : "Couleur : -"
                 }
                 className="fiche-deg-button p-2 w-full"
@@ -98,7 +118,7 @@ export default function Visuel() {
                         id="quasi-noir"
                       />
                       <label className="mr-2" htmlFor="quasi-noir">
-                        quasi-noir
+                        Quasi-noir
                       </label>
                     </div>
                     <div className="bg-[#A70045] rounded-full flex flex-row p-2">
@@ -110,7 +130,7 @@ export default function Visuel() {
                         id="pourpre"
                       />
                       <label className="mr-2" htmlFor="pourpre">
-                        pourpre
+                        Pourpre
                       </label>
                     </div>
                     <div className="bg-[#9C0063] rounded-full flex flex-row p-2">
@@ -122,7 +142,7 @@ export default function Visuel() {
                         id="violet"
                       />
                       <label className="mr-2" htmlFor="violet">
-                        violet
+                        Violet
                       </label>
                     </div>
                     <div className="bg-[#7E2950] rounded-full flex flex-row p-2">
@@ -134,7 +154,7 @@ export default function Visuel() {
                         id="grenat"
                       />
                       <label className="mr-2" htmlFor="grenat">
-                        grenat
+                        Grenat
                       </label>
                     </div>
                   </div>
@@ -148,7 +168,7 @@ export default function Visuel() {
                         id="framboise"
                       />
                       <label className="mr-2" htmlFor="framboise">
-                        framboise
+                        Framboise
                       </label>
                     </div>
                     <div className="bg-[#EA0428] rounded-full flex flex-row p-2">
@@ -160,7 +180,7 @@ export default function Visuel() {
                         id="cerise"
                       />
                       <label className="mr-2" htmlFor="cerise">
-                        cerise
+                        Cerise
                       </label>
                     </div>
                     <div className="bg-[#C70400] rounded-full flex flex-row p-2">
@@ -172,7 +192,7 @@ export default function Visuel() {
                         id="rubis"
                       />
                       <label className="mr-2" htmlFor="rubis">
-                        rubis
+                        Rubis
                       </label>
                     </div>
                     <div className="bg-[#972000] rounded-full flex flex-row p-2">
@@ -184,7 +204,7 @@ export default function Visuel() {
                         id="tuile"
                       />
                       <label className="mr-2" htmlFor="tuile">
-                        tuilé
+                        Tuilé
                       </label>
                     </div>
                   </div>
@@ -198,8 +218,8 @@ export default function Visuel() {
                 type="button"
                 onClick={handleLimpiditeClick}
                 value={
-                  visuelVin.limpidite !== "-"
-                    ? `Limpidité : ${visuelVin.limpidite}`
+                  selectVueLimpidite !== "-"
+                    ? `Limpidité : ${selectVueLimpidite}`
                     : "Limpidité : -"
                 }
                 className="fiche-deg-button p-2 w-full"
@@ -274,8 +294,8 @@ export default function Visuel() {
                 type="button"
                 onClick={handleDensiteClick}
                 value={
-                  visuelVin.densite !== "-"
-                    ? `Densité : ${visuelVin.densite}`
+                  selectVueDensite !== "-"
+                    ? `Densité : ${selectVueDensite}`
                     : "Densité : -"
                 }
                 className="fiche-deg-button p-2 w-full"
@@ -332,11 +352,18 @@ export default function Visuel() {
               </div>
             </fieldset>
           </div>
-          <div className="absolute w-[400px] right-[calc(50%-200px)] bottom-8 flex justify-center gap-4">
-            <button type="button">Retour au catalogue</button>
-            <button type="button">Suivant</button>
+          <div className="w-full flex justify-center gap-4 my-4">
+            <Link to="/selection">
+              <button type="button">Retour au catalogue</button>
+            </Link>
+            <Link to="/fiche/olfactif">
+              <button type="button">Suivant</button>
+            </Link>
           </div>
         </form>
+        <button type="button" onClick={handleTest}>
+          Test
+        </button>
       </div>
     </>
   );
