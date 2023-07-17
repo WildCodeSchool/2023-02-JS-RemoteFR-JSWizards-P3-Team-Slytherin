@@ -1,7 +1,10 @@
 import { useState } from "react";
 import fakedata from "../../components/Data/data-utilisateur-admin";
+import UserLayout from "../../components/admin/UserLayout";
 
 export default function Users() {
+  const [hidden, setHidden] = useState(false);
+  const [selectedRowData, setSelectedRowData] = useState(0);
   const [userData, setUserData] = useState(fakedata);
   const [sortConfig, setSortConfig] = useState({
     key: "",
@@ -34,11 +37,16 @@ export default function Users() {
   const handleStatusChange = (id, value) => {
     const newUsers = userData.map((user) => {
       if (user.id === id) {
-        return { ...user, admin: value };
+        return { ...user, adminStatus: value };
       }
       return user;
     });
     setUserData(newUsers);
+  };
+
+  const handleRowClick = (rowData) => {
+    setSelectedRowData(rowData);
+    setHidden(!hidden);
   };
 
   return (
@@ -55,14 +63,14 @@ export default function Users() {
                 {sortConfig.key === "id" &&
                   (sortConfig.direction === "ascending" ? "▼" : "▲")}
               </th>
-              <th className="flex-1" onClick={() => sortTable("lastName")}>
+              <th className="flex-1" onClick={() => sortTable("lastname")}>
                 Nom{" "}
-                {sortConfig.key === "lastName" &&
+                {sortConfig.key === "lastname" &&
                   (sortConfig.direction === "ascending" ? "▼" : "▲")}
               </th>
-              <th className="flex-1" onClick={() => sortTable("firstName")}>
+              <th className="flex-1" onClick={() => sortTable("firstname")}>
                 Prénom{" "}
-                {sortConfig.key === "firstName" &&
+                {sortConfig.key === "firstname" &&
                   (sortConfig.direction === "ascending" ? "▼" : "▲")}
               </th>
               <th className="flex-1" onClick={() => sortTable("email")}>
@@ -80,13 +88,29 @@ export default function Users() {
                 className="h-14 flex justify-center p-3 shadow-inner"
                 key={e.id}
               >
-                <td className="flex-0">{e.id}</td>
-                <td className="flex-1">{e.lastName}</td>
-                <td className="flex-1">{e.firstName}</td>
-                <td className="flex-1">{e.email}</td>
+                <td className="flex-0">
+                  <button type="button" onClick={() => handleRowClick(e)}>
+                    {e.id}
+                  </button>
+                </td>
+                <td className="flex-1">
+                  <button type="button" onClick={() => handleRowClick(e)}>
+                    {e.lastname}
+                  </button>
+                </td>
+                <td className="flex-1">
+                  <button type="button" onClick={() => handleRowClick(e)}>
+                    {e.firstname}
+                  </button>
+                </td>
+                <td className="flex-1">
+                  <button type="button" onClick={() => handleRowClick(e)}>
+                    {e.email}
+                  </button>
+                </td>
                 <td className="flex-1">
                   <select
-                    value={e.admin}
+                    value={e.adminStatus}
                     onChange={(event) =>
                       handleStatusChange(e.id, event.target.value)
                     }
@@ -113,6 +137,11 @@ export default function Users() {
           </tbody>
         </table>
       </div>
+      <UserLayout
+        selectedRowData={selectedRowData}
+        hidden={hidden}
+        setHidden={setHidden}
+      />
     </>
   );
 }
