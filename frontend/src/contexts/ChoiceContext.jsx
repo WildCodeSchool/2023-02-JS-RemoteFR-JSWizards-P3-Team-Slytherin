@@ -1,72 +1,33 @@
 import { createContext, useContext, useState, useMemo } from "react";
 import PropTypes from "prop-types";
-import VUE from "../helpers/visuel";
-import NEZ from "../helpers/olfactif";
-import BOUCHE from "../helpers/gustatif";
 
 const ChoiceContext = createContext();
 
 export function ChoiceProvider({ children }) {
-  const [selectVueCouleur, setSelectVueCouleur] = useState(
-    VUE.couleurRouge.couleur1
-  );
-  const [selectVueLimpidite, setSelectVueLimpidite] = useState(
-    VUE.limpidite.limpidite2
-  );
-  const [selectVueDensite, setSelectVueDensite] = useState(
-    VUE.densite.densite3
-  );
-  console.info();
+  const [selectVueCouleur, setSelectVueCouleur] = useState("-");
+  const [selectVueLimpidite, setSelectVueLimpidite] = useState("-");
+  const [selectVueDensite, setSelectVueDensite] = useState("-");
 
-  const [selectNezIntensite, setSelectNezIntensite] = useState(
-    NEZ.intensite.intensite1
-  );
-  const [selectNezFruit, setSelectNezFruit] = useState(NEZ.fruitsRouges.fruit2);
-  const [selectNezFleur, setSelectNezFleur] = useState(NEZ.fleursRouges.fleur3);
-  const [selectNezVegetal, setSelectNezVegetal] = useState(
-    NEZ.vegetalRouge.vegetal4
-  );
-  const [selectNezEpice, setSelectNezEpice] = useState(NEZ.epiceRouge.epice5);
-  const [selectNezAmpyreumatique, setSelectNezAmpyreumatique] = useState(
-    NEZ.ampyreumatiqueRouge.ampyreumatique6
-  );
-  const [selectNezMineral, setSelectNezMineral] = useState(
-    NEZ.mineralRouge.mineral1
-  );
+  const [selectNezIntensite, setSelectNezIntensite] = useState("-");
+  const [selectNezFruit, setSelectNezFruit] = useState("-");
+  const [selectNezFleur, setSelectNezFleur] = useState("-");
+  const [selectNezVegetal, setSelectNezVegetal] = useState("-");
+  const [selectNezEpice, setSelectNezEpice] = useState("-");
+  const [selectNezAmpyreumatique, setSelectNezAmpyreumatique] = useState("-");
+  const [selectNezMineral, setSelectNezMineral] = useState("-");
 
-  const [selectBouchePersistance, setSelectBouchePersistance] = useState(
-    BOUCHE.persistance.persistance1
-  );
-  const [selectBoucheMoelleux, setSelectBoucheMoelleux] = useState(
-    BOUCHE.moelleux.moelleux2
-  );
-  const [selectBoucheAcidite, setSelectBoucheAcidite] = useState(
-    BOUCHE.acidite.acidite3
-  );
-  const [selectBoucheTanin, setSelectBoucheTanin] = useState(
-    BOUCHE.tanin.tanin4
-  );
-  const [selectBoucheAlcool, setSelectBoucheAlcool] = useState(
-    BOUCHE.alcool.alcool5
-  );
-  const [selectBoucheFruit, setSelectBoucheFruit] = useState(
-    BOUCHE.fruitsRouges.fruit12
-  );
-  const [selectBoucheFleur, setSelectBoucheFleur] = useState(
-    BOUCHE.fleursRouges.fleur7
-  );
-  const [selectBoucheVegetal, setSelectBoucheVegetal] = useState(
-    BOUCHE.vegetalRouge.vegetal14
-  );
-  const [selectBoucheEpice, setSelectBoucheEpice] = useState(
-    BOUCHE.epiceRouge.epice9
-  );
-  const [selectBoucheAmpyreumatique, setSelectBoucheAmpyreumatique] = useState(
-    BOUCHE.ampyreumatiqueRouge.ampyreumatique11
-  );
-  const [selectBoucheMineral, setSelectBoucheMineral] = useState(
-    BOUCHE.mineralRouge.mineral4
-  );
+  const [selectBouchePersistance, setSelectBouchePersistance] = useState("-");
+  const [selectBoucheMoelleux, setSelectBoucheMoelleux] = useState("-");
+  const [selectBoucheAcidite, setSelectBoucheAcidite] = useState("-");
+  const [selectBoucheTanin, setSelectBoucheTanin] = useState("-");
+  const [selectBoucheAlcool, setSelectBoucheAlcool] = useState("-");
+  const [selectBoucheFruit, setSelectBoucheFruit] = useState("-");
+  const [selectBoucheFleur, setSelectBoucheFleur] = useState("-");
+  const [selectBoucheVegetal, setSelectBoucheVegetal] = useState("-");
+  const [selectBoucheEpice, setSelectBoucheEpice] = useState("-");
+  const [selectBoucheAmpyreumatique, setSelectBoucheAmpyreumatique] =
+    useState("-");
+  const [selectBoucheMineral, setSelectBoucheMineral] = useState("-");
   const [selectNote, setSelectNote] = useState(0);
 
   const propsPassing = useMemo(
