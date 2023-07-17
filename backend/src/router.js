@@ -59,6 +59,10 @@ router.post("/recipes/creation/:iduser", recipeControllers.postRecipe);
 router.get("/recipes", recipeControllers.getAllRecipe);
 router.get("/recipes/:id", recipeControllers.getOneRecipe);
 router.get("/recipes/all/:iduser", recipeControllers.getAllRecipesFromUser);
+router.get(
+  "/recipes/all/detailed/:iduser",
+  recipeControllers.getAllDetailedRecipesFromUser
+);
 router.put("/recipes/:id", recipeControllers.putOneRecipe);
 router.delete("/recipes/:id", recipeControllers.deleteOneRecipe);
 

@@ -57,6 +57,22 @@ const getAllRecipesFromUser = async (req, res) => {
   }
 };
 
+const getAllDetailedRecipesFromUser = async (req, res) => {
+  const { iduser } = req.params;
+  try {
+    const data = await recipeManager.findAllDetailedRecipesFromUser(iduser);
+    const recipe = data[0];
+    if (recipe == null) {
+      res.sendStatus(404);
+    } else {
+      res.status(200).json(recipe);
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Désolé, le serveur est en panne" });
+  }
+};
+
 const putOneRecipe = (req, res) => {
   const recipe = req.body;
 
@@ -102,4 +118,5 @@ module.exports = {
   putOneRecipe,
   deleteOneRecipe,
   getAllRecipesFromUser,
+  getAllDetailedRecipesFromUser,
 };

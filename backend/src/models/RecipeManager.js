@@ -20,6 +20,12 @@ const findAllRecipesFromUser = (iduser) => {
   return db.query(SQL, [iduser]);
 };
 
+const findAllDetailedRecipesFromUser = (iduser) => {
+  const SQL =
+    "SELECT rw.id_recipe, rw.id_wine, w.wineName, w.wineYear, rw.dosage FROM recipe_wine AS rw INNER JOIN wine AS w ON w.id = rw.id_wine INNER JOIN recipe AS r ON r.id = rw.id_recipe WHERE r.id_user = ? ORDER BY r.id DESC";
+  return db.query(SQL, [iduser]);
+};
+
 const updateRecipe = (recipe) => {
   const SQL = "UPDATE recipe SET measuring = ? WHERE id = ?";
   return db.query(SQL, [recipe.measuring, recipe.id]);
@@ -37,4 +43,5 @@ module.exports = {
   updateRecipe,
   deleteRecipe,
   findAllRecipesFromUser,
+  findAllDetailedRecipesFromUser,
 };
