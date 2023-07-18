@@ -5,6 +5,7 @@ const ChoiceContext = createContext();
 
 export function ChoiceProvider({ children }) {
   const [selection, setSelection] = useState([]);
+  const [vinEnCours, setVinEnCours] = useState({});
 
   const [selectVueCouleur, setSelectVueCouleur] = useState("-");
   const [selectVueLimpidite, setSelectVueLimpidite] = useState("-");
@@ -35,6 +36,7 @@ export function ChoiceProvider({ children }) {
   const propsPassing = useMemo(
     () => ({
       selection,
+      vinEnCours,
       selectVueCouleur,
       selectVueLimpidite,
       selectVueDensite,
@@ -58,6 +60,7 @@ export function ChoiceProvider({ children }) {
       selectBoucheMineral,
       selectNote,
       setSelection,
+      setVinEnCours,
       setSelectBouchePersistance,
       setSelectBoucheMoelleux,
       setSelectBoucheAcidite,
@@ -83,6 +86,7 @@ export function ChoiceProvider({ children }) {
     }),
     [
       selection,
+      vinEnCours,
       selectVueCouleur,
       selectVueLimpidite,
       selectVueDensite,
@@ -106,6 +110,7 @@ export function ChoiceProvider({ children }) {
       selectBoucheMineral,
       selectNote,
       setSelection,
+      setVinEnCours,
       setSelectBouchePersistance,
       setSelectBoucheMoelleux,
       setSelectBoucheAcidite,

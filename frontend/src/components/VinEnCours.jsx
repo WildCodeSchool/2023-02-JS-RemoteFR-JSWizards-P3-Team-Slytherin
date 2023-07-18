@@ -1,12 +1,16 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useChoice } from "@contexts/ChoiceContext";
 
 export default function VinEnCours() {
   const [wine, setWine] = useState({ wineImage: "default.jpg" });
   const API = import.meta.env.VITE_BACKEND_URL;
+
+  const { vinEnCours } = useChoice();
+
   useEffect(() => {
     axios
-      .get(`${API}/wines/1`)
+      .get(`${API}/wines/${vinEnCours.id_wine}`)
       .then((data) => {
         setWine(data.data);
       })
