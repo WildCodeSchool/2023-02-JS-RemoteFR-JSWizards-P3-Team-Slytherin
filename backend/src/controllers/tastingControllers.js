@@ -45,6 +45,23 @@ const getUserTastingFromWorkshop = (req, res) => {
     });
 };
 
+const getUserTastingOfWineFromWorkshop = (req, res) => {
+  const { iduser, idworkshop, idwine } = req.params;
+  tastingManager
+    .findUserWineTasting(iduser, idworkshop, idwine)
+    .then(([rows]) => {
+      if (rows[0] == null) {
+        res.send("404");
+      } else {
+        res.send(rows[0]);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
 const postTasting = (req, res) => {
   const addTasting = req.body;
   tastingManager
@@ -100,5 +117,6 @@ module.exports = {
   deleteTasting,
   putTasting,
   getUserTastingFromWorkshop,
+  getUserTastingOfWineFromWorkshop,
   getOneTasting,
 };

@@ -131,6 +131,10 @@ router.get(
   "/tasting/:iduser/:idworkshop",
   tastingControllers.getUserTastingFromWorkshop
 );
+router.get(
+  "/tasting/users/:iduser/workshops/:idworkshop/wines/:idwine",
+  tastingControllers.getUserTastingOfWineFromWorkshop
+);
 router.post("/tasting", tastingControllers.postTasting);
 router.put("/tasting/:id", tastingControllers.putTasting);
 router.delete("/tasting/:id", tastingControllers.deleteTasting);
