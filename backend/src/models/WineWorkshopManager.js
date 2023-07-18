@@ -49,7 +49,7 @@ const findWinesForOneUser = (idUser) => {
 
 const resume = (id) => {
   return db.query(
-    `SELECT wine.wineName, wine.wineDescription, tasting.score, wine.id FROM wine INNER JOIN tasting ON wine.id = tasting.id_wine INNER JOIN user ON user.id = tasting.id_user WHERE user.id = ?;`,
+    `SELECT wine.wineName, wine.wineDescription, tasting.score, wine.id FROM wine INNER JOIN tasting ON wine.id = tasting.id_wine INNER JOIN user ON user.id = tasting.id_user INNER JOIN workshop ON workshop.id = tasting.id_workshop WHERE workshop.active = 1 AND user.id = ?;`,
     [id]
   );
 };

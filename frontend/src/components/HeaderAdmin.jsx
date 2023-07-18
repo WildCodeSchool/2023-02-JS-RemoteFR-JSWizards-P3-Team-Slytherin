@@ -73,7 +73,7 @@ function HeaderAdmin() {
                 !isActive("/admin/atelier") ? "hover:underline" : ""
               } ${isActive("/admin/atelier") ? "font-bold active-nav" : ""}`}
             >
-              <Link to="/admin/atelier">Atelier</Link>
+              <Link to="/admin/ateliers">Atelier</Link>
             </li>
             <li
               className={`text-primary  w-[128px] text-center utBtn ${
