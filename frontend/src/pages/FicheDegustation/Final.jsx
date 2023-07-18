@@ -1,12 +1,45 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useChoice } from "@contexts/ChoiceContext";
+import { useUser } from "@contexts/UserContext";
+import axios from "axios";
 import VinEnCours from "@components/VinEnCours";
 
 export default function Final() {
-  const { selectNote, setSelectNote } = useChoice();
+  const {
+    selectNote,
+    vinEnCours,
+    selectVueCouleur,
+    selectVueLimpidite,
+    selectVueDensite,
+    selectNezIntensite,
+    selectNezFruit,
+    selectNezFleur,
+    selectNezVegetal,
+    selectNezEpice,
+    selectNezAmpyreumatique,
+    selectNezMineral,
+    selectBouchePersistance,
+    selectBoucheMoelleux,
+    selectBoucheAcidite,
+    selectBoucheTanin,
+    selectBoucheAlcool,
+    selectBoucheFruit,
+    selectBoucheFleur,
+    selectBoucheVegetal,
+    selectBoucheEpice,
+    selectBoucheAmpyreumatique,
+    selectBoucheMineral,
+    setSelectNote,
+  } = useChoice();
+
+  const navigate = useNavigate();
+
+  const { loggedInUser } = useUser();
 
   const [test, setTest] = useState({});
+  const [exist404, setExist404] = useState("");
+  const [miseEnBDD, setMiseEnBDD] = useState(false);
 
   const handleTest = (e) => {
     e.preventDefault();
@@ -19,6 +52,92 @@ export default function Final() {
     e.preventDefault();
     setSelectNote(e.target.value);
   };
+
+  const handlePostTastingClick = async (e) => {
+    e.preventDefault();
+    await axios
+      .get(
+        `${import.meta.env.VITE_BACKEND_URL}/tasting/users/${
+          loggedInUser.id
+        }/workshops/${vinEnCours.id_workshop}/wines/${vinEnCours.id_wine}`
+      )
+      .then((res) => {
+        setExist404(res.data);
+      })
+      .catch((err) => console.error(err));
+  };
+
+  useEffect(() => {
+    if (exist404 === 404) {
+      console.info("je post");
+      axios
+        .post(`${import.meta.env.VITE_BACKEND_URL}/tasting/`, {
+          score: selectNote,
+          color: selectVueCouleur,
+          clarity: selectVueLimpidite,
+          density: selectVueDensite,
+          intensity: selectNezIntensite,
+          noseFruits: selectNezFruit,
+          noseFlowers: selectNezFleur,
+          nosePlants: selectNezVegetal,
+          noseSpices: selectNezEpice,
+          noseAmpyreumatique: selectNezAmpyreumatique,
+          noseMineral: selectNezMineral,
+          mouthFruits: selectBoucheFruit,
+          mouthFlowers: selectBoucheFleur,
+          mouthPlants: selectBoucheVegetal,
+          mouthSpices: selectBoucheEpice,
+          mouthAmpyreumatique: selectBoucheAmpyreumatique,
+          mouthMineral: selectBoucheMineral,
+          persistance: selectBouchePersistance,
+          smooth: selectBoucheMoelleux,
+          acidity: selectBoucheAcidite,
+          tanin: selectBoucheTanin,
+          alcohol: selectBoucheAlcool,
+          id_workshop: vinEnCours.id_workshop,
+          id_user: loggedInUser.id,
+          id_wine: vinEnCours.id_wine,
+        })
+        .catch((err) => console.error(err));
+      setExist404("");
+      setMiseEnBDD(true);
+    } else {
+      console.info("j'update !");
+      axios
+        .put(`${import.meta.env.VITE_BACKEND_URL}/tasting/${exist404.id}`, {
+          score: selectNote,
+          color: selectVueCouleur,
+          clarity: selectVueLimpidite,
+          density: selectVueDensite,
+          intensity: selectNezIntensite,
+          noseFruits: selectNezFruit,
+          noseFlowers: selectNezFleur,
+          nosePlants: selectNezVegetal,
+          noseSpices: selectNezEpice,
+          noseAmpyreumatique: selectNezAmpyreumatique,
+          noseMineral: selectNezMineral,
+          mouthFruits: selectBoucheFruit,
+          mouthFlowers: selectBoucheFleur,
+          mouthPlants: selectBoucheVegetal,
+          mouthSpices: selectBoucheEpice,
+          mouthAmpyreumatique: selectBoucheAmpyreumatique,
+          mouthMineral: selectBoucheMineral,
+          persistance: selectBouchePersistance,
+          smooth: selectBoucheMoelleux,
+          acidity: selectBoucheAcidite,
+          tanin: selectBoucheTanin,
+          alcohol: selectBoucheAlcool,
+          id_workshop: vinEnCours.id_workshop,
+          id_user: loggedInUser.id,
+          id_wine: vinEnCours.id_wine,
+        })
+        .catch((err) => console.error(err));
+      setMiseEnBDD(true);
+    }
+    if (miseEnBDD) {
+      navigate("/fiche");
+    }
+  }, [exist404]);
 
   useEffect(() => {
     console.info(test);
@@ -123,9 +242,10 @@ export default function Final() {
               Précédent
             </button>
           </Link>
-          <Link to="/fiche">
-            <button type="button">Valider</button>
-          </Link>
+
+          <button type="button" onClick={handlePostTastingClick}>
+            Valider
+          </button>
         </div>
         <button type="button" onClick={handleTest}>
           Test
