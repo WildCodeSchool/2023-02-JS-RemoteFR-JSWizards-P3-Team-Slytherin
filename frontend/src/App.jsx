@@ -66,7 +66,7 @@ function App() {
             element={<ProfilDegustation />}
           />
           <Route path="/recette" element={<Recette />} />
-          <Route path="/profil/modifier" element={<ProfilModif />} />
+          <Route path="/profil/modifier/:id" element={<ProfilModif />} />
           <Route path="/profil/mes_recettes" element={<MesRecettes />} />
           <Route path="/fiche" element={<CompteRenduFiche />} />
           <Route
