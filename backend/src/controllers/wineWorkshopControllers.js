@@ -46,9 +46,20 @@ const getWinesForOneUser = (req, res) => {
     });
 };
 
+const getWineAndScore = (req, res) => {
+  wineWorkshopManager
+    .resume()
+    .then((wines) => res.json(wines[0]))
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
 module.exports = {
   postWineWorkshop,
   getSelection,
   getLastFiveWinesForOneUser,
   getWinesForOneUser,
+  getWineAndScore,
 };

@@ -27,6 +27,12 @@ const createRecipe = (recipe) => {
   ]);
 };
 
+const deleteRecipeWine = (id) => {
+  const SQL = "DELETE FROM recipe_wine WHERE id_recipe = ?";
+  return db.query(SQL, [id]);
+};
+
 module.exports = {
   createRecipe,
+  deleteRecipeWine,
 };

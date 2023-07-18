@@ -22,6 +22,7 @@ import Utilisateurs from "@pages/Admin/Utilisateurs";
 import Ateliers from "@pages/Admin/Ateliers";
 import Atelier from "@pages/Admin/Atelier";
 import ProfilModif from "@pages/ProfilModif";
+import MesRecettes from "@pages/MesRecettes";
 import HistoriqueFiches from "@pages/HistoriqueFiches";
 import ProtectedRoutes from "@components/ProtectedRoutes";
 import Page404 from "@pages/Page404";
@@ -66,7 +67,7 @@ function App() {
           />
           <Route path="/recette" element={<Recette />} />
           <Route path="/profil/modifier/:id" element={<ProfilModif />} />
-
+          <Route path="/profil/mes_recettes" element={<MesRecettes />} />
           <Route path="/fiche" element={<CompteRenduFiche />} />
           <Route
             path="/profil/historique_fiches"

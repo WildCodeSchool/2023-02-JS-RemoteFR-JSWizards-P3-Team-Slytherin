@@ -34,7 +34,10 @@ function Profil() {
           <h2 className="text-3xl pb-[2rem]">
             Bonjour {loggedInUser.firstname}
           </h2>
-          <button type="button">Mes recettes</button>
+
+          <button type="button">
+            <Link to="/profil/mes_recettes">Mes recettes</Link>
+          </button>
         </div>
         <div className="lg:flex justify-between">
           <div className="lg:flex flex-col justify-center">

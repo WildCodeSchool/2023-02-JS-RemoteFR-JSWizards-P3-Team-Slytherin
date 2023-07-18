@@ -81,7 +81,9 @@ export default function Vins() {
 
   return (
     <>
-      <h1 className="mt-16 mb-6 text-2xl font-bold">Gérer les vins</h1>
+      <h2 className="mt-16 mb-6 text-2xl text-center font-bold">
+        Gérer les vins
+      </h2>
       <div className="flex flex-col gap-6">
         <button type="button" onClick={handleWine} className="self-center">
           Ajouter un vin

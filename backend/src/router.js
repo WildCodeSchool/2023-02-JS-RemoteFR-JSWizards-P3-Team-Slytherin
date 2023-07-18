@@ -38,7 +38,13 @@ router.get("/users", userControllers.getAllUser);
 router.get("/users/:id", userControllers.getOneUser);
 router.put("/users/:id", hashPassword, userControllers.putOneUser);
 router.put("/users/password/:id", hashPassword, userControllers.updatePwd);
-router.delete("/users/:id", userControllers.deleteOneUser);
+router.put("/users/admin/:id", userControllers.adminStatus);
+router.delete(
+  "/users/:id",
+  foreignKeyOFF,
+  userControllers.deleteOneUser,
+  foreignKeyON
+);
 
 // Gestion ateliers
 
@@ -60,12 +66,21 @@ router.post("/recipes/creation/:iduser", recipeControllers.postRecipe);
 router.get("/recipes", recipeControllers.getAllRecipe);
 router.get("/recipes/:id", recipeControllers.getOneRecipe);
 router.get("/recipes/all/:iduser", recipeControllers.getAllRecipesFromUser);
+router.get(
+  "/recipes/all/detailed/:iduser",
+  recipeControllers.getAllDetailedRecipesFromUser
+);
 router.put("/recipes/:id", recipeControllers.putOneRecipe);
 router.delete("/recipes/:id", recipeControllers.deleteOneRecipe);
 
 // Gestion de la table intermédiaire recette/vin
 
 router.post("/recipeWine/creation", recipeWineControllers.postRecipeWine);
+router.delete(
+  "/recipeWine/:id",
+  recipeWineControllers.deleteRecipeWine,
+  recipeControllers.deleteOneRecipe
+);
 
 // Gestion des avis/commentaires
 
@@ -117,6 +132,10 @@ router.get(
   "/tasting/:iduser/:idworkshop",
   tastingControllers.getUserTastingFromWorkshop
 );
+router.get(
+  "/tasting/users/:iduser/workshops/:idworkshop/wines/:idwine",
+  tastingControllers.getUserTastingOfWineFromWorkshop
+);
 router.post("/tasting", tastingControllers.postTasting);
 router.put("/tasting/:id", tastingControllers.putTasting);
 router.delete("/tasting/:id", tastingControllers.deleteTasting);
@@ -133,5 +152,9 @@ router.get(
   "/allWinesWorkshops/:idUser",
   wineWorkshopControllers.getWinesForOneUser
 );
+
+// Gestion vins de l'atelier actif + score
+
+router.get("/resume", wineWorkshopControllers.getWineAndScore);
 
 module.exports = router;

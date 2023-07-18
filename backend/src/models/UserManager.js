@@ -47,6 +47,11 @@ const updateUserPwd = (user) => {
   return db.query(SQL, [user.hashedPassword, user.id]);
 };
 
+const updateAdmin = (user) => {
+  const SQL = "UPDATE user SET adminStatus = ? WHERE id = ?";
+  return db.query(SQL, [user.adminStatus, user.id]);
+};
+
 const deleteUser = (id) => {
   const SQL = "DELETE FROM user WHERE id = ?";
   return db.query(SQL, [id]);
@@ -59,5 +64,6 @@ module.exports = {
   findOneUser,
   updateUser,
   updateUserPwd,
+  updateAdmin,
   deleteUser,
 };
