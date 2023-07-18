@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 
 function ClientInfoProfil({ email, birthday }) {
-  const formattedBirthDate = birthday.split("T")[0];
+  const formattedBirthDate = birthday?.split("T")[0];
   return (
     <>
       <p className="pt-[1.5rem] text-lg">
@@ -17,7 +17,11 @@ function ClientInfoProfil({ email, birthday }) {
 
 ClientInfoProfil.propTypes = {
   email: PropTypes.string.isRequired,
-  birthday: PropTypes.string.isRequired,
+  birthday: PropTypes.string,
+};
+
+ClientInfoProfil.defaultProps = {
+  birthday: "",
 };
 
 export default ClientInfoProfil;

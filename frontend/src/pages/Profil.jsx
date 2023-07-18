@@ -1,11 +1,31 @@
 import { Link } from "react-router-dom";
 import ClientInfoProfil from "@components/Profil/ClientInfoProfil";
 import FicheDegustation from "@components/Profil/FicheDegustation";
-import data from "@components/Data/data-wine";
+import axios from "axios";
+import { useState, useEffect } from "react";
 import { useUser } from "../contexts/UserContext";
 
 function Profil() {
   const { loggedInUser } = useUser();
+  const [selection, setSelection] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const API = `${import.meta.env.VITE_BACKEND_URL}/winesWorkshops/${
+      loggedInUser.id
+    }`;
+    axios
+      .get(API)
+      .then((res) => {
+        setSelection(res.data);
+        setIsLoading(false);
+      })
+      .catch((err) => console.error(err));
+  }, []);
+
+  if (isLoading) {
+    return <p>Chargement</p>;
+  }
 
   return (
     <div>
@@ -30,7 +50,7 @@ function Profil() {
               email={loggedInUser.email}
               birthday={loggedInUser.birthday}
             />
-            <Link to="/profil/modifier">
+            <Link to={`/profil/modifier/${loggedInUser.id}`}>
               <button type="button">À modifier</button>
             </Link>
           </div>
@@ -41,11 +61,13 @@ function Profil() {
               </h3>
             </div>
             <div className="pt-[1.5rem]">
-              {data.map((fiche) => (
+              {selection.map((wine) => (
                 <FicheDegustation
-                  key={fiche.id}
-                  src={fiche.image}
-                  title={fiche.name}
+                  key={wine.id_wine}
+                  src={`${import.meta.env.VITE_BACKEND_URL}/assets/wines/${
+                    wine.wineImage
+                  }`}
+                  title={wine.wineName}
                 />
               ))}
             </div>

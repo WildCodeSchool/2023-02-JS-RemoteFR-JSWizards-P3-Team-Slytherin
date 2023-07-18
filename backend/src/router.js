@@ -37,6 +37,7 @@ router.post("/inscription", newUser, hashPassword, userControllers.postUser);
 router.get("/users", userControllers.getAllUser);
 router.get("/users/:id", userControllers.getOneUser);
 router.put("/users/:id", hashPassword, userControllers.putOneUser);
+router.put("/users/password/:id", hashPassword, userControllers.updatePwd);
 router.put("/users/admin/:id", userControllers.adminStatus);
 router.delete(
   "/users/:id",
@@ -143,6 +144,14 @@ router.delete("/tasting/:id", tastingControllers.deleteTasting);
 
 router.post("/wineWorkshop", wineWorkshopControllers.postWineWorkshop);
 router.get("/wineWorkshop", wineWorkshopControllers.getSelection);
+router.get(
+  "/winesWorkshops/:idUser",
+  wineWorkshopControllers.getLastFiveWinesForOneUser
+);
+router.get(
+  "/allWinesWorkshops/:idUser",
+  wineWorkshopControllers.getWinesForOneUser
+);
 
 // Gestion vins de l'atelier actif + score
 

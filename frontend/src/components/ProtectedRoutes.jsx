@@ -1,10 +1,11 @@
 import React from "react";
-import { Navigate, Outlet, useLocation } from "react-router-dom";
+import { Navigate, Outlet, useLocation, useParams } from "react-router-dom";
 import { useUser } from "../contexts/UserContext";
 
 function RestrictedRoutes() {
   const { loggedInUser } = useUser();
   const location = useLocation();
+  const params = useParams();
 
   if (!loggedInUser.firstname) {
     return <Navigate to="/" replace />;
@@ -22,7 +23,7 @@ function RestrictedRoutes() {
     "/profil",
     "/profil/profil_degustation",
     "/recette",
-    "/profil/modifier",
+    `/profil/modifier/${params.id}`,
     "/fiche",
     "/profil/historique_fiches",
     "/profil/mes_recettes",

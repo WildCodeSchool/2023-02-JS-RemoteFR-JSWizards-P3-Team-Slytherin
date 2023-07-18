@@ -24,6 +24,28 @@ const getSelection = (req, res) => {
     });
 };
 
+const getLastFiveWinesForOneUser = (req, res) => {
+  const { idUser } = req.params;
+  wineWorkshopManager
+    .findLastFiveWinesForOneUser(idUser)
+    .then((wines) => res.json(wines[0]))
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
+const getWinesForOneUser = (req, res) => {
+  const { idUser } = req.params;
+  wineWorkshopManager
+    .findWinesForOneUser(idUser)
+    .then((wines) => res.json(wines[0]))
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
 const getWineAndScore = (req, res) => {
   wineWorkshopManager
     .resume()
@@ -37,5 +59,7 @@ const getWineAndScore = (req, res) => {
 module.exports = {
   postWineWorkshop,
   getSelection,
+  getLastFiveWinesForOneUser,
+  getWinesForOneUser,
   getWineAndScore,
 };

@@ -11,6 +11,7 @@ export function UserProvider({ children }) {
   const navigate = useNavigate();
   const [loggedInUser, setLoggedInUser] = useState({
     id: "",
+    lastname: "",
     firstname: "",
     email: "",
     birthday: "",
@@ -52,6 +53,17 @@ export function UserProvider({ children }) {
       .catch((err) => console.error(err.response.data.message));
   };
 
+  const handleUpdate = (userInfo) => {
+    setLoggedInUser({
+      id: userInfo.id,
+      lastname: userInfo.lastname,
+      firstname: userInfo.firstname,
+      email: userInfo.email,
+      birthday: userInfo.birthday,
+      adminStatus: !!userInfo.adminStatus,
+    });
+  };
+
   const handleClickLogOut = () => {
     axios
       .get(APILOGOUT, { withCredentials: true })
@@ -75,8 +87,15 @@ export function UserProvider({ children }) {
       handleSubmitLogIn,
       handleChange,
       handleClickLogOut,
+      handleUpdate,
     }),
-    [loggedInUser, handleSubmitLogIn, handleChange, handleClickLogOut]
+    [
+      loggedInUser,
+      handleSubmitLogIn,
+      handleChange,
+      handleClickLogOut,
+      handleUpdate,
+    ]
   );
 
   return (
