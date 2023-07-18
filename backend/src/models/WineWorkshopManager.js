@@ -35,8 +35,6 @@ const selection = () => {
   );
 };
 
-
-
 const findLastFiveWinesForOneUser = (idUser) => {
   const SQL =
     "SELECT * FROM wine AS w INNER JOIN wine_workshop AS ww ON w.id = ww.id_wine INNER JOIN user_workshop AS uw ON ww.id_workshop = uw.id_workshop INNER JOIN workshop AS ws ON uw.id_workshop = ws.id WHERE uw.id_user = ? ORDER BY ws.workshopDate DESC LIMIT 5";
@@ -49,7 +47,7 @@ const findWinesForOneUser = (idUser) => {
   return db.query(SQL, [idUser]);
 };
 
-const resume = () => {
+const resume = (id) => {
   return db.query(
     `SELECT wine.wineName, wine.wineDescription, tasting.score, wine.id FROM wine INNER JOIN tasting ON wine.id = tasting.id_wine INNER JOIN user ON user.id = tasting.id_user WHERE user.id = ?;`,
     [id]
