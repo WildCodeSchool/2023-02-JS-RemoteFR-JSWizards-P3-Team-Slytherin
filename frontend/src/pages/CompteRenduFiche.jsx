@@ -149,7 +149,9 @@ function CompteRenduFiche() {
               Précédent
             </button>
           </Link>
-          <button type="button">Valider</button>
+          <Link to="/profil/profil_degustation">
+            <button type="button">Valider</button>
+          </Link>
         </div>
       </div>
     </div>

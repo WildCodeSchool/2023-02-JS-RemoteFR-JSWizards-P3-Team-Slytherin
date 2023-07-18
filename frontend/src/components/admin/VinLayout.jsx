@@ -6,7 +6,6 @@ export default function VinLayout({
   selectedRowData,
   hidden,
   setHidden,
-  deleteWine,
   setRefresh,
   refresh,
 }) {
@@ -27,6 +26,12 @@ export default function VinLayout({
   const years = Array.from({ length: currentYear - 1900 + 1 }, (_, index) =>
     String(currentYear - index)
   );
+
+  const deleteWine = async (id) => {
+    await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/wines/${id}`);
+    await setRefresh(!refresh);
+    await setHidden(!hidden);
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -82,10 +87,10 @@ export default function VinLayout({
     });
   }, [selectedRowData]);
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const fd = new FormData();
     fd.append("wineimg", sendPicture);
-    axios
+    await axios
       .post(`${import.meta.env.VITE_BACKEND_URL}/wines/upload`, fd)
       .catch((err) => console.error(err));
     if (wineInfo.id) {
@@ -101,8 +106,8 @@ export default function VinLayout({
         .catch((err) => console.error(err));
     }
     setUploadPicture("");
-    setRefresh(!refresh);
-    setHidden(!hidden);
+    await setRefresh(!refresh);
+    await setHidden(!hidden);
   };
 
   function handleKeyDown(e) {
@@ -273,7 +278,6 @@ VinLayout.propTypes = {
   }).isRequired,
   hidden: PropTypes.bool.isRequired,
   setHidden: PropTypes.func.isRequired,
-  deleteWine: PropTypes.func.isRequired,
   setRefresh: PropTypes.func.isRequired,
   refresh: PropTypes.bool.isRequired,
 };

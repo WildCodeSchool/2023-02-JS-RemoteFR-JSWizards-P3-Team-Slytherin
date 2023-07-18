@@ -37,16 +37,8 @@ export default function Final() {
 
   const { loggedInUser } = useUser();
 
-  const [test, setTest] = useState({});
   const [exist404, setExist404] = useState("");
   const [miseEnBDD, setMiseEnBDD] = useState(false);
-
-  const handleTest = (e) => {
-    e.preventDefault();
-    setTest({
-      note: selectNote,
-    });
-  };
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -138,10 +130,6 @@ export default function Final() {
       navigate("/fiche");
     }
   }, [exist404]);
-
-  useEffect(() => {
-    console.info(test);
-  }, [test]);
 
   return (
     <>
@@ -247,9 +235,6 @@ export default function Final() {
             Valider
           </button>
         </div>
-        <button type="button" onClick={handleTest}>
-          Test
-        </button>
       </div>
     </>
   );

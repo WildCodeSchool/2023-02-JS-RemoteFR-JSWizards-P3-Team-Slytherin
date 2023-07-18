@@ -1,11 +1,8 @@
-import { useEffect, useState } from "react";
 import { useChoice } from "@contexts/ChoiceContext";
 import { Link } from "react-router-dom";
 import VinEnCours from "@components/VinEnCours";
 
 export default function GustatifPartOne() {
-  const [test, setTest] = useState({});
-
   const {
     selectBouchePersistance,
     selectBoucheMoelleux,
@@ -152,21 +149,6 @@ export default function GustatifPartOne() {
       );
     }
   };
-
-  const handleTest = (e) => {
-    e.preventDefault();
-    setTest({
-      persistance: selectBouchePersistance,
-      moelleux: selectBoucheMoelleux,
-      acidite: selectBoucheAcidite,
-      tanin: selectBoucheTanin,
-      alcool: selectBoucheAlcool,
-    });
-  };
-
-  useEffect(() => {
-    console.info(test);
-  }, [test]);
 
   return (
     <>
@@ -546,9 +528,6 @@ export default function GustatifPartOne() {
             </Link>
           </div>
         </form>
-        <button type="button" onClick={handleTest}>
-          Test
-        </button>
       </div>
     </>
   );

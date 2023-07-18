@@ -1,5 +1,4 @@
 import { useChoice } from "@contexts/ChoiceContext";
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Select from "react-select";
 import VinEnCours from "@components/VinEnCours";
@@ -8,12 +7,6 @@ import options from "../../helpers/gustatifHelper";
 export default function Olfactif() {
   const {
     selectNezIntensite,
-    selectNezFruit,
-    selectNezFleur,
-    selectNezVegetal,
-    selectNezEpice,
-    selectNezAmpyreumatique,
-    selectNezMineral,
     setSelectNezIntensite,
     setSelectNezFruit,
     setSelectNezFleur,
@@ -22,8 +15,6 @@ export default function Olfactif() {
     setSelectNezAmpyreumatique,
     setSelectNezMineral,
   } = useChoice();
-
-  const [test, setTest] = useState({});
 
   const handleIntensiteClick = () => {
     const intensiteClass = document.getElementById("intensite");
@@ -116,23 +107,6 @@ export default function Olfactif() {
     setSelectNezMineral(string);
     console.info(string);
   };
-
-  const handleTest = (e) => {
-    e.preventDefault();
-    setTest({
-      intensite: selectNezIntensite,
-      fruit: selectNezFruit,
-      fleur: selectNezFleur,
-      vegetal: selectNezVegetal,
-      epice: selectNezEpice,
-      ampyreumatique: selectNezAmpyreumatique,
-      mineral: selectNezMineral,
-    });
-  };
-
-  useEffect(() => {
-    console.info(test);
-  }, [test]);
 
   return (
     <>
@@ -269,9 +243,6 @@ export default function Olfactif() {
             </Link>
           </div>
         </form>
-        <button type="button" onClick={handleTest}>
-          Test
-        </button>
       </div>
     </>
   );
