@@ -157,8 +157,8 @@ function Lexique() {
 
         {lexiqueDBFilter.map((e) => (
           <p key={e.id} className="pt-4 text-primary">
-            <div className="flex item-center justify-between flex-wrap">
-              <h3 className="text-primary font-bold text-center resize-none">
+            <div className="flex item-center justify-between flex-col">
+              <h3 className="text-primary font-bold text-left resize-none">
                 {e.word} :
               </h3>
               <p className=" w-11/12 flex-wrap">{e.wordDefinition}</p>
@@ -169,7 +169,7 @@ function Lexique() {
                 onClick={() => handleClickDelete(e.id)}
               >
                 <img
-                  className="w-4"
+                  className="w-4 text-right"
                   src="/assets/delete/delete.png"
                   alt="supprimer"
                 />

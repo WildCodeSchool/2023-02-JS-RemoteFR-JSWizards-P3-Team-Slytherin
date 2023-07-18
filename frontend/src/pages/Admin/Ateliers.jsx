@@ -87,7 +87,7 @@ export default function Ateliers() {
                 {sortConfig.key === "active" &&
                   (sortConfig.direction === "ascending" ? "▼" : "▲")}
               </th>
-              <th className="flex-0 min-w-[70px]">Modifier</th>
+              <th className="flex-0 min-w-[70px]">Supprimer</th>
             </tr>
           </thead>
           <tbody>
