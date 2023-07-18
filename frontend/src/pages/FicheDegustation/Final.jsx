@@ -232,7 +232,7 @@ export default function Final() {
           </Link>
 
           <button type="button" onClick={handlePostTastingClick}>
-            Valider
+            Suivant
           </button>
         </div>
       </div>
