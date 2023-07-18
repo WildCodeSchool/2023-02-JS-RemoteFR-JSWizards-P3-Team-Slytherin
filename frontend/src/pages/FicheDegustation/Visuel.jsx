@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import VinEnCours from "@components/VinEnCours";
 import { useChoice } from "@contexts/ChoiceContext";
@@ -12,8 +11,6 @@ export default function Visuel() {
     setSelectVueLimpidite,
     setSelectVueDensite,
   } = useChoice();
-
-  const [test, setTest] = useState({});
 
   const handleColorClick = () => {
     const couleurClass = document.getElementById("couleur");
@@ -72,19 +69,6 @@ export default function Visuel() {
       );
     }
   };
-
-  const handleTest = (e) => {
-    e.preventDefault();
-    setTest({
-      densite: selectVueDensite,
-      limpidite: selectVueLimpidite,
-      couleur: selectVueCouleur,
-    });
-  };
-
-  useEffect(() => {
-    console.info(test);
-  }, [test]);
 
   return (
     <>
@@ -361,9 +345,6 @@ export default function Visuel() {
             </Link>
           </div>
         </form>
-        <button type="button" onClick={handleTest}>
-          Test
-        </button>
       </div>
     </>
   );

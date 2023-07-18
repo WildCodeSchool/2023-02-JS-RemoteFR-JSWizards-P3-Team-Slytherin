@@ -20,14 +20,18 @@ function Header() {
   return (
     <>
       <header className="bg-primary h-24 w-full fixed z-30 flex items-center justify-between">
-        <div className="flex items-center">
+        <Link
+          to="/selection"
+          className="flex items-center"
+          onClick={handleClickLink}
+        >
           <img
             src="/assets/logo/logo_white.png"
             className="pl-6 h-16 w-23"
             alt="Logo Inovin"
           />
           <span className="text-secondary text-2xl font-bold ml-4">INOVIN</span>
-        </div>
+        </Link>
         <label className="burger absolute z-10 top-[30%] right-5 lg:hidden">
           <input
             type="checkbox"

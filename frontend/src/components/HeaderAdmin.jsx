@@ -70,10 +70,10 @@ function HeaderAdmin() {
             </li>
             <li
               className={`text-primary text-center ${
-                !isActive("/admin/atelier") ? "hover:underline" : ""
-              } ${isActive("/admin/atelier") ? "font-bold active-nav" : ""}`}
+                !isActive("/admin/ateliers") ? "hover:underline" : ""
+              } ${isActive("/admin/ateliers") ? "font-bold active-nav" : ""}`}
             >
-              <Link to="/admin/atelier">Atelier</Link>
+              <Link to="/admin/ateliers">Atelier</Link>
             </li>
             <li
               className={`text-primary  w-[128px] text-center utBtn ${
@@ -134,8 +134,8 @@ function HeaderAdmin() {
           to="/admin/ateliers"
           onClick={handleClickLink}
           className={`text-primary w-fit text-center ${
-            !isActive("/admin/atelier") ? "hover:underline" : ""
-          } ${isActive("/admin/atelier") ? "active-nav" : ""}`}
+            !isActive("/admin/ateliers") ? "hover:underline" : ""
+          } ${isActive("/admin/ateliers") ? "active-nav" : ""}`}
         >
           Atelier
         </Link>

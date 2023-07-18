@@ -64,12 +64,6 @@ export default function Vins() {
     setHidden(!hidden);
   };
 
-  const deleteWine = (id) => {
-    setHidden(!hidden);
-    axios.delete(`${import.meta.env.VITE_BACKEND_URL}/wines/${id}`);
-    setRefresh(!refresh);
-  };
-
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/wines`)
@@ -165,7 +159,6 @@ export default function Vins() {
         selectedRowData={selectedRowData}
         hidden={hidden}
         setHidden={setHidden}
-        deleteWine={deleteWine}
         refresh={refresh}
         setRefresh={setRefresh}
       />
