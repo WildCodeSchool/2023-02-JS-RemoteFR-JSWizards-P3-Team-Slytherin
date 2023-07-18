@@ -129,4 +129,8 @@ router.delete("/tasting/:id", tastingControllers.deleteTasting);
 router.post("/wineWorkshop", wineWorkshopControllers.postWineWorkshop);
 router.get("/wineWorkshop", wineWorkshopControllers.getSelection);
 
+// Gestion vins de l'atelier actif + score
+
+router.get("/resume", wineWorkshopControllers.getWineAndScore);
+
 module.exports = router;
