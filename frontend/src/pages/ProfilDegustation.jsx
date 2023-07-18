@@ -1,13 +1,17 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useUser } from "@contexts/UserContext";
+import { useChoice } from "@contexts/ChoiceContext";
 
 export default function ProfilDegustation() {
+  const { loggedInUser } = useUser();
+  const { selection } = useChoice();
   const [getWine, setGetWine] = useState([]);
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/resume`)
+      .get(`${import.meta.env.VITE_BACKEND_URL}/resume/${loggedInUser.id}`)
       .then((res) => {
         setGetWine(res.data);
       })
@@ -22,10 +26,12 @@ export default function ProfilDegustation() {
         </div>
         {getWine.map((wine) => (
           <>
-            <h3 className="text-xl pb-2 mt-4 font-bold">{wine.wineName}</h3>
+            <h3 key={wine.id} className="text-xl pb-2 mt-4 font-bold">
+              {wine.wineName}
+            </h3>
             <div className="flex flex-col gap-4 items-center md:flex-row md:justify-between ">
               <p>{wine.wineDescription}</p>
-              <span className="text-tertiary text-center text-xl border-2 rounded-full p-3">
+              <span className="text-tertiary text-center text-xl bg-primary border-2 rounded-full p-3">
                 {" "}
                 {wine.score}
               </span>
@@ -38,11 +44,13 @@ export default function ProfilDegustation() {
               Retour à la sélection
             </button>
           </Link>
-          <Link to="/recette">
-            <button type="button" className="self-center mt-2 h-12">
-              Recette
-            </button>
-          </Link>
+          {selection.length === getWine.length && (
+            <Link to="/recette">
+              <button type="button" className="self-center mt-2 h-12">
+                Recette
+              </button>
+            </Link>
+          )}
         </div>
       </div>
     </div>

@@ -125,7 +125,7 @@ INSERT INTO `workshop` VALUES (1, 0, '2023-09-06', 7),
 (2, 0, '2023-06-05', 10),
 (3, 1, '2023-07-02', 5);
 
-INSERT INTO `tasting` VALUES (1, 9, 3, 2, 7, "couleur", "clarité", "densité", "intensité", "Fruit Nez", "noseFlowers", "nosePlants",
+INSERT INTO `tasting` VALUES (6, 9, 3, 7, 7, "couleur", "clarité", "densité", "intensité", "Fruit Nez", "noseFlowers", "nosePlants",
 "noseSpices", "noseAmpyreumatique", "noseMineral", "mouthFruits", "mouthFlowers", "mouthPlants", "mouthSpices", "mouthAmpyreumatique",
 "mouthMineral", "persistance", "smooth", "acidity", "tanin", "alcohol"),
 (2, 3, 3, 2, 6, "couleur", "clarité", "densité", "intensité", "Fruit Nez", "noseFlowers", "nosePlants",

@@ -26,7 +26,7 @@ const getSelection = (req, res) => {
 
 const getWineAndScore = (req, res) => {
   wineWorkshopManager
-    .resume()
+    .resume(req.params.id)
     .then((wines) => res.json(wines[0]))
     .catch((err) => {
       console.error(err);

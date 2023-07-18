@@ -142,6 +142,6 @@ router.get("/wineWorkshop", wineWorkshopControllers.getSelection);
 
 // Gestion vins de l'atelier actif + score
 
-router.get("/resume", wineWorkshopControllers.getWineAndScore);
+router.get("/resume/:id", wineWorkshopControllers.getWineAndScore);
 
 module.exports = router;
