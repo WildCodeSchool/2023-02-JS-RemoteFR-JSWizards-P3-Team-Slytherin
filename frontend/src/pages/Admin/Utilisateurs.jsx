@@ -68,7 +68,7 @@ export default function Users() {
       <div className="flex flex-col gap-6">
         <table className="w-full min-w-[580px] bg-secondary rounded mb-8 shadow-md overflow-scroll">
           <thead>
-            <tr className="flex justify-center p-2">
+            <tr className="flex justify-center p-2 gap-12">
               <th
                 className="flex-1 min-w-[150px]"
                 onClick={() => sortTable("lastname")}
@@ -93,28 +93,28 @@ export default function Users() {
                 {sortConfig.key === "email" &&
                   (sortConfig.direction === "ascending" ? "▼" : "▲")}
               </th>
-              <th className="flex-0">Recettes</th>
+              <th className="flex-[0] min-w-[80px]">Recettes</th>
               <th
-                className="flex-1 min-w-[80px]"
+                className="flex-initial w-[80px]"
                 onClick={() => sortTable("adminStatus")}
               >
                 Statut{" "}
                 {sortConfig.key === "adminStatus" &&
                   (sortConfig.direction === "ascending" ? "▼" : "▲")}
               </th>
-              <th className="flex-0 w-[30px]"> </th>
+              <th className="flex-initial w-[60px]"> </th>
             </tr>
           </thead>
           <tbody>
             {userData.map((e) => (
               <tr
-                className="h-14 flex justify-center p-2 shadow-inner"
+                className="h-14 flex justify-center p-2 shadow-inner gap-12"
                 key={e.id}
               >
                 <td className="flex-1 min-w-[150px]">{e.lastname}</td>
                 <td className="flex-1 min-w-[150px]">{e.firstname}</td>
                 <td className="flex-1 min-w-[200px]">{e.email}</td>
-                <td className="flex-0">
+                <td className="flex-[0] min-w-[80px]">
                   <button
                     type="button"
                     onClick={() => handleRowClick(e.id)}
@@ -122,12 +122,12 @@ export default function Users() {
                   >
                     <img
                       src="/assets/eye/eye.png"
-                      alt="supprimer utilisateur"
+                      alt="voir recettes"
                       className="w-6"
                     />
                   </button>
                 </td>
-                <td className="flex-1 min-w-[80px]">
+                <td className="flex-initial min-w-[80px]">
                   <select
                     name="adminStatus"
                     className="rounded"
@@ -152,11 +152,11 @@ export default function Users() {
                     )}
                   </select>
                 </td>
-                <td className="flex-0 w-[30px]">
+                <td className="flex-initial w-[60px]">
                   <button
                     type="button"
                     onClick={() => handleDelete(e.id)}
-                    className="transparent-button max-w-fit"
+                    className="transparent-button min-w-[60px]"
                   >
                     <img
                       src="/assets/delete/delete.png"

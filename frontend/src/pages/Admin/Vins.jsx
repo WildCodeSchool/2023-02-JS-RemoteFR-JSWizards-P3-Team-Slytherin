@@ -103,7 +103,7 @@ export default function Vins() {
                   (sortConfig.direction === "ascending" ? "▼" : "▲")}
               </th>
               <th className="flex-1" onClick={() => sortTable("wineType")}>
-                Couleur{" "}
+                Type{" "}
                 {sortConfig.key === "wineType" &&
                   (sortConfig.direction === "ascending" ? "▼" : "▲")}
               </th>

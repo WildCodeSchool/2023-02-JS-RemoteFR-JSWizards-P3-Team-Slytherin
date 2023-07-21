@@ -75,7 +75,7 @@ export default function Ateliers() {
                   (sortConfig.direction === "ascending" ? "▼" : "▲")}
               </th>
               <th
-                className="flex-1 min-w-[200px] max-[1100px]:hidden"
+                className="flex-1 min-w-[120px]"
                 onClick={() => sortTable("personNb")}
               >
                 Nb personnes{" "}
@@ -90,7 +90,7 @@ export default function Ateliers() {
                 {sortConfig.key === "active" &&
                   (sortConfig.direction === "ascending" ? "▼" : "▲")}
               </th>
-              <th className="flex-0 min-w-[70px]">Supprimer</th>
+              <th className="flex-0 min-w-[90px]">Supprimer</th>
             </tr>
           </thead>
           <tbody>
@@ -102,14 +102,12 @@ export default function Ateliers() {
                 <td className="flex-1 min-w-[80px]">
                   {e.workshopDate.split("-").reverse().join("-")}
                 </td>
-                <td className="flex-1 min-w-[200px] max-[1100px]:hidden">
-                  {e.personNb}
-                </td>
+                <td className="flex-1 min-w-[120px]">{e.personNb}</td>
                 <td className="flex-1 font-bold min-w-[70px] ">
                   {e.active ? <p className="text-[green]">actif</p> : <p>-</p>}
                 </td>
 
-                <td className="flex-0 min-w-[70px] flew-row">
+                <td className="flex-0 min-w-[90px] flew-row">
                   {" "}
                   <button
                     className="btn-list"
