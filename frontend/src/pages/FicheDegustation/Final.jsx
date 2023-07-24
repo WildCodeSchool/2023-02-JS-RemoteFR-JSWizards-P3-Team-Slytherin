@@ -61,7 +61,6 @@ export default function Final() {
 
   useEffect(() => {
     if (exist404 === 404) {
-      console.info("je post");
       axios
         .post(`${import.meta.env.VITE_BACKEND_URL}/tasting/`, {
           score: selectNote,
@@ -94,7 +93,6 @@ export default function Final() {
       setExist404("");
       setMiseEnBDD(true);
     } else {
-      console.info("j'update !");
       axios
         .put(`${import.meta.env.VITE_BACKEND_URL}/tasting/${exist404.id}`, {
           score: selectNote,
