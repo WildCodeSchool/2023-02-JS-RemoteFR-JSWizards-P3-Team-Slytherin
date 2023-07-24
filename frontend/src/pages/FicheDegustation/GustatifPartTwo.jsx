@@ -6,6 +6,7 @@ import options from "../../helpers/gustatifHelper";
 
 export default function GustatifPartTwo() {
   const {
+    vinEnCours,
     setSelectBoucheFruit,
     setSelectBoucheFleur,
     setSelectBoucheVegetal,
@@ -98,7 +99,11 @@ export default function GustatifPartTwo() {
           <Select
             isMulti
             name="fruit"
-            options={options.fruitRougeOptions}
+            options={
+              vinEnCours.wineType === "rouge"
+                ? options.fruitRougeOptions
+                : options.fruitBlancOptions
+            }
             className="basic-multi-select text-primary"
             classNamePrefix="select"
             onChange={handleFruitChange}
@@ -107,7 +112,11 @@ export default function GustatifPartTwo() {
           <Select
             isMulti
             name="fleur"
-            options={options.fleurRougeOptions}
+            options={
+              vinEnCours.wineType === "rouge"
+                ? options.fleurRougeOptions
+                : options.fleurBlancOptions
+            }
             className="basic-multi-select text-primary"
             classNamePrefix="select"
             onChange={handleFleurChange}
@@ -116,7 +125,11 @@ export default function GustatifPartTwo() {
           <Select
             isMulti
             name="vegetal"
-            options={options.vegetalRougeOptions}
+            options={
+              vinEnCours.wineType === "rouge"
+                ? options.vegetalRougeOptions
+                : options.vegetaBlancOptions
+            }
             className="basic-multi-select text-primary"
             classNamePrefix="select"
             onChange={handleVegetalChange}
@@ -125,7 +138,11 @@ export default function GustatifPartTwo() {
           <Select
             isMulti
             name="epice"
-            options={options.epiceRougeOptions}
+            options={
+              vinEnCours.wineType === "rouge"
+                ? options.epiceRougeOptions
+                : options.epiceBlancOptions
+            }
             className="basic-multi-select text-primary"
             classNamePrefix="select"
             onChange={handleEpiceChange}
@@ -134,7 +151,11 @@ export default function GustatifPartTwo() {
           <Select
             isMulti
             name="ampyr"
-            options={options.ampyreumatiqueRougeOptions}
+            options={
+              vinEnCours.wineType === "rouge"
+                ? options.ampyreumatiqueRougeOptions
+                : options.ampyreumatiqueBlancOptions
+            }
             className="basic-multi-select text-primary"
             classNamePrefix="select"
             onChange={handleAmpyrChange}
@@ -143,7 +164,11 @@ export default function GustatifPartTwo() {
           <Select
             isMulti
             name="mineral"
-            options={options.mineralRougeOptions}
+            options={
+              vinEnCours.wineType === "rouge"
+                ? options.mineralRougeOptions
+                : options.mineralBlancOptions
+            }
             className="basic-multi-select text-primary"
             classNamePrefix="select"
             onChange={handleMineralChange}

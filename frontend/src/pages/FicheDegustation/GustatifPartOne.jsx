@@ -4,6 +4,7 @@ import VinEnCours from "@components/VinEnCours";
 
 export default function GustatifPartOne() {
   const {
+    vinEnCours,
     selectBouchePersistance,
     selectBoucheMoelleux,
     selectBoucheAcidite,
@@ -210,82 +211,161 @@ export default function GustatifPartOne() {
               </div>
             </fieldset>
           </div>
-          <div className="text-center border-[1px] rounded-md px-4 bg-primary">
-            <fieldset className="flex flex-col items-center">
-              <input
-                type="button"
-                onClick={handleMoelleuxClick}
-                value={
-                  selectBoucheMoelleux !== "-"
-                    ? `Moëlleux : ${selectBoucheMoelleux}`
-                    : "Moëlleux : -"
-                }
-                className="fiche-deg-button p-2 w-full"
-              />
-              <div id="moelleux" className="hidden">
-                <div className="rounded-full flex flex-row p-2">
-                  <input
-                    name="moelleux"
-                    className="m-2"
-                    type="radio"
-                    onClick={handleSelectionClick}
-                    id="liquoreux"
-                  />
-                  <label className="mr-2" htmlFor="liquoreux">
-                    Liquoreux
-                  </label>
+          {vinEnCours.wineType === "rouge" ? (
+            <div className="text-center border-[1px] rounded-md px-4 bg-primary hidden">
+              <fieldset className="flex flex-col items-center">
+                <input
+                  type="button"
+                  onClick={handleMoelleuxClick}
+                  value={
+                    selectBoucheMoelleux !== "-"
+                      ? `Moëlleux : ${selectBoucheMoelleux}`
+                      : "Moëlleux : -"
+                  }
+                  className="fiche-deg-button p-2 w-full"
+                />
+                <div id="moelleux" className="hidden">
+                  <div className="rounded-full flex flex-row p-2">
+                    <input
+                      name="moelleux"
+                      className="m-2"
+                      type="radio"
+                      onClick={handleSelectionClick}
+                      id="liquoreux"
+                    />
+                    <label className="mr-2" htmlFor="liquoreux">
+                      Liquoreux
+                    </label>
+                  </div>
+                  <div className="rounded-full flex flex-row p-2">
+                    <input
+                      name="moelleux"
+                      className="m-2"
+                      type="radio"
+                      onClick={handleSelectionClick}
+                      id="doux"
+                    />
+                    <label className="mr-2" htmlFor="doux">
+                      Doux
+                    </label>
+                  </div>
+                  <div className="rounded-full flex flex-row p-2">
+                    <input
+                      name="moelleux"
+                      className="m-2"
+                      type="radio"
+                      onClick={handleSelectionClick}
+                      id="moelleu"
+                    />
+                    <label className="mr-2" htmlFor="moelleu">
+                      Moëlleux
+                    </label>
+                  </div>
+                  <div className="rounded-full flex flex-row p-2">
+                    <input
+                      name="moelleux"
+                      className="m-2"
+                      type="radio"
+                      onClick={handleSelectionClick}
+                      id="demi-sec"
+                    />
+                    <label className="mr-2" htmlFor="demi-sec">
+                      Demi-sec
+                    </label>
+                  </div>
+                  <div className="rounded-full flex flex-row p-2">
+                    <input
+                      name="moelleux"
+                      className="m-2"
+                      type="radio"
+                      onClick={handleSelectionClick}
+                      id="sec"
+                    />
+                    <label className="mr-2" htmlFor="sec">
+                      Sec
+                    </label>
+                  </div>
                 </div>
-                <div className="rounded-full flex flex-row p-2">
-                  <input
-                    name="moelleux"
-                    className="m-2"
-                    type="radio"
-                    onClick={handleSelectionClick}
-                    id="doux"
-                  />
-                  <label className="mr-2" htmlFor="doux">
-                    Doux
-                  </label>
+              </fieldset>
+            </div>
+          ) : (
+            <div className="text-center border-[1px] rounded-md px-4 bg-primary">
+              <fieldset className="flex flex-col items-center">
+                <input
+                  type="button"
+                  onClick={handleMoelleuxClick}
+                  value={
+                    selectBoucheMoelleux !== "-"
+                      ? `Moëlleux : ${selectBoucheMoelleux}`
+                      : "Moëlleux : -"
+                  }
+                  className="fiche-deg-button p-2 w-full"
+                />
+                <div id="moelleux" className="hidden">
+                  <div className="rounded-full flex flex-row p-2">
+                    <input
+                      name="moelleux"
+                      className="m-2"
+                      type="radio"
+                      onClick={handleSelectionClick}
+                      id="liquoreux"
+                    />
+                    <label className="mr-2" htmlFor="liquoreux">
+                      Liquoreux
+                    </label>
+                  </div>
+                  <div className="rounded-full flex flex-row p-2">
+                    <input
+                      name="moelleux"
+                      className="m-2"
+                      type="radio"
+                      onClick={handleSelectionClick}
+                      id="doux"
+                    />
+                    <label className="mr-2" htmlFor="doux">
+                      Doux
+                    </label>
+                  </div>
+                  <div className="rounded-full flex flex-row p-2">
+                    <input
+                      name="moelleux"
+                      className="m-2"
+                      type="radio"
+                      onClick={handleSelectionClick}
+                      id="moelleu"
+                    />
+                    <label className="mr-2" htmlFor="moelleu">
+                      Moëlleux
+                    </label>
+                  </div>
+                  <div className="rounded-full flex flex-row p-2">
+                    <input
+                      name="moelleux"
+                      className="m-2"
+                      type="radio"
+                      onClick={handleSelectionClick}
+                      id="demi-sec"
+                    />
+                    <label className="mr-2" htmlFor="demi-sec">
+                      Demi-sec
+                    </label>
+                  </div>
+                  <div className="rounded-full flex flex-row p-2">
+                    <input
+                      name="moelleux"
+                      className="m-2"
+                      type="radio"
+                      onClick={handleSelectionClick}
+                      id="sec"
+                    />
+                    <label className="mr-2" htmlFor="sec">
+                      Sec
+                    </label>
+                  </div>
                 </div>
-                <div className="rounded-full flex flex-row p-2">
-                  <input
-                    name="moelleux"
-                    className="m-2"
-                    type="radio"
-                    onClick={handleSelectionClick}
-                    id="moelleu"
-                  />
-                  <label className="mr-2" htmlFor="moelleu">
-                    Moëlleux
-                  </label>
-                </div>
-                <div className="rounded-full flex flex-row p-2">
-                  <input
-                    name="moelleux"
-                    className="m-2"
-                    type="radio"
-                    onClick={handleSelectionClick}
-                    id="demi-sec"
-                  />
-                  <label className="mr-2" htmlFor="demi-sec">
-                    Demi-sec
-                  </label>
-                </div>
-                <div className="rounded-full flex flex-row p-2">
-                  <input
-                    name="moelleux"
-                    className="m-2"
-                    type="radio"
-                    onClick={handleSelectionClick}
-                    id="sec"
-                  />
-                  <label className="mr-2" htmlFor="sec">
-                    Sec
-                  </label>
-                </div>
-              </div>
-            </fieldset>
-          </div>
+              </fieldset>
+            </div>
+          )}
           <div className="text-center border-[1px] rounded-md px-4 bg-primary">
             <fieldset className="flex flex-col items-center">
               <input
