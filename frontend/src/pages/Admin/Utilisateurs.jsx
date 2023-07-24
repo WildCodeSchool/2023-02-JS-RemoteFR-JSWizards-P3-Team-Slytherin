@@ -4,7 +4,9 @@ import UserLayout from "../../components/admin/UserLayout";
 
 export default function Users() {
   const [userData, setUserData] = useState([]);
+  const [userDataFilter, setUserDataFilter] = useState([]);
   const [hidden, setHidden] = useState(false);
+  const [search, setSearch] = useState("");
   const [selectedRowData, setSelectedRowData] = useState(0);
   const [sortConfig, setSortConfig] = useState({
     key: "",
@@ -51,6 +53,7 @@ export default function Users() {
       .get(`${import.meta.env.VITE_BACKEND_URL}/users`)
       .then((res) => {
         setUserData(res.data.sort((a, b) => b.id - a.id));
+        setUserDataFilter(res.data.sort((a, b) => b.id - a.id));
       })
       .catch((err) => console.error(err));
   }, [refresh]);
@@ -59,12 +62,55 @@ export default function Users() {
     setSelectedRowData(rowData);
     setHidden(!hidden);
   };
+  //
+  const handleSubmit = (event) => event.preventDefault();
+  const handleChange = (event) => {
+    setSearch(event.target.value);
+    const research = event.target.value.toLowerCase();
+    setUserDataFilter(
+      userData.filter(
+        (e) =>
+          e.firstname.toLowerCase().includes(research) ||
+          e.lastname.toLowerCase().includes(research) ||
+          e.email.toLowerCase().includes(research)
+      )
+    );
+    if (event.target.value === "") {
+      setUserDataFilter(userData);
+    }
+  };
+  const isFirefox = navigator.userAgent.indexOf("Firefox") !== -1;
+  const handleClick = () => {
+    setSearch("");
+    setUserDataFilter(userData);
+  };
 
   return (
     <>
       <h2 className="mt-16 mb-6 text-2xl text-center font-bold">
         Gérer les utilisateurs
       </h2>
+      <div className="flex flex-row justify-center mb-6 items-center max-w-full">
+        <p>🔎</p>
+        <form className="p-1" onSubmit={handleSubmit}>
+          <input
+            className="text-primary pl-1 rounded-md"
+            type="search"
+            placeholder="search"
+            value={search}
+            onChange={handleChange}
+          />
+        </form>
+        {isFirefox && (
+          <button
+            className="flex justify-center text-xl font-bold items-center bg-secondary rounded-full text-primary lexique-button"
+            type="button"
+            onClick={handleClick}
+          >
+            <span className="lexique-button-content">&times;</span>
+          </button>
+        )}
+      </div>
       <div className="flex flex-col gap-6">
         <table className="w-full min-w-[580px] bg-secondary rounded mb-8 shadow-md overflow-scroll">
           <thead>
@@ -106,7 +152,7 @@ export default function Users() {
             </tr>
           </thead>
           <tbody>
-            {userData.map((e) => (
+            {userDataFilter.map((e) => (
               <tr
                 className="h-14 flex justify-center p-2 shadow-inner"
                 key={e.id}
