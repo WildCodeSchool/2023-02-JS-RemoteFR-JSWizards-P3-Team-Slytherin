@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 
 function Lexique() {
   function order(a, b) {
@@ -16,7 +15,6 @@ function Lexique() {
   }
 
   // Get data:
-
   const [lexiqueDatas, setLexiqueDatas] = useState([]);
   const [refresh, setRefresh] = useState(false);
   const [lexiqueDBFilter, setLexiqueDBFilter] = useState([]);
@@ -41,16 +39,9 @@ function Lexique() {
 
   const lexiqueDB = lexiqueDatas.sort(order);
 
-  const navigate = useNavigate();
-  const goBack = () => {
-    navigate("/admin");
-  };
-
   // Filtres:
-
   const [search, setSearch] = useState("");
 
-  const handleSubmit = (event) => event.preventDefault();
   const handleChange = (event) => {
     setSearch(event.target.value);
     const words = event.target.value.toLowerCase();
@@ -98,54 +89,52 @@ function Lexique() {
   };
 
   return (
-    <div>
-      <div className="text-secondary py-4">
-        <div className="flex gap-4 items-center flex-row justify-around px-4">
-          <button type="button" onClick={goBack}>
-            Retour
-          </button>
-          <div className="flex flex-row items-center max-w-full">
-            <p>🔎</p>
-            <form className="p-1" onSubmit={handleSubmit}>
-              <input
-                className="text-primary pl-1 rounded-md"
-                type="search"
-                placeholder="search"
-                value={search}
-                onChange={handleChange}
-              />
-            </form>
-            {isFirefox && (
-              <button
-                className="flex justify-center text-xl font-bold items-center bg-secondary rounded-full text-primary lexique-button"
-                type="button"
-                onClick={handleClick}
-              >
-                <span className="lexique-button-content">&times;</span>
-              </button>
-            )}
-          </div>
-        </div>
+    <>
+      <h2 className="mt-16 mb-6 text-2xl text-center font-bold">
+        Gérer le lexique
+      </h2>
 
-        <p className="text-3xl text-center pt-4 text-primary">Lexique</p>
-        <form onSubmit={handleSubmitNewWord}>
-          <div className="mt-10 flex items-center justify-center flex-wrap">
+      <div className="flex gap-6 items-center flex-col justify-around px-4">
+        <div className="flex flex-row items-center">
+          <label htmlFor="search">🔎</label>
+          <input
+            id="search"
+            className="text-primary p-2 rounded"
+            type="search"
+            placeholder="search"
+            value={search}
+            onChange={handleChange}
+          />
+          {isFirefox && (
+            <button
+              className="flex justify-center text-xl font-bold items-center bg-secondary rounded-full text-primary lexique-button"
+              type="button"
+              onClick={handleClick}
+            >
+              <span className="lexique-button-content">&times;</span>
+            </button>
+          )}
+        </div>
+        <form onSubmit={handleSubmitNewWord} className="w-full">
+          <div className="flex items-center justify-center ">
             <input
-              className="text-primary font-bold text-center w-20 sm:w-28 resize-none opacity-90"
+              className="text-primary font-bold text-center w-20 sm:w-36 resize-none rounded py-2"
               type="text"
+              placeholder="mot"
               name="word"
               value={newWord.word}
               onChange={handleChangeNewWord}
             />
-            <span className="p-2 text-primary">=</span>
+            <span className="p-2 text-primary">:</span>
             <input
-              className="text-primary font-bold sm:w-8/12 w-32 resize-none opacity-90"
+              className="text-primary font-bold sm:w-8/12 w-32 resize-none rounded p-2"
               type="text"
+              placeholder="définition"
               name="wordDefinition"
               value={newWord.wordDefinition}
               onChange={handleChangeNewWord}
             />
-            <button className="btn-list mr-4" type="submit">
+            <button className="btn-list ml-1" type="submit">
               <img
                 className="w-[1rem] h-[1rem]"
                 src="/assets/add/add.png"
@@ -154,14 +143,18 @@ function Lexique() {
             </button>
           </div>
         </form>
-
+      </div>
+      <div className="flex flex-col items-center gap-3 my-6 py-4 bg-secondary rounded">
         {lexiqueDBFilter.map((e) => (
-          <p key={e.id} className="pt-4 text-primary">
-            <div className="flex item-center justify-between flex-col">
-              <h3 className="text-primary font-bold text-left resize-none">
-                {e.word} :
+          <div
+            key={e.id}
+            className="pt-4 w-full text-primary flex flex-col gap-6 px-2 md:px-10"
+          >
+            <div className="flex item-center gap-4 toto">
+              <h3 className="text-primary w-[100px] min-w-[100px] font-bold flex items-center text-center resize-none">
+                {e.word}:
               </h3>
-              <p className=" w-11/12 flex-wrap">{e.wordDefinition}</p>
+              <div className="w-[1200px] flex-wrap">{e.wordDefinition}</div>
 
               <button
                 className="btn-list"
@@ -169,16 +162,17 @@ function Lexique() {
                 onClick={() => handleClickDelete(e.id)}
               >
                 <img
-                  className="w-4 text-right"
+                  className="text-right w-5"
                   src="/assets/delete/delete.png"
                   alt="supprimer"
                 />
               </button>
             </div>
-          </p>
+            <span className="bg-primary h-[1px] w-[65%] self-center" />
+          </div>
         ))}
       </div>
-    </div>
+    </>
   );
 }
 export default Lexique;

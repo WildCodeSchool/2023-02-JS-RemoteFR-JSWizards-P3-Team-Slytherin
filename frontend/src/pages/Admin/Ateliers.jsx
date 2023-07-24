@@ -53,7 +53,10 @@ export default function Ateliers() {
 
   return (
     <>
-      <h1 className="mt-16 mb-6 text-2xl font-bold">Gérer les ateliers</h1>
+      <h2 className="mt-16 mb-6 text-2xl text-center font-bold">
+        Gérer les ateliers
+      </h2>
+
       <div className="flex flex-col gap-6">
         <Link to="/admin/ateliers/atelier" className="flex justify-center">
           <button type="button" className="self-center">

@@ -439,12 +439,13 @@ th {
   margin: 0 20px;
 }
 .btn-list {
-  margin: 0;
   padding: 0;
   border: none;
-  width: 1rem;
-  height: 1rem;
+  width: 1.2rem;
+  min-width: 1.2rem;
+  height: 100%;
   background-color: transparent;
+  align-self: center;
 }
 .select-wine-container {
   position: relative;
