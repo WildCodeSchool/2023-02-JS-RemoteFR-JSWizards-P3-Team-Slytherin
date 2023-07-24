@@ -24,7 +24,6 @@ export default function GustatifPartTwo() {
       }
     }
     setSelectBoucheFruit(string);
-    console.info(string);
   };
 
   const handleFleurChange = (value) => {
@@ -37,7 +36,6 @@ export default function GustatifPartTwo() {
       }
     }
     setSelectBoucheFleur(string);
-    console.info(string);
   };
 
   const handleVegetalChange = (value) => {
@@ -50,7 +48,6 @@ export default function GustatifPartTwo() {
       }
     }
     setSelectBoucheVegetal(string);
-    console.info(string);
   };
 
   const handleEpiceChange = (value) => {
@@ -63,7 +60,6 @@ export default function GustatifPartTwo() {
       }
     }
     setSelectBoucheEpice(string);
-    console.info(string);
   };
 
   const handleAmpyrChange = (value) => {
@@ -76,7 +72,6 @@ export default function GustatifPartTwo() {
       }
     }
     setSelectBoucheAmpyreumatique(string);
-    console.info(string);
   };
 
   const handleMineralChange = (value) => {
@@ -89,7 +84,6 @@ export default function GustatifPartTwo() {
       }
     }
     setSelectBoucheMineral(string);
-    console.info(string);
   };
 
   return (
