@@ -22,7 +22,6 @@ export default function NotreSelection() {
 
   useEffect(() => {
     const API = `${import.meta.env.VITE_BACKEND_URL}/wineWorkshop`;
-    const APIAVISIDSPOST = `${import.meta.env.VITE_BACKEND_URL}/avis/creation`;
 
     axios
       .get(API)
@@ -30,13 +29,26 @@ export default function NotreSelection() {
         setSelection(res.data);
         setIsLoading(false);
 
+        const APIGETAVISIDS = `${import.meta.env.VITE_BACKEND_URL}/avis/${
+          loggedInUser.id
+        }/${res.data[0].id_workshop}`;
+        const APIAVISIDSPOST = `${
+          import.meta.env.VITE_BACKEND_URL
+        }/avis/creation`;
+
         const userWorkshopCopy = { ...userWorkshop };
         userWorkshopCopy.id_workshop = res.data[0].id_workshop;
         userWorkshopCopy.id_user = loggedInUser.id;
 
         axios
-          .post(APIAVISIDSPOST, userWorkshopCopy)
-          .then(() => {})
+          .get(APIGETAVISIDS)
+          .then((response) => {
+            if (response.data === 404) {
+              axios
+                .post(APIAVISIDSPOST, userWorkshopCopy)
+                .catch((err) => console.error(err));
+            }
+          })
           .catch((err) => console.error(err));
       })
       .catch((err) => console.error(err));
