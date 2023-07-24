@@ -1,6 +1,6 @@
 <!-- Header section -->
 
-   <img src="https://github.com/WildCodeSchool/2023-02-JS-RemoteFR-JSWizards-P3-Team-Slytherin/assets/108263661/9133c6f8-47bf-4d4d-abf9-b4becba2c0b0" width="100px" height="100px" alt="logo">
+   <img align="center" src="https://github.com/WildCodeSchool/2023-02-JS-RemoteFR-JSWizards-P3-Team-Slytherin/assets/108263661/9133c6f8-47bf-4d4d-abf9-b4becba2c0b0" width="100px" height="100px" alt="logo">
    <h1 align="center">INOVIN</h1>
 
 ### 🧰 Languages & Frameworks used :
