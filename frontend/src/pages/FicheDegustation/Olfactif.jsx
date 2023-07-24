@@ -231,7 +231,7 @@ export default function Olfactif() {
           </div>
           <div className="w-full flex justify-center gap-4 my-4">
             <Link to="/selection">
-              <button type="button">Retour au catalogue</button>
+              <button type="button">Retour à la sélection</button>
             </Link>
             <Link to="/fiche/visuel">
               <button type="button" className="items-center">
