@@ -14,6 +14,7 @@ import GustatifPartOne from "@pages/FicheDegustation/GustatifPartOne";
 import GustatifPartTwo from "@pages/FicheDegustation/GustatifPartTwo";
 import Final from "@pages/FicheDegustation/Final";
 import CompteRenduFiche from "@pages/CompteRenduFiche";
+import CompteRenduVin from "@pages/CompteRenduVin";
 import LayoutAdmin from "@components/LayoutAdmin";
 import HomeAdmin from "@pages/Admin/HomeAdmin";
 import LexiqueAdmin from "@pages/Admin/LexiqueAdmin";
@@ -66,6 +67,7 @@ function App() {
             element={<ProfilDegustation />}
           />
           <Route path="/recette" element={<Recette />} />
+          <Route path="/fiche/compterendu/:id" element={<CompteRenduVin />} />
           <Route path="/profil/modifier/:id" element={<ProfilModif />} />
           <Route path="/profil/mes_recettes" element={<MesRecettes />} />
           <Route path="/fiche" element={<CompteRenduFiche />} />

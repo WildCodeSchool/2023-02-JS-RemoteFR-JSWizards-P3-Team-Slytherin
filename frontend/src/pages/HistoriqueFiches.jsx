@@ -47,20 +47,22 @@ function HistoriqueFiches() {
           <hr className="w-[250px] pb-12" />
           <div className="flex gap-14 flex-wrap justify-center">
             {wines.map((wine) => (
-              <div key={wine.id_wine}>
-                {" "}
-                <img
-                  className="object-cover w-[160px] h-[187px] rounded-t-xl"
-                  src={`${import.meta.env.VITE_BACKEND_URL}/assets/wines/${
-                    wine.wineImage
-                  }`}
-                  alt={wine.wineName}
-                />
-                <div className="bg-secondary text-primary text-center rounded-b-xl p-2 h-[108px] flex flex-col max-w-[160px] justify-center">
-                  <h3>{wine.wineName}</h3>
-                  <h4 className="text-tertiary">{wine.score || "N/A"}</h4>
+              <Link to={`/fiche/compterendu/${wine.id}`}>
+                <div key={wine.id}>
+                  {" "}
+                  <img
+                    className="object-cover w-[160px] h-[187px] rounded-t-xl"
+                    src={`${import.meta.env.VITE_BACKEND_URL}/assets/wines/${
+                      wine.wineImage
+                    }`}
+                    alt={wine.wineName}
+                  />
+                  <div className="bg-secondary text-primary text-center rounded-b-xl p-2 h-[108px] flex flex-col max-w-[160px] justify-center">
+                    <h3>{wine.wineName}</h3>
+                    <h4 className="text-tertiary">{wine.score || "N/A"}</h4>
+                  </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </>

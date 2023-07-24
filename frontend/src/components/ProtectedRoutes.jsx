@@ -24,6 +24,7 @@ function RestrictedRoutes() {
     "/profil/profil_degustation",
     "/recette",
     `/profil/modifier/${params.id}`,
+    `/fiche/compterendu/${params.id}`,
     "/fiche",
     "/profil/historique_fiches",
     "/profil/mes_recettes",
