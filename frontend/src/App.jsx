@@ -21,7 +21,6 @@ import LexiqueAdmin from "@pages/Admin/LexiqueAdmin";
 import Vins from "@pages/Admin/Vins";
 import Utilisateurs from "@pages/Admin/Utilisateurs";
 import Ateliers from "@pages/Admin/Ateliers";
-import Atelier from "@pages/Admin/Atelier";
 import ProfilModif from "@pages/ProfilModif";
 import MesRecettes from "@pages/MesRecettes";
 import HistoriqueFiches from "@pages/HistoriqueFiches";
@@ -43,7 +42,6 @@ function App() {
           <Route path="/admin/vins" element={<Vins />} />
           <Route path="/admin/utilisateurs" element={<Utilisateurs />} />
           <Route path="/admin/ateliers" element={<Ateliers />} />
-          <Route path="/admin/ateliers/atelier" element={<Atelier />} />
         </Route>
         <Route path="*" element={<Page404 />} />
       </Routes>
