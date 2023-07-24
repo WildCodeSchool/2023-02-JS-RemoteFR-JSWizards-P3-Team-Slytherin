@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-function Lexique() {
+export default function Lexique() {
   function order(a, b) {
     const bandA = a.word.toUpperCase();
     const bandB = b.word.toUpperCase();
@@ -76,6 +76,10 @@ function Lexique() {
       .post(API, { ...newWord })
       .then(() => fetchData)
       .catch((err) => console.error(err.response.data.message));
+    setNewWord({
+      word: "",
+      wordDefinition: "",
+    });
     setRefresh(!refresh);
   };
 
@@ -116,7 +120,7 @@ function Lexique() {
           )}
         </div>
         <form onSubmit={handleSubmitNewWord} className="w-full">
-          <div className="flex items-center justify-center ">
+          <div className="flex items-center justify-center flex-col md:flex-row">
             <input
               className="text-primary font-bold text-center w-20 sm:w-36 resize-none rounded py-2"
               type="text"
@@ -134,12 +138,8 @@ function Lexique() {
               value={newWord.wordDefinition}
               onChange={handleChangeNewWord}
             />
-            <button className="btn-list ml-1" type="submit">
-              <img
-                className="w-[1rem] h-[1rem]"
-                src="/assets/add/add.png"
-                alt="ajouter"
-              />
+            <button className="ml-3 mt-5 md:mt-0" type="submit">
+              Ajouter
             </button>
           </div>
         </form>
@@ -150,7 +150,7 @@ function Lexique() {
             key={e.id}
             className="pt-4 w-full text-primary flex flex-col gap-6 px-2 md:px-10"
           >
-            <div className="flex item-center gap-4 toto">
+            <div className="flex item-center gap-4">
               <h3 className="text-primary w-[100px] min-w-[100px] font-bold flex items-center text-center resize-none">
                 {e.word}:
               </h3>
@@ -175,4 +175,3 @@ function Lexique() {
     </>
   );
 }
-export default Lexique;
