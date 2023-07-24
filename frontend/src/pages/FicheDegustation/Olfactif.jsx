@@ -202,7 +202,7 @@ export default function Olfactif() {
               options={
                 vinEnCours.wineType === "rouge"
                   ? options.vegetalRougeOptions
-                  : options.vegetaBlancOptions
+                  : options.vegetalBlancOptions
               }
               className="basic-multi-select text-primary"
               classNamePrefix="select"

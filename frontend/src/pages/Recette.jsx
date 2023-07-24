@@ -185,7 +185,6 @@ function Recette() {
       </div>
       {defaultSelection.map((e, index) => (
         <LigneRecette
-          key={e.id_wine}
           wineSelectionOrderByNote={wineSelectionOrderByNote}
           index={index}
           selectedWines={selectedWines}
