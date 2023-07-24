@@ -31,14 +31,6 @@ export default function Avis() {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    console.info({
-      note1: accueilRating,
-      note2: learnRating,
-      note3: experienceRating,
-      comment: commentaire,
-      id_user: loggedInUser.id,
-      id_workshop: selection[0].id,
-    });
 
     try {
       await axios.put(
@@ -52,7 +44,6 @@ export default function Avis() {
           comment: commentaire,
         }
       );
-      console.info("BDD Mise à jour");
     } catch (error) {
       console.error(error);
     }
