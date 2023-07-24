@@ -22,8 +22,8 @@ export default function AtelierLayout({
 }) {
   const [workshop, setWorkshop] = useState({
     active: 0,
-    workshopDate: 0,
-    personNb: 0,
+    workshopDate: "",
+    personNb: "",
   });
   const [selection, setSelection] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -57,7 +57,7 @@ export default function AtelierLayout({
         setIsLoading(false);
       })
       .catch((err) => console.error(err));
-  }, []);
+  }, [refresh]);
 
   // Format date //
   const newDate = new Date(
@@ -117,20 +117,12 @@ export default function AtelierLayout({
   }, [wineListOrderedNonSelected, filter, search]);
 
   // mise à jour workshop
-  const handleChangeDate = (e) => {
-    const newWorkshop = workshop;
-    newWorkshop.workshopDate = e.target.value;
-    setWorkshop(newWorkshop);
-  };
-  const handleChangePerson = (e) => {
-    const newWorkshop = workshop;
-    newWorkshop.personNb = e.target.value;
-    setWorkshop(newWorkshop);
-  };
-  const handleChangeActive = (e) => {
-    const newWorkshop = workshop;
-    newWorkshop.active = Number(e.target.value);
-    setWorkshop(newWorkshop);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setWorkshop((prevInfo) => ({
+      ...prevInfo,
+      [name]: value,
+    }));
   };
 
   // Enregistrer un nouvel atelier
@@ -183,10 +175,16 @@ export default function AtelierLayout({
   const handleClickValider = () => {
     if (workshop.personNb > 0 && workshop.workshopDate !== 0) {
       try {
-        if (workshop.active === 1) updateAllWorkshopInactive();
+        if (+workshop.active === 1) updateAllWorkshopInactive();
         registerWorkshop();
         setRefresh(!refresh);
         setHidden(!hidden);
+        setWorkshop({
+          active: 0,
+          workshopDate: "",
+          personNb: "",
+        });
+        setSelection([]);
       } catch (error) {
         console.error(error);
       }
@@ -261,13 +259,17 @@ export default function AtelierLayout({
             <div className="">
               <h1 className="text-3xl font-black mb-12 mt-4">Nouvel atelier</h1>
               <div className="flex justify-end m-4">
-                <label htmlFor="date" className="font-bold text-right pr-4">
+                <label
+                  htmlFor="workshopDate"
+                  className="font-bold text-right pr-4"
+                >
                   Date:
                   <input
-                    onChange={handleChangeDate}
+                    onChange={handleChange}
                     type="date"
-                    name="date"
-                    id="date"
+                    name="workshopDate"
+                    id="workshopDate"
+                    value={workshop.workshopDate}
                     min={formatedTodayDate}
                     max={formattedDate}
                     className="text-primary p-1 rounded w-36 ml-4 border-tertiary border-2"
@@ -275,13 +277,14 @@ export default function AtelierLayout({
                 </label>
               </div>
               <div className="flex justify-end mb-4">
-                <label htmlFor="people" className="font-bold text-right pr-4">
+                <label htmlFor="personNb" className="font-bold text-right pr-4">
                   Nb pers. :
                   <input
-                    onChange={handleChangePerson}
+                    onChange={handleChange}
                     type="number"
-                    name="people"
-                    id="people"
+                    name="personNb"
+                    id="personNb"
+                    value={workshop.personNb}
                     placeholder="Nb personnes"
                     className="text-primary p-1 rounded w-36 mx-4 border-tertiary border-2"
                   />
@@ -291,13 +294,16 @@ export default function AtelierLayout({
                 <label htmlFor="people" className="font-bold text-right pr-4">
                   Activation :
                   <select
-                    onChange={handleChangeActive}
+                    onChange={handleChange}
+                    name="active"
+                    id="active"
+                    value={workshop.active}
                     className="font-bold text-primary p-1 rounded w-36 mx-4 border-tertiary border-2"
                   >
-                    <option value="0" className="">
+                    <option value={0} className="">
                       Inactive
                     </option>
-                    <option value="1" className="">
+                    <option value={1} className="">
                       Active
                     </option>
                   </select>

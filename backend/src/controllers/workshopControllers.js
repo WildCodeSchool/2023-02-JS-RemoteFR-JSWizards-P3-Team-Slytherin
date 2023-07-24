@@ -67,7 +67,7 @@ const putAllWorkshopInactive = (req, res) => {
     .updateAllWorkshopInactive()
     .then(([result]) => {
       if (result.affectedRows === 0) {
-        res.sendStatus(404);
+        res.sendStatus(204);
       } else {
         res.sendStatus(204);
       }
