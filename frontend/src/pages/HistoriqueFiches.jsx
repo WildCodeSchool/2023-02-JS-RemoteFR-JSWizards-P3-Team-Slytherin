@@ -47,8 +47,8 @@ function HistoriqueFiches() {
           <hr className="w-[250px] pb-12" />
           <div className="flex gap-14 flex-wrap justify-center">
             {wines.map((wine) => (
-              <Link to={`/fiche/compterendu/${wine.id_wine}`}>
-                <div key={wine.id_wine}>
+              <Link to={`/fiche/compterendu/${wine.id}`}>
+                <div key={wine.id}>
                   {" "}
                   <img
                     className="object-cover w-[160px] h-[187px] rounded-t-xl"
