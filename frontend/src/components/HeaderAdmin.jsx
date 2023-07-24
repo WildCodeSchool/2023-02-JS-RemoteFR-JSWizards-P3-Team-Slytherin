@@ -73,7 +73,7 @@ function HeaderAdmin() {
                 !isActive("/admin/ateliers") ? "hover:underline" : ""
               } ${isActive("/admin/ateliers") ? "font-bold active-nav" : ""}`}
             >
-              <Link to="/admin/ateliers">Atelier</Link>
+              <Link to="/admin/ateliers">Ateliers</Link>
             </li>
             <li
               className={`text-primary  w-[128px] text-center utBtn ${
@@ -137,7 +137,7 @@ function HeaderAdmin() {
             !isActive("/admin/ateliers") ? "hover:underline" : ""
           } ${isActive("/admin/ateliers") ? "active-nav" : ""}`}
         >
-          Atelier
+          Ateliers
         </Link>
         <Link
           to="/selection"
