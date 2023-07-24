@@ -128,7 +128,7 @@ export default function GustatifPartTwo() {
             options={
               vinEnCours.wineType === "rouge"
                 ? options.vegetalRougeOptions
-                : options.vegetaBlancOptions
+                : options.vegetalBlancOptions
             }
             className="basic-multi-select text-primary"
             classNamePrefix="select"

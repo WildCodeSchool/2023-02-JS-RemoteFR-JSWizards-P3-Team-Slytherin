@@ -2,9 +2,11 @@ import StarRatings from "react-star-ratings";
 import { useState } from "react";
 import { useUser } from "@contexts/UserContext";
 import { useChoice } from "@contexts/ChoiceContext";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export default function Avis() {
+  const navigate = useNavigate();
   const { loggedInUser } = useUser();
   const { selection } = useChoice();
 
@@ -47,6 +49,8 @@ export default function Avis() {
     } catch (error) {
       console.error(error);
     }
+
+    navigate("/profil");
   };
 
   return (
