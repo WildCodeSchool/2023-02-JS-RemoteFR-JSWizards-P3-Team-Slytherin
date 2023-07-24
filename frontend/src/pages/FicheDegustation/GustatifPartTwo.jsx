@@ -151,7 +151,7 @@ export default function GustatifPartTwo() {
         </div>
         <div className="w-full flex justify-center gap-4 my-4">
           <Link to="/selection">
-            <button type="button">Retour au catalogue</button>
+            <button type="button">Retour à la sélection</button>
           </Link>
           <Link to="/fiche/gustatif-part1">
             <button type="button" className="items-center">

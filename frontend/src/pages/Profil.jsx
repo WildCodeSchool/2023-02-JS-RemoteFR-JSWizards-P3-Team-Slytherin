@@ -51,7 +51,7 @@ function Profil() {
               birthday={loggedInUser.birthday}
             />
             <Link to={`/profil/modifier/${loggedInUser.id}`}>
-              <button type="button">À modifier</button>
+              <button type="button">Modifier</button>
             </Link>
           </div>
           <div className="lg:flex flex-col lg:w-[50%]">
