@@ -48,8 +48,8 @@ const getOneUserWorkshop = async (req, res) => {
 const putOneUserWorkshop = (req, res) => {
   const userworkshop = req.body;
 
-  userworkshop.iduser = parseInt(req.params.iduser, 10);
-  userworkshop.idworkshop = parseInt(req.params.idworkshop, 10);
+  userworkshop.id_user = parseInt(req.params.iduser, 10);
+  userworkshop.id_workshop = parseInt(req.params.idworkshop, 10);
 
   userWorkshop
     .updateUserWorkshop(userworkshop)
