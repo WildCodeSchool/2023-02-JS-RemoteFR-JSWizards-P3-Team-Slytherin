@@ -68,7 +68,7 @@ export default function Users() {
       <div className="flex flex-col gap-6">
         <table className="w-full min-w-[580px] bg-secondary rounded mb-8 shadow-md overflow-scroll">
           <thead>
-            <tr className="flex justify-center p-2 gap-12">
+            <tr className="flex justify-center py-2 gap-12">
               <th
                 className="flex-1 min-w-[150px]"
                 onClick={() => sortTable("lastname")}
@@ -108,7 +108,7 @@ export default function Users() {
           <tbody>
             {userData.map((e) => (
               <tr
-                className="h-14 flex justify-center p-2 shadow-inner gap-12"
+                className="h-14 flex justify-center py-2 shadow-inner gap-12"
                 key={e.id}
               >
                 <td className="flex-1 min-w-[150px]">{e.lastname}</td>

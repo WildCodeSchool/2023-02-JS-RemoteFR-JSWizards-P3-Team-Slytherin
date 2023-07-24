@@ -5,6 +5,7 @@ import { useWorkshop } from "../../contexts/WorkshopContext";
 
 export default function Ateliers() {
   const { workshopData, setWorkshopData } = useWorkshop();
+  const [selectedRowData, setSelectedRowData] = useState([]);
   const [sortConfig, setSortConfig] = useState({
     key: "workshopDate",
     direction: "ascending",
@@ -45,11 +46,27 @@ export default function Ateliers() {
       });
   };
 
+  const handleActive = async (rowData) => {
+    const updatedRowData = { ...rowData };
+    updatedRowData.active = rowData.active === 0 ? 1 : 0;
+
+    await axios
+      .put(`${import.meta.env.VITE_BACKEND_URL}/workshops/inactive`, {})
+      .catch((err) => console.error(err));
+    await axios
+      .put(
+        `${import.meta.env.VITE_BACKEND_URL}/workshops/${updatedRowData.id}`,
+        updatedRowData
+      )
+      .catch((err) => console.error(err));
+    await setSelectedRowData(updatedRowData);
+  };
+
   useEffect(() => {
     axios.get(`${import.meta.env.VITE_BACKEND_URL}/workshops`).then((res) => {
       setWorkshopData(res.data);
     });
-  }, []);
+  }, [selectedRowData]);
 
   return (
     <>
@@ -66,6 +83,14 @@ export default function Ateliers() {
         <table className="w-full min-w-[280px] bg-secondary rounded mb-8 shadow-md overflow-scroll">
           <thead>
             <tr className="flex justify-center p-3 px-10">
+              <th
+                className="flex-[0] min-w-[45px]"
+                onClick={() => sortTable("personid")}
+              >
+                N°{" "}
+                {sortConfig.key === "personid" &&
+                  (sortConfig.direction === "ascending" ? "▼" : "▲")}
+              </th>
               <th
                 className="flex-1 min-w-[80px]"
                 onClick={() => sortTable("workshopDate")}
@@ -99,12 +124,29 @@ export default function Ateliers() {
                 className="h-14 flex justify-center p-3 px-10 shadow-inner"
                 key={e.id}
               >
+                <td className="flex-[0] min-w-[45px]">{e.id}</td>
                 <td className="flex-1 min-w-[80px]">
                   {e.workshopDate.split("-").reverse().join("-")}
                 </td>
                 <td className="flex-1 min-w-[120px]">{e.personNb}</td>
-                <td className="flex-1 font-bold min-w-[70px] ">
-                  {e.active ? <p className="text-[green]">actif</p> : <p>-</p>}
+                <td className="flex-1 font-bold min-w-[70px]">
+                  {e.active ? (
+                    <button
+                      type="button"
+                      className="text-[green] active-transparent-button"
+                      onClick={() => handleActive(e)}
+                    >
+                      actif
+                    </button>
+                  ) : (
+                    <button
+                      type="button"
+                      className="transparent-button"
+                      onClick={() => handleActive(e)}
+                    >
+                      -
+                    </button>
+                  )}
                 </td>
 
                 <td className="flex-0 min-w-[90px] flew-row">

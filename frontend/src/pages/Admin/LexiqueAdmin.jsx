@@ -76,6 +76,10 @@ export default function Lexique() {
       .post(API, { ...newWord })
       .then(() => fetchData)
       .catch((err) => console.error(err.response.data.message));
+    setNewWord({
+      word: "",
+      wordDefinition: "",
+    });
     setRefresh(!refresh);
   };
 
