@@ -62,13 +62,15 @@ function Profil() {
             </div>
             <div className="pt-[1.5rem]">
               {selection.map((wine) => (
-                <FicheDegustation
-                  key={wine.id_wine}
-                  src={`${import.meta.env.VITE_BACKEND_URL}/assets/wines/${
-                    wine.wineImage
-                  }`}
-                  title={wine.wineName}
-                />
+                <Link to={`/fiche/compterendu/${wine.id_wine}`}>
+                  <FicheDegustation
+                    key={wine.id_wine}
+                    src={`${import.meta.env.VITE_BACKEND_URL}/assets/wines/${
+                      wine.wineImage
+                    }`}
+                    title={wine.wineName}
+                  />
+                </Link>
               ))}
             </div>
             <div className="flex flex-col items-center gap-4 py-[1.8rem]">
