@@ -47,6 +47,12 @@ const findWinesForOneUser = (idUser) => {
   return db.query(SQL, [idUser]);
 };
 
+const findWinesForOneWorkshop = (idWorkshop) => {
+  const SQL =
+    "SELECT w.id, w.wineName, w.wineImage, w.wineYear, w.castle, w.grapeVariety, w.wineDescription, w.wineType, ws.workshopDate FROM wine AS w INNER JOIN wine_workshop AS ww ON w.id = ww.id_wine INNER JOIN workshop AS ws ON ww.id_workshop = ws.id WHERE ww.id_workshop = ?";
+  return db.query(SQL, [idWorkshop]);
+};
+
 const resume = (id) => {
   return db.query(
     `SELECT wine.wineName, wine.wineDescription, tasting.score, wine.id FROM wine INNER JOIN tasting ON wine.id = tasting.id_wine INNER JOIN user ON user.id = tasting.id_user INNER JOIN workshop ON workshop.id = tasting.id_workshop WHERE workshop.active = 1 AND user.id = ?;`,
@@ -60,4 +66,5 @@ module.exports = {
   findLastFiveWinesForOneUser,
   findWinesForOneUser,
   resume,
+  findWinesForOneWorkshop,
 };
