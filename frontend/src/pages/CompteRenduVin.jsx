@@ -41,7 +41,6 @@ function CompteRenduVin() {
     getData();
   }, [id]);
 
-  console.info(vin);
   if (isLoading) {
     return <>ça charge</>;
   }
