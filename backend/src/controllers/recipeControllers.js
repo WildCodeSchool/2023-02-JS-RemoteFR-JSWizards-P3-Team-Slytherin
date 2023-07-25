@@ -1,10 +1,9 @@
 const recipeManager = require("../models/RecipeManager");
 
 const postRecipe = (req, res) => {
-  const recipe = req.body;
-
+  const { iduser } = req.params;
   recipeManager
-    .createRecipe(recipe)
+    .createRecipe(iduser)
     .then(() => {
       res.status(201).json({ message: "Votre recette a bien été créée" });
     })
@@ -17,9 +16,7 @@ const postRecipe = (req, res) => {
 const getAllRecipe = async (req, res) => {
   try {
     const [recipes] = await recipeManager.findAllRecipe();
-    res
-      .status(200)
-      .json({ message: "Voici, toutes les recettes", recettes: { recipes } });
+    res.status(200).json(recipes);
   } catch (err) {
     res.status(500).json({ message: "Désolé, le serveur est en panne" });
   }
@@ -37,6 +34,38 @@ const getOneRecipe = async (req, res) => {
         message: `Voici, les infos de l'atelier`,
         recipe,
       });
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Désolé, le serveur est en panne" });
+  }
+};
+
+const getAllRecipesFromUser = async (req, res) => {
+  const { iduser } = req.params;
+  try {
+    const data = await recipeManager.findAllRecipesFromUser(iduser);
+    const recipe = data[0];
+    if (recipe == null) {
+      res.sendStatus(404);
+    } else {
+      res.status(200).json(recipe);
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Désolé, le serveur est en panne" });
+  }
+};
+
+const getAllDetailedRecipesFromUser = async (req, res) => {
+  const { iduser } = req.params;
+  try {
+    const data = await recipeManager.findAllDetailedRecipesFromUser(iduser);
+    const recipe = data[0];
+    if (recipe == null) {
+      res.sendStatus(404);
+    } else {
+      res.status(200).json(recipe);
     }
   } catch (err) {
     console.error(err);
@@ -88,4 +117,6 @@ module.exports = {
   getOneRecipe,
   putOneRecipe,
   deleteOneRecipe,
+  getAllRecipesFromUser,
+  getAllDetailedRecipesFromUser,
 };

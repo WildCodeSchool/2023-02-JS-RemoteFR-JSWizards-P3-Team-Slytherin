@@ -1,44 +1,63 @@
+<!-- Header section -->
+
+   <img src="https://github.com/WildCodeSchool/2023-02-JS-RemoteFR-JSWizards-P3-Team-Slytherin/assets/108263661/9133c6f8-47bf-4d4d-abf9-b4becba2c0b0" width="100px" height="100px" alt="logo">
+   
+
+### 🧰 Languages & Frameworks used :
+
+<p>
+  <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=html,css,js,nodejs,react,tailwind,mysql,express&theme=dark" />
+  </a>
+</p>
+</br>
+</br>
+
+### 🖥️ Software & Tools used :
+
+<p>
+<img alt="Visual Studio Code" style="padding-right:0.5rem;" src="https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?logo=visual-studio-code&logoColor=white"/>
+<img alt="Git" style="padding-right:0.5rem;" src="https://img.shields.io/badge/Git-F05033.svg?logo=git&logoColor=white"/>
+<img alt="Bash" style="padding-right:0.5rem;" src="https://img.shields.io/badge/Bash-4EAA25.svg?logo=gnu-bash&logoColor=white"/>
+<img alt="GitHub Desktop" style="padding-right:0.5rem;" src="https://img.shields.io/badge/GitHub%20Desktop-8034A9.svg?logo=github&logoColor=white"/>
+<img alt="Clickup" src="https://img.shields.io/badge/Clickup-7B68EE.svg?logo=clickup&logoColor=white"/>
+<img alt="Figma" style="padding-right:0.5rem;" src="https://img.shields.io/badge/-Figma-F24E1E.svg?logo=figma&logoColor=white"/>
+<img alt="Discord" style="padding-right:0.5rem;" src="https://img.shields.io/badge/-Discord-5865F2.svg?logo=discord&logoColor=white"/>
+<img alt="Google suite" style="padding-right:0.5rem;" src="https://img.shields.io/badge/-Google Suite-yellow.svg?logo=meistertask&logoColor=white"/>
+</p>
+</br>
+
+#
+
+### 👨‍💻 Team of developers :
+
+- Chloé Elle: https://github.com/Chl0l
+- Oyhana Mahjoubi: https://github.com/OyhanaM
+- Samuel Faber: https://github.com/samuelfaberdev
+- Vincent Daviaud : https://github.com/Vinchd
+- Sébastien Birolleau: https://github.com/SbirLobo
+- Youcef Aissat: https://github.com/YouceF-dz16
+
+</br>
+
 ## Concept
 
-This template is meant to serve as a foundation for every P2/P3 following the React-Express-MySQL stack, as learned in Wild Code School.
-It's pre-configured with a set of tools which'll help students produce industry-quality and easier-to-maintain code, while staying as simple as possible to use.
+Un atelier de dégustation de vins est un événement où les participants peuvent déguster différents vins tout en apprenant sur leur origine, leur production et leur goût. Les participants peuvent apprendre à identifier les différents arômes et saveurs des vins, ainsi qu’à comprendre les différences entre les différents types de vins. Les ateliers de dégustation de vins sont une excellente occasion d’apprendre sur le vin tout en passant un bon moment avec des amis ou en famille.
 
 ## Setup & Use
 
-### Project Initialization
+npm run setupto install all dependencies (back and front)
+npm run dev to start the server
 
-- In VSCode, install plugins **Prettier - Code formatter** and **ESLint** and configure them
-- Clone this repo, enter it
-- If you are using `yarn` or `pnpm`, adapt the `config/cli` in `package.json`
-- Run command `npm install`
-- _NB: To launch the backend server, you'll need an environment file with database credentials. You'll find a template one in `backend/.env.sample`_
+## Technologies
 
-### Available Commands
+# We produced our application with :
 
-- `migrate` : Run the database migration script
-- `dev` : Starts both servers (frontend + backend) in one terminal
-- `dev-front` : Starts the React frontend server
-- `dev-back` : Starts the Express backend server
-- `lint` : Runs validation tools, and refuses unclean code (will be executed on every _commit_)
-- `fix` : Fixes linter errors (run it if `lint` growls on your code !)
+React
+NodeJS
+Express
+MySQL
+TailwindCSS
+CSS / JavaScript / JSX
 
-## FAQ
-
-### Tools
-
-- _Concurrently_ : Allows for several commands to run concurrently in the same CLI
-- _Husky_ : Allows to execute specific commands that trigger on _git_ events
-- _Vite_ : Alternative to _Create-React-App_, packaging less tools for a more fluid experience
-- _ESLint_ : "Quality of code" tool, ensures chosen rules will be enforced
-- _Prettier_ : "Quality of code" tool as well, focuses on the styleguide
-- _ Airbnb Standard_ : One of the most known "standards", even though it's not officially linked to ES/JS
-- _Nodemon_ : Allows to restart the server everytime a .js file is udated
-
-### Deployment
-
-For deployment, you have to go to `secrets` → app `actions` on the github repo to insert via `New repository secret` :
-
-- CAPROVER_BACK_APPNAME : name app on caprover
-- CAPROVER_FRONT_APPNAME : name app on caprover
-- CAPROVER_PASSWORD : password caprover
-- CAPROVER_SERVER : link of domain
+<em><strong>Note</strong>: This project has been created for a 48-hours Hackaton</em>

@@ -1,4 +1,6 @@
 import { useState } from "react";
+import axios from "axios";
+import { useUser } from "../contexts/UserContext";
 
 export default function Home() {
   const [register, setRegister] = useState("");
@@ -9,6 +11,44 @@ export default function Home() {
     new Date().getDate()
   );
   const formattedDate = newDate.toISOString().split("T")[0];
+  const { handleSubmitLogIn, handleChange } = useUser();
+  const APINSCRIPTION = `${import.meta.env.VITE_BACKEND_URL}/inscription`;
+
+  const [user, setUser] = useState({
+    lastname: "",
+    firstname: "",
+    email: "",
+    password: "",
+    birthday: "",
+  });
+
+  const [pwd, setPwd] = useState("");
+  const [confirmPwd, setConfirmPwd] = useState("");
+
+  const handleChangeInscription = (e) => {
+    if (e.target.name === "password") {
+      setPwd(e.target.value);
+    } else if (e.target.name === "confirmpassword") {
+      setConfirmPwd(e.target.value);
+    }
+    setUser({ ...user, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmitInscription = (e) => {
+    e.preventDefault();
+    const birthday = user.birthday || null;
+    if (pwd === confirmPwd) {
+      const newUser = { ...user, password: pwd, birthday };
+
+      axios
+        .post(APINSCRIPTION, newUser, { withCredentials: true })
+        .then((res) => {
+          console.warn(res.data.message);
+          window.location.href = "/";
+        })
+        .catch((err) => console.error(err.response.data.message));
+    }
+  };
 
   const toggleConnection = () => {
     setConnection(true);
@@ -32,17 +72,15 @@ export default function Home() {
   }
 
   return (
-    <div className="flex flex-col items-center h-full gap-16 mt-8">
-      <div className="text-center leading-6">
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatibus
-        temporibus aliquam reprehenderit optio excepturi quas saepe quasi at
-        quaerat impedit facilis placeat vel inventore in omnis ipsam sed ratione
-        molestias a pariatur sunt, sapiente quae. Dolores aut voluptate
-        suscipit, maiores sapiente esse odit nemo rem minima cum dolorum rerum
-        animi nulla accusantium consequuntur, dolor doloremque fugit perferendis
-        quasi. Vel magnam placeat aut molestiae explicabo, ullam recusandae
-        blanditiis beatae provident nam molestias necessitatibus, fugit
-        voluptatibus unde distinctio! Accusantium, nostrum! Tempore, ducimus?
+    <div className="flex flex-col items-center h-full gap-10 mt-14">
+      <div className="text-center leading-6 w-[80%] ">
+        Notre atelier de dégustation de vins est un événement où les
+        participants peuvent déguster différents vins tout en apprenant sur leur
+        origine, leur production et leur goût. Les participants peuvent
+        apprendre à identifier les différents arômes et saveurs des vins, ainsi
+        qu’à comprendre les différences entre les différents types de vins. Les
+        ateliers de dégustation de vins sont une excellente occasion d’apprendre
+        sur le vin tout en passant un bon moment entre amis ou en famille.
       </div>
       <div className="flex flex-col gap-6">
         <span className="w-56 bg-secondary h-[1px] self-center" />
@@ -53,7 +91,10 @@ export default function Home() {
         >
           Inscription
         </button>
-        <form className={`flex flex-col items-center ${showRegister}`}>
+        <form
+          className={`flex flex-col items-center ${showRegister}`}
+          onSubmit={handleSubmitInscription}
+        >
           <div>
             <label htmlFor="email">Adresse mail</label>
             <br />
@@ -64,6 +105,7 @@ export default function Home() {
               placeholder="exemple@gmail.com"
               required
               className="text-primary w-72 p-1 rounded"
+              onChange={handleChangeInscription}
             />
           </div>
           <br />
@@ -76,6 +118,7 @@ export default function Home() {
               id="lastname"
               required
               className="text-primary w-72 p-1 rounded"
+              onChange={handleChangeInscription}
             />
           </div>
           <br />
@@ -88,6 +131,7 @@ export default function Home() {
               id="firstname"
               required
               className="text-primary w-72 p-1 rounded"
+              onChange={handleChangeInscription}
             />
           </div>
           <br />
@@ -96,11 +140,12 @@ export default function Home() {
             <br />
             <input
               type="date"
-              name="birthdate"
+              name="birthday"
               id="birthdate"
               min="1900-01-01"
               max={formattedDate}
               className="text-primary w-72 p-1 rounded"
+              onChange={handleChangeInscription}
             />
           </div>
           <br />
@@ -112,6 +157,7 @@ export default function Home() {
               name="password"
               required
               className="text-primary w-72 p-1 rounded"
+              onChange={handleChangeInscription}
             />
             <br />
             <br />
@@ -122,6 +168,7 @@ export default function Home() {
               name="confirmpassword"
               required
               className="text-primary w-72 p-1 rounded"
+              onChange={handleChangeInscription}
             />
           </div>
           <br />
@@ -137,9 +184,12 @@ export default function Home() {
           onClick={toggleConnection}
           className="text-xl text-center login-button self-center active:text-tertiary cursor-pointer translate-y-2"
         >
-          Connection
+          Connexion
         </button>
-        <form className={`flex flex-col items-center ${showConnection}`}>
+        <form
+          className={`flex flex-col items-center ${showConnection}`}
+          onSubmit={handleSubmitLogIn}
+        >
           <div>
             <label htmlFor="email">Adresse mail</label>
             <br />
@@ -150,6 +200,7 @@ export default function Home() {
               placeholder="exemple@gmail.com"
               required
               className="text-primary w-72 p-1 rounded"
+              onChange={handleChange}
             />
           </div>
           <br />
@@ -161,6 +212,7 @@ export default function Home() {
               name="password"
               required
               className="text-primary w-72 p-1 rounded"
+              onChange={handleChange}
             />
           </div>
           <br />

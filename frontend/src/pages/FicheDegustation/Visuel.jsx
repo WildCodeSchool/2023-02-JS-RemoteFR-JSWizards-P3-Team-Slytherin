@@ -1,15 +1,60 @@
-import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import VinEnCours from "@components/VinEnCours";
+import { useChoice } from "@contexts/ChoiceContext";
+import { useEffect } from "react";
 
 export default function Visuel() {
-  const [couleur, setCouleur] = useState("-");
-  const [limpidite, setLimpidite] = useState("-");
-  const [densite, setDensite] = useState("-");
-  const [visuelVin, setVisuelVin] = useState({
-    couleur: "-",
-    limpidite: "-",
-    densite: "-",
-  });
+  const {
+    vinEnCours,
+    selectVueCouleur,
+    selectVueLimpidite,
+    selectVueDensite,
+    setSelectBouchePersistance,
+    setSelectBoucheMoelleux,
+    setSelectBoucheAcidite,
+    setSelectBoucheTanin,
+    setSelectBoucheAlcool,
+    setSelectBoucheFruit,
+    setSelectBoucheFleur,
+    setSelectBoucheVegetal,
+    setSelectBoucheEpice,
+    setSelectBoucheAmpyreumatique,
+    setSelectBoucheMineral,
+    setSelectNezIntensite,
+    setSelectNezFruit,
+    setSelectNezFleur,
+    setSelectNezVegetal,
+    setSelectNezEpice,
+    setSelectNezAmpyreumatique,
+    setSelectNezMineral,
+    setSelectVueCouleur,
+    setSelectVueLimpidite,
+    setSelectVueDensite,
+  } = useChoice();
+
+  useEffect(() => {
+    setSelectBouchePersistance("-");
+    setSelectBoucheMoelleux("-");
+    setSelectBoucheAcidite("-");
+    setSelectBoucheTanin("-");
+    setSelectBoucheAlcool("-");
+    setSelectBoucheFruit("-");
+    setSelectBoucheFleur("-");
+    setSelectBoucheVegetal("-");
+    setSelectBoucheEpice("-");
+    setSelectBoucheAmpyreumatique("-");
+    setSelectBoucheMineral("-");
+    setSelectNezIntensite("-");
+    setSelectNezFruit("-");
+    setSelectNezFleur("-");
+    setSelectNezVegetal("-");
+    setSelectNezEpice("-");
+    setSelectNezAmpyreumatique("-");
+    setSelectNezMineral("-");
+    setSelectVueCouleur("-");
+    setSelectVueLimpidite("-");
+    setSelectVueDensite("-");
+  }, []);
 
   const handleColorClick = () => {
     const couleurClass = document.getElementById("couleur");
@@ -52,19 +97,22 @@ export default function Visuel() {
 
   const handleSelectionClick = () => {
     if (document.querySelector("input[name=densite]:checked") !== null) {
-      setDensite(document.querySelector("input[name=densite]:checked").id);
+      setSelectVueDensite(
+        document.querySelector("input[name=densite]:checked + label").innerText
+      );
     }
     if (document.querySelector("input[name=limpidite]:checked") !== null) {
-      setLimpidite(document.querySelector("input[name=limpidite]:checked").id);
+      setSelectVueLimpidite(
+        document.querySelector("input[name=limpidite]:checked + label")
+          .innerText
+      );
     }
     if (document.querySelector("input[name=couleur]:checked") !== null) {
-      setCouleur(document.querySelector("input[name=couleur]:checked").id);
+      setSelectVueCouleur(
+        document.querySelector("input[name=couleur]:checked + label").innerText
+      );
     }
   };
-
-  useEffect(() => {
-    setVisuelVin({ couleur, limpidite, densite });
-  }, [densite, limpidite, couleur]);
 
   return (
     <>
@@ -74,132 +122,253 @@ export default function Visuel() {
         <div>Caractère visuel</div>
         <span className="w-full h-[1px] bg-secondary m-4 " />
         <form className="flex flex-col gap-6 justify-center w-3/4" action="">
-          <div className="text-center border-[1px] rounded-md px-4 bg-primary">
-            <fieldset className="">
-              <input
-                type="button"
-                onClick={handleColorClick}
-                value={
-                  visuelVin.couleur !== "-"
-                    ? `Couleur : ${visuelVin.couleur}`
-                    : "Couleur : -"
-                }
-                className="fiche-deg-button p-2 w-full"
-              />
-              <div id="couleur" className="hidden">
-                <div className="flex flex-row gap-10 mb-2 items-center justify-center">
-                  <div className="flex flex-col gap-4 my-2">
-                    <div className="bg-[#4A0019] rounded-full flex flex-row p-2">
-                      <input
-                        name="couleur"
-                        className="m-2"
-                        type="radio"
-                        onClick={handleSelectionClick}
-                        id="quasi-noir"
-                      />
-                      <label className="mr-2" htmlFor="quasi-noir">
-                        quasi-noir
-                      </label>
+          {vinEnCours.wineType === "rouge" ? (
+            <div className="text-center border-[1px] rounded-md px-4 bg-primary">
+              <fieldset className="">
+                <input
+                  type="button"
+                  onClick={handleColorClick}
+                  value={
+                    selectVueCouleur !== "-"
+                      ? `Couleur : ${selectVueCouleur}`
+                      : "Couleur : -"
+                  }
+                  className="fiche-deg-button p-2 w-full"
+                />
+                <div id="couleur" className="hidden">
+                  <div className="flex flex-row gap-10 mb-2 items-center justify-center">
+                    <div className="flex flex-col gap-4 my-2">
+                      <div className="bg-[#4A0019] rounded-full flex flex-row p-2">
+                        <input
+                          name="couleur"
+                          className="m-2"
+                          type="radio"
+                          onClick={handleSelectionClick}
+                          id="quasi-noir"
+                        />
+                        <label className="mr-2" htmlFor="quasi-noir">
+                          Quasi-noir
+                        </label>
+                      </div>
+                      <div className="bg-[#A70045] rounded-full flex flex-row p-2">
+                        <input
+                          name="couleur"
+                          className="m-2"
+                          type="radio"
+                          onClick={handleSelectionClick}
+                          id="pourpre"
+                        />
+                        <label className="mr-2" htmlFor="pourpre">
+                          Pourpre
+                        </label>
+                      </div>
+                      <div className="bg-[#9C0063] rounded-full flex flex-row p-2">
+                        <input
+                          name="couleur"
+                          className="m-2"
+                          type="radio"
+                          onClick={handleSelectionClick}
+                          id="violet"
+                        />
+                        <label className="mr-2" htmlFor="violet">
+                          Violet
+                        </label>
+                      </div>
+                      <div className="bg-[#7E2950] rounded-full flex flex-row p-2">
+                        <input
+                          name="couleur"
+                          className="m-2"
+                          type="radio"
+                          onClick={handleSelectionClick}
+                          id="grenat"
+                        />
+                        <label className="mr-2" htmlFor="grenat">
+                          Grenat
+                        </label>
+                      </div>
                     </div>
-                    <div className="bg-[#A70045] rounded-full flex flex-row p-2">
-                      <input
-                        name="couleur"
-                        className="m-2"
-                        type="radio"
-                        onClick={handleSelectionClick}
-                        id="pourpre"
-                      />
-                      <label className="mr-2" htmlFor="pourpre">
-                        pourpre
-                      </label>
-                    </div>
-                    <div className="bg-[#9C0063] rounded-full flex flex-row p-2">
-                      <input
-                        name="couleur"
-                        className="m-2"
-                        type="radio"
-                        onClick={handleSelectionClick}
-                        id="violet"
-                      />
-                      <label className="mr-2" htmlFor="violet">
-                        violet
-                      </label>
-                    </div>
-                    <div className="bg-[#7E2950] rounded-full flex flex-row p-2">
-                      <input
-                        name="couleur"
-                        className="m-2"
-                        type="radio"
-                        onClick={handleSelectionClick}
-                        id="grenat"
-                      />
-                      <label className="mr-2" htmlFor="grenat">
-                        grenat
-                      </label>
-                    </div>
-                  </div>
-                  <div className="flex flex-col gap-4">
-                    <div className="bg-[#FC1D5C] rounded-full flex flex-row p-2">
-                      <input
-                        name="couleur"
-                        className="m-2"
-                        type="radio"
-                        onClick={handleSelectionClick}
-                        id="framboise"
-                      />
-                      <label className="mr-2" htmlFor="framboise">
-                        framboise
-                      </label>
-                    </div>
-                    <div className="bg-[#EA0428] rounded-full flex flex-row p-2">
-                      <input
-                        name="couleur"
-                        className="m-2"
-                        type="radio"
-                        onClick={handleSelectionClick}
-                        id="cerise"
-                      />
-                      <label className="mr-2" htmlFor="cerise">
-                        cerise
-                      </label>
-                    </div>
-                    <div className="bg-[#C70400] rounded-full flex flex-row p-2">
-                      <input
-                        name="couleur"
-                        className="m-2"
-                        type="radio"
-                        onClick={handleSelectionClick}
-                        id="rubis"
-                      />
-                      <label className="mr-2" htmlFor="rubis">
-                        rubis
-                      </label>
-                    </div>
-                    <div className="bg-[#972000] rounded-full flex flex-row p-2">
-                      <input
-                        name="couleur"
-                        className="m-2"
-                        type="radio"
-                        onClick={handleSelectionClick}
-                        id="tuile"
-                      />
-                      <label className="mr-2" htmlFor="tuile">
-                        tuilé
-                      </label>
+                    <div className="flex flex-col gap-4">
+                      <div className="bg-[#FC1D5C] rounded-full flex flex-row p-2">
+                        <input
+                          name="couleur"
+                          className="m-2"
+                          type="radio"
+                          onClick={handleSelectionClick}
+                          id="framboise"
+                        />
+                        <label className="mr-2" htmlFor="framboise">
+                          Framboise
+                        </label>
+                      </div>
+                      <div className="bg-[#EA0428] rounded-full flex flex-row p-2">
+                        <input
+                          name="couleur"
+                          className="m-2"
+                          type="radio"
+                          onClick={handleSelectionClick}
+                          id="cerise"
+                        />
+                        <label className="mr-2" htmlFor="cerise">
+                          Cerise
+                        </label>
+                      </div>
+                      <div className="bg-[#C70400] rounded-full flex flex-row p-2">
+                        <input
+                          name="couleur"
+                          className="m-2"
+                          type="radio"
+                          onClick={handleSelectionClick}
+                          id="rubis"
+                        />
+                        <label className="mr-2" htmlFor="rubis">
+                          Rubis
+                        </label>
+                      </div>
+                      <div className="bg-[#972000] rounded-full flex flex-row p-2">
+                        <input
+                          name="couleur"
+                          className="m-2"
+                          type="radio"
+                          onClick={handleSelectionClick}
+                          id="tuile"
+                        />
+                        <label className="mr-2" htmlFor="tuile">
+                          Tuilé
+                        </label>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </fieldset>
-          </div>
+              </fieldset>
+            </div>
+          ) : (
+            <div className="text-center border-[1px] rounded-md px-4 bg-primary">
+              <fieldset className="">
+                <input
+                  type="button"
+                  onClick={handleColorClick}
+                  value={
+                    selectVueCouleur !== "-"
+                      ? `Couleur : ${selectVueCouleur}`
+                      : "Couleur : -"
+                  }
+                  className="fiche-deg-button p-2 w-full"
+                />
+                <div id="couleur" className="hidden">
+                  <div className="flex flex-row gap-10 mb-2 items-center justify-center">
+                    <div className="flex flex-col gap-4 my-2">
+                      <div className="bg-[#E2DC86] rounded-full flex flex-row p-2">
+                        <input
+                          name="couleur"
+                          className="m-2"
+                          type="radio"
+                          onClick={handleSelectionClick}
+                          id="jaune-vert"
+                        />
+                        <label className="mr-2" htmlFor="jaune-vert">
+                          Jaune-vert
+                        </label>
+                      </div>
+                      <div className="bg-[#E9DC42] rounded-full flex flex-row p-2">
+                        <input
+                          name="couleur"
+                          className="m-2"
+                          type="radio"
+                          onClick={handleSelectionClick}
+                          id="or-vert"
+                        />
+                        <label className="mr-2" htmlFor="or-vert">
+                          Or vert
+                        </label>
+                      </div>
+                      <div className="bg-[#eec944] rounded-full flex flex-row p-2">
+                        <input
+                          name="couleur"
+                          className="m-2"
+                          type="radio"
+                          onClick={handleSelectionClick}
+                          id="or-pale"
+                        />
+                        <label className="mr-2" htmlFor="or-pale">
+                          Or pâle
+                        </label>
+                      </div>
+                      <div className="bg-[#FFDA41] rounded-full flex flex-row p-2">
+                        <input
+                          name="couleur"
+                          className="m-2"
+                          type="radio"
+                          onClick={handleSelectionClick}
+                          id="jaune-paille"
+                        />
+                        <label className="mr-2" htmlFor="jaune-paille">
+                          Jaune paille
+                        </label>
+                      </div>
+                    </div>
+                    <div className="flex flex-col gap-4">
+                      <div className="bg-[#D8AC0F] rounded-full flex flex-row p-2">
+                        <input
+                          name="couleur"
+                          className="m-2"
+                          type="radio"
+                          onClick={handleSelectionClick}
+                          id="dore"
+                        />
+                        <label className="mr-2" htmlFor="dore">
+                          Doré
+                        </label>
+                      </div>
+                      <div className="bg-[#D8AC0F] rounded-full flex flex-row p-2">
+                        <input
+                          name="couleur"
+                          className="m-2"
+                          type="radio"
+                          onClick={handleSelectionClick}
+                          id="vieil-or"
+                        />
+                        <label className="mr-2" htmlFor="vieil-or">
+                          Vieil or
+                        </label>
+                      </div>
+                      <div className="bg-[#EE8A10] rounded-full flex flex-row p-2">
+                        <input
+                          name="couleur"
+                          className="m-2"
+                          type="radio"
+                          onClick={handleSelectionClick}
+                          id="ambre"
+                        />
+                        <label className="mr-2" htmlFor="ambre">
+                          Ambré
+                        </label>
+                      </div>
+                      <div className="bg-[#CF790A] rounded-full flex flex-row p-2">
+                        <input
+                          name="couleur"
+                          className="m-2"
+                          type="radio"
+                          onClick={handleSelectionClick}
+                          id="roux"
+                        />
+                        <label className="mr-2" htmlFor="roux">
+                          Roux
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+          )}
           <div className="text-center border-[1px] rounded-md px-4 bg-primary">
             <fieldset className="flex flex-col items-center">
               <input
                 type="button"
                 onClick={handleLimpiditeClick}
                 value={
-                  visuelVin.limpidite !== "-"
-                    ? `Limpidité : ${visuelVin.limpidite}`
+                  selectVueLimpidite !== "-"
+                    ? `Limpidité : ${selectVueLimpidite}`
                     : "Limpidité : -"
                 }
                 className="fiche-deg-button p-2 w-full"
@@ -274,8 +443,8 @@ export default function Visuel() {
                 type="button"
                 onClick={handleDensiteClick}
                 value={
-                  visuelVin.densite !== "-"
-                    ? `Densité : ${visuelVin.densite}`
+                  selectVueDensite !== "-"
+                    ? `Densité : ${selectVueDensite}`
                     : "Densité : -"
                 }
                 className="fiche-deg-button p-2 w-full"
@@ -332,9 +501,13 @@ export default function Visuel() {
               </div>
             </fieldset>
           </div>
-          <div className="absolute w-[400px] right-[calc(50%-200px)] bottom-8 flex justify-center gap-4">
-            <button type="button">Retour au catalogue</button>
-            <button type="button">Suivant</button>
+          <div className="w-full flex justify-center gap-4 my-4">
+            <Link to="/selection">
+              <button type="button">Retour à la sélection</button>
+            </Link>
+            <Link to="/fiche/olfactif">
+              <button type="button">Suivant</button>
+            </Link>
           </div>
         </form>
       </div>

@@ -31,16 +31,25 @@ const findOneUser = (id) => {
 
 const updateUser = (user) => {
   const SQL =
-    "UPDATE user SET lastname = ?, firstname = ?, email = ?, hashedPassword = ?, birthday = ?, adminStatus = ? WHERE id = ?";
+    "UPDATE user SET lastname = ?, firstname = ?, email = ?, birthday = ?, adminStatus = ? WHERE id = ?";
   return db.query(SQL, [
     user.lastname,
     user.firstname,
     user.email,
-    user.hashedPassword,
     user.birthday,
-    user.adminStatus,
+    user.adminStatus || false,
     user.id,
   ]);
+};
+
+const updateUserPwd = (user) => {
+  const SQL = "UPDATE user SET hashedPassword = ? WHERE id = ?";
+  return db.query(SQL, [user.hashedPassword, user.id]);
+};
+
+const updateAdmin = (user) => {
+  const SQL = "UPDATE user SET adminStatus = ? WHERE id = ?";
+  return db.query(SQL, [user.adminStatus, user.id]);
 };
 
 const deleteUser = (id) => {
@@ -54,5 +63,7 @@ module.exports = {
   findAllUser,
   findOneUser,
   updateUser,
+  updateUserPwd,
+  updateAdmin,
   deleteUser,
 };
