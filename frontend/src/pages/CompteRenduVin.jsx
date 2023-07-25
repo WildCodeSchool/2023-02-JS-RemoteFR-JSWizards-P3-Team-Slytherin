@@ -156,9 +156,6 @@ function CompteRenduVin() {
               Retour profil
             </button>
           </Link>
-          <Link to="/profil/profil_degustation">
-            <button type="button">Valider</button>
-          </Link>
         </div>
       </div>
     </div>
