@@ -2,9 +2,12 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import AtelierLayout from "@components/admin/AtelierLayout";
 import { useWorkshop } from "../../contexts/WorkshopContext";
+import WorkshopDetailsLayout from "../../components/admin/WorkshopDetailsLayout";
 
 export default function Ateliers() {
   const { workshopData, setWorkshopData } = useWorkshop();
+  const [hiddenDetails, setHiddenDetails] = useState(false);
+  const [selectedDetailedWorkshop, setSelectedDetailedWorkshop] = useState("");
   const [selectedRowData, setSelectedRowData] = useState([]);
   const [sortConfig, setSortConfig] = useState({
     key: "workshopDate",
@@ -52,6 +55,17 @@ export default function Ateliers() {
       });
   };
 
+  const handleClickDetails = async (id) => {
+    const API = `${import.meta.env.VITE_BACKEND_URL}/wineWorkshop/${id}`;
+    await axios
+      .get(API)
+      .then((res) => {
+        setSelectedDetailedWorkshop(res.data);
+        setHiddenDetails(true);
+      })
+      .catch((err) => console.error(err));
+  };
+
   const handleActive = async (rowData) => {
     const updatedRowData = { ...rowData };
     updatedRowData.active = rowData.active === 0 ? 1 : 0;
@@ -65,7 +79,7 @@ export default function Ateliers() {
         updatedRowData
       )
       .catch((err) => console.error(err));
-    await setSelectedRowData(updatedRowData);
+    setSelectedRowData(updatedRowData);
   };
 
   useEffect(() => {
@@ -88,10 +102,10 @@ export default function Ateliers() {
             <tr className="flex justify-center p-3 px-10">
               <th
                 className="flex-[0] min-w-[45px]"
-                onClick={() => sortTable("personid")}
+                onClick={() => sortTable("id")}
               >
                 N°{" "}
-                {sortConfig.key === "personid" &&
+                {sortConfig.key === "id" &&
                   (sortConfig.direction === "ascending" ? "▼" : "▲")}
               </th>
               <th
@@ -127,7 +141,16 @@ export default function Ateliers() {
                 className="h-14 flex justify-center p-3 px-10 shadow-inner"
                 key={e.id}
               >
-                <td className="flex-[0] min-w-[45px]">{e.id}</td>
+                <td className="flex-[0] min-w-[45px]">
+                  <button
+                    onClick={() => handleClickDetails(e.id)}
+                    className="btn-list mx-3"
+                    type="button"
+                  >
+                    <img src="/assets/eye/eye.png" alt="logo eye" />
+                  </button>
+                  {e.id}
+                </td>
                 <td className="flex-1 min-w-[80px]">
                   {e.workshopDate.split("-").reverse().join("-")}
                 </td>
@@ -170,6 +193,13 @@ export default function Ateliers() {
           </tbody>
         </table>
       </div>
+      {selectedDetailedWorkshop && (
+        <WorkshopDetailsLayout
+          selectedDetailedWorkshop={selectedDetailedWorkshop}
+          hiddenDetails={hiddenDetails}
+          setHiddenDetails={setHiddenDetails}
+        />
+      )}
       <AtelierLayout
         hidden={hidden}
         setHidden={setHidden}

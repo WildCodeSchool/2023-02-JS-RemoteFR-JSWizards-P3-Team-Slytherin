@@ -144,6 +144,8 @@ router.delete("/tasting/:id", tastingControllers.deleteTasting);
 
 router.post("/wineWorkshop", wineWorkshopControllers.postWineWorkshop);
 router.get("/wineWorkshop", wineWorkshopControllers.getSelection);
+router.get("/wineWorkshop/:idWorkshop", wineWorkshopControllers.getOneWorkshop);
+
 router.get(
   "/winesWorkshops/:idUser",
   wineWorkshopControllers.getLastFiveWinesForOneUser
