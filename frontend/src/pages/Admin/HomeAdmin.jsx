@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function HomeAdmin() {
   return (
-    <div className="container admin-container">
+    <div className="container">
       <div className="row">
         <Link to="/admin/ateliers" className="bouton_admin">
           <h2 className="w-full">Gérer atelier</h2>
@@ -17,6 +17,9 @@ export default function HomeAdmin() {
         </Link>
         <Link to="/admin/lexique" className="bouton_admin">
           <h2>Gérer lexique</h2>
+        </Link>
+        <Link to="/admin/avisadmin" className="bouton_admin">
+          <h2>Voir les avis</h2>
         </Link>
       </div>
     </div>

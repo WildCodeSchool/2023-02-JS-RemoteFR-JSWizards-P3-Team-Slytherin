@@ -39,20 +39,6 @@
     font-size: 0.8rem;
   }
 
-  .bouton_admin {
-    background-color: theme("colors.primary");
-    border-radius: 1.2rem;
-    padding: 0.5rem 1rem;
-    width: 20vw;
-    height: 15vw;
-    color: theme("colors.secondary");
-    font-weight: 400;
-    text-align: center;
-    max-width: 300px;
-    min-width: 100px;
-    min-height: 80px;
-  }
-
   .lexique-button {
     border-radius: 50%;
     width: 1.5rem;
@@ -402,33 +388,71 @@
   }
 }
 
-.bouton_admin {
-  flex: 0 0 auto;
-  display: flex;
-  flex-direction: column;
-  margin: 1rem;
-  align-items: center;
-  justify-content: center;
-}
-
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: calc(100vh - 108px);
-}
-
-.row {
-  display: flex;
-}
-
 tr,
 td,
 th {
   display: flex;
   justify-content: center;
   align-self: center;
+}
+
+/* Admin  */
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 108px);
+}
+
+.row {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+}
+
+.bouton_admin {
+  background-color: theme("colors.primary");
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  text-align: center;
+  padding: 0.5rem 1rem;
+  color: theme("colors.secondary");
+  width: 16rem;
+  height: 16rem;
+  margin: 12px;
+}
+
+/* Admin avis  */
+.opinion-card {
+  background-color: theme("colors.primary");
+  color: theme("colors.secondary");
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 280px;
+  max-width: 400px;
+  min-height: fit-content;
+  max-height: 40%;
+  margin: 0.25rem;
+  padding: 0.5rem;
+  border-radius: 6px;
+  overflow: auto;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+.opinion {
+  font-size: 11px;
+}
+
+.minfont {
+  font-size: 14px;
 }
 
 /*admin-atelier*/
