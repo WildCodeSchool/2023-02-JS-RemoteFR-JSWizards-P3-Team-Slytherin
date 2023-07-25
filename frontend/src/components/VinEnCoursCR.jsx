@@ -40,5 +40,5 @@ export default function VinEnCoursCR({ id }) {
 }
 
 VinEnCoursCR.propTypes = {
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
 };

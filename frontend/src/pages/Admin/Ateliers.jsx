@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import AtelierLayout from "@components/admin/AtelierLayout";
 import { useWorkshop } from "../../contexts/WorkshopContext";
 import WorkshopDetailsLayout from "../../components/admin/WorkshopDetailsLayout";
 
@@ -13,6 +13,8 @@ export default function Ateliers() {
     key: "workshopDate",
     direction: "ascending",
   });
+  const [hidden, setHidden] = useState(false);
+  const [refresh, setRefresh] = useState(false);
 
   const sortTable = (key) => {
     let direction = "ascending";
@@ -36,6 +38,10 @@ export default function Ateliers() {
     });
     setWorkshopData(sortedData);
     setSortConfig({ key, direction });
+  };
+
+  const handleWorkshop = () => {
+    setHidden(!hidden);
   };
 
   const deleteWorkshop = async (rowData) => {
@@ -80,20 +86,17 @@ export default function Ateliers() {
     axios.get(`${import.meta.env.VITE_BACKEND_URL}/workshops`).then((res) => {
       setWorkshopData(res.data);
     });
-  }, [selectedRowData]);
+  }, [selectedRowData, refresh]);
 
   return (
     <>
       <h2 className="mt-16 mb-6 text-2xl text-center font-bold">
         Gérer les ateliers
       </h2>
-
       <div className="flex flex-col gap-6">
-        <Link to="/admin/ateliers/atelier" className="flex justify-center">
-          <button type="button" className="self-center">
-            Ajouter un atelier
-          </button>
-        </Link>
+        <button type="button" onClick={handleWorkshop} className="self-center">
+          Ajouter un atelier
+        </button>
         <table className="w-full min-w-[280px] bg-secondary rounded mb-8 shadow-md overflow-scroll">
           <thead>
             <tr className="flex justify-center p-3 px-10">
@@ -171,7 +174,6 @@ export default function Ateliers() {
                     </button>
                   )}
                 </td>
-
                 <td className="flex-0 min-w-[90px] flew-row">
                   {" "}
                   <button
@@ -198,6 +200,12 @@ export default function Ateliers() {
           setHiddenDetails={setHiddenDetails}
         />
       )}
+      <AtelierLayout
+        hidden={hidden}
+        setHidden={setHidden}
+        refresh={refresh}
+        setRefresh={setRefresh}
+      />
     </>
   );
 }

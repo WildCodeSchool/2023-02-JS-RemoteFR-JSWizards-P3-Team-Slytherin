@@ -25,10 +25,8 @@ export default function ProfilDegustation() {
           <h2 className="text-3xl pb-[2rem]">Profil dégustation</h2>
         </div>
         {getWine.map((wine) => (
-          <>
-            <h3 key={wine.id} className="text-xl pb-2 mt-4 font-bold">
-              {wine.wineName}
-            </h3>
+          <div key={wine.id}>
+            <h3 className="text-xl pb-2 mt-4 font-bold">{wine.wineName}</h3>
             <div className="flex flex-col gap-4 items-center md:flex-row md:justify-between ">
               <p>{wine.wineDescription}</p>
               <span className="text-tertiary text-center text-xl bg-primary border-2 rounded-full p-3">
@@ -36,7 +34,7 @@ export default function ProfilDegustation() {
                 {wine.score}
               </span>
             </div>
-          </>
+          </div>
         ))}
         <div className="flex flex-row justify-around items-center py-[3rem]">
           <Link to="/selection">

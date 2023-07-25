@@ -62,9 +62,11 @@ function Profil() {
             </div>
             <div className="pt-[1.5rem]">
               {selection.map((wine) => (
-                <Link to={`/fiche/compterendu/${wine.id_wine}`}>
+                <Link
+                  key={wine.id_wine}
+                  to={`/fiche/compterendu/${wine.id_wine}`}
+                >
                   <FicheDegustation
-                    key={wine.id_wine}
                     src={`${import.meta.env.VITE_BACKEND_URL}/assets/wines/${
                       wine.wineImage
                     }`}

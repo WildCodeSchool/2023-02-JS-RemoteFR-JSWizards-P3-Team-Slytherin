@@ -552,3 +552,19 @@ th {
   border-radius: 10px;
   background: #3f3f3f;
 }
+
+.admin-scroll-bar ::-webkit-scrollbar {
+  width: 10px;
+}
+
+.admin-scroll-bar ::-webkit-scrollbar-track {
+  background-color: #ffffff;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+
+.admin-scroll-bar ::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  background: #dddddd;
+}

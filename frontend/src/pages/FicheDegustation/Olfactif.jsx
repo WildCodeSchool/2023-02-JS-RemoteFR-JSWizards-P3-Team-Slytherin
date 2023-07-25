@@ -6,6 +6,7 @@ import options from "../../helpers/gustatifHelper";
 
 export default function Olfactif() {
   const {
+    vinEnCours,
     selectNezIntensite,
     setSelectNezIntensite,
     setSelectNezFruit,
@@ -40,7 +41,6 @@ export default function Olfactif() {
       }
     }
     setSelectNezFruit(string);
-    console.info(string);
   };
 
   const handleFleurChange = (value) => {
@@ -53,7 +53,6 @@ export default function Olfactif() {
       }
     }
     setSelectNezFleur(string);
-    console.info(string);
   };
 
   const handleVegetalChange = (value) => {
@@ -66,7 +65,6 @@ export default function Olfactif() {
       }
     }
     setSelectNezVegetal(string);
-    console.info(string);
   };
 
   const handleEpiceChange = (value) => {
@@ -79,7 +77,6 @@ export default function Olfactif() {
       }
     }
     setSelectNezEpice(string);
-    console.info(string);
   };
 
   const handleAmpyrChange = (value) => {
@@ -92,7 +89,6 @@ export default function Olfactif() {
       }
     }
     setSelectNezAmpyreumatique(string);
-    console.info(string);
   };
 
   const handleMineralChange = (value) => {
@@ -105,7 +101,6 @@ export default function Olfactif() {
       }
     }
     setSelectNezMineral(string);
-    console.info(string);
   };
 
   return (
@@ -178,7 +173,11 @@ export default function Olfactif() {
             <Select
               isMulti
               name="fruit"
-              options={options.fruitRougeOptions}
+              options={
+                vinEnCours.wineType === "rouge"
+                  ? options.fruitRougeOptions
+                  : options.fruitBlancOptions
+              }
               className="basic-multi-select text-primary"
               classNamePrefix="select"
               onChange={handleFruitChange}
@@ -187,7 +186,11 @@ export default function Olfactif() {
             <Select
               isMulti
               name="fleur"
-              options={options.fleurRougeOptions}
+              options={
+                vinEnCours.wineType === "rouge"
+                  ? options.fleurRougeOptions
+                  : options.fleurBlancOptions
+              }
               className="basic-multi-select text-primary"
               classNamePrefix="select"
               onChange={handleFleurChange}
@@ -196,7 +199,11 @@ export default function Olfactif() {
             <Select
               isMulti
               name="vegetal"
-              options={options.vegetalRougeOptions}
+              options={
+                vinEnCours.wineType === "rouge"
+                  ? options.vegetalRougeOptions
+                  : options.vegetalBlancOptions
+              }
               className="basic-multi-select text-primary"
               classNamePrefix="select"
               onChange={handleVegetalChange}
@@ -205,7 +212,11 @@ export default function Olfactif() {
             <Select
               isMulti
               name="epice"
-              options={options.epiceRougeOptions}
+              options={
+                vinEnCours.wineType === "rouge"
+                  ? options.epiceRougeOptions
+                  : options.epiceBlancOptions
+              }
               className="basic-multi-select text-primary"
               classNamePrefix="select"
               onChange={handleEpiceChange}
@@ -214,7 +225,11 @@ export default function Olfactif() {
             <Select
               isMulti
               name="ampyr"
-              options={options.ampyreumatiqueRougeOptions}
+              options={
+                vinEnCours.wineType === "rouge"
+                  ? options.ampyreumatiqueRougeOptions
+                  : options.ampyreumatiqueBlancOptions
+              }
               className="basic-multi-select text-primary"
               classNamePrefix="select"
               onChange={handleAmpyrChange}
@@ -223,7 +238,11 @@ export default function Olfactif() {
             <Select
               isMulti
               name="mineral"
-              options={options.mineralRougeOptions}
+              options={
+                vinEnCours.wineType === "rouge"
+                  ? options.mineralRougeOptions
+                  : options.mineralBlancOptions
+              }
               className="basic-multi-select text-primary"
               classNamePrefix="select"
               onChange={handleMineralChange}

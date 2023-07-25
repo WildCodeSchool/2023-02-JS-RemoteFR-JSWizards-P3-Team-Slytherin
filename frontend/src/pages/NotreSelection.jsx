@@ -2,21 +2,54 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useChoice } from "../contexts/ChoiceContext";
+import { useUser } from "../contexts/UserContext";
 
 export default function NotreSelection() {
   const { selection, setSelection, vinEnCours, setVinEnCours } = useChoice();
+  const { loggedInUser } = useUser();
   const [isLoading, setIsLoading] = useState(true);
   const [choice, setChoice] = useState(false);
+  const [userWorkshop] = useState({
+    id_workshop: "",
+    id_user: "",
+    note1: null,
+    note2: null,
+    note3: null,
+    comment: null,
+  });
 
   const navigate = useNavigate();
 
   useEffect(() => {
     const API = `${import.meta.env.VITE_BACKEND_URL}/wineWorkshop`;
+
     axios
       .get(API)
       .then((res) => {
         setSelection(res.data);
         setIsLoading(false);
+
+        const APIGETAVISIDS = `${import.meta.env.VITE_BACKEND_URL}/avis/${
+          loggedInUser.id
+        }/${res.data[0].id_workshop}`;
+        const APIAVISIDSPOST = `${
+          import.meta.env.VITE_BACKEND_URL
+        }/avis/creation`;
+
+        const userWorkshopCopy = { ...userWorkshop };
+        userWorkshopCopy.id_workshop = res.data[0].id_workshop;
+        userWorkshopCopy.id_user = loggedInUser.id;
+
+        axios
+          .get(APIGETAVISIDS)
+          .then((response) => {
+            if (response.data === 404) {
+              axios
+                .post(APIAVISIDSPOST, userWorkshopCopy)
+                .catch((err) => console.error(err));
+            }
+          })
+          .catch((err) => console.error(err));
       })
       .catch((err) => console.error(err));
   }, []);

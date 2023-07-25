@@ -32,7 +32,7 @@ const getOneUserWorkshop = async (req, res) => {
     const data = await userWorkshop.findOneUserWorkshop(iduser, idworkshop);
     const userworkshop = data[0][0];
     if (userworkshop == null) {
-      res.sendStatus(404);
+      res.send("404");
     } else {
       res.status(200).json({
         message: `Voici, l'avis demandé`,
@@ -48,8 +48,8 @@ const getOneUserWorkshop = async (req, res) => {
 const putOneUserWorkshop = (req, res) => {
   const userworkshop = req.body;
 
-  userworkshop.iduser = parseInt(req.params.iduser, 10);
-  userworkshop.idworkshop = parseInt(req.params.idworkshop, 10);
+  userworkshop.id_user = parseInt(req.params.iduser, 10);
+  userworkshop.id_workshop = parseInt(req.params.idworkshop, 10);
 
   userWorkshop
     .updateUserWorkshop(userworkshop)
