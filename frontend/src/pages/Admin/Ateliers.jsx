@@ -7,7 +7,7 @@ import WorkshopDetailsLayout from "../../components/admin/WorkshopDetailsLayout"
 export default function Ateliers() {
   const { workshopData, setWorkshopData } = useWorkshop();
   const [hiddenDetails, setHiddenDetails] = useState(false);
-  const [selectedDetailedWorkshop, setSelectedDetailedWorkshop] = useState(0);
+  const [selectedDetailedWorkshop, setSelectedDetailedWorkshop] = useState("");
   const [selectedRowData, setSelectedRowData] = useState([]);
   const [sortConfig, setSortConfig] = useState({
     key: "workshopDate",

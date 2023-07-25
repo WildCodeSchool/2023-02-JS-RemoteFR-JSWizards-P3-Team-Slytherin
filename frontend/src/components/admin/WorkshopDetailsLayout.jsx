@@ -29,9 +29,16 @@ export default function WorkshopDetailsLayout({
       >
         <div className="rounded bg-secondary h-[80%] w-[80%] p-5 flex flex-col items-center cursor-default overflow-scroll">
           <p className="font-bold text-2xl">
-            Détails de l'atelier du {selectedDetailedWorkshop[0].workshopDate}
+            Atelier du{" "}
+            {selectedDetailedWorkshop[0].workshopDate
+              .split("T")[0]
+              .split("-")
+              .reverse()
+              .join("-")}{" "}
+            ({selectedDetailedWorkshop[0].personNb} pers.)
           </p>
           <div className="flex flex-col">
+            <hr />
             {selectedDetailedWorkshop.map((e) => (
               <WorkshopDetailsLayoutCard
                 key={e.id}
@@ -44,6 +51,7 @@ export default function WorkshopDetailsLayout({
                 wineType={e.wineType}
               />
             ))}
+            <hr />
           </div>
         </div>
       </div>
@@ -52,7 +60,10 @@ export default function WorkshopDetailsLayout({
 }
 
 WorkshopDetailsLayout.propTypes = {
-  selectedDetailedWorkshop: PropTypes.shape.isRequired,
+  selectedDetailedWorkshop: PropTypes.oneOfType([
+    PropTypes.shape,
+    PropTypes.string,
+  ]).isRequired,
   hiddenDetails: PropTypes.bool.isRequired,
   setHiddenDetails: PropTypes.func.isRequired,
 };
