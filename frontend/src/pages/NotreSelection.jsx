@@ -8,6 +8,7 @@ export default function NotreSelection() {
   const { selection, setSelection, vinEnCours, setVinEnCours } = useChoice();
   const { loggedInUser } = useUser();
   const [isLoading, setIsLoading] = useState(true);
+  const [isLoading1, setIsLoading1] = useState(true);
   const [choice, setChoice] = useState(false);
   const [userWorkshop] = useState({
     id_workshop: "",
@@ -22,37 +23,38 @@ export default function NotreSelection() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const API = `${import.meta.env.VITE_BACKEND_URL}/wineWorkshop`;
+    const callAPI = async () => {
+      await axios
+        .get(`${import.meta.env.VITE_BACKEND_URL}/wineWorkshop`)
+        .then((res) => {
+          setSelection(res.data);
+          setIsLoading1(false);
 
-    axios
-      .get(API)
-      .then((res) => {
-        setSelection(res.data);
-        setIsLoading(false);
+          const APIGETAVISIDS = `${import.meta.env.VITE_BACKEND_URL}/avis/${
+            loggedInUser.id
+          }/${res.data[0].id_workshop}`;
+          const APIAVISIDSPOST = `${
+            import.meta.env.VITE_BACKEND_URL
+          }/avis/creation`;
 
-        const APIGETAVISIDS = `${import.meta.env.VITE_BACKEND_URL}/avis/${
-          loggedInUser.id
-        }/${res.data[0].id_workshop}`;
-        const APIAVISIDSPOST = `${
-          import.meta.env.VITE_BACKEND_URL
-        }/avis/creation`;
+          const userWorkshopCopy = { ...userWorkshop };
+          userWorkshopCopy.id_workshop = res.data[0].id_workshop;
+          userWorkshopCopy.id_user = loggedInUser.id;
 
-        const userWorkshopCopy = { ...userWorkshop };
-        userWorkshopCopy.id_workshop = res.data[0].id_workshop;
-        userWorkshopCopy.id_user = loggedInUser.id;
-
-        axios
-          .get(APIGETAVISIDS)
-          .then((response) => {
-            if (response.data === 404) {
-              axios
-                .post(APIAVISIDSPOST, userWorkshopCopy)
-                .catch((err) => console.error(err));
-            }
-          })
-          .catch((err) => console.error(err));
-      })
-      .catch((err) => console.error(err));
+          axios
+            .get(APIGETAVISIDS)
+            .then((response) => {
+              if (response.data === 404) {
+                axios
+                  .post(APIAVISIDSPOST, userWorkshopCopy)
+                  .catch((err) => console.error(err));
+              }
+            })
+            .catch((err) => console.error(err));
+        })
+        .catch((err) => console.error(err));
+    };
+    callAPI();
   }, []);
 
   useEffect(() => {
@@ -73,7 +75,9 @@ export default function NotreSelection() {
         console.error(error);
       }
     };
-    getNoteWines();
+    if (!isLoading1) {
+      getNoteWines();
+    }
   }, [selection]);
 
   function handleKeyDown(e) {

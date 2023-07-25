@@ -148,7 +148,6 @@ INSERT INTO `wine_workshop` VALUES (3,7),
 (3,3),
 (2,5),
 (2,4),
-(2,6),
 (1,5),
 (1,4);
 
