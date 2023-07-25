@@ -46,6 +46,17 @@ const getWinesForOneUser = (req, res) => {
     });
 };
 
+const getAllWinesFromActiveWorkshops = (req, res) => {
+  const { idUser, idWorkshop } = req.params;
+  wineWorkshopManager
+    .findWinesForOneUserFromActiveWorkshop(idUser, idWorkshop)
+    .then((wines) => res.json(wines[0]))
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
 const getOneWorkshop = (req, res) => {
   const { idWorkshop } = req.params;
   wineWorkshopManager
@@ -74,4 +85,5 @@ module.exports = {
   getWinesForOneUser,
   getWineAndScore,
   getOneWorkshop,
+  getAllWinesFromActiveWorkshops,
 };

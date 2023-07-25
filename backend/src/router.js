@@ -154,6 +154,10 @@ router.get(
   "/allWinesWorkshops/:idUser",
   wineWorkshopControllers.getWinesForOneUser
 );
+router.get(
+  "/allWinesFromActiveWorkshops/:idUser/:idWorkshop",
+  wineWorkshopControllers.getAllWinesFromActiveWorkshops
+);
 
 // Gestion vins de l'atelier actif + score
 
