@@ -19,7 +19,7 @@ export default function Users() {
     if (sortConfig.key === key && sortConfig.direction === "ascending") {
       direction = "descending";
     }
-    const sortedData = [...userData].sort((a, b) => {
+    const sortedData = [...userDataFilter].sort((a, b) => {
       if (a[key] < b[key]) {
         return direction === "ascending" ? -1 : 1;
       }
@@ -28,13 +28,15 @@ export default function Users() {
       }
       return 0;
     });
-    setUserData(sortedData);
+    setUserDataFilter(sortedData);
     setSortConfig({ key, direction });
   };
 
   const handleDelete = async (id) => {
-    await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/users/${id}`);
-    setRefresh(!refresh);
+    if (id !== 1) {
+      await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/users/${id}`);
+      setRefresh(!refresh);
+    }
   };
 
   const handleStatusChange = async (id, value) => {

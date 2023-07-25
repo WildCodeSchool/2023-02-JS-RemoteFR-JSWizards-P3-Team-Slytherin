@@ -133,7 +133,10 @@ function Header() {
         </Link>
         <button
           type="button"
-          onClick={handleClickLogOut}
+          onClick={() => {
+            handleClickLogOut();
+            handleClickLink();
+          }}
           className="w-[54px] text-center boutonDecoOff"
         >
           <img
