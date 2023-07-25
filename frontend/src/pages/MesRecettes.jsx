@@ -1,12 +1,17 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useUser } from "../contexts/UserContext";
+import { useNavigate } from "react-router-dom";
 
 export default function MesRecettes() {
   const { loggedInUser } = useUser();
   const [myRecipes, setMyRecipes] = useState([]);
   const [recipeNumber, setRecipeNumber] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
+  const goBack = () => {
+    navigate(-1);
+  };
 
   useEffect(() => {
     axios
@@ -34,6 +39,11 @@ export default function MesRecettes() {
   return (
     <>
       <div className="text-secondary py-4">
+        <div className="flex justify-center">
+          <button type="button" onClick={goBack}>
+            Retour
+          </button>
+        </div>
         <p className="text-3xl text-center pt-4 md:portrait:pt-12">
           Mes recettes
         </p>

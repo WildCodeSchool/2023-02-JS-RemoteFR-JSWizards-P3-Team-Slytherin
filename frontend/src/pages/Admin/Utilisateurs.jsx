@@ -20,10 +20,10 @@ export default function Users() {
       direction = "descending";
     }
     const sortedData = [...userDataFilter].sort((a, b) => {
-      if (a[key] < b[key]) {
+      if (a[key].toLowerCase() < b[key].toLowerCase()) {
         return direction === "ascending" ? -1 : 1;
       }
-      if (a[key] > b[key]) {
+      if (a[key].toLowerCase() > b[key].toLowerCase()) {
         return direction === "ascending" ? 1 : -1;
       }
       return 0;
