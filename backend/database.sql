@@ -153,8 +153,8 @@ INSERT INTO `wine_workshop` VALUES (3,7),
 (1,5),
 (1,4);
 
-INSERT INTO `user_workshop` VALUES (3,2,null,null,null,null),
-(3,1,null,null,null,null);
+INSERT INTO `user_workshop` VALUES (3,2,4,5,3,"Super !"),
+(3,1,2,1,2,"Bof...");
 
 INSERT INTO `glossary` VALUES (1, "Ample", "Lié à la matière (pas au goût), ce terme évoque la sensation d’un vin qui est doté d’une matière enrobée en bouche et dont la palette aromatique en rétro-olfaction occupa pleinement la bouche. La bouche est ample et soyeuse."),
 (2,"Bouquet","Utilisé pour décrire les arômes complexes qui se développent dans un vin au nez. Le bouquet aromatique de ce vin est charmeur avec de délicates touches de fraise et de framboise."),

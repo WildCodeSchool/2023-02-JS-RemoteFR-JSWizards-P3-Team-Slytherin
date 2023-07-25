@@ -30,6 +30,7 @@ export default function Visuel() {
     setSelectVueCouleur,
     setSelectVueLimpidite,
     setSelectVueDensite,
+    setSelectNote,
   } = useChoice();
 
   useEffect(() => {
@@ -54,6 +55,7 @@ export default function Visuel() {
     setSelectVueCouleur("-");
     setSelectVueLimpidite("-");
     setSelectVueDensite("-");
+    setSelectNote(0);
   }, []);
 
   const handleColorClick = () => {
