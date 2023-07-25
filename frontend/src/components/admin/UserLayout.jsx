@@ -49,7 +49,6 @@ export default function UserLayout({ hidden, setHidden, selectedRowData }) {
       setHidden(!hidden);
     }
   };
-
   if (isLoading) return <p>Loading...</p>;
   return (
     <div className={`${!hidden ? "hidden" : ""}`}>
@@ -160,9 +159,7 @@ export default function UserLayout({ hidden, setHidden, selectedRowData }) {
 }
 
 UserLayout.propTypes = {
-  selectedRowData: PropTypes.shape({
-    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  }).isRequired,
+  selectedRowData: PropTypes.number.isRequired,
   hidden: PropTypes.bool.isRequired,
   setHidden: PropTypes.func.isRequired,
 };
