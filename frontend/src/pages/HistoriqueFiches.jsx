@@ -42,7 +42,7 @@ function HistoriqueFiches() {
         Historique des dégustations
       </h2>
       {groupedEntries.map(([date, wines]) => (
-        <>
+        <div key={date}>
           <h3 className="p-3 text-lg">Dégustation du {date}</h3>
           <hr className="w-[250px] pb-12" />
           <div className="flex gap-14 flex-wrap justify-center">
@@ -65,7 +65,7 @@ function HistoriqueFiches() {
               </Link>
             ))}
           </div>
-        </>
+        </div>
       ))}
       <Link to="/profil">
         <button className="mt-8" type="button">

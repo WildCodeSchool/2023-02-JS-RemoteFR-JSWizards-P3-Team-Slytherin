@@ -94,14 +94,14 @@ export default function VinLayout({
       .post(`${import.meta.env.VITE_BACKEND_URL}/wines/upload`, fd)
       .catch((err) => console.error(err));
     if (wineInfo.id) {
-      axios
+      await axios
         .put(
           `${import.meta.env.VITE_BACKEND_URL}/wines/${wineInfo.id}`,
           wineInfo
         )
         .catch((err) => console.error(err));
     } else {
-      axios
+      await axios
         .post(`${import.meta.env.VITE_BACKEND_URL}/wines/`, wineInfo)
         .catch((err) => console.error(err));
     }

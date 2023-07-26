@@ -13,7 +13,8 @@ const createUser = (user) => {
 };
 
 const findByEmail = (user) => {
-  const SQL = "SELECT * FROM user WHERE email = ?";
+  const SQL =
+    "SELECT id, lastname, firstname, email, DATE_FORMAT(birthday, '%d-%m-%Y') as birthday, adminStatus, hashedPassword FROM user WHERE email = ?";
   return db.query(SQL, [user.email]);
 };
 
