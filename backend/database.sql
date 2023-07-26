@@ -151,6 +151,7 @@ INSERT INTO `wine_workshop` VALUES (3,7),
 (2,5),
 (2,4),
 (1,5),
+(1,3),
 (1,4);
 
 INSERT INTO `user_workshop` VALUES (3, 2, 5, 3, 4, "Une expérience fascinante ! Les vins sélectionnés étaient délicieux, et j'ai appris à déceler des saveurs insoupçonnées. Le sommelier nous a donné des conseils judicieux pour mieux apprécier chaque vin, et j'ai été surpris de la différence que cela faisait dans ma dégustation. Cet atelier a été un voyage sensoriel enrichissant qui m'a ouvert l'esprit sur la diversité et la complexité du monde viticole."),
