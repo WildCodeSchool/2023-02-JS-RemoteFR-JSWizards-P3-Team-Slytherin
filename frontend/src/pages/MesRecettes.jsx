@@ -36,6 +36,7 @@ export default function MesRecettes() {
   }, []);
 
   if (isLoading) return <p>Loading...</p>;
+
   return (
     <>
       <div className="text-secondary py-4">
@@ -51,11 +52,8 @@ export default function MesRecettes() {
       <div className="flex flex-col">
         {recipeNumber.map((recipe) => {
           return (
-            <>
-              <div
-                key={recipe}
-                className="m-4 border-tertiary border-2 bg-primary rounded-md p-4 flex flex-row max-sm:hidden justify-between"
-              >
+            <div key={recipe}>
+              <div className="m-4 border-tertiary border-2 bg-primary rounded-md p-4 flex flex-row max-sm:hidden justify-between">
                 <div className="">
                   {myRecipes
                     .filter((wine) => wine.id_recipe === recipe)
@@ -73,7 +71,7 @@ export default function MesRecettes() {
                     .map((e) => {
                       return (
                         <p key={e.id_wine}>
-                          {Math.round(e.dosage / 250) * 100}%
+                          {Math.round((e.dosage / 250) * 100)}%
                         </p>
                       );
                     })}
@@ -84,7 +82,7 @@ export default function MesRecettes() {
                     .map((e) => {
                       return (
                         <p key={e.id_wine}>
-                          {Math.round(e.dosage / 250) * 750}ml
+                          {Math.round((e.dosage / 250) * 750)}ml
                         </p>
                       );
                     })}
@@ -102,12 +100,12 @@ export default function MesRecettes() {
                     return (
                       <p key={e.id_wine}>
                         {e.wineName} ({e.wineYear}) :{" "}
-                        {Math.round(e.dosage / 250) * 750}ml
+                        {Math.round((e.dosage / 250) * 750)}ml
                       </p>
                     );
                   })}
               </div>
-            </>
+            </div>
           );
         })}
       </div>
