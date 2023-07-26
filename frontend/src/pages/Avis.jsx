@@ -110,7 +110,7 @@ export default function Avis() {
         </label>
         <textarea
           onChange={changeCommentaire}
-          className="p-2 text-primary"
+          className="p-2 text-primary rounded"
           name="commentaire"
           id="commentaire"
           placeholder="J'ai trouvé cet atelier génial, si j'avais une suggestion ce serait de..."

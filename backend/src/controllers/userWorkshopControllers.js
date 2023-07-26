@@ -26,6 +26,15 @@ const getAllUserWorkshop = async (req, res) => {
   }
 };
 
+const getAllUserOpinion = async (req, res) => {
+  try {
+    const [useropinion] = await userWorkshop.findAllUserOpinion();
+    res.status(200).send(useropinion);
+  } catch (err) {
+    res.status(500).json({ message: "Désolé, le serveur est en panne" });
+  }
+};
+
 const getOneUserWorkshop = async (req, res) => {
   const { iduser, idworkshop } = req.params;
   try {
@@ -87,6 +96,7 @@ const deleteOneUserWorkshop = async (req, res) => {
 module.exports = {
   postUserWorkshop,
   getAllUserWorkshop,
+  getAllUserOpinion,
   getOneUserWorkshop,
   putOneUserWorkshop,
   deleteOneUserWorkshop,

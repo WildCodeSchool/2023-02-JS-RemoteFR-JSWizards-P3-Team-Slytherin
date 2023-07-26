@@ -111,7 +111,8 @@ INSERT INTO `user` VALUES (1,'admin','admin','admin@admin.fr','$argon2id$v=19$m=
 (3,'lebgdu13','antho','antho@lebgdu13.fr','$argon2id$v=19$m=65536,t=5,p=1$JvUeRISXzJlRxSj+LTG2qQ$k22+I+Q6kc95sORXJDXCzmf1L4ckAwYiso/hjX4VIyc','1989-07-17', 1),
 (4,'Vandanjon','Beno^t','benoit@vandanjon.fr','$argon2id$v=19$m=65536,t=5,p=1$Vs3jjpmaJkv5vmD5Tt3wvg$W7usz0nor1B1DZK+zXr1NPctYsF8LXJsWSloSCVXtaY','1994-02-02', 0),
 (5,'Morin','Jean-François','jeanfrançois@morin.fr','$argon2id$v=19$m=65536,t=5,p=1$Vs3jjpmaJkv5vmD5Tt3wvg$W7usz0nor1B1DZK+zXr1NPctYsF8LXJsWSloSCVXtaY','1994-02-02', 0),
-(6,'Richard','Julien','julien@richard.fr','$argon2id$v=19$m=65536,t=5,p=1$Vs3jjpmaJkv5vmD5Tt3wvg$W7usz0nor1B1DZK+zXr1NPctYsF8LXJsWSloSCVXtaY','1994-02-02', 0);
+(6,'Richard','Julien','julien@richard.fr','$argon2id$v=19$m=65536,t=5,p=1$Vs3jjpmaJkv5vmD5Tt3wvg$W7usz0nor1B1DZK+zXr1NPctYsF8LXJsWSloSCVXtaY','1994-02-02', 0),
+(7,'Doe','John','john@doe.com','$argon2id$v=19$m=65536,t=5,p=1$oBSFvMIlK6itltM10oUBOA$5ZReS7Xib25vDGa8azTT/H/XvANjDA3xqrcCjRR4vWQ','2000-04-01', 0);
 
 INSERT INTO `wine` VALUES (1, 'La Villageoise', 'Castel', 'rouge qui tache', 2024, 'A déguster avec vos pires amis pour oublier vos soirées', 'rouge', 'vin1.jpg'),
 (2, 'Cheval noir', 'Saint Emilion', 'merlot', 2020, 'Ce Saint Émilion fin et élégant se distingue par des tanins soyeux, des notes de fruits rouges, d’épices et de cannelle, le tout enrobé de subtiles notes boisées.', 'rouge', 'vin2.jpg'),
@@ -146,13 +147,19 @@ INSERT INTO `wine_workshop` VALUES (3,7),
 (3,5),
 (3,4),
 (3,3),
+(2,6),
 (2,5),
 (2,4),
 (1,5),
 (1,4);
 
-INSERT INTO `user_workshop` VALUES (3,2,4,5,3,"Super !"),
-(3,1,2,1,2,"Bof...");
+INSERT INTO `user_workshop` VALUES (3, 2, 5, 3, 4, "Une expérience fascinante ! Les vins sélectionnés étaient délicieux, et j'ai appris à déceler des saveurs insoupçonnées. Le sommelier nous a donné des conseils judicieux pour mieux apprécier chaque vin, et j'ai été surpris de la différence que cela faisait dans ma dégustation. Cet atelier a été un voyage sensoriel enrichissant qui m'a ouvert l'esprit sur la diversité et la complexité du monde viticole."),
+(3, 1, 4, 3, 1, "Je recommande vivement cet atelier à tous les amateurs de vin, débutants ou experts."),
+(2, 3, 1, 2, 1, "Une ambiance conviviale et détendue, parfaite pour découvrir de nouvelles saveurs et échanger avec d'autres passionnés."),
+(2, 4, 3, 3, 3, "J'ai découvert des vins surprenants auxquels je n'aurais jamais pensé goûter. Une véritable aventure gustative !"),
+(3, 5, 4, 5, 5, "Je me suis senti initié aux secrets de la dégustation. Maintenant, je suis capable d'identifier les caractéristiques de différents cépages."),
+(1, 7, 3, 3, 1, "Moment convivial et instructif. J'ai découvert de nouveaux vins à ajouter à ma liste de favoris. Les autres participants étaient sympathiques, et nous avons échangé nos impressions avec enthousiasme. C'était une atmosphère détendue et conviviale, idéale pour découvrir de nouvelles saveurs et faire de belles rencontres."),
+(1, 6, 3, 3, 5, "Le cadre était magnifique, et les vins délicieux. Un moment de plaisir que je compte bien renouveler.");
 
 INSERT INTO `glossary` VALUES (1, "Ample", "Lié à la matière (pas au goût), ce terme évoque la sensation d’un vin qui est doté d’une matière enrobée en bouche et dont la palette aromatique en rétro-olfaction occupa pleinement la bouche. La bouche est ample et soyeuse."),
 (2,"Bouquet","Utilisé pour décrire les arômes complexes qui se développent dans un vin au nez. Le bouquet aromatique de ce vin est charmeur avec de délicates touches de fraise et de framboise."),
