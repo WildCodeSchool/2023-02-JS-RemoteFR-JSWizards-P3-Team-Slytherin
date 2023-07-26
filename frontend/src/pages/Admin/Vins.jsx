@@ -130,7 +130,7 @@ export default function Vins() {
             <tr className="flex justify-center p-3 px-10">
               <th className="flex-0 w-16">Image</th>
               <th
-                className="flex-1 min-w-[280px]"
+                className="flex-1 min-w-[280px] cursor-pointer"
                 onClick={() => sortTable("wineName")}
               >
                 Nom{" "}
@@ -138,14 +138,17 @@ export default function Vins() {
                   (sortConfig.direction === "ascending" ? "▼" : "▲")}
               </th>
               <th
-                className="flex-1 min-w-[300px] max-[1100px]:hidden"
+                className="flex-1 min-w-[300px] max-[1100px]:hidden cursor-pointer"
                 onClick={() => sortTable("castle")}
               >
                 Domaine{" "}
                 {sortConfig.key === "castle" &&
                   (sortConfig.direction === "ascending" ? "▼" : "▲")}
               </th>
-              <th className="flex-1" onClick={() => sortTable("wineType")}>
+              <th
+                className="flex-1 cursor-pointer"
+                onClick={() => sortTable("wineType")}
+              >
                 Type{" "}
                 {sortConfig.key === "wineType" &&
                   (sortConfig.direction === "ascending" ? "▼" : "▲")}

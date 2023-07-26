@@ -101,7 +101,7 @@ export default function Ateliers() {
           <thead>
             <tr className="flex justify-center p-3 px-10">
               <th
-                className="flex-[0] min-w-[45px]"
+                className="flex-[0] min-w-[45px] cursor-pointer"
                 onClick={() => sortTable("id")}
               >
                 N°{" "}
@@ -109,7 +109,7 @@ export default function Ateliers() {
                   (sortConfig.direction === "ascending" ? "▼" : "▲")}
               </th>
               <th
-                className="flex-1 min-w-[80px]"
+                className="flex-1 min-w-[80px] cursor-pointer"
                 onClick={() => sortTable("workshopDate")}
               >
                 Date{" "}
@@ -117,7 +117,7 @@ export default function Ateliers() {
                   (sortConfig.direction === "ascending" ? "▼" : "▲")}
               </th>
               <th
-                className="flex-1 min-w-[120px]"
+                className="flex-1 min-w-[120px] cursor-pointer"
                 onClick={() => sortTable("personNb")}
               >
                 Nb personnes{" "}
@@ -125,7 +125,7 @@ export default function Ateliers() {
                   (sortConfig.direction === "ascending" ? "▼" : "▲")}
               </th>
               <th
-                className="flex-1 min-w-[70px]"
+                className="flex-1 min-w-[70px] cursor-pointer"
                 onClick={() => sortTable("active")}
               >
                 Statut{" "}
