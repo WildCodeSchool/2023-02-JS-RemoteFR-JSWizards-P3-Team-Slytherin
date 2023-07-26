@@ -423,9 +423,9 @@ th {
   text-align: center;
   padding: 0.5rem 1rem;
   color: theme("colors.secondary");
-  width: 16rem;
-  height: 16rem;
-  margin: 12px;
+  width: 12rem;
+  min-width: 90px;
+  height: 12rem;
 }
 
 /* Admin avis  */
@@ -591,4 +591,20 @@ th {
   -webkit-border-radius: 10px;
   border-radius: 10px;
   background: #dddddd;
+}
+
+.opinion-card::-webkit-scrollbar {
+  width: 10px;
+}
+
+.opinion-card::-webkit-scrollbar-track {
+  background-color: #000000;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+
+.opinion-card::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  background: #3f3f3f;
 }
