@@ -1,9 +1,8 @@
 <!-- Header section -->
 
    <img src="https://github.com/WildCodeSchool/2023-02-JS-RemoteFR-JSWizards-P3-Team-Slytherin/assets/108263661/9133c6f8-47bf-4d4d-abf9-b4becba2c0b0" width="100px" height="100px" alt="logo">
-   
 
-### 🧰 Languages & Frameworks used :
+## 🧰 Languages & Frameworks used :
 
 <p>
   <a href="https://skillicons.dev">
@@ -13,7 +12,7 @@
 </br>
 </br>
 
-### 🖥️ Software & Tools used :
+## 🖥️ Software & Tools used :
 
 <p>
 <img alt="Visual Studio Code" style="padding-right:0.5rem;" src="https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?logo=visual-studio-code&logoColor=white"/>
@@ -27,9 +26,7 @@
 </p>
 </br>
 
-#
-
-### 👨‍💻 Team of developers :
+## 👨‍💻 Team of developers :
 
 - Chloé Elle: https://github.com/Chl0l
 - Oyhana Mahjoubi: https://github.com/OyhanaM
@@ -42,22 +39,11 @@
 
 ## Concept
 
-Un atelier de dégustation de vins est un événement où les participants peuvent déguster différents vins tout en apprenant sur leur origine, leur production et leur goût. Les participants peuvent apprendre à identifier les différents arômes et saveurs des vins, ainsi qu’à comprendre les différences entre les différents types de vins. Les ateliers de dégustation de vins sont une excellente occasion d’apprendre sur le vin tout en passant un bon moment avec des amis ou en famille.
+Notre atelier de dégustation de vins propose aux participants de
+découvrir les secrets de la dégustation et de fabriquer leur propre
+assemblage, tout en passant un bon moment de convivialité.
 
 ## Setup & Use
 
-npm run setupto install all dependencies (back and front)
-npm run dev to start the server
-
-## Technologies
-
-# We produced our application with :
-
-React
-NodeJS
-Express
-MySQL
-TailwindCSS
-CSS / JavaScript / JSX
-
-<em><strong>Note</strong>: This project has been created for a 48-hours Hackaton</em>
+`npm install` to install all dependencies (back & front) </br>
+`npm run dev` to start the server
