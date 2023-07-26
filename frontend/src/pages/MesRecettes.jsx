@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useUser } from "../contexts/UserContext";
 
@@ -7,6 +8,10 @@ export default function MesRecettes() {
   const [myRecipes, setMyRecipes] = useState([]);
   const [recipeNumber, setRecipeNumber] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
+  const goBack = () => {
+    navigate(-1);
+  };
 
   useEffect(() => {
     axios
@@ -34,6 +39,11 @@ export default function MesRecettes() {
   return (
     <>
       <div className="text-secondary py-4">
+        <div className="flex justify-center">
+          <button type="button" onClick={goBack}>
+            Retour
+          </button>
+        </div>
         <p className="text-3xl text-center pt-4 md:portrait:pt-12">
           Mes recettes
         </p>
@@ -61,14 +71,22 @@ export default function MesRecettes() {
                   {myRecipes
                     .filter((wine) => wine.id_recipe === recipe)
                     .map((e) => {
-                      return <p key={e.id_wine}>{(e.dosage / 250) * 100}%</p>;
+                      return (
+                        <p key={e.id_wine}>
+                          {Math.round(e.dosage / 250) * 100}%
+                        </p>
+                      );
                     })}
                 </div>
                 <div className="text-right">
                   {myRecipes
                     .filter((wine) => wine.id_recipe === recipe)
                     .map((e) => {
-                      return <p key={e.id_wine}>{(e.dosage / 250) * 750}ml</p>;
+                      return (
+                        <p key={e.id_wine}>
+                          {Math.round(e.dosage / 250) * 750}ml
+                        </p>
+                      );
                     })}
                   <p>______</p>
                   <p>750ml</p>
@@ -83,7 +101,8 @@ export default function MesRecettes() {
                   .map((e) => {
                     return (
                       <p key={e.id_wine}>
-                        {e.wineName} ({e.wineYear}) : {(e.dosage / 250) * 750}ml
+                        {e.wineName} ({e.wineYear}) :{" "}
+                        {Math.round(e.dosage / 250) * 750}ml
                       </p>
                     );
                   })}
