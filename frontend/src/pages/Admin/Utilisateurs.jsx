@@ -118,7 +118,7 @@ export default function Users() {
           <thead>
             <tr className="flex justify-center py-2 gap-12">
               <th
-                className="flex-1 min-w-[150px]"
+                className="flex-1 min-w-[150px] cursor-pointer"
                 onClick={() => sortTable("lastname")}
               >
                 Nom{" "}
@@ -126,7 +126,7 @@ export default function Users() {
                   (sortConfig.direction === "ascending" ? "▼" : "▲")}
               </th>
               <th
-                className="flex-1 min-w-[150px]"
+                className="flex-1 min-w-[150px] cursor-pointer"
                 onClick={() => sortTable("firstname")}
               >
                 Prénom{" "}
@@ -134,7 +134,7 @@ export default function Users() {
                   (sortConfig.direction === "ascending" ? "▼" : "▲")}
               </th>
               <th
-                className="flex-1 min-w-[200px]"
+                className="flex-1 min-w-[200px] cursor-pointer"
                 onClick={() => sortTable("email")}
               >
                 Email{" "}
