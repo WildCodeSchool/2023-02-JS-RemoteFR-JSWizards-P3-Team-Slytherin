@@ -18,6 +18,12 @@ const findAllUserWorkshop = () => {
   return db.query(SQL);
 };
 
+const findAllUserOpinion = () => {
+  const SQL =
+    "SELECT `id_workshop`, `id_user`, `note1`, `note2`, `note3`, `comment`, `id`, `lastname`, `firstname`, `email`, `birthday`, `adminStatus` FROM user_workshop INNER JOIN user ON user.id=user_workshop.id_user";
+  return db.query(SQL);
+};
+
 const findOneUserWorkshop = (iduser, idworkshop) => {
   const SQL =
     "SELECT * FROM user_workshop WHERE id_user = ? AND id_workshop = ?";
@@ -45,6 +51,7 @@ const deleteUserWorkshop = (iduser, idworkshop) => {
 module.exports = {
   createUserWorkshop,
   findAllUserWorkshop,
+  findAllUserOpinion,
   findOneUserWorkshop,
   updateUserWorkshop,
   deleteUserWorkshop,

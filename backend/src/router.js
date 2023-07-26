@@ -86,6 +86,7 @@ router.delete(
 
 router.post("/avis/creation", userWorkshopControllers.postUserWorkshop);
 router.get("/avis", userWorkshopControllers.getAllUserWorkshop);
+router.get("/avisuser", userWorkshopControllers.getAllUserOpinion);
 router.get(
   "/avis/:iduser/:idworkshop",
   userWorkshopControllers.getOneUserWorkshop
