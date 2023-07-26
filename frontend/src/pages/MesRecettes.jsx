@@ -71,14 +71,22 @@ export default function MesRecettes() {
                   {myRecipes
                     .filter((wine) => wine.id_recipe === recipe)
                     .map((e) => {
-                      return <p key={e.id_wine}>{(e.dosage / 250) * 100}%</p>;
+                      return (
+                        <p key={e.id_wine}>
+                          {Math.round(e.dosage / 250) * 100}%
+                        </p>
+                      );
                     })}
                 </div>
                 <div className="text-right">
                   {myRecipes
                     .filter((wine) => wine.id_recipe === recipe)
                     .map((e) => {
-                      return <p key={e.id_wine}>{(e.dosage / 250) * 750}ml</p>;
+                      return (
+                        <p key={e.id_wine}>
+                          {Math.round(e.dosage / 250) * 750}ml
+                        </p>
+                      );
                     })}
                   <p>______</p>
                   <p>750ml</p>
@@ -93,7 +101,8 @@ export default function MesRecettes() {
                   .map((e) => {
                     return (
                       <p key={e.id_wine}>
-                        {e.wineName} ({e.wineYear}) : {(e.dosage / 250) * 750}ml
+                        {e.wineName} ({e.wineYear}) :{" "}
+                        {Math.round(e.dosage / 250) * 750}ml
                       </p>
                     );
                   })}
