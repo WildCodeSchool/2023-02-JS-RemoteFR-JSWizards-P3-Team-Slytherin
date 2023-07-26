@@ -47,13 +47,6 @@ function HeaderAdmin() {
           <ul className="flex items-center gap-10 h-20">
             <li
               className={`text-primary text-center ${
-                !isActive("/admin/lexique") ? "hover:underline" : ""
-              } ${isActive("/admin/lexique") ? "font-bold active-nav" : ""}`}
-            >
-              <Link to="/admin/lexique">Lexique</Link>
-            </li>
-            <li
-              className={`text-primary text-center ${
                 !isActive("/admin/vins") ? "hover:underline" : ""
               } ${isActive("/admin/vins") ? "font-bold active-nav" : ""}`}
             >
@@ -103,15 +96,6 @@ function HeaderAdmin() {
       <nav
         className={`lg:hidden w-[150px] flex flex-col z-20 py-10 absolute right-0 top-[96px] rounded-bl-md menu translate-y-[-110%] ${active} bg-secondary items-center gap-10`}
       >
-        <Link
-          to="/admin/lexique"
-          onClick={handleClickLink}
-          className={`text-primary w-fit text-center ${
-            !isActive("/admin/lexique") ? "hover:underline" : ""
-          } ${isActive("/admin/lexique") ? "active-nav" : ""}`}
-        >
-          Lexique
-        </Link>
         <Link
           to="/admin/vins"
           onClick={handleClickLink}
