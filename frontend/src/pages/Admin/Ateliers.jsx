@@ -7,7 +7,7 @@ import WorkshopDetailsLayout from "../../components/admin/WorkshopDetailsLayout"
 export default function Ateliers() {
   const { workshopData, setWorkshopData } = useWorkshop();
   const [hiddenDetails, setHiddenDetails] = useState(false);
-  const [selectedDetailedWorkshop, setSelectedDetailedWorkshop] = useState("");
+  const [selectedDetailedWorkshop, setSelectedDetailedWorkshop] = useState([]);
   const [selectedRowData, setSelectedRowData] = useState([]);
   const [sortConfig, setSortConfig] = useState({
     key: "workshopDate",
@@ -193,7 +193,7 @@ export default function Ateliers() {
           </tbody>
         </table>
       </div>
-      {selectedDetailedWorkshop && (
+      {selectedDetailedWorkshop.length > 0 && (
         <WorkshopDetailsLayout
           selectedDetailedWorkshop={selectedDetailedWorkshop}
           hiddenDetails={hiddenDetails}
