@@ -60,10 +60,7 @@ export default function WorkshopDetailsLayout({
 }
 
 WorkshopDetailsLayout.propTypes = {
-  selectedDetailedWorkshop: PropTypes.oneOfType([
-    PropTypes.shape,
-    PropTypes.string,
-  ]).isRequired,
+  selectedDetailedWorkshop: PropTypes.arrayOf(PropTypes.shape).isRequired,
   hiddenDetails: PropTypes.bool.isRequired,
   setHiddenDetails: PropTypes.func.isRequired,
 };
