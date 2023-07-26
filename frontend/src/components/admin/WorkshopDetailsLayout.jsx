@@ -29,13 +29,8 @@ export default function WorkshopDetailsLayout({
       >
         <div className="rounded bg-secondary h-[80%] w-[80%] p-5 flex flex-col items-center cursor-default overflow-scroll">
           <p className="font-bold text-2xl">
-            Atelier du{" "}
-            {selectedDetailedWorkshop[0].workshopDate
-              .split("T")[0]
-              .split("-")
-              .reverse()
-              .join("-")}{" "}
-            ({selectedDetailedWorkshop[0].personNb} pers.)
+            Atelier du {selectedDetailedWorkshop[0].workshopDate} (
+            {selectedDetailedWorkshop[0].personNb} pers.)
           </p>
           <div className="flex flex-col">
             <hr />
