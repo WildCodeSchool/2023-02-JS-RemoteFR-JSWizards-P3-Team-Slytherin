@@ -55,7 +55,7 @@ export default function NotreSelection() {
         .catch((err) => console.error(err));
     };
     callAPI();
-  }, []);
+  }, [selection]);
 
   useEffect(() => {
     const getNoteWines = async () => {
