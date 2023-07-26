@@ -32,7 +32,6 @@ function orderById(a, b) {
 function Recette() {
   const { selection } = useChoice();
   const { loggedInUser } = useUser();
-  const [dataUserTasting, setDataUserTasting] = useState([""]);
   const [isLoading, setIsLoading] = useState(true);
   const [wineSelectionOrderByNote, setWineSelectionOrderByNote] = useState([]);
   const [defaultSelection, setDefaultSelection] = useState([]);
@@ -54,26 +53,20 @@ function Recette() {
         }`
       )
       .then((res) => {
-        setDataUserTasting(res.data);
+        const newSelection = selection.sort(orderById);
+        const newDataUserTasting = res.data.sort(orderById);
+        const nextSelection = newSelection.map((e) => {
+          const obj = e;
+          const note = {
+            score: newDataUserTasting[newSelection.indexOf(e)].score,
+          };
+          return { ...obj, ...note };
+        });
+        const newWineSelectionOrderByNote = nextSelection.sort(order);
+        setWineSelectionOrderByNote(newWineSelectionOrderByNote);
       })
       .catch((err) => console.error(err));
   }, []);
-
-  useEffect(() => {
-    if (dataUserTasting[0].score) {
-      const newSelection = selection.sort(orderById);
-      const newDataUserTasting = dataUserTasting.sort(orderById);
-      const nextSelection = newSelection.map((e) => {
-        const obj = e;
-        const note = {
-          score: newDataUserTasting[newSelection.indexOf(e)].score,
-        };
-        return { ...obj, ...note };
-      });
-      const newWineSelectionOrderByNote = nextSelection.sort(order);
-      setWineSelectionOrderByNote(newWineSelectionOrderByNote);
-    }
-  }, [dataUserTasting]);
 
   useEffect(() => {
     setDefaultSelection([
@@ -184,27 +177,29 @@ function Recette() {
         </p>
       </div>
       {defaultSelection.map((e, index) => (
-        <LigneRecette
-          wineSelectionOrderByNote={wineSelectionOrderByNote}
-          index={index}
-          selectedWines={selectedWines}
-          setSelectedWines={setSelectedWines}
-          wineSelectionNonSelected0={wineSelectionNonSelected0}
-          setWineSelectionNonSelected0={setWineSelectionNonSelected0}
-          wineSelectionNonSelected1={wineSelectionNonSelected1}
-          setWineSelectionNonSelected1={setWineSelectionNonSelected1}
-          wineSelectionNonSelected2={wineSelectionNonSelected2}
-          setWineSelectionNonSelected2={setWineSelectionNonSelected2}
-          dosage={dosage}
-          setDosage={setDosage}
-          dosageTotal={dosageTotal}
-          setDosageTotal={setDosageTotal}
-          dosage100={dosage100}
-          setDosage100={setDosage100}
-          dosage75cl={dosage75cl}
-          setDosage75cl={setDosage75cl}
-          defaultObject={defaultObject}
-        />
+        <div key={e.id_wine}>
+          <LigneRecette
+            wineSelectionOrderByNote={wineSelectionOrderByNote}
+            index={index}
+            selectedWines={selectedWines}
+            setSelectedWines={setSelectedWines}
+            wineSelectionNonSelected0={wineSelectionNonSelected0}
+            setWineSelectionNonSelected0={setWineSelectionNonSelected0}
+            wineSelectionNonSelected1={wineSelectionNonSelected1}
+            setWineSelectionNonSelected1={setWineSelectionNonSelected1}
+            wineSelectionNonSelected2={wineSelectionNonSelected2}
+            setWineSelectionNonSelected2={setWineSelectionNonSelected2}
+            dosage={dosage}
+            setDosage={setDosage}
+            dosageTotal={dosageTotal}
+            setDosageTotal={setDosageTotal}
+            dosage100={dosage100}
+            setDosage100={setDosage100}
+            dosage75cl={dosage75cl}
+            setDosage75cl={setDosage75cl}
+            defaultObject={defaultObject}
+          />
+        </div>
       ))}
       <div className="flex flex-col xl:mx-20">
         <div className="flex max-md:flex-col max-md:items-center max-md:gap-4 flex-row justify-between max-md:py-16 md:pt-16">

@@ -86,6 +86,7 @@ router.delete(
 
 router.post("/avis/creation", userWorkshopControllers.postUserWorkshop);
 router.get("/avis", userWorkshopControllers.getAllUserWorkshop);
+router.get("/avisuser", userWorkshopControllers.getAllUserOpinion);
 router.get(
   "/avis/:iduser/:idworkshop",
   userWorkshopControllers.getOneUserWorkshop
@@ -144,6 +145,8 @@ router.delete("/tasting/:id", tastingControllers.deleteTasting);
 
 router.post("/wineWorkshop", wineWorkshopControllers.postWineWorkshop);
 router.get("/wineWorkshop", wineWorkshopControllers.getSelection);
+router.get("/wineWorkshop/:idWorkshop", wineWorkshopControllers.getOneWorkshop);
+
 router.get(
   "/winesWorkshops/:idUser",
   wineWorkshopControllers.getLastFiveWinesForOneUser
@@ -151,6 +154,10 @@ router.get(
 router.get(
   "/allWinesWorkshops/:idUser",
   wineWorkshopControllers.getWinesForOneUser
+);
+router.get(
+  "/allWinesFromActiveWorkshops/:idUser/:idWorkshop",
+  wineWorkshopControllers.getAllWinesFromActiveWorkshops
 );
 
 // Gestion vins de l'atelier actif + score

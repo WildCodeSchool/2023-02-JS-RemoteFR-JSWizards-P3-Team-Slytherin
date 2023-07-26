@@ -73,14 +73,10 @@ export default function Home() {
 
   return (
     <div className="flex flex-col items-center h-full gap-10 mt-14">
-      <div className="text-center leading-6 w-[80%] ">
-        Notre atelier de dégustation de vins est un événement où les
-        participants peuvent déguster différents vins tout en apprenant sur leur
-        origine, leur production et leur goût. Les participants peuvent
-        apprendre à identifier les différents arômes et saveurs des vins, ainsi
-        qu’à comprendre les différences entre les différents types de vins. Les
-        ateliers de dégustation de vins sont une excellente occasion d’apprendre
-        sur le vin tout en passant un bon moment entre amis ou en famille.
+      <div className="text-center leading-6 w-[80%] max-w-[840px]">
+        Notre atelier de dégustation de vins propose aux participants de
+        découvrir les secrets de la dégustation et de fabriquer leur propre
+        assemblage, tout en passant un bon moment de convivialité.
       </div>
       <div className="flex flex-col gap-6">
         <span className="w-56 bg-secondary h-[1px] self-center" />

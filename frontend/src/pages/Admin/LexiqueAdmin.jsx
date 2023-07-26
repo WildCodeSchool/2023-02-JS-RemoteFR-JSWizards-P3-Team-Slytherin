@@ -20,8 +20,8 @@ export default function Lexique() {
   const [lexiqueDBFilter, setLexiqueDBFilter] = useState([]);
 
   const API = `${import.meta.env.VITE_BACKEND_URL}/glossary`;
-  const fetchData = () => {
-    axios
+  const fetchData = async () => {
+    await axios
       .get(API)
       .then((res) => {
         setLexiqueDatas(res.data);

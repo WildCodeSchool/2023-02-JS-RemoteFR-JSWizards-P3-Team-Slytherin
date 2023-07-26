@@ -3,7 +3,11 @@ import axios from "axios";
 import VinLayout from "@components/admin/VinLayout";
 
 export default function Vins() {
+  const isFirefox = navigator.userAgent.indexOf("Firefox") !== -1;
+
   const [vinData, setVinData] = useState([]);
+  const [vinDataFilter, setVinDataFilter] = useState([]);
+  const [search, setSearch] = useState("");
   const [sortConfig, setSortConfig] = useState({
     key: "",
     direction: "ascending",
@@ -21,12 +25,17 @@ export default function Vins() {
   const [refresh, setRefresh] = useState(false);
   const [hidden, setHidden] = useState(false);
 
+  const handleClick = () => {
+    setSearch("");
+    setVinDataFilter(vinData.sort((a, b) => b.id - a.id));
+  };
+
   const sortTable = (key) => {
     let direction = "ascending";
     if (sortConfig.key === key && sortConfig.direction === "ascending") {
       direction = "descending";
     }
-    const sortedData = [...vinData].sort((a, b) => {
+    const sortedData = [...vinDataFilter].sort((a, b) => {
       const valueA = a[key];
       const valueB = b[key];
 
@@ -41,8 +50,20 @@ export default function Vins() {
       }
       return 0;
     });
-    setVinData(sortedData);
+    setVinDataFilter(sortedData);
     setSortConfig({ key, direction });
+  };
+
+  const handleSubmit = (event) => event.preventDefault();
+  const handleChange = (event) => {
+    setSearch(event.target.value);
+    const words = event.target.value.toLowerCase();
+    setVinDataFilter(
+      vinData.filter((e) => e.wineName.toLowerCase().includes(words))
+    );
+    if (event.target.value === "") {
+      setVinDataFilter(vinData);
+    }
   };
 
   const handleWine = () => {
@@ -69,6 +90,7 @@ export default function Vins() {
       .get(`${import.meta.env.VITE_BACKEND_URL}/wines`)
       .then((res) => {
         setVinData(res.data.sort((a, b) => b.id - a.id));
+        setVinDataFilter(res.data.sort((a, b) => b.id - a.id));
       })
       .catch((err) => console.error(err));
   }, [refresh]);
@@ -82,12 +104,33 @@ export default function Vins() {
         <button type="button" onClick={handleWine} className="self-center">
           Ajouter un vin
         </button>
+        <div className="flex flex-row items-center max-w-full">
+          <p>🔎</p>
+          <form className="p-1" onSubmit={handleSubmit}>
+            <input
+              className="text-primary pl-1 rounded-md"
+              type="search"
+              placeholder="search"
+              value={search}
+              onChange={handleChange}
+            />
+          </form>
+          {isFirefox && (
+            <button
+              className="flex justify-center text-xl font-bold items-center bg-secondary rounded-full text-primary lexique-button"
+              type="button"
+              onClick={handleClick}
+            >
+              <span className="lexique-button-content">&times;</span>
+            </button>
+          )}
+        </div>
         <table className="w-full min-w-[480px] bg-secondary rounded mb-8 shadow-md overflow-scroll">
           <thead>
             <tr className="flex justify-center p-3 px-10">
               <th className="flex-0 w-16">Image</th>
               <th
-                className="flex-1 min-w-[280px]"
+                className="flex-1 min-w-[280px] cursor-pointer"
                 onClick={() => sortTable("wineName")}
               >
                 Nom{" "}
@@ -95,14 +138,17 @@ export default function Vins() {
                   (sortConfig.direction === "ascending" ? "▼" : "▲")}
               </th>
               <th
-                className="flex-1 min-w-[300px] max-[1100px]:hidden"
+                className="flex-1 min-w-[300px] max-[1100px]:hidden cursor-pointer"
                 onClick={() => sortTable("castle")}
               >
                 Domaine{" "}
                 {sortConfig.key === "castle" &&
                   (sortConfig.direction === "ascending" ? "▼" : "▲")}
               </th>
-              <th className="flex-1" onClick={() => sortTable("wineType")}>
+              <th
+                className="flex-1 cursor-pointer"
+                onClick={() => sortTable("wineType")}
+              >
                 Type{" "}
                 {sortConfig.key === "wineType" &&
                   (sortConfig.direction === "ascending" ? "▼" : "▲")}
@@ -111,7 +157,7 @@ export default function Vins() {
             </tr>
           </thead>
           <tbody>
-            {vinData.map((e) => (
+            {vinDataFilter.map((e) => (
               <tr
                 className="h-14 flex justify-center p-3 px-10 shadow-inner"
                 key={e.id}

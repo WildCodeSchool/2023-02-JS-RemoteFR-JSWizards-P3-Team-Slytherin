@@ -172,19 +172,23 @@ export default function AtelierLayout({
     );
   };
 
-  const handleClickValider = () => {
-    if (workshop.personNb > 0 && workshop.workshopDate !== 0) {
+  const handleClickValider = async () => {
+    if (
+      workshop.personNb > 0 &&
+      workshop.workshopDate !== 0 &&
+      selection.length >= 3
+    ) {
       try {
         if (+workshop.active === 1) updateAllWorkshopInactive();
-        registerWorkshop();
-        setRefresh(!refresh);
-        setHidden(!hidden);
+        await registerWorkshop();
         setWorkshop({
           active: 0,
           workshopDate: "",
           personNb: "",
         });
         setSelection([]);
+        setRefresh(!refresh);
+        setHidden(!hidden);
       } catch (error) {
         console.error(error);
       }
