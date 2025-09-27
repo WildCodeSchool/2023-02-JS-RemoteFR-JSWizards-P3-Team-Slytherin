@@ -28,7 +28,7 @@ const {
 
 // Test route
 
-router.get("/api", function (req, res) {
+router.get("/api", (req, res) => {
   res.send("hello world");
 });
 
