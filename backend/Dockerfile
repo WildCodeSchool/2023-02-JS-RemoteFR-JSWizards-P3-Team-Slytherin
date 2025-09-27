@@ -1,21 +1,12 @@
-# Dockerfile backend
-FROM node:16.14
+FROM node:lts-alpine
 
-WORKDIR /usr/src/app
+RUN mkdir /app
+WORKDIR /app
 
-ARG DB_HOST=${DB_HOST}
-ENV DB_HOST=${DB_HOST}
-ARG DB_USER=${DB_USER}
-ENV DB_USER=${DB_USER}
-ARG DB_PASSWORD=${DB_PASSWORD}
-ENV DB_PASSWORD=${DB_PASSWORD}
-ARG DB_NAME=${DB_NAME}
-ENV DB_NAME=${DB_NAME}
-ARG JWT_SECRET=${JWT_SECRET}
-ENV JWT_SECRET=${JWT_SECRET}
+COPY ./src /app/src
+COPY ./*.js /app/
+COPY ./*.json /app/
+COPY ./*.sql /app/
+RUN npm i
 
-COPY ./backend .
-
-RUN npm install
-
-CMD [ "npm", "start" ]
+CMD npm start
